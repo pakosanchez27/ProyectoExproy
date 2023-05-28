@@ -1,0 +1,78 @@
+{
+  "Categorias": [
+    {
+      "categoria": "Desarrollo de software y programación",
+      "puestos": [
+        "Ingeniero de software",
+        "Desarrollador web",
+        "Desarrollador de aplicaciones móviles",
+        "Ingeniero de datos",
+        "Ingeniero de calidad de software",
+        "Arquitecto de software",
+        "Analista de sistemas",
+        "Administrador de bases de datos"
+      ]
+    },
+    {
+      "categoria": "Diseño y experiencia de usuario (UX)",
+      "puestos": [
+        "Diseñador de interfaz de usuario (UI)",
+        "Diseñador de experiencia de usuario (UX)",
+        "Diseñador de interacción",
+        "Diseñador gráfico",
+        "Arquitecto de información",
+        "Especialista en usabilidad",
+        "Investigador de experiencia de usuario"
+      ]
+    },
+    {
+      "categoria": "Marketing digital y análisis de datos",
+      "puestos": [
+        "Especialista en marketing digital",
+        "Analista de datos",
+        "Especialista en SEO (optimización en motores de búsqueda)",
+        "Especialista en SEM (marketing en motores de búsqueda)",
+        "Especialista en redes sociales",
+        "Especialista en email marketing",
+        "Analista de marketing",
+        "Especialista en analítica web"
+      ]
+    },
+    {
+      "categoria": "Gestión de proyectos y productividad",
+      "puestos": [
+        "Gerente de proyectos",
+        "Scrum Master",
+        "Product Owner",
+        "Coordinador de proyectos",
+        "Director de proyectos",
+        "Consultor de gestión",
+        "Especialista en gestión de la cadena de suministro"
+      ]
+    },
+    {
+      "categoria": "Ventas y desarrollo de negocios",
+      "puestos": [
+        "Ejecutivo de ventas",
+        "Gerente de cuentas",
+        "Representante de ventas",
+        "Especialista en desarrollo de negocios",
+        "Gerente de alianzas estratégicas",
+        "Gerente de relaciones con el cliente",
+        "Especialista en marketing de productos"
+      ]
+    },
+    {
+      "categoria": "Seguridad informática",
+      "puestos": [
+        "Ingeniero de seguridad",
+        "Especialista en seguridad de la información",
+        "Analista de seguridad",
+        "Consultor en seguridad cibernética",
+        "Auditor de seguridad",
+        "Analista de riesgos",
+        "Administrador de sistemas seguros"
+      ]
+    }
+  ]
+}
