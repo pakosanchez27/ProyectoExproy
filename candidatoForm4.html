@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <title>Registrate</title>
+</head>
+
+<body>
+    <div class="candidatoForm">
+        <div class="candidatoForm__izquierda">
+            <div class="izquierda__logo">
+                <a href="index.html">AgoraTalent</a>
+            </div>
+            <div class="izquierda__paso">
+                <h3>Paso 3</h3>
+                <p>Ayuda a las empresas a saber en que ámbitos te has despeñado</p>
+            </div>
+            <div class="izquierda__flujo">
+                <div class="flujo__paso">
+                    <div class="paso__circulo  ">
+                        <p>1</p>
+                    </div>
+                    <div class="paso__texto ">
+                        <p>Informacion Personal.</p>
+                    </div>
+                </div> <!--Paso 1-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo ">
+                        <p>2</p>
+                    </div>
+                    <div class="paso__texto  ">
+                        <p>Educación y Habilidades.</p>
+                    </div>
+                </div> <!--Paso 2-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo activo activoTexto">
+                        <p>3</p>
+                    </div>
+                    <div class="paso__texto activoTexto">
+                        <p>Experiencia Laboral</p>
+                    </div>
+                </div> <!--Paso 3-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo">
+                        <p>4</p>
+                    </div>
+                    <div class="paso__texto">
+                        <p>Foto de Perfil</p>
+                    </div>
+                </div> <!--Paso 4-->
+            </div>
+
+        </div>
+        <div class="candidatoForm__derecha">
+            <div class="derecha__contenido">
+
+                <div class="derecha__titulo">
+                    <h3>Experiencia Laboral.</h3>
+                </div>
+                <div class="derecha__texto">´
+                    <p>¿Puedes hablarnos acerca de tu emperiencia laboral?</p>
+                </div>
+                <div class="derecha__formulario grid4">
+                    <form action="candidatoForm4.html" method="post">
+
+                        <div class="campo fotoPerfil">
+                            <label for="fotoPerfil">Selecciona una Foto de perfil</label>
+                            <input type="file" id="inputFile" onchange="mostrarImagen(event)" accept="image/*">
+                            
+                        </div>
+
+                        <div class="previewPerfil">
+                            <div class="previewPerfil__contenedor">
+                                <div class="previewPerfil__portada">
+
+                                </div>
+                                <div class="previewPerfil__informacion">
+                                    <div class="previewPerfil__foto">
+                                        
+                                    </div>
+                                    <div class="previewPerfil__nombre">
+                                        <h3>Francisco Sanchez</h3>
+                                    </div>
+                                    <div class="previewPerfil__ciudad">
+                                        <p><span>Nezahualcoyotl,</span> E.México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="derecha__botones ">
+                            <!-- <input type="submit" value="Siguiente" class="boton verde"> -->
+                            <a href="perfilCandidato.html" class="boton verde">Finalizar</a>
+                            <a href="candidatoForm2.html" class="boton blanco">Atras</a>
+                            <!--Este voton debe de llevar al formulario de actualizacion-->
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

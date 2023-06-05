@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <title>Registrate</title>
+    </head>
+<body>
+    <div class="candidatoForm">
+        <div class="candidatoForm__izquierda">
+            <div class="izquierda__logo">
+                <a href="index.html">AgoraTalent</a>
+            </div>
+            <div class="izquierda__paso">
+                <h3>Paso 3</h3>
+                <p>Ayuda a las empresas a saber en que ámbitos te has despeñado</p>
+            </div>
+            <div class="izquierda__flujo">
+                <div class="flujo__paso">
+                    <div class="paso__circulo  ">
+                        <p>1</p>
+                    </div>
+                    <div class="paso__texto ">
+                        <p>Informacion Personal.</p>
+                    </div>
+                </div> <!--Paso 1-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo ">
+                        <p>2</p>
+                    </div>
+                    <div class="paso__texto  ">
+                        <p>Educación y Habilidades.</p>
+                    </div>
+                </div> <!--Paso 2-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo activo activoTexto">
+                        <p>3</p>
+                    </div>
+                    <div class="paso__texto activoTexto">
+                        <p>Experiencia Laboral</p>
+                    </div>
+                </div> <!--Paso 3-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo">
+                        <p>4</p>
+                    </div>
+                    <div class="paso__texto">
+                        <p>Foto de Perfil</p>
+                    </div>
+                </div> <!--Paso 4-->
+            </div>
+
+        </div>
+        <div class="candidatoForm__derecha">
+            <div class="derecha__contenido">
+                
+                <div class="derecha__titulo">
+                    <h3>Experiencia Laboral.</h3>
+                </div>
+                <div class="derecha__texto">´
+                    <p>¿Puedes hablarnos acerca de tu emperiencia laboral?</p>
+                </div>
+                <div class="derecha__formulario grid3">
+                    <form action="candidatoForm4.html" method="post">
+                        <div class="campo noExperiencia">
+                            <input type="checkbox" name="noExperiencia" id="noExperiencia">
+                            <label for="noExperi">No tengo Experiencia aun</label>
+                        </div>
+                        <div class="campo empresa">
+                            <label for="institucion">Institucion Educativa</label>
+                            <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
+                        </div>
+                        <div class="campo descripcion">
+                            <label for="descripcion">Descripcion de actividades</label>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+                        </div>
+                        <div class="campo cargo">
+                            <label for="titulo">Titulo / Certificado</label>
+                            <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
+                        </div>
+                        <div class="campo duracion">
+                            <label for="skills">Duracion</label>
+                            <select name="duracion">
+                                <option disabled selected>--Selecciona--</option>
+                                <option value="actual">Actual</option>
+                                <option value="menos1">Menos de 1 año</option>
+                                <option value="1a3">1 a 3 años</option>
+                                <option value="3a5">3 a 5 años</option>
+                                <option value="5a10">5 a 10 años</option>
+                                <option value="mas10">Más de 10 años</option>
+                              </select>
+                        </div>
+                 
+                        <div class="derecha__botones ">
+                            <!-- <input type="submit" value="Siguiente" class="boton verde"> -->
+                            <a href="candidatoForm4.html" class="boton verde">Siguiente</a>
+                            <a href="candidatoForm2.html" class="boton blanco">Atras</a> <!--Este voton debe de llevar al formulario de actualizacion-->
+                        </div>
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
