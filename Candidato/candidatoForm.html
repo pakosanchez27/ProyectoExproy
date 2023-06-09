@@ -20,42 +20,42 @@
                 <a href="index.html">AgoraTalent</a>
             </div>
             <div class="izquierda__paso" id="banner_izquierda">
-                
-                <p>Dinos como contactarte si una empresa esta interezada en tu perfil</p>
+                <h3 id="divpaso"></h3>
+                <p id="descripcion"></p>
             </div>
             <div class="izquierda__flujo">
                 <div class="flujo__paso">
-                    <div class="paso__circulo activo activoTexto">
+                    <div id="flujo1" class="paso__circulo">
                         <p>1</p>
                     </div>
-                    <div class="paso__texto activoTexto">
+                    <div id="flujotexto1"class="paso__texto ">
                         <p>Informacion Personal.</p>
                     </div>
                 </div> <!--Paso 1-->
 
                 <div class="flujo__paso">
-                    <div class="paso__circulo">
+                    <div id="flujo2" class="paso__circulo">
                         <p>2</p>
                     </div>
-                    <div class="paso__texto">
+                    <div id="flujotexto2" class="paso__texto">
                         <p>Educación y Habilidades.</p>
                     </div>
                 </div> <!--Paso 2-->
 
                 <div class="flujo__paso">
-                    <div class="paso__circulo">
+                    <div id="flujo3" class="paso__circulo">
                         <p>3</p>
                     </div>
-                    <div class="paso__texto">
+                    <div id="flujotexto3" class="paso__texto">
                         <p>Experiencia Laboral</p>
                     </div>
                 </div> <!--Paso 3-->
 
                 <div class="flujo__paso">
-                    <div class="paso__circulo">
+                    <div id="flujo4" class="paso__circulo">
                         <p>4</p>
                     </div>
-                    <div class="paso__texto">
+                    <div id="flujotexto4" class="paso__texto">
                         <p>Foto de Perfil</p>
                     </div>
                 </div> <!--Paso 4-->
@@ -66,13 +66,13 @@
             <div class="derecha__contenido">
                 
                 <div class="derecha__titulo">
-                    <h3>Tu informacion Personal</h3>
+                    <h3 id="titulo"></h3>
                 </div>
-                <div class="derecha__texto">´
-                    <p>Aqui empieza tu camino al exito!</p>
+                <div  class="derecha__texto">´
+                    <p id="textoPrincipal"></p>
                 </div>
                 <div class="derecha__formulario ">
-                    <form action="">
+                    <form method="post" >
                         <div id="grid1" class="grid1 ocultar">
                             <div class="campo nombre">
                                 <label for="nombre">Nombre</label>
@@ -162,7 +162,7 @@
                                 <label for="noExperi">No tengo Experiencia aun</label>
                             </div>
                             <div class="campo empresa">
-                                <label for="institucion">Institucion Educativa</label>
+                                <label for="institucion">Empresa</label>
                                 <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
                             </div>
                             <div class="campo descripcion">
@@ -170,7 +170,7 @@
                                 <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
                             </div>
                             <div class="campo cargo">
-                                <label for="titulo">Titulo / Certificado</label>
+                                <label for="titulo">Cargo Desempeñado</label>
                                 <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
                             </div>
                             <div class="campo duracion">
