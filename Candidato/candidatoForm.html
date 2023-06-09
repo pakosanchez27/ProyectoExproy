@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <title>Registrate</title>
+    </head>
+<body>
+    <div class="candidatoForm">
+        <div class="candidatoForm__izquierda">
+            <div class="izquierda__logo">
+                <a href="index.html">AgoraTalent</a>
+            </div>
+            <div class="izquierda__paso" id="banner_izquierda">
+                
+                <p>Dinos como contactarte si una empresa esta interezada en tu perfil</p>
+            </div>
+            <div class="izquierda__flujo">
+                <div class="flujo__paso">
+                    <div class="paso__circulo activo activoTexto">
+                        <p>1</p>
+                    </div>
+                    <div class="paso__texto activoTexto">
+                        <p>Informacion Personal.</p>
+                    </div>
+                </div> <!--Paso 1-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo">
+                        <p>2</p>
+                    </div>
+                    <div class="paso__texto">
+                        <p>Educación y Habilidades.</p>
+                    </div>
+                </div> <!--Paso 2-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo">
+                        <p>3</p>
+                    </div>
+                    <div class="paso__texto">
+                        <p>Experiencia Laboral</p>
+                    </div>
+                </div> <!--Paso 3-->
+
+                <div class="flujo__paso">
+                    <div class="paso__circulo">
+                        <p>4</p>
+                    </div>
+                    <div class="paso__texto">
+                        <p>Foto de Perfil</p>
+                    </div>
+                </div> <!--Paso 4-->
+            </div>
+
+        </div>
+        <div class="candidatoForm__derecha">
+            <div class="derecha__contenido">
+                
+                <div class="derecha__titulo">
+                    <h3>Tu informacion Personal</h3>
+                </div>
+                <div class="derecha__texto">´
+                    <p>Aqui empieza tu camino al exito!</p>
+                </div>
+                <div class="derecha__formulario ">
+                    <form action="">
+                        <div id="grid1" class="grid1 ocultar">
+                            <div class="campo nombre">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre">
+                            </div>
+                            <div class="campo apellido">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" name="apellido" id="apellido"placeholder="Tus Apellidos">
+                            </div>
+                            <div class="campo telefono">
+                                <label for="telefono">Numero de Telefono</label>
+                                <input type="tel" name="telefono" id="telefono"placeholder="Tu número de telefono">
+                            </div>
+                            <div class="campo fechaNaciomiento">
+                                <label for="nacimiento">Fecha de nacimiento</label>
+                                <input type="date" name="nacimiento" id="nacimiento">
+                            </div>
+                            
+                            <div class="campo estado">
+                                <label for="estado">Estado</label>
+                                <select name="estados">
+                                    <option disabled selected>--Selecciona un Estado--</option>
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California</option>
+                                    <option value="Baja California Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Ciudad de México">Ciudad de México</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="México">México</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana Roo">Quintana Roo</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
+                                  </select>
+                            </div>
+                            <div class="campo ciudad">
+                                <label for="cidudad">Ciudad o Municipio</label>
+                                <input type="text" name="ciudad" id="ciudad"placeholder="Ciudad o municipio">
+                            </div>
+                        </div>
+                        <div id="grid2" class="grid2 ocultar">
+                            <div class="campo institucion">
+                                <label for="institucion">Institucion Educativa</label>
+                                <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela">
+                            </div>
+                            <div class="campo fechaInicio">
+                                <label for="fechaInicio">Fecha Inicio</label>
+                                <input type="date" name="fechaInicio" id="fechaInicio">
+                            </div>
+                            <div class="campo fechaFin">
+                                <label for="fechaFin">Fecha Fin</label>
+                                <input type="date" name="fechaFin" id="fechaFin">
+                            </div>
+                            <div class="campo titulo">
+                                <label for="titulo">Titulo / Certificado</label>
+                                <input type="text" name="titulo" id="titulo" placeholder="Certificado o titulo Obtenido">
+                            </div>
+                            <div class="campo skills">
+                                <label for="skills">Habilidades o skills </label>
+                                <input type="text" name="skills" id="skills" placeholder="ej. php, java, photoshop...">
+                            </div>
+                        </div>
+                        <div id="grid3" class="grid3 ocultar">
+                            <div class="campo noExperiencia">
+                                <input type="checkbox" name="noExperiencia" id="noExperiencia">
+                                <label for="noExperi">No tengo Experiencia aun</label>
+                            </div>
+                            <div class="campo empresa">
+                                <label for="institucion">Institucion Educativa</label>
+                                <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
+                            </div>
+                            <div class="campo descripcion">
+                                <label for="descripcion">Descripcion de actividades</label>
+                                <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="campo cargo">
+                                <label for="titulo">Titulo / Certificado</label>
+                                <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
+                            </div>
+                            <div class="campo duracion">
+                                <label for="skills">Duracion</label>
+                                <select name="duracion">
+                                    <option disabled selected>--Selecciona--</option>
+                                    <option value="actual">Actual</option>
+                                    <option value="menos1">Menos de 1 año</option>
+                                    <option value="1a3">1 a 3 años</option>
+                                    <option value="3a5">3 a 5 años</option>
+                                    <option value="5a10">5 a 10 años</option>
+                                    <option value="mas10">Más de 10 años</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div id="grid4" class="grid4 ocultar">
+                            <div class="campo fotoPerfil">
+                                <label for="fotoPerfil">Selecciona una Foto de perfil</label>
+                                <input type="file" id="inputFile" onchange="mostrarImagen(event)" accept="image/*">
+                                
+                            </div>
+    
+                            <div class="previewPerfil">
+                                <div class="previewPerfil__contenedor">
+                                    <div class="previewPerfil__portada">
+    
+                                    </div>
+                                    <div class="previewPerfil__informacion">
+                                        <div class="previewPerfil__foto">
+                                            
+                                        </div>
+                                        <div class="previewPerfil__nombre">
+                                            <h3>Francisco Sanchez</h3>
+                                        </div>
+                                        <div class="previewPerfil__ciudad">
+                                            <p><span>Nezahualcoyotl,</span> E.México</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 
+                        <div class="derecha__botones ">
+                           <!-- <input type="submit" value="Siguiente" class="boton verde"> -->
+                           <a id="siguiente" href="#" class="boton verde">Siguiente</a>
+                           <a id="atras" href="#" class="boton blanco">Atras</a> <!--Este voton debe de llevar al formulario de actualizacion-->
+                        </div>
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/formularioCandidato.js"></script>
+</body>
+</html>

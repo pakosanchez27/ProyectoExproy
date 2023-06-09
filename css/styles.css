@@ -1476,17 +1476,21 @@ input::placeholder {
     flex-direction: column;
     gap: 2rem;
 }
+.ocultar{
+    display: none;
+}
 @media (min-width: 1200px) { 
-    .grid1 form{
-        display: grid;
+    #grid1 {
+        
         grid-template-areas: 'nombre apellido'
                              'telefono fechaNacimiento'
                              'estado ciudad'
                              'derecha__botones derecha__botones';
                              gap: 2rem;
+                             
     }
-    .grid2 form{
-        display: grid;
+    #grid2 {
+        
         grid-template-areas: 'institucion institucion'
                              'fechaInicio fechaFin'
                              'titulo titulo'
@@ -1494,8 +1498,9 @@ input::placeholder {
                              'derecha__botones derecha__botones';
                              gap: 2rem;
     }
-    .grid3 form{
-        display: grid;
+    
+    #grid3 {
+      
         grid-template-areas: 'noExperiencia noExperiencia'
                              'empresa empresa'
                              'descripcion descripcion'
@@ -1503,6 +1508,13 @@ input::placeholder {
                              'duracion duracion'
                              'derecha__botones derecha__botones';
                              gap: 2rem;
+    }
+  
+    .mostrar{
+        display: grid;
+    }
+    .ocultar{
+        display: none;
     }
  }
 .nombre{
