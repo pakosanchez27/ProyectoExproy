@@ -9,6 +9,9 @@ const flujo2 = document.querySelector('#flujo2');
 const flujo3 = document.querySelector('#flujo3');
 const flujo4 = document.querySelector('#flujo4');
 
+const OptionEstado = document.querySelector('#estado');
+
+
 const flujotexto1 = document.querySelector('#flujotexto1');
 const flujotexto2 = document.querySelector('#flujotexto2');
 const flujotexto3 = document.querySelector('#flujotexto3');
@@ -21,8 +24,11 @@ const banner_izquierda = document.querySelector('#banner_izquierda')
 const siguiente = document.querySelector('#siguiente');
 const atras = document.querySelector('#atras');
 
+
+
+
 let paginador = 1;
-console.log(paginador);
+// console.log(paginador);
 // Eventos
 
 eventListeners();
@@ -31,11 +37,51 @@ function eventListeners() {
         subirFoto.addEventListener('change', mostrarImagen);
         siguiente.addEventListener('click', siguienteFormulario);
         atras.addEventListener('click', atrasFormulario);
+        
 
     });
 }
 
+// llenar el Select 
+fetch('../Json/estados.json')
+.then(Response => Response.json())
+.then(Data => {
+// console.log(Object.keys(Data));
+Object.keys(Data).forEach(estado => {
+    const optionElement = document.createElement('option');
+    optionElement.textContent = estado;
+    optionElement.value = estado;
+    OptionEstado.appendChild(optionElement);
+});
 
+
+estado.addEventListener('change', function (e) {
+    ciudad.value = '';
+
+    const EstadoSeleccionado = e.target.value;
+
+// console.log(EstadoSeleccionado);
+ 
+    llenarMunicipios(Data, EstadoSeleccionado);
+    
+   
+})
+
+})
+.catch(error => {
+    console.error("error al cargar los datos", error);
+});
+
+function llenarMunicipios(Data, EstadoSeleccionado) {
+    
+    Object.values(Data[EstadoSeleccionado]).forEach(municipio => {
+        const optionElement2 = document.createElement('option');
+        optionElement2.textContent = municipio;
+        optionElement2.value = municipio;
+        ciudad.appendChild(optionElement2);
+    });
+
+}
 
 mostrarFormulario(paginador);
 
@@ -46,6 +92,7 @@ function siguienteFormulario(e) {
     if (paginador > 4) {
         paginador = 4;
     }
+    
     mostrarFormulario(paginador);
 }
 function atrasFormulario(e) {
@@ -62,7 +109,7 @@ function atrasFormulario(e) {
 function mostrarFormulario(paginador) {
 
     limpiarHTML(divpaso);
-    console.log(paginador);
+    // console.log(paginador);
     if (paginador === 1) {
         if (grid1.classList.contains('ocultar')) {
             grid1.classList.remove('ocultar');
@@ -178,6 +225,19 @@ function mostrarFormulario(paginador) {
 
         titulo.innerHTML = 'Foto de Usuario';
         textoPrincipal.innerHTML = 'Actualiza tu foto de perfil.';
+        
+        siguiente.remove();
+        const contenedorBtn = document.querySelector('.derecha__botones');
+        const siguienteSubmit = document.createElement('input');
+        siguienteSubmit.type = 'submit';
+        siguienteSubmit.value = 'Siguiente';
+        siguienteSubmit.classList.add('boton', 'verde');
+        siguienteSubmit.id = 'siguiente';
+      
+        contenedorBtn.appendChild(siguienteSubmit);
+
+
+    
 
         
 
@@ -189,7 +249,7 @@ function mostrarFormulario(paginador) {
 // funcion para mostrar la imagen en formulario
 function mostrarImagen(event) {
     var input = event.target;
-    console.log(input);
+    // console.log(input);
     var reader = new FileReader();
 
     reader.onload = function () {

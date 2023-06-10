@@ -72,7 +72,7 @@
                     <p id="textoPrincipal"></p>
                 </div>
                 <div class="derecha__formulario ">
-                    <form method="post" >
+                    <form id="formulario" method="post" >
                         <div id="grid1" class="grid1 ocultar">
                             <div class="campo nombre">
                                 <label for="nombre">Nombre</label>
@@ -93,45 +93,17 @@
                             
                             <div class="campo estado">
                                 <label for="estado">Estado</label>
-                                <select name="estados">
-                                    <option disabled selected>--Selecciona un Estado--</option>
-                                    <option value="Aguascalientes">Aguascalientes</option>
-                                    <option value="Baja California">Baja California</option>
-                                    <option value="Baja California Sur">Baja California Sur</option>
-                                    <option value="Campeche">Campeche</option>
-                                    <option value="Coahuila">Coahuila</option>
-                                    <option value="Colima">Colima</option>
-                                    <option value="Chiapas">Chiapas</option>
-                                    <option value="Chihuahua">Chihuahua</option>
-                                    <option value="Ciudad de México">Ciudad de México</option>
-                                    <option value="Durango">Durango</option>
-                                    <option value="Guanajuato">Guanajuato</option>
-                                    <option value="Guerrero">Guerrero</option>
-                                    <option value="Hidalgo">Hidalgo</option>
-                                    <option value="Jalisco">Jalisco</option>
-                                    <option value="México">México</option>
-                                    <option value="Michoacán">Michoacán</option>
-                                    <option value="Morelos">Morelos</option>
-                                    <option value="Nayarit">Nayarit</option>
-                                    <option value="Nuevo León">Nuevo León</option>
-                                    <option value="Oaxaca">Oaxaca</option>
-                                    <option value="Puebla">Puebla</option>
-                                    <option value="Querétaro">Querétaro</option>
-                                    <option value="Quintana Roo">Quintana Roo</option>
-                                    <option value="San Luis Potosí">San Luis Potosí</option>
-                                    <option value="Sinaloa">Sinaloa</option>
-                                    <option value="Sonora">Sonora</option>
-                                    <option value="Tabasco">Tabasco</option>
-                                    <option value="Tamaulipas">Tamaulipas</option>
-                                    <option value="Tlaxcala">Tlaxcala</option>
-                                    <option value="Veracruz">Veracruz</option>
-                                    <option value="Yucatán">Yucatán</option>
-                                    <option value="Zacatecas">Zacatecas</option>
+                                <select name="estados" id="estado">
+                                    <option value="" disabled selected>--Selecciona un Estado--</option>
+                                    
                                   </select>
                             </div>
                             <div class="campo ciudad">
-                                <label for="cidudad">Ciudad o Municipio</label>
-                                <input type="text" name="ciudad" id="ciudad"placeholder="Ciudad o municipio">
+                                <label for="ciudad">Ciudad o Municipio</label>
+                                <select name="ciudad" id="ciudad">
+                                    <option value="" disabled selected>--Selecciona un ciudad--</option>
+                                    
+                                  </select>
                             </div>
                         </div>
                         <div id="grid2" class="grid2 ocultar">
@@ -215,7 +187,7 @@
                  
                         <div class="derecha__botones ">
                            <!-- <input type="submit" value="Siguiente" class="boton verde"> -->
-                           <a id="siguiente" href="#" class="boton verde">Siguiente</a>
+                            <a href="#" id="siguiente" class="boton verde ">Siguiente</a>
                            <a id="atras" href="#" class="boton blanco">Atras</a> <!--Este voton debe de llevar al formulario de actualizacion-->
                         </div>
                     </form>
@@ -225,5 +197,6 @@
         </div>
     </div>
     <script src="../js/formularioCandidato.js"></script>
+    <script src="../js/validacionCandidato.js"></script>
 </body>
 </html>
