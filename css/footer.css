@@ -1,0 +1,285 @@
+:root {
+    /* colores */
+    --fondoSec: #13161C;
+    --fondoPri: #ECECEC;
+    --fondoCampo: #F1F1F1;
+    --primario: #0C6432;
+    --blanco: #fff;
+    --negro: #000;
+
+
+    /* Fuentes */
+
+    --fuentePri: 'Montserrat Alternates', sans-serif;
+    /* Titulos y subtitulos */
+    --fuenteSec: 'Montserrat', sans-serif;
+    /* texto en general*/
+
+    /* tamaños */
+
+    --delgada: 300;
+    --normal: 400;
+    --bold: 600;
+
+    /* Dispositivos */
+
+    --celular: 480px;
+    --tablet: 768px;
+    --desktop: 1200px;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+
+    /* 1rem = 10px */
+
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--fuenteSec);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+/* Globlales */
+h1,
+h2,
+h3 {
+    font-family: var(--fuentePri);
+}
+
+h1 {
+    font-size: 4.4rem;
+}
+
+h2 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* utilidades */
+.text-center {
+    text-align: center;
+}
+
+.mostrarMenu {
+    display: flex;
+}
+
+.ocultarMenu {
+    display: none;
+}
+
+.boton {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--blanco);
+    font-size: 1.8rem;
+    border-radius: .5rem;
+}
+
+.opacity50{
+    opacity: 0.5;
+}
+
+.errorMensaje{
+    color: rgb(199, 7, 7);
+    font-size: 1rem;
+}
+
+.verde {
+    background-color: var(--primario);
+}
+
+.verde:hover {
+    background-color: #187e44;
+    transition: all 0.3s ease-in-out;
+}
+
+.blanco {
+    background-color: var(--blanco);
+    color: var(--negro);
+}
+
+.blanco:hover {
+    background-color: #d3d3d3;
+    transition: all 0.3s ease-in-out;
+}
+
+.negro {
+    background-color: var(--negro);
+}
+
+.negro:hover {
+    background-color: #1d1d1d;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Banner */
+.banner {
+    display: none;
+    margin: 0;
+    padding: .5rem;
+    width: 100%;
+    background-color: var(--primario);
+}
+
+.banner .banner__texto {
+    color: var(--blanco);
+    font-weight: bold;
+}
+
+@media (min-width: 480px) {
+    .banner {
+        display: block;
+    }
+}
+
+/* Footer */
+.footer{
+    background-color: var(--fondoSec);
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    
+}
+
+
+.footer__principal{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    
+}
+.enlace:hover{
+    color: var(--blanco);
+    transition: all .5s ease;
+}
+@media (min-width: 1200px) { 
+    hr{
+        display: none;
+    }
+      .footer__principal{
+        display: grid;
+        grid-template-columns: repeat(5, 20rem);
+        margin: 0 auto;
+        align-items: stretch;
+
+      }
+ }
+
+.footer__logo{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footer__logo a{
+    font-family: var(--fuentePri);
+    color: var(--blanco);
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.footer__logo p{
+    color: var(--blanco);
+
+}
+@media (min-width: 1200px) { 
+    .footer__logo a{
+      font-size: 3rem;
+      text-align: left;
+    }
+    .footer__logo p {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+}
+.footer__seccion nav{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.footer__seccion p{
+    color: var(--blanco);
+    font-weight: bold;
+}
+.enlace {
+    color: #707070;
+    
+}
+.footer__logos{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+.footer__logos img{
+    width: 3rem;
+}
+.footer__descarga{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+@media (min-width: 1200px) { 
+    .footer__descarga img{
+        width: 2rem;
+      }
+      .footer__descarga p{
+        font-size: 1.5rem;
+      }
+      .footer__descarga span{
+        font-size: 1rem;
+      }
+      .footerApp{
+        width: 20rem;
+      }
+ }
+ .Copy{
+    color: var(--blanco);
+    text-align: center;
+}
+@media (min-width: 1200px) { 
+    .Copy{
+       margin-top: 5rem;
+    }
+ }
+
+hr{
+    width: 100%;
+}
