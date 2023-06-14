@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,58 +14,137 @@
     <link rel="stylesheet" href="../css/normalize.css">
     <title>Perfil Candiadto</title>
 </head>
+
+<style>
+    .principal__header__portada {
+        border: #187e44 1px solid;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background-image: url('../src/img/1646811898925.jpeg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
 <body>
-<header class="candidato__header">
-    <div class="header__izquierda">
-        <div class="candiadato__logo">
-            <a class="logoDesktop" href="/">AgoraTalent</a>
-            <a class="logoMobile" href="/">AgoraTalent</a>
-           
-        </div>
-        <div class="candidato__buscar">
-            <label for="buscar" class="buscar">
-                <img src="../src/img/lupa.png" alt="logo lupa">
-            </label>
-                <input type="search" name="buscar" id="busca" placeholder="Buscar">
-        </div>
-    </div>
-    <div class="header__derecha">
-        <nav class="candidato__navegacion">
-            <div class="navegacion__opc">
-                <img src="../src/img/portafolio.png" alt="Logo portafolio">
-                <p>Empleo</p>
+    <header class="candidato__header">
+        <div class="candidato__header__contenido">
+            <div class="header__izquierda">
+                <div class="candiadato__logo">
+                    <a class="logoDesktop" href="/">AgoraTalent</a>
+                    <a class="logoMobile" href="/">AgoraTalent</a>
+    
+                </div>
+                <div class="candidato__buscar">
+                    <label for="buscar" class="buscar">
+                        <img src="../src/img/lupa.png" alt="logo lupa">
+                    </label>
+                    <input type="search" name="buscar" id="busca" placeholder="Buscar">
+                </div>
             </div>
-            <div class="navegacion__opc">
-                <img src="../src/img/evaluacion.png" alt="Logo portafolio">
-                <p>Evaluacion</p>
+            <div class="header__derecha">
+                <nav class="candidato__navegacion">
+                    <div class="navegacion__opc">
+                        <img src="../src/img/portafolio.png" alt="Logo portafolio">
+                        <p>Empleo</p>
+                    </div>
+                    <div class="navegacion__opc">
+                        <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        <p>Evaluacion</p>
+                    </div>
+                    <div class="navegacion__opc">
+                        <img src="../src/img/comentario.png" alt="Logo portafolio">
+                        <p>Chats</p>
+                    </div>
+                    <div class="navegacion__Perfil">
+                        <img class="candiatoPerfil" src="../src/img/perfil.jpg" alt="Logo portafolio">
+                    </div>
+                </nav>
             </div>
-            <div class="navegacion__opc">
-                <img src="../src/img/comentario.png" alt="Logo portafolio">
-                <p>Chats</p>
-            </div>
-            <div class="navegacion__Perfil">
-                <img class="candiatoPerfil" src="../src/img/perfil.jpg" alt="Logo portafolio">
-            </div>
-        </nav>
-    </div>
-</header>
+        </div>
+      
+    </header>
 
-<div class="contenedor__candidato">
-    <div class="contenedor__principal">
-    <div class="principal__header">
-        <div class="principal__header__portada">
+    <div class="contenedor__candidato">
+        <div class="contenedor__principal">
+            <div class="principal__header sombra">
+                <div class="principal__header__portada">
+                    <div class="portada__editar">
+                        <a href="#"><img src="../src/img/lapiz.png" alt="Logo lapiz"></a>
+                    </div>
+                </div>
+                <div class="principal__header__info">
+                    <div class="principal__header__foto">
+                        <img src="../src/img/perfil.jpg" alt="Foto de perfil">
+                        <div class="perfil__editar">
+                            <a href="#"><img src="../src/img/camara-fotografica.png" alt="Logo camara"></a>
+                        </div>
+
+                    </div>
+                    <div class="principal__header__datos">
+                        <h2>Francisco Javier Sánchez Tirado</h2>
+                        <p>Web Developer</p>
+                        <p class="direccion">Nezahualcoyotl, Estado de México. <a href="#">Informacion de contacto</a>
+                        </p>
+                        <div class="principal__header__datos--redes">
+                            <a href="#" class="social"><img src="../src/img/facebook-color.png" alt="logoFacebook"></a>
+                            <a href="#" class="social"><img src="../src/img/twetter.png" alt="logo twetter"></a>
+                            <a href="#" class="social"><img src="../src/img/instagram.png" alt="logo instagram"></a>
+                            <a href="#" class="social"><img src="../src/img/github.png" alt="logo github"></a>
+                            <a href="#" class="social"><img src="../src/img/linkedin.png" alt="logo linkedin"></a>
+                            <a href="#" class="social"><img src="../src/img/youtube-color.png" alt="loo youtube"></a>
+                            <a href="#" class="social"><img src="../src/img/tik-tok.png" alt="logo tik-tok"></a>
+                            <a href="#" class="social"><img src="../src/img/pinterest.png" alt="logo pinterest"></a>
+                            <a href="#" class="social"></a>
+                        </div>
+                    </div>
+
+                    <div class="principal__header__info--editar">
+                        <a href="#"><img src="../src/img/ver.png" alt="logo ver"></a>
+                        <a href="#"><img src="../src/img/lapiz (1).png" alt="Logo lapiz"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="principal__acerca sombra" id="acerca">
+                <div class="acerca__titulo">
+                    <h3>Acerca de</h3>
+                </div>
+                <div class="acerca__texto" id="acercaContenedor">
+                    <p>I am a software development student.😎 However, I have experience in web development. 
+                        Because I am a self-taught person and what I have learned through books
+
+                    pronouns: "He" | "His",
+                    code:
+                    * Html5: "80%"
+                    * Css3: "60%"
+                    * JavaScript: "50%"
+                    * PHP: "30%"
+                    tools:
+                    * Sass: "70%"
+                    * Npm: "50%"
+                    * MySql: "40%"
+                    * English: "Basic"
+                    skills:
+                    * initiative
+                    * analysis
+                    * flexibilityt
+                    * teamwork
+                    * autodidacta
+                    </p>
+                    
+                </div>
+                <div class="principal__acerca--editar">
+                    <a href="#"><img src="../src/img/lapiz (1).png" alt="Logo lapiz"></a>
+                </div>
+            </div>
+        </div>
+        <div class="contenedor__aside">
 
         </div>
-        <div class="principal__header__info">
-            
-        </div>
     </div>
-    </div>
-    <div class="contenedor__aside">
 
-    </div>
-</div>
-
-
+<script src="../js/perfilCandidato.js"></script>
 </body>
+
 </html>
