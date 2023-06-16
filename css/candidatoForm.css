@@ -585,6 +585,11 @@ p {
     background-size: cover;
     background-position: center center;
 }
+.previewPerfil__portada{
+    background-repeat: no repeat;
+    background-position: center center;
+    background-size: cover;
+}
 .previewPerfil__nombre{
     padding-left: 3rem;
 }
