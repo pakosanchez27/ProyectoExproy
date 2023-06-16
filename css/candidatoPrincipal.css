@@ -58,6 +58,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    
 }
 
 /* Globlales */
@@ -108,7 +109,7 @@ p {
 .boton {
     display: block;
     width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
     text-align: center;
     color: var(--blanco);
     font-size: 1.8rem;
@@ -320,6 +321,36 @@ p {
 .navegacion__Perfil img {
     width: 4rem;
     border-radius: 50%;
+}
+.header__mobile{
+    padding: 0;
+    width: 100%;
+    background-color: var(--fondoSec);
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left:0;
+}
+.header__desktop{
+    display: none;
+}
+.candidato__navegacion__mobile{
+    padding: 3rem 5rem;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 8rem;
+
+}
+.navegacion__Perfil img{
+    width: 50rem;
+}
+.navegacion__opc img{
+    width: 50rem;
 }
 
 /* perfil  */
@@ -828,7 +859,6 @@ p.promo__test__texto{
 }
 a.btnTest{
     width: 20rem;
-    
     font-size: 1.5rem;
     text-align: center;
     
