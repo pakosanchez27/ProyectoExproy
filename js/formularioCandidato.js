@@ -1,5 +1,6 @@
 // Variables
-const subirFoto = document.querySelector('#inputFile');
+const subirPerfil = document.querySelector('#fotoPerfil');
+const subirPortada = document.querySelector('#fotoPortada');
 const grid1 = document.querySelector('.grid1');
 const grid2 = document.querySelector('.grid2');
 const grid3 = document.querySelector('.grid3');
@@ -34,7 +35,8 @@ let paginador = 1;
 eventListeners();
 function eventListeners() {
     addEventListener('DOMContentLoaded', () => {
-        subirFoto.addEventListener('change', mostrarImagen);
+        subirPerfil.addEventListener('change', mostrarPefil);
+        subirPortada.addEventListener('change', mostrarPortada);
         siguiente.addEventListener('click', siguienteFormulario);
         atras.addEventListener('click', atrasFormulario);
         
@@ -247,7 +249,7 @@ function mostrarFormulario(paginador) {
 
 
 // funcion para mostrar la imagen en formulario
-function mostrarImagen(event) {
+function mostrarPefil(event) {
     var input = event.target;
     // console.log(input);
     var reader = new FileReader();
@@ -255,13 +257,31 @@ function mostrarImagen(event) {
     reader.onload = function () {
         var dataURL = reader.result;
         var imagenPreview = document.querySelector(".previewPerfil__foto");
+        
 
         imagenPreview.style.backgroundImage = "url('" + dataURL + "')";
+       
     };
 
     reader.readAsDataURL(input.files[0]);
 }
 
+function mostrarPortada(event) {
+    var input = event.target;
+    // console.log(input);
+    var reader = new FileReader();
+
+    reader.onload = function () {
+        var dataURL = reader.result;
+        
+        var imagenPreview2 = document.querySelector(".previewPerfil__portada");
+
+       
+        imagenPreview2.style.backgroundImage = "url('" + dataURL + "')";
+    };
+
+    reader.readAsDataURL(input.files[0]);
+}
 function limpiarHTML(elemento) {
     while (elemento.firstChild) {
         elemento.removeChild(elemento.firstChild);

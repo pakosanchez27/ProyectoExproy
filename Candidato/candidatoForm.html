@@ -9,7 +9,8 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/loginCandidato.css">
+        <link rel="stylesheet" href="../css/candidatoForm.css">
         <link rel="stylesheet" href="../css/normalize.css">
         <title>Registrate</title>
     </head>
@@ -161,7 +162,9 @@
                         <div id="grid4" class="grid4 ocultar">
                             <div class="campo fotoPerfil">
                                 <label for="fotoPerfil">Selecciona una Foto de perfil</label>
-                                <input type="file" id="inputFile" onchange="mostrarImagen(event)" accept="image/*">
+                                <input type="file" id="fotoPerfil" onchange="mostrarPefil(event)" accept="image/*" name="fotoPerfil">
+                                <label for="fotoPortada">Selecciona una Foto de portada</label>
+                                <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*" name="fotoPortada">
                                 
                             </div>
     
@@ -183,6 +186,9 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="grid5 ocultar" id="grid5">
+                            
                         </div>
                  
                         <div class="derecha__botones ">
