@@ -59,6 +59,7 @@ body {
     margin: 0;
     padding: 0;
 
+
 }
 
 /* Globlales */
@@ -194,6 +195,11 @@ p {
     width: 80%;
 
 }
+@media (min-width: 768px) { 
+    .candidato__header__contenido{
+        z-index: 1;
+    }
+ }
 
 .candidato__header {
 
@@ -334,7 +340,7 @@ p {
     display: flex;
     justify-content: center;
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     bottom: 0;
     left: 0;
 }
@@ -391,6 +397,7 @@ p {
     gap: 5rem;
     background-color: #E8E8E8;
     padding-bottom: 5rem;
+    position: relative;
 
 }
 
@@ -956,84 +963,125 @@ a.btnTest {
 
 }
 
-.btns__App {
+
+
+.principal__proyectos__contenedor{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+@media (min-width: 768px ) { 
+    .principal__proyectos__contenedor{
+        display: grid;
+        grid-template-columns: repeat(2, 20rem);
+        gap: 2rem;
+    }
+ }
+ @media (min-width: 1200px) { 
+      .principal__proyectos__contenedor{
+        grid-template-columns: repeat(3, 20rem);
+
+      }
+  }
+.principal__proyectos__card{
+    width: 20rem;
+    height: 10rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    margin-top: 5rem;
-
+    align-items:center;
+    margin-top: -2rem;
+    margin-bottom:2rem;
+    border-radius: .5rem;
+}
+.principal__proyectos__card img{
+    width: 20rem;
+    height: 10rem;
+    filter: brightness(0.5);
+    width: 100%;
+    border-radius: .5rem;
+    
+}
+.principal__proyectos__card p{
+    color: var(--blanco);
+    margin-top: -6rem;
+    z-index: 0;
 }
 
-.btn__App {
-    background-color: #000;
-    width: 25rem;
+
+.principal__certificados__contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+p.principal__certificados__titulo{
+    font-weight: var(--bold);
+    font-size: 1.8rem;
+}
+p.principal__certificados__texto{
+    font-size: 1.4rem;
+}
+p.principal__certificados__fecha{
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #707070;
+
+}
+a.principal__certificados__detalles{
+    text-decoration: underline;
+    color: #707070;
+    font-weight: 1.4rem;
+}
+.principal__certificados__card span{
+    font-weight: var(--bold);
+    font-style:normal;
+    color: #000;
+}
+
+
+/* Formularios */
+.formulario__contenedor{
+    z-index:1;
+    position:fixed;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #0000008a;
+
+}
+.divFormulario{
+    background-color: var(--blanco);
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    z-index: 0;
+}
+@media (min-width: 768px) { 
+      .divFormulario{
+        width: 80%;
+        height: auto;
+        border-radius: 1rem;
+      }
+ }
+ @media (min-width: 1200px) { 
+      .divFormulario{
+        width: 45%;
+      }
+  }
+.divFormulario__header{
+    padding: 2rem 3rem;
+    border-bottom: var(--primario) solid 3px;
+}
+.divFormulario__header h3{
+    font-size: 2.2rem;
+}
+.divFormulario__fomulario{
+    padding: 2rem 3rem;
+    background-color: var(--blanco);
     border-radius: 1rem;
-    padding: 1rem 0;
-
 }
-
-.btn__logo img {
-    width: 3rem;
-    margin-right: 1rem;
-}
-
-.btn__texto p {
-    margin: 0;
-    color: var(--blanco);
-    font-size: 1.8rem;
-    line-height: 1;
-}
-
-.btn__texto span {
-    font-size: 1rem;
-}
-
-@media (min-width: 768px) {
-    .btn__App {
-        width: 40rem;
-    }
-
-    .app__contenido h2 {
-        margin: 0;
-        font-size: 5rem;
-        margin-bottom: 1.5rem;
-
-    }
-
-    .app__contenido p {
-        font-size: 3rem;
-    }
-
-    .btn__logo img {
-        width: 5rem;
-        margin-right: 1rem;
-    }
-
-    .btn__texto p {
-        margin: 0;
-        color: var(--blanco);
-        font-size: 2.5rem;
-        line-height: 1;
-    }
-
-    .btn__texto span {
-        font-size: 2rem;
-    }
-}
-
-@media (min-width: 1200px) {
-    .btns__App {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        margin-top: 5rem;
-
-    }
+.botones{
+    display: flex;
 }
