@@ -40,7 +40,7 @@
 
 <body>
     <!-- Formularios -->
-    <div class="formulario__contenedor ocultarMenu" id="personal">
+    <div class="formulario__contenedor ocultar" id="personal">
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
                 <h3>Informacion Personal</h3>
@@ -91,7 +91,7 @@
 
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirPersonal" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -132,7 +132,7 @@
 
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirFoto" class="boton blanco salir">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -141,10 +141,10 @@
     <div class="formulario__contenedor ocultar" id="DatosContacto">
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
-                <h3>Informacion Personal</h3>
+                <h3>Datos de Contacto</h3>
             </div>
             <div class="divFormulario__fomulario">
-                <p>Modifica tu foto de perfil y de portada.</p>
+                <p>Modifica tus datos de contacto</p>
                 <form id="formulario" method="post">
                     <div class="divFormulario__campos">
                         <div class="campo telefono">
@@ -188,7 +188,7 @@
 
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirDatos" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -198,6 +198,7 @@
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
                 <h3>Acerca de.</h3>
+                
             </div>
             <div class="divFormulario__fomulario">
                 <p>Cuentanos sobre ti</p>
@@ -210,7 +211,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirAcerca" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -250,7 +251,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#"id="salirAgregarEducacion" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -259,10 +260,10 @@
     <div class="formulario__contenedor ocultar " id="modificarEducacion">
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
-                <h3>Acerca de.</h3>
+                <h3>Educacion</h3>
             </div>
             <div class="divFormulario__fomulario">
-                <p>Cuentanos sobre ti</p>
+                <p>Modifica la informacion de tu educacion.</p>
                 <form id="formulario" method="post">
                     <div class="divFormulario__campos">
                         <div class="campo institucion">
@@ -289,7 +290,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirEducacionModificar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -299,6 +300,7 @@
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
                 <h3>Experiencia</h3>
+                <img src="../src/img/eliminar.png" alt="salir" id="salir">
             </div>
             <div class="divFormulario__fomulario">
                 <p>Agrega experiencias laborales.</p>
@@ -332,7 +334,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirExperienciaAgregar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -375,7 +377,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirExperienciaModificar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -415,13 +417,13 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirProyectoAgregar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
         </div>
     </div> <!--Fin de formulario agregar proyecto-->
-    <div class="formulario__contenedor ocultar " id="agregarProyecto">
+    <div class="formulario__contenedor ocultar " id="editarProyecto">
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
                 <h3>Proyectos</h3>
@@ -455,7 +457,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salirProyectoModificar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -465,6 +467,7 @@
         <div class="divFormulario ">
             <div class="divFormulario__header sombra">
                 <h3>Cartificaciones</h3>
+                <img src="../src/img/eliminar.png" alt="salir" id="salir">
             </div>
             <div class="divFormulario__fomulario">
                 <p>¿Cuentás con certificaciones o cursos? Agregalo a tu perfil.</p>
@@ -495,7 +498,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salircertificadosAgregar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -535,7 +538,7 @@
                     </div>
                     <div class="campo botones">
                         <input type="submit" value="Guardar" class="boton verde">
-                        <a href="#" class="boton blanco">Cancelar</a>
+                        <a href="#" id="salircertificadosModificar" class="boton blanco">Cancelar</a>
                     </div>
                 </form>
             </div>
@@ -553,8 +556,8 @@
         <div class="candidato__header__contenido">
             <div class="header__izquierda">
                 <div class="candiadato__logo">
-                    <a class="logoDesktop" href="/Candidato/CandidatoPrincipal.html">AgoraTalent</a>
-                    <a class="logoMobile" href="/Candidato/CandidatoPrincipal.html">AT</a>
+                    <a class="logoDesktop" href="Candidato/CandidatoPrincipal.html">AgoraTalent</a>
+                    <a class="logoMobile" href="Candidato/CandidatoPrincipal.html">AT</a>
 
                 </div>
                 <div class="candidato__buscar">
@@ -627,21 +630,21 @@
             <div class="principal__header sombra">
                 <div class="principal__header__portada">
                     <div class="portada__editar">
-                        <a href="#"><img src="../src/img/lapiz.png" alt="Logo lapiz"></a>
+                        <a href="#" id="editarFoto"  ><img src="../src/img/lapiz.png" alt="Logo lapiz" ></a>
                     </div>
                 </div>
                 <div class="principal__header__info">
                     <div class="principal__header__foto">
                         <img src="../src/img/perfil.jpg" alt="Foto de perfil">
                         <div class="perfil__editar">
-                            <a href="#"><img src="../src/img/camara-fotografica.png" alt="Logo camara"></a>
+                            <a href="#" id="editarFoto"><img src="../src/img/camara-fotografica.png" alt="Logo camara"></a>
                         </div>
 
                     </div>
                     <div class="principal__header__datos">
                         <h2>Francisco Javier Sánchez Tirado</h2>
                         <p>Web Developer</p>
-                        <p class="direccion">Nezahualcoyotl, Estado de México. <a href="#">Informacion de contacto</a>
+                        <p class="direccion">Nezahualcoyotl, Estado de México. <a href="#" id="editarDatos">Informacion de contacto</a>
                         </p>
                         <div class="principal__header__datos--redes">
                             <a href="#" class="social"><img src="../src/img/facebook-color.png" alt="logoFacebook"></a>
@@ -658,14 +661,14 @@
 
                     <div class="principal__header__info--editar">
                         <a href="#"><img src="../src/img/ver.png" alt="logo ver"></a>
-                        <a href="#"><img src="../src/img/lapiz (1).png" alt="Logo lapiz"></a>
+                        <a href="#" id="editarPersonal"><img src="../src/img/lapiz (1).png" alt="Logo lapiz"></a>
                     </div>
                 </div>
             </div>
             <div class="principal__acerca sombra contenedor" id="acerca">
                 <div class="principal__titulo">
                     <h3>Acerca de</h3>
-                    <img src="../src/img/lapiz (1).png" alt="icono lapiz">
+                    <a href="#" id="editarAcerca"><img src="../src/img/lapiz (1).png" alt="icono lapiz" ></a>
                 </div>
                 <div class="acerca__texto" id="acercaContenedor">
                     <p>I am a software development student.😎 However, I have experience in web development.
@@ -697,15 +700,14 @@
                 <div class="principal__titulo">
                     <h3>Educacion</h3>
                     <div class="principal__btns">
-                        <a href="#"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
-                        <a href="#"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
+                        <a href="#" id="EducacionAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
+                        <a href="#" id="EducacionModificar"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
                     </div>
 
                 </div>
                 <div class="principal__educacion__contenedor">
                     <div class="principal__educacion__card">
                         <div class="principal__educacion__img">
-                            <img src="../src/img/banco.png" alt="Logo de institucion">
                         </div>
                         <div class="principal__educacion__informacion">
                             <p class="educacion__institucion">Universidad Tecnologica de Nezahualcoyotl</p>
@@ -715,7 +717,6 @@
                     </div>
                     <div class="principal__educacion__card">
                         <div class="principal__educacion__img">
-                            <img src="../src/img/banco.png" alt="Logo de institucion">
                         </div>
                         <div class="principal__educacion__informacion">
                             <p class="educacion__institucion">Universidad Tecnologica de Nezahualcoyotl</p>
@@ -731,8 +732,8 @@
                     <h3>Experiencia</h3>
                     <div class="principal__btns">
 
-                        <a href="#"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
-                        <a href="#"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
+                        <a href="#" id="ExperienciaAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
+                        <a href="#" id="ExperienciaModificar"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
                     </div>
 
                 </div>
@@ -825,26 +826,26 @@
                 <div class="principal__titulo">
                     <h3>Proyectos</h3>
                     <div class="principal__btns">
-                        <!-- <a href="#"><img src="../src/img/anadir.png" alt="icono lapiz "></a> -->
-                        <a href="#"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
+                         <a href="#" id="proyectoAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a> 
+                        <a href="#" id="proyectoModificar"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
                     </div>
 
                 </div>
                 <div class="principal__proyectos__contenedor">
                     <a href="#" class="principal__proyectos__card">
-                        <img src="/src/img/proyecto1.png" alt="imagen proyecto">
+                        <img src="../src/img/proyecto1.png" alt="imagen proyecto">
                         <p>Proyecto 1</p>
                     </a>
                     <a href="#" class="principal__proyectos__card">
-                        <img src="/src/img/proyecto2.png" alt="imagen proyecto">
+                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
                         <p>Proyecto 2</p>
                     </a>
                     <a href="#" class="principal__proyectos__card">
-                        <img src="/src/img/proyecto2.png" alt="imagen proyecto">
+                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
                         <p>Proyecto 3</p>
                     </a>
                     <a href="#" class="principal__proyectos__card">
-                        <img src="/src/img/proyecto2.png" alt="imagen proyecto">
+                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
                         <p>Proyecto 4</p>
                     </a>
                 </div>
@@ -853,8 +854,8 @@
                 <div class="principal__titulo">
                     <h3>Cursos o Certificaciones</h3>
                     <div class="principal__btns">
-                        <a href="#"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
-                        <a href="#"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
+                        <a href="#" id="certificadosAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
+                        <a href="#" id="certificadosModificar"><img src="../src/img/lapiz (1).png" alt="icono lapiz "></a>
                     </div>
 
                 </div>
@@ -953,12 +954,10 @@
 
 
 
-    <script src="/js/app.js"></script>
-    <script src="/js/formularioCandidato.js"></script>
-</body>
-
-</html>
-<script src="../js/perfilCandidato.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/formularioCandidato.js"></script>
+    <script src="../js/perfilCandidato.js"></script>
+    <script src="../js/formulariosEmergentes.js"></script>
 </body>
 
 </html>

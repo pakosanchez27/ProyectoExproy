@@ -33,6 +33,8 @@ const banner_izquierda = document.querySelector('#banner_izquierda')
 const siguiente = document.querySelector('#siguiente');
 const atras = document.querySelector('#atras');
 
+// Varibles marco
+
 
 
 
@@ -47,6 +49,8 @@ function eventListeners() {
         subirPortada.addEventListener('change', mostrarPortada);
         siguientebtn.addEventListener('click', siguienteFormulario);
         atras.addEventListener('click', atrasFormulario);
+
+
 
 
     });
@@ -384,3 +388,5 @@ function limpiarHTML(elemento) {
     }
 
 }
+
+
