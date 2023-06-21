@@ -10,8 +10,8 @@ function eventListeners() {
 //funciones
 function saberValor(e){
     console.log(e.target.value);
-    const valor = e.target.value;
-    extraerValor(valor)
+    // const valor = e.target.value;
+    // extraerValor(valor)
 }
 
 function extraerValor(valor){
