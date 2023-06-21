@@ -1,11 +1,3 @@
-:root {
-    /* colores */
-    --fondoSec: #13161C;
-    --fondoPri: #ECECEC;
-    --fondoCampo: #F1F1F1;
-    --primario: #0C6432;
-    --blanco: #fff;
-    --negro: #000;
 
 
     /* Fuentes */
@@ -210,8 +202,6 @@ a.boton{
     display: flex;
     justify-content: space-between;
     width: 80%;
-
-   
 }
 
 .header__navegacion a {

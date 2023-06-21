@@ -1,0 +1,146 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    background-color: #e8e8e8;
+    /* 1rem = 10px */
+
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: v.$fuente__principal;
+    font-size: 1.6rem;
+}
+
+// Heddigs: ?
+// Titulos: 24px = 2.4rem;
+// Subtitulos: 16px = 1.6rem;
+// Parrafos: 14px = 1.4rem;
+
+h1, h2, h3 {
+    margin: 0 0 2rem  0 ;
+}
+h1 {
+    font-size: 4rem;
+}
+h2 {
+    font-size: 2.4rem;
+}
+h3{
+    font-size: 1.6rem;
+}
+p{
+    font-size: 1.4rem;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.btns__App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 5rem;
+
+}
+
+.btn {
+    &__App{
+        background-color: v.$negro;
+        width: 25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        padding: 1rem 0;
+    }
+
+    &__logo img{
+            width: 3rem;
+            margin-right: 1rem;
+    }
+
+    &__texto  {
+
+        & p{
+            margin: 0;
+            color: v.$blanco;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        & span{
+            font-size: 1rem;
+        }
+    }
+}
+
+
+
+
+@include m.tablet{
+    .btn__App {
+        width: 40rem;
+    }
+
+    .app__contenido h2 {
+        margin: 0;
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+
+    }
+
+    .app__contenido p {
+        font-size: 3rem;
+    }
+
+    .btn__logo img {
+        width: 5rem;
+        margin-right: 1rem;
+    }
+
+    .btn__texto p {
+        margin: 0;
+        color: v.$blanco;
+        font-size: 2.5rem;
+        line-height: 1;
+    }
+
+    .btn__texto span {
+        font-size: 2rem;
+    }
+}
+
+@include m.desktop{
+    .btns__App {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin-top: 5rem;
+
+    }
+}
+
