@@ -252,6 +252,6 @@ function salirFormulario(e) {
                 agregarHabilidades.classList.add('ocultar');
             }
             break;
-            
+
     }
 }

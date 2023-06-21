@@ -1,0 +1,157 @@
+@use 'base/variables' as v;
+@use 'Base/mixins' as m;
+
+/* Footer */
+.footer {
+    background-color: v.$fondoSecundario;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+    &__principal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    &__logo {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        & a {
+            font-family: v.$fuente__secundario;
+            color: v.$blanco;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        & p {
+            color: v.$blanco;
+        }
+    }
+
+    &__seccion {
+        & nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        & p {
+            color: v.$blanco;
+            font-weight: v.$bold;
+        }
+    }
+
+}
+
+
+
+.enlace:hover {
+    color: v.$blanco;
+    transition: all .5s ease;
+}
+
+
+@include m.desktop {
+    hr {
+        display: none;
+    }
+
+    .footer__principal {
+        display: grid;
+        grid-template-columns: repeat(5, 20rem);
+        margin: 0 auto;
+        align-items: stretch;
+
+    }
+}
+
+
+
+@include m.desktop {
+    .footer__logo {
+        & a {
+            font-size: 3rem;
+            text-align: left;
+        }
+
+        & p {
+            font-size: 1.6rem;
+            text-align: left;
+        }
+    }
+
+}
+
+
+
+
+
+
+.enlace {
+    color: #707070;
+
+}
+
+.footer__logos {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+
+    & img {
+        width: 3rem;
+    }
+}
+
+
+.footer__descarga {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+@include m.desktop {
+    .footer__descarga {
+        & img {
+            width: 2rem;
+        }
+        & p{
+            font-size: 1.5rem;
+        }
+
+        & span {
+            font-size: 1rem;
+        }
+    }
+    .footerApp {
+        width: 20rem;
+    }
+}
+
+
+
+.Copy {
+    color: v.$blanco;
+    text-align: center;
+}
+
+@include m.desktop {
+    .Copy {
+        margin-top: 3rem;
+    }
+}
+
+
+hr {
+    width: 100%;
+}
