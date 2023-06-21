@@ -1,88 +1,79 @@
 :root {
-    /* colores */
-    --fondoSec: #13161C;
-    --fondoPri: #ECECEC;
-    --fondoCampo: #F1F1F1;
-    --primario: #0C6432;
-    --blanco: #fff;
-    --negro: #000;
-
-
+    /* Colores */
+    --color-fondo-secundario: #13161C;
+    --color-fondo-primario: #ECECEC;
+    --color-fondo-campo: #F1F1F1;
+    --color-primario: #0C6432;
+    --color-blanco: #fff;
+    --color-negro: #000;
+  
     /* Fuentes */
-
-    --fuentePri: 'Montserrat Alternates', sans-serif;
-    /* Titulos y subtitulos */
-    --fuenteSec: 'Montserrat', sans-serif;
-    /* texto en general*/
-
-    /* tamaños */
-
-    --delgada: 300;
-    --normal: 400;
-    --bold: 600;
-
+    --fuente-titulos: 'Montserrat Alternates', sans-serif;
+    --fuente-texto: 'Montserrat', sans-serif;
+  
+    /* Tamaños */
+    --peso-fuente-delgada: 300;
+    --peso-fuente-normal: 400;
+    --peso-fuente-bold: 600;
+  
     /* Dispositivos */
-
     --celular: 480px;
     --tablet: 768px;
     --desktop: 1200px;
-}
-
-html {
+  }
+  
+  /* Configuración global */
+  html {
     box-sizing: border-box;
-    font-size: 62.5%;
-
-    /* 1rem = 10px */
-
-}
-
-*,
-*:before,
-*:after {
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+  
+  *,
+  *:before,
+  *:after {
     box-sizing: inherit;
-}
-
-body {
-    font-family: var(--fuenteSec);
+  }
+  
+  /* Estilos del cuerpo */
+  body {
+    font-family: var(--fuente-texto);
     font-size: 1.6rem;
     line-height: 1.5;
-}
-
-/* Globlales */
-h1,
-h2,
-h3 {
-    font-family: var(--fuentePri);
-}
-
-h1 {
+  }
+  
+  /* Estilos generales */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--fuente-titulos);
+  }
+  
+  h1 {
     font-size: 4.4rem;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-size: 3.6rem;
-}
-
-h3 {
+  }
+  
+  h3 {
     font-size: 2.8rem;
-}
-
-img {
+  }
+  
+  img {
     max-width: 100%;
-    display: block;
     height: auto;
-}
-
-a {
+  }
+  
+  a {
     text-decoration: none;
-}
-
-p {
+  }
+  
+  p {
     margin: 0;
-    padding: 0;
-}
+  }
 
-/* utilidades */
+ /* Utilidades */
 .text-center {
     text-align: center;
 }
@@ -105,16 +96,17 @@ p {
     border-radius: .5rem;
 }
 
-.opacity50{
+.opacity50 {
     opacity: 0.5;
 }
 
-.errorMensaje{
+.errorMensaje {
     color: rgb(199, 7, 7);
     font-size: 1rem;
 }
 
-.verde {
+.verde,
+.verde:hover {
     background-color: var(--primario);
 }
 
@@ -123,9 +115,11 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-.blanco {
+.blanco,
+.blanco:hover {
     background-color: var(--blanco);
     color: var(--negro);
+    border: #707070 solid 1px;
 }
 
 .blanco:hover {
@@ -133,7 +127,8 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-.negro {
+.negro,
+.negro:hover {
     background-color: var(--negro);
 }
 
@@ -231,7 +226,7 @@ p {
  }
 
 .izquierda__paso {
-
+ margin-top: -0;
 }
 
 .izquierda__paso p{
@@ -336,7 +331,7 @@ p {
 .candidatoForm__derecha {
     /* border: #ec0a0a solid 1px; */
     width: 100%;
-    height: 100vh;
+    height: auto;
     padding-left: 3rem;
     display: flex;
     align-items: center;
@@ -377,7 +372,7 @@ p {
 }
 @media (min-width: 768px) { 
     .derecha__titulo h3{
-        margin-top: 0;
+        margin-top: .5rem;
     }
  }
 .derecha__texto p{
@@ -385,10 +380,10 @@ p {
 }
 @media (min-width: 1200px) { 
     .derecha__titulo h3{
-        margin: 0;
+        margin:1rem 0;
     }
     .derecha__texto p{
-        margin: 0;
+        margin-bottom: 1rem;
     }
  }
 .derecha__formulario form{
@@ -400,6 +395,7 @@ p {
 .ocultar{
     display: none;
 }
+
 @media (min-width: 1200px) { 
     #grid1 {
         
@@ -431,8 +427,12 @@ p {
                              'derecha__botones derecha__botones';
                              
     }
-
-  
+    #grid5{
+        
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
     .mostrar{
         display: grid;
     }
@@ -462,12 +462,15 @@ p {
 }
 .derecha__botones{
     grid-area: derecha__botones;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    
     width: 100%;
-    margin: 3rem 0;
+    /* margin: 3rem 0; */
+    margin-top: 2rem;
 }
+.derecha__botones a{
+    margin-top: 2rem;
+}
+
 .institucion{
     grid-area: institucion;
 }
@@ -510,6 +513,7 @@ p {
         grid-area: derecha__botones;
         display: flex;
         flex-direction: row-reverse;
+        align-items: flex-end;
         gap: 2rem;
         width: 40rem;
         margin-top: 2rem;
@@ -518,6 +522,7 @@ p {
 
 .flujo__paso{
     color: var(--blanco);
+    
 }
 
 .activo{
@@ -572,6 +577,7 @@ p {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     background-color: #D5EDFF;
+    margin-top: -2rem;
 }
 
 .previewPerfil__foto{
