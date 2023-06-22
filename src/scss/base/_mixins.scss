@@ -22,18 +22,19 @@
   gap: $espaciado;
 }
 
-@mixin boton($color, $display) {
+@mixin boton($color, $texto) {
   background-color: $color;
   font-size: 2rem;
   padding: 1.2rem 4rem;
-  font-weight: 600;
-  display: $display;
+  font-weight: 400;
+  display: block;
   width: 100%;
   text-align: center;
-  color: v.$blanco;
+  color: $texto;
   text-decoration: none;
   transition: background-color .3s ease;
   border: none;
+  font-family: v.$fuente__principal;
 
   &:hover {
       cursor: pointer;
