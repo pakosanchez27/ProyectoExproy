@@ -22,15 +22,15 @@
   gap: $espaciado;
 }
 
-@mixin boton($color, $texto) {
+@mixin boton($color, $display) {
   background-color: $color;
   font-size: 2rem;
   padding: 1.2rem 4rem;
-  font-weight: 700;
-  display: block;
+  font-weight: 600;
+  display: $display;
   width: 100%;
   text-align: center;
-  color: $texto;
+  color: v.$blanco;
   text-decoration: none;
   transition: background-color .3s ease;
   border: none;

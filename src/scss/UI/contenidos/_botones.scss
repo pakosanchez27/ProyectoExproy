@@ -1,0 +1,9 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m; 
+
+.boton__verde__block{
+    @include m.boton(v.$primario, block);
+}
+.boton__negro__block{
+    @include m.boton(v.$negro, block);
+}
