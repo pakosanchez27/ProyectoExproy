@@ -1,0 +1,59 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+/* seccion ecologica */
+.ecologia{
+    background-color: v.$blanco;
+    padding: 10rem 5rem;
+
+    &__contenido{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+         justify-content: center;
+    }
+
+    &__texto{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    &__texto h2{
+        color: v.$primario;
+    }
+    &__texto p{
+        margin-top: -2rem;
+    }
+}
+
+
+
+
+
+@media (min-width: 768px) { 
+    .ecologia__contenido{
+      flex-direction: row;
+      gap: 2rem;
+    }
+}
+@media (min-width: 1200px) { 
+    .ecologia__contenido{
+        gap: 5rem;
+    }
+    .ecologia__contenido img{
+      width: 50rem;
+
+    }
+    .ecologia__texto{
+        width: 50rem;
+    }
+    .ecologia__texto h2{
+        font-size: 2.6rem;
+        
+    }
+    .ecologia__texto p{
+        margin-top: -2rem;
+    }
+}
