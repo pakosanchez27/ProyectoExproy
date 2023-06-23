@@ -1,4 +1,5 @@
 @use 'variables' as v;
+@use 'mixins' as m;
 
 .text-center {
     text-align: center;
@@ -15,6 +16,19 @@
 .ocultarMenu {
     display: none;
 }
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+    @include m.desktop{
+        display: grid;
+    }
+    
+}
+
 .sombra {
     box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.16);
@@ -28,4 +42,11 @@
 .errorMensaje{
     color: rgb(199, 7, 7);
     font-size: 1rem;
+}
+
+.block{
+    display: block;
+}
+.inlineBlock{
+display: inline-block;
 }

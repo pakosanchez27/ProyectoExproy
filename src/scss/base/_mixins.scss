@@ -24,8 +24,8 @@
 
 @mixin boton($color, $texto) {
   background-color: $color;
-  font-size: 2rem;
-  padding: 1.2rem 4rem;
+  font-size: 1.4rem;
+  padding: 1.3rem 2rem;
   font-weight: 400;
   display: block;
   width: 100%;
@@ -33,7 +33,7 @@
   color: $texto;
   text-decoration: none;
   transition: background-color .3s ease;
-  border: none;
+  border-radius: .5rem;
   font-family: v.$fuente__principal;
 
   &:hover {

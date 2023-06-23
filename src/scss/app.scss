@@ -1,4 +1,7 @@
 @use 'base';
-@use 'UI/headers';
-@use 'UI/contenidos/Principal';
-@use 'UI/footers';
+@use 'layouts/headers';
+@use 'layouts/contenidos/Principal/Index';
+@use 'layouts/contenidos/Principal/Nosotros';
+@use 'layouts/contenidos/Candidato/registro';
+@use 'layouts/contenidos/Candidato/Perfil';
+@use 'layouts/footers';

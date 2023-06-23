@@ -11,17 +11,55 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="../css/loginCandidato.css">
-        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="/build/css/app.css">
         <title>Registrate</title>
     </head>
 <body>
-    
+    <header class="header header__login header__login__dos">
+        <div class="header__logo">
+            <a href="/">
+                <p>AgoraTalent</p>
+            </a>
+        </div>
+        <div class="header__navegacion">
+            <div class="navegacion__bloque1">
+                <nav>
+                    <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
+                    <a href="#" class="navegacion__enlace">Empresas</a>
+                    <a href="#" class="navegacion__enlace">Candidatos</a>
+                </nav>
+            </div>
+            <div class="navegacion__bloque2">
+                <a href="#" class="navegacion__enlace">Inicia Sesión</a>
+                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="#" class="navegacion__enlace">descarga la app</a>
+            </div>
+
+        </div>
+        <div class="navegacion__mobil">
+            <img src="../build/img/menu.webp" alt="menu" id="menu">
+        </div>
+        <div class="header__navegacionMobile ocultarMenu" id="menuMobile">
+
+            <nav class="navegacionMobile__menu">
+                <a href="#" class="navegacion__enlace--cerrar"><img src="src/img/error.png" alt="Boton de error"
+                        id="cerrar"></a>
+                <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
+                <a href="#" class="navegacion__enlace">Empresa</a>
+                <a href="#" class="navegacion__enlace">Candidatos</a>
+                <a href="#" class="navegacion__enlace">Iniciar Sesion</a>
+                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="#" class="navegacion__enlace">descarga la app</a>
+            </nav>
+
+
+        </div>
+    </header>
     <div class="loginCandidato">
         <div class="loginCandidato__izquierda">
             <a href="/" class="loginCandidato__logo">AgoraTalent</a>
         </div>
-        <div class="logionCandidato__derecha">
+        <div class="loginCandidato__derecha">
             <div class="loginCandidato__empresa">
                 <p>¿Eres Empresa? <a href="#">Inicia sesión Aqui</a></p>
                 
@@ -52,8 +90,8 @@
                         <a href="#">Olvidé la contraseña</a>
                     </div>
                     <div class="loginCandidato__botones">
-                        <input type="submit" value="Iniciar Sesión" class="boton verde">
-                        <a href="#" class="boton blanco google">
+                        <input type="submit" value="Iniciar Sesión" class="boton__verde">
+                        <a href="#" class="boton__blanco google">
                             <img src="../src/img/google.png" alt="logo de google" >
                             <p>Login con Google</p>
                         </a>

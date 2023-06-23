@@ -83,7 +83,7 @@ function eventListeners() {
 function mostrarFormulario(e) {
     e.preventDefault();
     const btnID = e.target.parentElement.id;
-    console.log(btnID);
+ 
 
     switch (btnID) {
         case 'editarFoto':

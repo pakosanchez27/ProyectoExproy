@@ -8,6 +8,8 @@
     &__cards{
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
         gap: 2rem;
     }
 
@@ -27,21 +29,23 @@
     }
 }
 
-.beneficio{
+.beneficios{
 
     &__titulo{
         line-height: 1;
+        font-size: 2rem;
 
     }
 
     &__titulo h2{
         font-size: 2rem;
-        margin-bottom: 5rem;
+        margin-bottom: 8rem;
     }
 
     &__des{
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
+
 }
 
 
@@ -59,7 +63,12 @@
         &__card:nth-child(3){
             grid-column: 1 /3;
         }
+        &__titulo h2{
+            font-size: 3.5rem; 
+            
+        }
     }
+   
 }
 
 
@@ -73,5 +82,17 @@
         &__card:nth-child(3){
             grid-column: 3 /4;
         }
+    }
+}
+
+.beneficio{
+    
+    &__titulo h3{
+        font-size: 2rem;
+        margin-top: 2rem;
+    }
+
+    &__img img{
+        width: 10rem;
     }
 }

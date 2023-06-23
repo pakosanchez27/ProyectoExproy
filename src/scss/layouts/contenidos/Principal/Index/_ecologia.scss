@@ -6,6 +6,7 @@
 .ecologia{
     background-color: v.$blanco;
     padding: 10rem 5rem;
+ 
 
     &__contenido{
         display: flex;
@@ -22,6 +23,7 @@
     }
     &__texto h2{
         color: v.$primario;
+        margin-top: 5rem; 
     }
     &__texto p{
         margin-top: -2rem;

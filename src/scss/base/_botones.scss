@@ -6,7 +6,7 @@
 }
 
 .boton__negro{
-    @include m.boton(v.$negro, v.$blanco);
+    @include m.boton(v.$fondoSecundario, v.$blanco);
 }
 
 .boton__blanco{
