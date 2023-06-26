@@ -1,0 +1,80 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.principal__insignias__titulo {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-direction: column;
+    
+    @include m.tablet{
+        flex-direction: row;
+    }
+}
+
+
+.descripcion__insignias {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.desInsignia {
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+
+}
+
+.bronce {
+    background-color: v.$bronce;
+}
+
+.plata {
+    background-color: v.$plata;
+}
+
+.oro {
+    background-color: v.$oro;
+}
+.gris{
+    background-color: v.$gris;
+}
+
+.descripcion__insignias {
+    display: flex;
+
+}
+
+.principal__insignias__titulo p {
+    font-weight: v.$bold;
+}
+
+.descripcion__insignias p {
+    font-weight: v.$normal;
+}
+
+.principal__insignias__contenedor {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: 1rem;
+}
+
+.insignia {
+    color: v.$blanco;
+    width: auto;
+    padding: .5rem .5rem;
+    border-radius: .5rem;
+    margin-top: 2rem;
+}
+
+.insignia p {
+    text-align: center;
+    font-weight: v.$bold;
+    font-size: 1.3rem;
+    padding: 0;
+    margin: 0;
+
+}

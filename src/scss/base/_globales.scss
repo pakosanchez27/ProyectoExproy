@@ -203,3 +203,22 @@ input::placeholder {
 }
 
 
+// Alertas
+ /* tarjetas */
+ .tarjeta{
+    background-color: v.$blanco;
+    margin: 5rem;
+    position: fixed;
+    bottom: 0rem;
+    border-radius: 1rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    padding: 2rem 3rem;
+    gap: 1rem;
+    width: 20rem;
+ }
+ .tarjeta img{
+    width: 3rem;
+
+ }

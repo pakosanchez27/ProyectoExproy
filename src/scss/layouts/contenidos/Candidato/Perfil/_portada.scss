@@ -124,7 +124,7 @@ p.direccion {
 .principal__header__datos--redes {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 1rem;
     @include m.tablet{
         display: flex;

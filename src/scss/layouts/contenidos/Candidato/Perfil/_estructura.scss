@@ -33,7 +33,12 @@
     flex-direction: column;
     gap: 2rem;
 
-
+    @include m.desktop{
+        width: 70%
+    }
+}
+.contenedor__aside{
+    width: 30%;
 }
 
 .contenedor {
@@ -80,6 +85,10 @@
     display: none;
     flex-direction: column;
     gap: v.$separacion;
+
+
+
+    width: 35%;
     @include m.desktop{
         display: flex;
     }
