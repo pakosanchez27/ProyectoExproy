@@ -10,10 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="css/headerP.css">
-        <link rel="stylesheet" href="css/principal.css">
-        <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="css/normalize.css">
+       <link rel="stylesheet" href="build/css/app.css">
     <title>AgoraTalent</title>
 </head>
 
@@ -46,7 +43,7 @@
 
         </div>
         <div class="navegacion__mobil">
-            <img src="src/img/menu.png" alt="menu" id="menu">
+            <img src="/build/img/menu.webp" alt="menu" id="menu">
         </div>
         <div class="header__navegacionMobile ocultarMenu" id="menuMobile">
 
@@ -71,16 +68,16 @@
                 <p>Encuentra a los mejores talentos en TI</p>
                 <h1>Transforma tu proceso de contratación </h1>
                 <div class="botones">
-                    <a href="" class="boton verde">Encuentra el talento ideal</a>
-                    <a href="" class="boton blanco">Encuentra empleo de TI</a>
+                    <a href="" class="boton__verde">Encuentra Candidatos</a>
+                    <a href="" class="boton__blanco">Encuentra Empleo</a>
                 </div>
             </div>
             <div class="cajavacia"></div>
         </div>
     </section>
     <div class="botonesMobile">
-        <a href="" class="boton verde">Encuentra el talento ideal</a>
-        <a href="" class="boton negro">Encuentra empleo de TI</a>
+        <a href="#" class="boton__verde">Encuentra Candidatos</a>
+        <a href="#" class="boton__negro">Encuentra Empleo</a>
     </div>
 
     <main class="principal ">
@@ -218,10 +215,139 @@
 
     <section class="ecologia">
         <div class="ecologia__contenido">
-            <p>Únete a nuestra plataforma y construyamos un futuro sostenible. Por cada 50 contratados, plantamos un árbol. ¡Construyamos equipos excepcionales y dejemos una huella verde juntos!
-            </p>
-            <a href="#" class="ecologia__boton boton verde">Encuentra el talento ideal</a>
+          <div class="ecologia__img">
+            <img src="src/img/Imagen 2.png" alt="imagen ecologica">
+          </div>
+          <div class="ecologia__texto">
+            <h2>¡Construyamos equipos excepcionales y dejemos una huella verde juntos!</h2>
+            <p>Únete a nuestra plataforma y construyamos un futuro sostenible. Por cada 10 contratados, plantamos un árbol.</p>
+            <a href="#" class="boton__verde">Más Información</a>
+          </div>
+        </div>
+    </section>
+    <section class="planes">
+        <div class="planes__contenedor">
+            <div class="planes__titulo">
+                <h2>Tenemos un plan perfecto para tu empresa.</h2>
+                <div class="plan__cambiar">
+                    <div class="toggle-button-cover">
+                        <div class="button-cover">
+                          <div class="button b2" id="button-10">
+                            <input type="checkbox" class="checkbox" />
+                            <div class="knobs">
+                              <span>Mensual</span>
+                            </div>
+                            <div class="layer"></div>
+                          </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
             
+          
+            <div class="plan__cards">
+                
+                <div class="plan__cards__contenedor">
+                    <div class="plan__card plan__card__basico ">
+                        <p>Agora Basic</p>
+                        <div class="plan__precio">
+                            <span>$0</span>
+                            <p>por <br> mes.</p>
+                        </div>
+                        <a href="#" class="boton__negro ">Iniciar plan</a>
+                        <div class="plan_caracteristicas">
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Publicacion de hasta 3 vacantes simultaneas.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Acceso a perfiles de candidatos sin insignias</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Posicionamiento básico de las vacantes en los resultados de busqueda.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Soporte tecnico</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Duracion de publicacion de vacantes: 10 días</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan__card plan__card__premium sombra">
+                        <p>Agora Premium</p>
+                        <div class="plan__precio">
+                            <span>$299</span>
+                            <p>por <br> mes.</p>
+                        </div>
+                        <a href="#" class="boton__verde">Iniciar plan</a>
+                        <div class="plan_caracteristicas">
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Publicacion de hasta 10 vacantes simultaneas.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Acceso a perfiles de candidatos bronce, oro y plata</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Posicionamiento básico de las vacantes en los resultados de busqueda.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Soporte tecnico</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Duracion de publicacion de vacantes: 10 días</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>4 Arboles plantados</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="plan__card plan__card__estandar">
+                        <p>Agora Standar</p>
+                        <div class="plan__precio">
+                            <span>$199</span>
+                            <p>por <br> mes.</p>
+                        </div>
+                        <a href="#" class="boton__negro btn_plan">Iniciar plan</a>
+                        <div class="plan_caracteristicas">
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Publicacion de hasta 5 vacantes simultaneas.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Acceso a perfiles de candidatos bronce</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Posicionamiento básico de las vacantes en los resultados de busqueda.</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Soporte tecnico</p>
+                            </div>
+                            <div class="caracteristica">
+                                <img src="src/img/check2.png" alt="imagen check">
+                                <p>Duracion de publicacion de vacantes: 10 días</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
         </div>
     </section>
     <section class="app">
@@ -315,13 +441,13 @@
                     <p>Redes sociales</p>
                     <div class="footer__logos">
                         <a href="#" class="logos">
-                            <img src="/src/img/facebook.png" alt="Logo de Facebook">
+                            <img src="src/img/facebook.png" alt="Logo de Facebook">
                         </a>
                         <a href="#" class="logos">
-                            <img src="/src/img/tw.png" alt="Logo Tweeter">
+                            <img src="src/img/tw.png" alt="Logo Tweeter">
                         </a>
                         <a href="#" class="logos">
-                            <img src="/src/img/youtube.png" alt="Logo Youtube">
+                            <img src="src/img/youtube.png" alt="Logo Youtube">
                         </a>
                     </div>
                     <a href="#" class="enlace">Blog</a>
@@ -354,7 +480,7 @@
         <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="/build/js/bundle.min.js"></script>
 </body>
 
 </html>
