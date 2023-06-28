@@ -10,9 +10,9 @@ const EducacionModificar = document.querySelector('#EducacionModificar');
 const ExperienciaAgregar = document.querySelector('#ExperienciaAgregar');
 const ExperienciaModificar = document.querySelector('#ExperienciaModificar');
 const proyectoAgregar = document.querySelector('#proyectoAgregar');
-const proyectoModificar = document.querySelector('#proyectoModificar');
+// const proyectoModificar = document.querySelector('#proyectoModificar');
 const certificadosAgregar = document.querySelector('#certificadosAgregar');
-const certificadosModificar = document.querySelector('#certificadosModificar');
+// const certificadosModificar = document.querySelector('#certificadosModificar');
 const insigniasEditar = document.querySelector('#insigniasEditar');
 
 const salirFoto = document.querySelector('#salirFoto');
@@ -32,22 +32,22 @@ const salirAgregarHabilidades = document.querySelector('#salirAgregarHabilidades
 // Formularios
 const formularioFoto = document.querySelector('#fotos');
 const formularioPersonal = document.querySelector('#personal');
-const formularioContacto = document.querySelector('#DatosContacto');
-const formularioAcerca = document.querySelector('#DatosAcerca');
-const agregarEducacion = document.querySelector('#agregarEducaion');
+const formularioContacto = document.querySelector('#formularioContacto');
+const formularioAcerca = document.querySelector('#formularioAcerca');
+const agregarEducacion = document.querySelector('#agregarEducacion');
 const modificarEducacion = document.querySelector('#modificarEducacion');
 const agregarExperiencia = document.querySelector('#agregarExperiencia');
 const editarExperiencia = document.querySelector('#editarExperiencia');
 const agregarProyecto = document.querySelector('#agregarProyecto');
 const editarProyecto = document.querySelector('#editarProyecto');
 const agregarCertificacion = document.querySelector('#agregarCertificacion');
-const editarCertificacion = document.querySelector('#editarCertificacion');
+// const editarCertificacion = document.querySelector('#editarCertificacion');
 const agregarHabilidades = document.querySelector('#agregarHabilidades');
 
 // Eventos
 // Eventos
-eventListeners();
-function eventListeners() {
+
+document.addEventListener('DOMContentLoaded',()=>{
     editarFoto.addEventListener('click', mostrarFormulario);
     editarPersonal.addEventListener('click', mostrarFormulario);
     editarDatos.addEventListener('click', mostrarFormulario);
@@ -57,9 +57,10 @@ function eventListeners() {
     ExperienciaAgregar.addEventListener('click', mostrarFormulario);
     ExperienciaModificar.addEventListener('click', mostrarFormulario);
     proyectoAgregar.addEventListener('click', mostrarFormulario);
-    proyectoModificar.addEventListener('click', mostrarFormulario);
-    editarCertificacion.addEventListener('click', mostrarFormulario);
-    certificadosModificar.addEventListener('click', mostrarFormulario);
+    // proyectoModificar.addEventListener('click', mostrarFormulario);
+    // editarCertificacion.addEventListener('click', mostrarFormulario);
+    agregarCertificacion.addEventListener('click', mostrarFormulario);
+    // certificadosModificar.addEventListener('click', mostrarFormulario);
     certificadosAgregar.addEventListener('click', mostrarFormulario);
     insigniasEditar.addEventListener('click', mostrarFormulario);
 
@@ -71,19 +72,20 @@ function eventListeners() {
     salirEducacionModificar.addEventListener('click', salirFormulario);
     salirExperienciaAgregar.addEventListener('click', salirFormulario);
     salirExperienciaModificar.addEventListener('click', salirFormulario);
-    salirProyectoModificar.addEventListener('click', salirFormulario);
+    // salirProyectoModificar.addEventListener('click', salirFormulario);
     salirProyectoAgregar.addEventListener('click', salirFormulario);
     salircertificadosAgregar.addEventListener('click', salirFormulario);
-    salircertificadosModificar.addEventListener('click', salirFormulario);
+    // salircertificadosModificar.addEventListener('click', salirFormulario);
     salirAgregarHabilidades.addEventListener('click', salirFormulario);
 
-}
+});
+
 
 // Funciones
 function mostrarFormulario(e) {
     e.preventDefault();
     const btnID = e.target.parentElement.id;
- 
+    // console.log(btnID);
 
     switch (btnID) {
         case 'editarFoto':
@@ -140,22 +142,10 @@ function mostrarFormulario(e) {
                 agregarProyecto.classList.add('mostrarMenu');
             }
             break;
-        case 'proyectoModificar':
-            if (editarProyecto.classList.contains('ocultar')) {
-                editarProyecto.classList.remove('ocultar');
-                editarProyecto.classList.add('mostrarMenu');
-            }
-            break;
         case 'certificadosAgregar':
             if (agregarCertificacion.classList.contains('ocultar')) {
                 agregarCertificacion.classList.remove('ocultar');
                 agregarCertificacion.classList.add('mostrarMenu');
-            }
-            break;
-        case 'certificadosModificar':
-            if (editarCertificacion.classList.contains('ocultar')) {
-                editarCertificacion.classList.remove('ocultar');
-                editarCertificacion.classList.add('mostrarMenu');
             }
             break;
         case 'insigniasEditar':
@@ -169,9 +159,9 @@ function mostrarFormulario(e) {
 
 function salirFormulario(e) {
     e.preventDefault();
-
+    console.log('Hola desde js');
     const btnID = e.target.id;
-    console.log(btnID);
+
 
     switch (btnID) {
         case 'salirFoto':
@@ -181,9 +171,11 @@ function salirFormulario(e) {
             }
             break;
         case 'salirPersonal':
+            console.log("hola");
             if (formularioPersonal.classList.contains('mostrarMenu')) {
                 formularioPersonal.classList.remove('mostrarMenu');
                 formularioPersonal.classList.add('ocultar');
+                
             }
             break;
         case 'salirDatos':
@@ -228,22 +220,11 @@ function salirFormulario(e) {
                 agregarProyecto.classList.add('ocultar');
             }
             break;
-        case 'salirProyectoModificar':
-            if (editarProyecto.classList.contains('mostrarMenu')) {
-                editarProyecto.classList.remove('mostrarMenu');
-                editarProyecto.classList.add('ocultar');
-            }
-            break;
+    
         case 'salircertificadosAgregar':
             if (agregarCertificacion.classList.contains('mostrarMenu')) {
                 agregarCertificacion.classList.remove('mostrarMenu');
                 agregarCertificacion.classList.add('ocultar');
-            }
-            break;
-        case 'salircertificadosModificar':
-            if (editarCertificacion.classList.contains('mostrarMenu')) {
-                editarCertificacion.classList.remove('mostrarMenu');
-                editarCertificacion.classList.add('ocultar');
             }
             break;
         case 'salirAgregarHabilidades':
@@ -252,6 +233,6 @@ function salirFormulario(e) {
                 agregarHabilidades.classList.add('ocultar');
             }
             break;
-
+            
     }
 }

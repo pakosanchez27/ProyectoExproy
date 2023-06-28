@@ -1,0 +1,17 @@
+@use 'base/variables' as v;
+@use 'Base/mixins' as m;
+
+
+.footer__candidato{
+    border-top: solid v.$primario 2px;
+    background-color: transparent;
+
+    & a, p{
+        color : v.$negro
+    }
+    
+}
+
+.btn__texto p {
+    color: v.$blanco;
+}

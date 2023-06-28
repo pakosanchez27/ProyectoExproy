@@ -12,3 +12,7 @@
 .boton__blanco{
     @include m.boton(v.$blanco, v.$negro);
 }
+
+.boton__rojo{
+    @include m.boton( rgb(194, 29, 29),v.$blanco);
+}
