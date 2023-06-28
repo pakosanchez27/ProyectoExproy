@@ -1,0 +1,542 @@
+<div class="formulario__contenedor ocultar" id="personal">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Informacion Personal</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Modifica tu informacion personal</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre">
+                    </div>
+                    <div class="campo apellido">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" placeholder="Tus Apellidos">
+                    </div>
+
+                    <div class="campo fechaNacimiento">
+                        <label for="nacimiento">Fecha de nacimiento</label>
+                        <input type="date" name="nacimiento" id="nacimiento">
+                    </div>
+                    <div class="campo estado">
+                        <label for="estado">Estado</label>
+                        <select name="estados" id="estado">
+                            <option value="" disabled selected>--Selecciona un Estado--</option>
+                        </select>
+                    </div>
+                    <div class="campo ciudad">
+                        <label for="ciudad">Ciudad o Municipio</label>
+                        <select name="ciudad" id="ciudad">
+                            <option value="" disabled selected>--Selecciona una Ciudad--</option>
+                        </select>
+                    </div>
+                    <div class="campo area">
+                        <label for="area">Área de Interés</label>
+                        <select name="area" id="area">
+                            <option value="" disabled selected>--Selecciona un Área--</option>
+                        </select>
+                    </div>
+                    <div class="campo puesto">
+                        <label for="puesto">Puesto de Interés</label>
+                        <select name="puesto" id="puesto">
+                            <option value="" disabled selected>--Selecciona un Puesto--</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="campo botones sombra">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirPersonal" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario informacion Personal-->
+<div class="formulario__contenedor ocultar" id="fotos">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Foto de perfil y Portada</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Modifica tu foto de perfil y de portada.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo fotoPerfil">
+                        <label for="fotoPerfil">Selecciona una Foto de Perfil</label>
+                        <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*"
+                            name="fotoPerfil">
+                        <label for="fotoPortada">Selecciona una Foto de Portada</label>
+                        <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*"
+                            name="fotoPortada">
+                    </div>
+                    <div class="previewPerfil">
+                        <div class="previewPerfil__contenedor">
+                            <div class="previewPerfil__portada"></div>
+                            <div class="previewPerfil__informacion">
+                                <div class="previewPerfil__foto"></div>
+                                <div class="previewPerfil__nombre">
+                                    <h3>Francisco Sanchez</h3>
+                                </div>
+                                <div class="previewPerfil__ciudad">
+                                    <p><span>Nezahualcoyotl,</span> E.México</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirFoto" class="boton blanco salir">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario fotos-->
+<div class="formulario__contenedor ocultar" id="DatosContacto">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Datos de Contacto</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Modifica tus datos de contacto</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo telefono">
+                        <label for="telefono">Número de Teléfono</label>
+                        <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono">
+                    </div>
+                    <div class="campo email">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Tu número de teléfono">
+                    </div>
+                    <div class="campo portafolio">
+                        <label for="portafolio">Link de tu portafolio</label>
+                        <input type="text" name="telefono" id="telefono" placeholder="link a tu portafolio">
+                    </div>
+                    <fieldset>
+                        <legend>Redes Sociales</legend>
+                        <div class="campo redSocial">
+                            <label for="red">Elige una red social</label>
+                            <select name="red" id="red">
+                                <option value="" selected disabled>--Seleccionar--</option>
+                                <option value="1">Facebook</option>
+                                <option value="2">Twetter</option>
+                                <option value="3">Instagram</option>
+                                <option value="4">Linkedin</option>
+                                <option value="5">GitHub</option>
+                                <option value="6">Youtube</option>
+                                <option value="7">TikTok</option>
+                                <option value="8">Pinterest</option>
+                                <option value="9">Portafolio</option>
+                            </select>
+
+                        </div>
+                        <div class="campo redlink">
+                            <label for="redLink">URL</label>
+                            <input type="text" name="redLink" id="redLink" placeholder="URL">
+                        </div>
+                        <a href="#" class="boton negro">Agregar otra red social</a>
+                    </fieldset>
+                </div>
+
+
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirDatos" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario datos de contacto-->
+<div class="formulario__contenedor ocultar" id="DatosAcerca">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Acerca de.</h3>
+
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Cuentanos sobre ti</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="acerca">Acerca de</label>
+                        <textarea name="acerca" id="acerca" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirAcerca" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario acerca de-->
+<div class="formulario__contenedor ocultar" id="agregarEducaion">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Educacion</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Agrega datos de tu educación.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo institucion">
+                        <label for="institucion">Institución Educativa</label>
+                        <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela">
+                    </div>
+                    <div class="campo fechaInicio">
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input type="date" name="fechaInicio" id="fechaInicio">
+                    </div>
+                    <div class="campo fechaFin">
+                        <label for="fechaFin">Fecha de Fin</label>
+                        <input type="date" name="fechaFin" id="fechaFin">
+                    </div>
+                    <div class="campo titulo">
+                        <label for="titulo">Título / Certificado</label>
+                        <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
+                    </div>
+                    <div class="campo skills">
+                        <label for="skills">Habilidades o Skills</label>
+                        <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop...">
+                    </div>
+
+                    <a href="#" class="boton negro">Agregar Educacion</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirAgregarEducacion" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario agregar Educacion-->
+<div class="formulario__contenedor ocultar " id="modificarEducacion">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Educacion</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Modifica la informacion de tu educacion.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo institucion">
+                        <label for="institucion">Institución Educativa</label>
+                        <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela">
+                    </div>
+                    <div class="campo fechaInicio">
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input type="date" name="fechaInicio" id="fechaInicio">
+                    </div>
+                    <div class="campo fechaFin">
+                        <label for="fechaFin">Fecha de Fin</label>
+                        <input type="date" name="fechaFin" id="fechaFin">
+                    </div>
+                    <div class="campo titulo">
+                        <label for="titulo">Título / Certificado</label>
+                        <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
+                    </div>
+                    <div class="campo skills">
+                        <label for="skills">Habilidades o Skills</label>
+                        <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop...">
+                    </div>
+                    <a href="#" class="boton rojo">Eliminar</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirEducacionModificar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario modificar Educacion-->
+<div class="formulario__contenedor ocultar " id="agregarExperiencia">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Experiencia</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Agrega experiencias laborales.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo empresa">
+                        <label for="empresa">Empresa</label>
+                        <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcion">Descripción de actividades</label>
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo cargo">
+                        <label for="cargo">Cargo Desempeñado</label>
+                        <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
+                    </div>
+                    <div class="campo duracion">
+                        <label for="duracion">Duración</label>
+                        <select name="duracion" id="duracion">
+                            <option disabled selected>--Selecciona--</option>
+                            <option value="actual">Actual</option>
+                            <option value="menos1">Menos de 1 año</option>
+                            <option value="1a3">1 a 3 años</option>
+                            <option value="3a5">3 a 5 años</option>
+                            <option value="5a10">5 a 10 años</option>
+                            <option value="mas10">Más de 10 años</option>
+                        </select>
+                    </div>
+                    <a href="#" class="boton negro">Agregar Experiencia</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirExperienciaAgregar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario agregar Experiencia-->
+<div class="formulario__contenedor ocultar " id="editarExperiencia">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Experiencia</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Modifica la informacion de tu experiencia laboral.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo empresa">
+                        <label for="empresa">Empresa</label>
+                        <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcion">Descripción de actividades</label>
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo cargo">
+                        <label for="cargo">Cargo Desempeñado</label>
+                        <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
+                    </div>
+                    <div class="campo duracion">
+                        <label for="duracion">Duración</label>
+                        <select name="duracion" id="duracion">
+                            <option disabled selected>--Selecciona--</option>
+                            <option value="actual">Actual</option>
+                            <option value="menos1">Menos de 1 año</option>
+                            <option value="1a3">1 a 3 años</option>
+                            <option value="3a5">3 a 5 años</option>
+                            <option value="5a10">5 a 10 años</option>
+                            <option value="mas10">Más de 10 años</option>
+                        </select>
+                    </div>
+                    <a href="#" class="boton rojo">Eliminar Experiencia</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirExperienciaModificar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario editar Experiencia-->
+<div class="formulario__contenedor ocultar " id="agregarProyecto">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Proyectos</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Cuentanos sobre los proyectos profecionales o personales que has realizado.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="nombreProyecto">Nombre del proyecto</label>
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcionProyecto">Descripción del Proyecto</label>
+                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo tecnologias">
+                        <label for="tecnologias">Tecnologias Utilizadas</label>
+                        <input type="text" name="tecnologias" id="tecnologias"
+                            placeholder="html, css, JavaScript ...">
+                    </div>
+                    <div class="campo urlProyecto">
+                        <label for="nombre">Url de tu proyecto</label>
+                        <input type="text" name="nombreProyecto" id="nombre"
+                            placeholder="html, css, JavaScript ...">
+                    </div>
+                    <div class="campo urlProyecto">
+                        <label for="fotoProyecto">Agrega una foto de tu proyecto</label>
+                        <input type="file" name="fotoProyecto" id="fotoProyecto">
+                    </div>
+                    <br>
+                    <a href="#" class="boton negro">Nuevo proyecto</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirProyectoAgregar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario agregar proyecto-->
+<div class="formulario__contenedor ocultar " id="editarProyecto">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Proyectos</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Edita la informacion de tus proyectos profecionales o personales que has realizado.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="nombreProyecto">Nombre del proyecto</label>
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcionProyecto">Descripción del Proyecto</label>
+                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo tecnologias">
+                        <label for="tecnologias">Tecnologias Utilizadas</label>
+                        <input type="text" name="tecnologias" id="tecnologias"
+                            placeholder="html, css, JavaScript ...">
+                    </div>
+                    <div class="campo urlProyecto">
+                        <label for="nombre">Url de tu proyecto</label>
+                        <input type="text" name="nombreProyecto" id="nombre"
+                            placeholder="html, css, JavaScript ...">
+                    </div>
+                    <div class="campo urlProyecto">
+                        <label for="fotoProyecto">Agrega una foto de tu proyecto</label>
+                        <input type="file" name="fotoProyecto" id="fotoProyecto">
+                    </div>
+                    <br>
+                    <a href="#" class="boton rojo">eliminar proyecto</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salirProyectoModificar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario editar proyecto-->
+<div class="formulario__contenedor ocultar " id="agregarHabilidades">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Insignias y Habilidades.</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <div class="divFormulario__portada">
+
+            </div>
+            <p class="Insignias__titulo">Test <span>AgoraTalent</span></p>
+            <p class="Insignias__texto">Demuestra los conocimientos que tienes con nuestros test y gana una insignia
+                dependiendo de el nivel del test</p>
+            <a href="#" class="boton verde btnInsignia">Gana una Insignia</a>
+            <hr>
+            <p class="Insignias__titulo">Habilidades</p>
+            <p class="Insignias__texto">Escribe las habilidades o conocimientos que tienes.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="skills">Escribe tus habilidaes</label>
+                        <input type="text" name="skills" id="skills" placeholder="">
+                    </div>
+                    <div class="conetenedor__habilidades">
+                        <!-- <p>Aqui van las hanilidades</p> -->
+                    </div>
+                    <div class="campo botones">
+                        <input type="submit" value="Guardar" class="boton verde">
+                        <a href="#" id="salirAgregarHabilidades" class="boton blanco">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div> <!--Fin de formulario agregar certificacion-->
+<div class="formulario__contenedor ocultar " id="agregarCertificacion">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Cartificaciones</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Edita la informacion de tus certificacione y/o cursos.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="nombreCertificado">Nombre de la certificacion y/o curso.</label>
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Nombre">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcionCertificado">Descripción de la certificado y/o curso</label>
+                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo lugar">
+                        <label for="lugar">Tecnologias Utilizadas</label>
+                        <input type="text" name="lugar" id="lugar" placeholder="Udemy, Platzi... etc.">
+                    </div>
+                    <div class="campo fechaTermino">
+                        <label for="fechaTermino">Fecha termino</label>
+                        <input type="date" name="fechaTermino" id="fechaTermino" ">
+                    </div>
+                    <div class=" campo horas">
+                        <label for="horas">Cuantas horas duro la certificacion y/o curso</label>
+                        <input type="number" name="horas" id="horas">
+                    </div>
+                    <br>
+                    <a href="#" class="boton rojo">eliminar certificacion</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salircertificadosAgregar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario agregar certificacion-->
+<div class="formulario__contenedor ocultar " id="editarCertificacion">
+    <div class="divFormulario ">
+        <div class="divFormulario__header sombra">
+            <h3>Cartificaciones</h3>
+        </div>
+        <div class="divFormulario__fomulario">
+            <p>Edita la informacion de tus certificacione y/o cursos.</p>
+            <form id="formulario" method="post">
+                <div class="divFormulario__campos">
+                    <div class="campo nombre">
+                        <label for="nombreCertificado">Nombre de la certificacion y/o curso.</label>
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Nombre">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcionCertificado">Descripción de la certificado y/o curso</label>
+                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo lugar">
+                        <label for="lugar">Tecnologias Utilizadas</label>
+                        <input type="text" name="lugar" id="lugar" placeholder="Udemy, Platzi... etc.">
+                    </div>
+                    <div class="campo fechaTermino">
+                        <label for="fechaTermino">Fecha termino</label>
+                        <input type="date" name="fechaTermino" id="fechaTermino" ">
+                    </div>
+                    <div class=" campo horas">
+                        <label for="horas">Cuantas horas duro la certificacion y/o curso</label>
+                        <input type="number" name="horas" id="horas">
+                    </div>
+                    <br>
+                    <a href="#" class="boton rojo">eliminar certificacion</a>
+                </div>
+                <div class="campo botones">
+                    <input type="submit" value="Guardar" class="boton verde">
+                    <a href="#" id="salircertificadosModificar" class="boton blanco">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> <!--Fin de formulario agregar certificacion-->
+</div>
