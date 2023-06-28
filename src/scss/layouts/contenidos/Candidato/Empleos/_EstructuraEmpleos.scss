@@ -1,0 +1,156 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.empleos {
+    width: 100%;
+    height: auto;
+    // border: solid 1px red;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1;
+    
+    @include m.tablet {
+        width: 80%;
+        padding: 2rem 0;
+        grid-template-columns: repeat(2, 35% 65%);
+        gap: 2rem;
+
+    }
+    @include m.desktop {
+        width: 80%;
+        grid-template-columns: repeat(3, 20% 50% 30%);
+        gap: 2rem;
+
+    }
+
+    &__izquierda{
+        // border: solid 1px rgb(0, 255, 55);
+        height: auto;
+        display: none;
+        flex-direction: column;
+        gap: 2rem;
+        @include m.desktop{
+            display: flex;
+        }
+
+        &__blog{
+            padding: 1rem;
+        }
+
+       
+    }
+    &__central{
+        // border: solid 1px rgb(47, 0, 255);
+        background-color: v.$blanco;
+        border-radius: .5rem;
+        height: auto;
+        padding:  2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        hr{
+            display: block;
+            margin-top: 2rem;
+        }
+        &__buscar{
+            margin: 0 auto;
+        }
+    }
+    &__derecha{
+       
+        // border: solid 1px rgb(255, 0, 119);
+
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        &__menu{
+            
+            background-color: v.$blanco;
+            padding:  2rem;
+            border-radius: .5rem;
+        }
+
+        &__filtrado{
+           
+            background-color: v.$blanco;
+            padding:  2rem;
+            border-radius: .5rem;
+        }
+
+    }
+
+}
+
+.menu__opciones{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    &__enlace{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    & img{
+        width: 3rem;
+    }
+
+}
+.buscar__grid{
+   
+     display: flex;
+        flex-direction: column;
+     gap: 2rem;
+     @include m.desktop{
+        display: grid;
+        grid-template-rows: repeat(2,1fr);
+     }
+    // grid-template-areas: 'trabajo lugar'
+    //                         'btn';
+    //                         gap: 2rem;
+
+    &__empleo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px v.$primario;
+        border-radius: .5rem;
+        padding-left: 1rem;
+        
+    
+
+        &:last-child{
+            border: none;
+        }
+
+        & input{
+            border-style: none;
+            outline: none;
+
+           
+            &::placeholder{
+                font-size: 1.4rem;
+            }
+        }
+
+    }
+}
+
+.trabajo{
+    grid-row: 1/2;
+    margin: 0 auto;
+}
+
+.lugar{
+    grid-column: 2/3;
+    margin: 0 auto;
+}
+.btn {
+    grid-column: 1/4;
+    margin: 0 auto;
+    margin-top: 2rem;
+    
+}
