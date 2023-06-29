@@ -118,10 +118,12 @@
     flex-direction: column;
     gap: 2rem;
     margin-bottom: 5rem;
+    
 }
 
 @include m.desktop {
     .footer__descarga {
+        flex-direction: column;
         & img {
             width: 2rem;
         }
