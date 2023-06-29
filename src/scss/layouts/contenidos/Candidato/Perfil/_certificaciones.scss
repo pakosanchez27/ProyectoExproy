@@ -1,0 +1,37 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.principal__certificados {
+    &__contenedor {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+p.principal__certificados__titulo {
+    font-weight: v.$bold;
+    font-size: 1.8rem;
+}
+
+p.principal__certificados__texto {
+    font-size: 1.4rem;
+}
+
+p.principal__certificados__fecha {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: v.$gris;
+
+}
+
+a.principal__certificados__detalles {
+    text-decoration: underline;
+    color: v.$gris;
+    font-weight: 1.4rem;
+}
+
+.principal__certificados__card span {
+    font-weight: v.$bold;
+    font-style: normal;
+    color: v.$negro;
+}

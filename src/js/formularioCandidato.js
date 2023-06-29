@@ -39,12 +39,12 @@ const atras = document.querySelector('#atras');
 
 
 let paginador = 1;
-// console.log(paginador);
+console.log(paginador);
 // Eventos
 
 eventListeners();
 function eventListeners() {
-    addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
         subirPerfil.addEventListener('change', mostrarPefil);
         subirPortada.addEventListener('change', mostrarPortada);
         siguientebtn.addEventListener('click', siguienteFormulario);
@@ -57,7 +57,7 @@ function eventListeners() {
 }
 
 // llenar el Select Estados
-fetch('../Json/estados.json')
+fetch('../../Json/estados.json')
     .then(Response => Response.json())
     .then(Data => {
         // console.log(Object.keys(Data));
@@ -69,7 +69,7 @@ fetch('../Json/estados.json')
         });
 
 
-        estado.addEventListener('change', function (e) {
+        OptionEstado.addEventListener('change', function (e) {
             ciudad.value = '';
 
             const EstadoSeleccionado = e.target.value;
@@ -101,7 +101,7 @@ function llenarMunicipios(Data, EstadoSeleccionado) {
 fetch('../Json/puestos.json')
 .then(Response => Response.json())
 .then(data => {
-    console.log(Object.keys(data));
+    // console.log(Object.keys(data));
     Object.keys(data).forEach(area =>{
         const optionElement2 = document.createElement('option');
         optionElement2.textContent = area;
@@ -154,8 +154,9 @@ function atrasFormulario(e) {
 function mostrarFormulario(paginador) {
 
     limpiarHTML(divpaso);
-    // console.log(paginador);
+    console.log(paginador);
     if (paginador === 1) {
+        
         if (grid1.classList.contains('ocultar')) {
             grid1.classList.remove('ocultar');
             grid2.classList.add('ocultar');
@@ -164,6 +165,13 @@ function mostrarFormulario(paginador) {
             grid4.classList.add('ocultar');
             grid5.classList.add('ocultar');
             grid1.classList.add('mostrar');
+
+            
+            // grid1.classList.remove('mostrar');
+            grid2.classList.remove('mostrar');
+            grid3.classList.remove('mostrar');
+            grid4.classList.remove('mostrar');
+            grid5.classList.remove('mostrar');
         }
 
 
@@ -201,6 +209,12 @@ function mostrarFormulario(paginador) {
             grid4.classList.add('ocultar');
             grid5.classList.add('ocultar');
             grid2.classList.add('mostrar');
+        
+            grid1.classList.remove('mostrar');
+            // grid2.classList.remove('mostrar');
+            grid3.classList.remove('mostrar');
+            grid4.classList.remove('mostrar');
+            grid5.classList.remove('mostrar');
         }
 
         flujo1.classList.remove('activo', 'activoTexto');
@@ -236,6 +250,12 @@ function mostrarFormulario(paginador) {
             grid4.classList.add('ocultar');
             grid5.classList.add('ocultar');
             grid3.classList.add('mostrar');
+   
+            grid1.classList.remove('mostrar');
+            grid2.classList.remove('mostrar');
+            // grid3.classList.remove('mostrar');
+            grid4.classList.remove('mostrar');
+            grid5.classList.remove('mostrar');
         }
         flujo1.classList.remove('activo', 'activoTexto');
         flujo2.classList.remove('activo', 'activoTexto');
@@ -268,6 +288,12 @@ function mostrarFormulario(paginador) {
             grid3.classList.add('ocultar');
             grid5.classList.add('ocultar');
             grid4.classList.add('mostrar');
+          
+            grid1.classList.remove('mostrar');
+            grid2.classList.remove('mostrar');
+            grid3.classList.remove('mostrar');
+            // grid4.classList.remove('mostrar');
+            grid5.classList.remove('mostrar');
         }
 
         flujo1.classList.remove('activo', 'activoTexto');
@@ -299,7 +325,14 @@ function mostrarFormulario(paginador) {
             grid2.classList.add('ocultar');
             grid3.classList.add('ocultar');
             grid4.classList.add('ocultar');
-            grid5.classList.add('mostrar');
+
+            grid1.classList.remove('mostrar');
+            grid2.classList.remove('mostrar');
+            grid3.classList.remove('mostrar');
+            grid4.classList.remove('mostrar');
+            // grid5.classList.remove('mostrar');
+
+            // grid4.classList.remove('mostrar');
         }
 
         flujo1.classList.remove('activo', 'activoTexto');
@@ -334,16 +367,16 @@ function btnSubmit(){
         siguienteSubmit.type = 'submit';
         siguienteSubmit.value = 'Siguiente';
         contenedorBtn.style.flexDirection = 'row';
-        siguienteSubmit.classList.add('boton', 'verde');
+        siguienteSubmit.classList.add('boton__verde', 'ultimo');
         siguienteSubmit.id = 'siguiente';
-
+        window.location.href = '/Candidato/CandidatoPrincipal.html';
         contenedorBtn.appendChild(siguienteSubmit);
 }
 function btnSiguiente(){
   
     siguientebtn.textContent = 'Siguiente';
     contenedorBtn.style.flexDirection = 'row';
-    siguientebtn.classList.add('boton', 'verde');
+    siguientebtn.classList.add('boton__verde');
     siguientebtn.id = 'siguiente';
 
     contenedorBtn.appendChild(siguientebtn);

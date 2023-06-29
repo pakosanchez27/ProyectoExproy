@@ -1,37 +1,28 @@
 // Variables
-const menu = document.querySelector('#menu');
+const menu = document.querySelector('#menu') ;
 const cerrar = document.querySelector('#cerrar');
 const menuMobile = document.querySelector('#menuMobile');
 
 // eventos
-eventListeners();
-
-function eventListeners() {
-    addEventListener('DOMContentLoaded', () => {
-        menu.addEventListener('click', mostrarMenu);
-        cerrar.addEventListener('click', cerrarMenu);
-       
-    });
-
-  
-
-}
-
+menu.addEventListener('click', mostrarMenu);
+cerrar.addEventListener('click', cerrarMenu);
+perfilMobile.addEventListener('click', mostarDesplegable);
 
 // funciones
+function mostrarMenu() {
+    
 
-function mostrarMenu(e) {
-    e.preventDefault();
     if (menuMobile.classList.contains('ocultarMenu')) {
         menuMobile.classList.remove('ocultarMenu');
         menuMobile.classList.add('MostrarMenu');
     }
 }
-function cerrarMenu(e) {
-    e.preventDefault();
+
+function cerrarMenu() {
     if (menuMobile.classList.contains('MostrarMenu')) {
         menuMobile.classList.remove('MostrarMenu');
         menuMobile.classList.add('ocultarMenu');
     }
 }
+
 

@@ -3,9 +3,9 @@ const acercaContenedor  = document.querySelector('#acercaContenedor');
 const acerca = document.querySelector('#acerca');
 
 // eventos
-eventListeners();
-function eventListeners(){
-    addEventListener('DOMContentLoaded', () =>{
+
+
+    document.addEventListener('DOMContentLoaded', () =>{
         const verMas = document.createElement('span');
         verMas.classList.add('ver-mas');
         verMas.textContent = '...Ver más';
@@ -22,7 +22,7 @@ function eventListeners(){
 
   
 
-}
+
 
 
 // funcione
