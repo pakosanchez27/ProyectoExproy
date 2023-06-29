@@ -146,149 +146,139 @@
     </header>
 
     <main class="empleos">
-        <div class="empleos__derecha">
-            <div class="empleos__derecha__menu menu">
-                <nav class="menu__opciones">
-                    <a href="#" class="menu__opciones__enlace">
-                        <img src="/build/img/portafolio.webp">
+        <div class="empleos__contenedor">
+            <div class="empleos__izquierda">
+                <div class="empleos__izquierda__secciones secciones">
+                    <a class="secciones__campo">
+                        <img src="../build/img/portafolio.webp">
                         <p>Buscar Empleo</p>
                     </a>
-                    <a href="#" class="menu__opciones__enlace">
-                        <img src="/build/img/guardar-instagram.webp">
+                    <a class="secciones__campo">
+                        <img src="../build/img/guardar-instagram.webp">
                         <p>Postulados</p>
                     </a>
-                    <a href="#" class="menu__opciones__enlace">
-                        <img src="/build/img/recomendar.webp">
-                        <p>Recomendados</p>
+                    <a class="secciones__campo">
+                        <img src="../build/img/recomendar.webp">
+                        <p>Recomedados</p>
                     </a>
-                </nav>
+                </div>
+                <div class="empleos__izquierda__filtado filtrado">
+                    <form action="" class="filtrado__campos">
+                        <div class="filtro area">
+                            <label for="area">Especialidad</label>
+                            <select name="area" id="area">
+                                <option value="" selected>Area</option>
+                            </select>
+                        </div> <!--Area-->
+                        <div class="filtro puesto">
+                            <label for="puesto">Puesto</label>
+                            <select name="puesto" id="puesto">
+                                <option value="" selected>Puesto</option>
+                            </select>
+                        </div> <!--puesto-->
+                        <div class="filtro estado">
+                            <label for="estado">Estado</label>
+                            <select name="estado" id="estado">
+                                <option value="" selected>Estado</option>
+                            </select>
+                        </div> <!--estado-->
+                        <div class="filtro ciudad">
+                            <label for="ciudad">Ciudad</label>
+                            <select name="ciudad" id="ciudad">
+                                <option value="" selected>Ciudad</option>
+                            </select>
+                        </div> <!--estado-->
+                        <div class="filtro salario">
+                            <label for="salario">Salario</label>
+                            <select name="salario" id="salario">
+                                <option value="" selected>Salario</option>
+                                <option value="6000-8000">6000 - 8000</option>
+                                <option value="8000-10000">8000 - 10000</option>
+                                <option value="10000-15000">10000 - 15000</option>
+                                <option value="15000-20000">15000 - 20000</option>
+                                <option value="20000-25000">20000 - 25000</option>
+                                <option value="25000-30000">25000 - 30000</option>
+                                <option value="30000-more">Más de 30000</option>
+                              </select>
+                        </div> <!--salario-->
+                        <div class="filtro tipo">
+                            <label for="tipo">Tipo de empleo</label>
+                            <select name="tipo" id="tipo">
+                                <option value="" selected>Tipo de empleo</option>
+                                <option value="Tiempo completo">Tiempo completo</option>
+                                <option value="Medio tiempo">Medio tiempo</option>
+                                <option value="Contrato temporal">Contrato temporal</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Prácticas">Prácticas</option>
+                              </select>
+                        </div> <!--tipo-->
+                        <div class="filtro lugar">
+                            <label for="lugar">Lugar de empleo</label>
+                            <select name="lugar" id="lugar">
+                                <option value="" selected>Lugar de empleo</option
+                                <option value="presencial">Presencial</option>
+                                <option value="home_office">Home office</option>
+                                <option value="hibrido">Híbrido</option>
+                              </select>
+                        </div> <!--tipo-->
+                        <div class="filtro btns">
+                            <input type="submit" value="Buscar" class="boton__verde">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="empleos__derecha__filtrado filtrado">
-                <h3>Filtrar Busqueda</h3>
-                <form action="" class="filtrado__campos">
-                    <div class="campo area">
-                        <!-- <label for="area">Área de especialidad</label> -->
-                        <select name="area" id="area">
-                            <option value="" selected>Área</option>
-                        </select>
+            <div class="empleos__central">
+                <div class="empleos__central__secciones seccionesMobile sombra">
+                    <div class="seccionesMobile__secciones">
+                        <a class="seccionesMobile__campo">
+                            <span>
+                                <img src="../build/img/portafolio.webp">
+                                <p>Buscar Empleo</p>
+                            </span>
+                            <img src="../build/img/triangulo.webp" class="triangulo">
+                        </a>
+                        
                     </div>
-                    <div class="campo puesto">
-                        <!-- <label for="puesto">Puesto</label> -->
-                        <select name="puesto" id="puesto">
-                            <option value="" disabled selected>Puesto</option>
-                        </select>
-                    </div>
-                    <div class="campo estado">
-                        <!-- <label for="estado">Estado</label> -->
-                        <select name="estados" id="estado">
-                            <option value="" disabled selected>Ciudad</option>
-                        </select>
-                    </div>
-                    <div class="campo ciudad">
-                        <!-- <label for="ciudad">Ciudad o Municipio</label> -->
-                        <select name="ciudad" id="ciudad">
-                            <option value="" disabled selected>Estado</option>
-                        </select>
-                    </div>
-                    <div class="campo tipo">
-                        <!-- <label for="tipo">Tipo de empleo</label> -->
-                        <select name="tipo_empleo" id="tipo">
-                            <option value="" selected>Tipo de empleo</option>
-                            <option value="tiempo_completo">Tiempo completo</option>
-                            <option value="medio_tiempo">Medio tiempo</option>
-                            <option value="temporal">Temporal</option>
-                            <option value="freelance">Tiempo Completo</option>
-                        </select>
+                    <div class="seccionesMobile__filtros">
 
                     </div>
-                    <div class="campo tipo">
-                        <!-- <label for="modo">Modo de Trabajo</label> -->
-                        <select name="modo" id="modo">
-                            <option value="" selected>Modo de trabajo</option>
-                            <option value="presencial">Presencial</option>
-                            <option value="remoto">Remoto</option>
-                            <option value="hibrido">Híbrido</option>
-                        </select>
+
+                </div>
+                <div class="empleos__central__filtrado filtradoMobile sombra">
+                    <div class="filtradoMobile__btn">
+                        <p>Filtrar Vacante</p>
                     </div>
-                    <div class="campo btn">
-                        <input type="submit" value="Buscar" class="boton__verde">
-                    </div>
+                </div>
+
+                <div class="empleos__central__busqueda busqueda">
+                    <form action="" class="busqueda__form">
+                        <div class="buscar empleo">
+                            <label for="empleo">
+                                <img src="../build/img/lupa.webp">
+                            </label>
+                            <input type="text" name="empleo" id="empleo" placeholder="Empleo, área o empresa">
+                        </div>
+                        <div class="buscar lugar">
+                            <label for="lugar">
+                                <img src="../build/img/ubicacion.png">
+                            </label>
+                            <input type="text" name="lugar" id="lugar" placeholder="Colonia, ciudad o estado">
+                        </div>
+                        <div class=" btn">
+                            <input type="submit" value="Buscar Empleo" class="boton__verde">                            
+                        </div>
+                    </form>
+                </div>
+
+                <div class="empleos__central__resultados resultados">
                     
-                </form>
-
-
-
+                </div>
             </div>
-        </div>
-        <div class="empleos__central">
-            <div class="empleos__central__menuMobil ocultar">
+            <div class="empleos__derecha">
                 
             </div>
-            <div class="empleos__central__filtradoMobile ocultar">
-
-            </div>
-            <div class="empleos__central__buscar buscar">
-                <div class="buscar__grid">
-                    <div class="buscar__grid__empleo trabajo">
-                        <label for="trabajo"><img src="/build/img/lupa.webp"></label>
-                        <input type="text" name="trabajo" id="trabajo" placeholder="Puesto, área o Empresa">
-                    </div>
-                    <div class="buscar__grid__empleo lugar">
-                        <label for="lugar"><img src="/build/img/ubicacion.webp"></label>
-                        <input type="text" name="lugar" id="lugar" placeholder="Colonia, Ciudad o Estado">
-                    </div>
-                    <div class="buscar__grid__empleo btn">
-                        <input type="submit" value="Buscar Empleo" class="boton__verde" id="buscarEmpleo">
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="empleos__central__resultados resultados">
-
-            </div>
         </div>
-        <div class="empleos__izquierda">
-            <div class="empleos__izquierda__blog contenedor sombra">
-                <h3 class="entrada__titulo">AgoraTalent Blog</h3>
-                <div class="entrada__blog__cards">
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-                  
 
-                </div>
-            </div>
-            <div class="empleos__izquierda__blog contenedor sombra">
-                <div class="promo__test__img">
-
-                </div>
-                <div class="promo__test__contenido">
-                    <p class="promo__test__titulo">Realiza nuestros Test de conocimientos</p>
-                    <p class="promo__test__texto">Demuestra los conocimientos que tienes con nuestros test y gana una
-                        insignia dependiendo de el nivel del test</p>
-                    <a href="#" class="boton__verde btnTest ">Más información</a>
-                </div>
-
-            </div>
-        </div>
     </main>
 
 
