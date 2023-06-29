@@ -4,7 +4,7 @@
 /* Footer */
 .footer {
     background-color: v.$fondoSecundario;
-    padding: 5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -149,7 +149,7 @@
 
 @include m.desktop {
     .Copy {
-        margin-top: 3rem;
+        margin-top: 1rem;
     }
 }
 

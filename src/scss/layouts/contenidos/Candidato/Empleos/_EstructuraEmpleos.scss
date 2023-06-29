@@ -3,12 +3,16 @@
 
 .empleos {
     width: 100%;
-    height: 100vh;
+    height: 150vh;
+    @include m.tablet{
+        height: 120vh;
+    }
 
     &__contenedor {
         height: 100vh;
         margin: 0 auto;
         display: grid;
+        
         gap: 2rem;
         @include m.tablet{
             grid-template-columns: repeat(2, 30% 70%);
@@ -16,8 +20,9 @@
             margin-top: 2rem;
         }
         @include m.desktop{
-            grid-template-columns: repeat(3, 20% 50% 25%);
-            width: 80%;
+            grid-template-columns: repeat(3, 25% 45% 30%);
+            width: 75%;
+
         }
       
     }
@@ -28,17 +33,19 @@
             flex-direction: column;
             gap: 2rem;
         }   
-        height: 100%;
+        
         // border: solid 1px rgb(8, 51, 168);
         
     }
 
     &__central {
-        height: 100%;
-        border: solid 1px rgb(168, 8, 48);
+        
+        // border: solid 1px rgb(168, 8, 48);
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 2rem;
+        height: auto;
     }
 
     &__derecha {
@@ -48,8 +55,8 @@
             flex-direction: column;
             grid-area: 2rem;
         }
-        height: 100%;
-        border: solid 1px rgb(8, 168, 56);
+        
+        // border: solid 1px rgb(8, 168, 56);
     }
 
 }
