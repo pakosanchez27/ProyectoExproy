@@ -52,3 +52,10 @@
 .inlineBlock{
 display: inline-block;
 }
+
+.activo{
+    background-color: v.$primario;
+}
+.noPaso{
+    background-color: rgb(189, 15, 15);
+}
