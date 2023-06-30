@@ -1,0 +1,69 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.resultados{
+    width: 100%;
+    padding: 2rem 0;
+    background-color: v.$blanco;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.3;
+    border-radius: .5rem;
+    &::-webkit-scrollbar {
+        width: 3px; /* Ancho de la barra */
+      }
+      
+      /* Estilos para el pulgar de la barra de scroll */
+    &::-webkit-scrollbar-thumb {
+        background-color: v.$primario;   /* Color del pulgar */
+      }
+
+    &__card{
+    //    background-color: red;
+        height: auto;
+        // padding: 2rem;
+        border-bottom: solid 2px v.$primario;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+
+        &__detalles{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            color: v.$negro;
+
+            p.salario{
+                color: v.$primario;
+                font-weight: v.$bold;
+            }
+
+            h3{
+                padding: 0;
+                 margin: 0;
+            }
+            & img{
+                width: 8rem;
+            }
+        }
+
+        &__flecha {
+            & img{
+                rotate: 180deg;
+                width: 2rem;
+            }
+            
+        }
+
+        &:hover{
+            background-color: darken(v.$blanco, 5);
+        }
+    }
+
+}
+
+.buscar input::placeholder{
+    font-size: 1.4rem;
+}
