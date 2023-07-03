@@ -1,15 +1,16 @@
 // Variables
-const menu = document.querySelector('#menu');
+const menu = document.querySelector('#menu') ;
 const cerrar = document.querySelector('#cerrar');
 const menuMobile = document.querySelector('#menuMobile');
 
 // eventos
 menu.addEventListener('click', mostrarMenu);
 cerrar.addEventListener('click', cerrarMenu);
+perfilMobile.addEventListener('click', mostarDesplegable);
 
 // funciones
-function mostrarMenu(event) {
-    event.preventDefault();
+function mostrarMenu() {
+    
 
     if (menuMobile.classList.contains('ocultarMenu')) {
         menuMobile.classList.remove('ocultarMenu');
@@ -23,3 +24,5 @@ function cerrarMenu() {
         menuMobile.classList.add('ocultarMenu');
     }
 }
+
+

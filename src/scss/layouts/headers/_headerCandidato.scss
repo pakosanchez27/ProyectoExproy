@@ -10,6 +10,7 @@
     align-items: center;
     margin: 0 auto;
     width: 80%;
+    
 
 }
 @media (min-width: 768px) {
@@ -203,3 +204,88 @@
         font-size: 1.2rem;
     }
  }
+
+
+//  menu desplegable
+
+.perfilDesplegable{
+    z-index: 1;
+    position: fixed;
+    padding: 1rem 2rem;
+    bottom: 6rem;
+    width: 30rem;
+    height: 45rem;
+    background-color: v.$blanco;
+    // display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-top-right-radius: 1rem;
+
+    & a{
+       
+        @include m.tablet{
+            padding: .5rem;
+        }
+    }
+    @include m.tablet{
+        gap: 1rem;
+        position: absolute;
+        width: 30rem;
+        height: auto;
+        top: 6.5rem;
+        right: 8rem;
+        bottom: unset;
+    
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        border-top-right-radius: 0;
+    }
+    @include m.desktop{
+        right: 15rem;
+        height: auto;
+    & hr{
+        display: block;
+    }
+
+    }
+
+    &__perfil{
+        display: flex;
+        align-items: center;
+        line-height: 1.5;
+        gap: 1rem;
+
+        & img{
+            border-radius: 50%;
+            width: 5rem;
+        }
+        & h3{
+            font-weight: v.$bold;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    & nav{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        @include m.tablet{
+            text-align: left;
+            gap: 1rem;
+        }
+
+        & a{
+            font-size: 1.6rem;
+            padding: .5rem;
+            border-radius: .5rem;
+            @include m.tablet{
+                font-size: 1.4rem;
+            }
+
+            &:hover{
+                background-color: v.$primario;
+            }
+        }
+    }
+}

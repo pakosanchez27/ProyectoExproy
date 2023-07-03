@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../build/css/app.css">
+    <title>Perfil Candiadto</title>
+</head>
+
+<style>
+    .principal__header__portada {
+        /* border: #187e44 1px solid; */
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        background-image: url('../src/img/1646811898925.jpeg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    @media (min-width: 480px) {
+        .principal__header__portada {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+    }
+</style>
+
+<body>
+
+    <header class="candidato__header ">
+        <div class="candidato__header__contenido">
+            <div class="header__izquierda">
+                <div class="candiadato__logo">
+                    <a class="logoDesktop" href="CandidatoPrincipal.html">AgoraTalent</a>
+                    <a class="logoMobile" href="CandidatoPrincipal.html">AT</a>
+
+                </div>
+                <div class="candidato__buscar">
+                    <label for="buscar" class="buscar">
+                        <img src="../src/img/lupa.png" alt="logo lupa">
+                    </label>
+                    <input type="search" name="buscar" id="busca" placeholder="Buscar">
+                </div>
+            </div>
+            <div class="header__derecha header__desktop">
+                <nav class="candidato__navegacion">
+                    <div class="navegacion__opc">
+                        <a href="candidatoEmpleos.html">
+                            <img src="../src/img/portafolio.png" alt="Logo portafolio">
+                            <p>Empleo</p>
+                        </a>
+
+                    </div>
+                    <div class="navegacion__opc">
+                        <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                            <p>Evaluacion</p>
+                        </a>
+
+                    </div>
+                    <div class="navegacion__opc">
+                        <a href="candidatoChat.html">
+                            <img src="../src/img/comentario.png" alt="Logo portafolio">
+                            <p>Chats</p>
+                        </a>
+
+                    </div>
+                    <div class="navegacion__Perfil">
+                        <a href="#" id="perfilDesktop"><img class="candiatoPerfil" src="../src/img/perfil.jpg"
+                                alt="Foto de perfil"></a>
+                    </div>
+
+                </nav>
+            </div>
+            <div class="header__mobile " id="header__mobile">
+                <nav class="candidato__navegacion__mobile">
+                    <div class="navegacion__opc">
+                        <a href="candidatoEmpleos.html">
+                            <img src="../src/img/portafolio.png" alt="Logo portafolio">
+                        </a>
+
+                    </div>
+                    <div class="navegacion__opc">
+                        <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        </a>
+
+                    </div>
+                    <div class="navegacion__opc">
+                        <a href="candidatoChat.html">
+                            <img src="../src/img/comentario.png" alt="Logo portafolio">
+
+                        </a>
+
+                    </div>
+                    <div class="navegacion__Perfil">
+                        <a href="#" id="perfilMobile"><img class="candiatoPerfil" src="../src/img/perfil.jpg"
+                                alt="Foto de perfil"></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="perfilDesplegable sombra ocultar" id="perfilDesplegable__mobile">
+            <div class="perfilDesplegable__perfil">
+                <img class="candiatoPerfil" src="../src/img/perfil.jpg" alt="Foto de perfil">
+                <h3>Francisco Javier Sanchez Tirado</h3>
+            </div>
+
+            <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+            <hr>
+            <nav class="perfilDesplebable__cuenta">
+                <a href="#" class="enlace">Ayuda</a>
+                <a href="#" class="enlace">blog</a>
+                <a href="#" class="enlace">Idioma</a>
+            </nav>
+            <hr>
+
+            <a href="#" class="boton__rojo">Cerrar Sesión</a>
+
+        </div>
+        <div class="perfilDesplegable sombra ocultar " id="perfilDesplegable__desktop">
+            <div class="perfilDesplegable__perfil">
+                <img class="candiatoPerfil" src="../src/img/perfil.jpg" alt="Foto de perfil">
+                <h3>Francisco Javier Sanchez Tirado</h3>
+            </div>
+
+            <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+            <hr>
+            <nav class="perfilDesplebable__cuenta">
+                <a href="#" class="enlace">Ayuda</a>
+                <a href="#" class="enlace">blog</a>
+                <a href="#" class="enlace">Idioma</a>
+            </nav>
+            <hr>
+
+            <a href="#" class="boton__rojo">Cerrar Sesión</a>
+
+        </div>
+    </header>
+
+    <main class="empleos">
+        <div class="empleos__contenedor">
+            <div class="empleos__izquierda">
+                <div class="empleos__izquierda__secciones secciones">
+                    <a href="candidatoEmpleos.html" class="secciones__campo">
+                        <img src="../build/img/portafolio.webp">
+                        <p>Buscar Empleo</p>
+                    </a>
+                    <a href="PostuladosEmpleos.html" class="secciones__campo">
+                        <img src="../build/img/guardar-instagram.webp">
+                        <p>Postulados</p>
+                    </a>
+                    <a href="recomendadosEmpleos.html"class="secciones__campo">
+                        <img src="../build/img/recomendar.webp">
+                        <p>Recomedados</p>
+                    </a>
+                </div>
+               
+            </div>
+            <div class="empleos__central sombra postulados__central">
+
+                <div class="empleos__central__postulados postulados">
+                    <a href="#" class="postulados__card" data-id="1">
+                      <div class="postulados__card__detalles">
+                        <div class="postulados__texto">
+                            <h3 class="titulo">Desarrollador Web</h3>
+                            <p class="empresa">Microsoft</p>
+                            <p class="proceso">Postulado</p>
+                        </div>
+                        <div class="postulados__flujo">
+                            <div class="postulados__circulo activo">
+                                <span>1</span>
+                            </div>
+                            
+                            <div class="postulados__circulo">
+                                <span>2</span>
+                            </div>
+                         
+                            <div class="postulados__circulo">
+                                <span>3</span>
+                            </div>
+                           
+                            <div class="postulados__circulo">
+                                <span>4</span>
+                            </div>
+                          
+                            <div class="postulados__circulo">
+                                <span>5</span>
+                            </div>
+                          
+                            <div class="postulados__circulo">
+                                <span>6</span>
+                            </div>
+                            
+                        </div>
+                        
+                      </div>
+                      <div class="postulados__card__img">
+                        <img src="../build/img/microsoft.webp">
+                      </div>
+                    </a> <!--Fin de card-->
+                    <a href="#" class="postulados__card" data-id="2">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Revision de CV</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo ">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="3">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Evaluaciones Psicometricas</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo ">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="4">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Entrevista Presencial</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo activo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="5">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Documentación</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo activo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo activo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="6">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Contratado</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo activo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo activo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo activo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="7">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">Rechazado</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo noPaso">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+                      <a href="#" class="postulados__card" data-id="8">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">En espera de resultados</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+
+                      <a href="#" class="postulados__card" data-id="9">
+                        <div class="postulados__card__detalles">
+                          <div class="postulados__texto">
+                              <h3 class="titulo">Desarrollador Web</h3>
+                              <p class="empresa">Microsoft</p>
+                              <p class="proceso">En espera entrevista</p>
+                          </div>
+                          <div class="postulados__flujo">
+                              <div class="postulados__circulo activo">
+                                  <span>1</span>
+                              </div>
+                              
+                              <div class="postulados__circulo activo">
+                                  <span>2</span>
+                              </div>
+                           
+                              <div class="postulados__circulo activo">
+                                  <span>3</span>
+                              </div>
+                             
+                              <div class="postulados__circulo">
+                                  <span>4</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>5</span>
+                              </div>
+                            
+                              <div class="postulados__circulo">
+                                  <span>6</span>
+                              </div>
+                              
+                          </div>
+                          
+                        </div>
+                        <div class="postulados__card__img">
+                          <img src="../build/img/microsoft.webp">
+                        </div>
+                      </a> <!--Fin de card-->
+
+                   
+                    
+                </div>
+            </div>
+            <div class="empleos__derecha">
+                <div class="entrada__blog contenedor sombra">
+                    <h3 class="entrada__titulo">AgoraTalent Blog</h3>
+                    <div class="entrada__blog__cards">
+                        <a href="#" class="entrada__blog__card">
+                            <img src="../src/img/blog.jpg" alt="foto entrada">
+                            <div class="card__info">
+                                <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
+                                <P class="card__info__autor">Autor - fecha </p>
+                            </div>
+                        </a>
+                        <a href="#" class="entrada__blog__card">
+                            <img src="../src/img/blog.jpg" alt="foto entrada">
+                            <div class="card__info">
+                                <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
+                                <P class="card__info__autor">Autor - fecha </p>
+                            </div>
+                        </a>
+                        <a href="#" class="entrada__blog__card">
+                            <img src="../src/img/blog.jpg" alt="foto entrada">
+                            <div class="card__info">
+                                <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
+                                <P class="card__info__autor">Autor - fecha </p>
+                            </div>
+                        </a>
+                        <a href="#" class="entrada__blog__card">
+                            <img src="../src/img/blog.jpg" alt="foto entrada">
+                            <div class="card__info">
+                                <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
+                                <P class="card__info__autor">Autor - fecha </p>
+                            </div>
+                        </a>
+                        <a href="#" class="entrada__blog__card">
+                            <img src="../src/img/blog.jpg" alt="foto entrada">
+                            <div class="card__info">
+                                <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
+                                <P class="card__info__autor">Autor - fecha </p>
+                            </div>
+                        </a>
+    
+                    </div>
+                </div>
+
+                <div class="promo__test contenedor sombra">
+                    <div class="promo__test__img">
+    
+                    </div>
+                    <div class="promo__test__contenido">
+                        <p class="promo__test__titulo">Realiza nuestros Test de conocimientos</p>
+                        <p class="promo__test__texto">Demuestra los conocimientos que tienes con nuestros test y gana una
+                            insignia dependiendo de el nivel del test</p>
+                        <a href="#" class="boton__verde btnTest ">Más información</a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    
+    <div class="vistaProceso sombra postulado" id="postulado">
+        <div class="vistaProceso__contenedor">
+            <div class="vistaProceso__flujo sombra">
+                <div class="vistaProceso__flujo__datosEmpresa">
+                    <img src="../build/img/microsoft.png">
+                    <div class="vistaProceso__flujo__datos">
+                        <h3 class="titulo">Desarrollador Web</h3>
+                        <p class="empresa">Microsof
+                        <p class="proceso">Postulación</p>
+                    </div>
+                    
+                </div>
+                <div class="vistaProceso__circulos">
+                    <div class="vistaProceso__circulo " id="proceso1">
+                        <div class="circulo activo"><p>1</p></div>
+                        <div class="circulo__texto"><p>Postulación</p></div>
+                        
+                    </div>
+                    <div class="vistaProceso__circulo" id="proceso2">
+                        <div class="circulo "><p>2</p></div>
+                        <div class="circulo__texto"><p>Revisión de CV</p></div>
+                    </div>
+                    <div class="vistaProceso__circulo" id="proceso3">
+                        <div class="circulo"><p>3</p></div>
+                        <div class="circulo__texto"><p>Pruebas Psicometricas</p></div>
+                    </div>
+                    <div class="vistaProceso__circulo" id="proceso4">
+                        <div class="circulo"><p>4</p></div>
+                        <div class="circulo__texto"><p>Entrevista Personal</p></div>
+                    </div>
+                    <div class="vistaProceso__circulo" id="proceso5">
+                        <div class="circulo"><p>5</p></div>
+                        <div class="circulo__texto"><p>Documentación</p></div>
+                    </div>
+                    <div class="vistaProceso__circulo" id="proceso6">
+                        <div class="circulo"><p>6</p></div>
+                        <div class="circulo__texto"><p>Contratación</p></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="proceso__postulado">
+               <div class="proceso__postulado__contenedor">
+                <div class="proceso__postulado__salir">
+                    <a href="#" id="salirPostulado"><img src="../build/img/eliminar.webp"></a>
+                </div>
+
+                <h2 class="titulo">¡TU MOMENTO DE BRILLAR HA LLEGADO! 💫💼</h2>
+                <p class="mensaje">
+                    ¡Presta atención! 🚀 La empresa está revisando tu perfil y currículum 📋 ¡Si eres apto, avanzaremos al siguiente paso! 💼💪
+                </p>
+                <img class="imagen" src="../build/img/primera.webp" alt="">
+
+               </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer footer__candidato">
+        <div class="footer__principal">
+            <div class="footer__logo">
+                <a href="/">AgoraTalent</a>
+                <p>Simplificando la búsqueda y seleccion de talento</p>
+            </div>
+            <hr>
+            <div class="footer__seccion">
+                <nav>
+                    <p>Contenido</p>
+                    <a href="CandidatoPrincipal.html" class="enlace">Inicio</a>
+                    <a href="candidatoEmpleos.html" class="enlace">Empleos</a>
+                    <a href="candidatoEvaluacion.html" class="enlace">Evaluaciones</a>
+                    <a href="candidatoChat.html" class="enlace">Chats</a>
+                    <a href="#" class="enlace">Cerrar Sesión</a>
+                </nav>
+            </div>
+            <hr>
+            <div class="footer__seccion">
+                <nav>
+                    <p>Ayuda</p>
+                    <a href="#" class="enlace">Acerca de</a>
+                    <a href="#" class="enlace">Privacidad</a>
+                    <a href="#" class="enlace">Condiciones</a>
+                    <a href="#" class="enlace">FAQs</a>
+                </nav>
+
+            </div>
+            <hr>
+            <div class="footer__seccion">
+                <nav>
+                    <p>Redes sociales</p>
+                    <div class="footer__logos">
+                        <a href="#" class="logos">
+                            <img src="/build/img/facebook-color.webp" alt="Logo de Facebook">
+                        </a>
+                        <a href="#" class="logos">
+                            <img src="/build/img/twetter.webp" alt="Logo Tweeter">
+                        </a>
+                        <a href="#" class="logos">
+                            <img src="/build/img/youtube-color.png" alt="Logo Youtube">
+                        </a>
+                    </div>
+                    <a href="#" class="enlace">Blog</a>
+                    <a href="#" class="enlace">Contacto</a>
+                </nav>
+
+            </div>
+            <hr>
+            <div class="footer__descarga">
+                <div class="footerApp btn__App ">
+                    <div class="btn__logo">
+                        <img src="/build/img/google-play.webp" alt="Logo de google play">
+                    </div>
+                    <div class="btn__texto">
+                        <p><span>Descarga en</span></p>
+                        <p>Google Play</p>
+                    </div>
+                </div>
+                <div class="btn__App footerApp">
+                    <div class="btn__logo">
+                        <img src="/build/img/logo-apple.webp" alt="Logo de google play">
+                    </div>
+                    <div class="btn__texto">
+                        <p><span>Descarga en</span></p>
+                        <p>App Store</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
+    </footer>
+
+    <script src="/src/js/headerCandidato.js"></script>
+    <script src="/src/js/formularioCandidato.js"></script>
+
+</body>
+
+</html>
+
+

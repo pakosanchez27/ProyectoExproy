@@ -86,13 +86,27 @@
                                 <label for="apellido">Apellido</label>
                                 <input type="text" name="apellido" id="apellido" placeholder="Tus Apellidos">
                             </div>
+                            <div class="campo genero">
+                                <label for="genero">Genero</label>
+                                <select name="genero" id="genero">
+                                    <option disabled selected> -- selecciona el genero --</option>
+                                    <option value="hombre">Hombre</option>
+                                    <option value="mujer">Mujer</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
                             <div class="campo telefono">
                                 <label for="telefono">Número de Teléfono</label>
                                 <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono">
                             </div>
+                            
                             <div class="campo fechaNacimiento">
                                 <label for="nacimiento">Fecha de nacimiento</label>
                                 <input type="date" name="nacimiento" id="nacimiento">
+                            </div>
+                            <div class="campo postal">
+                                <label for="postal">Codigo Postal</label>
+                                <input type="text" name="postal" id="postal" placeholder="#00000">
                             </div>
                             <div class="campo estado">
                                 <label for="estado">Estado</label>
@@ -124,9 +138,34 @@
                                 <label for="titulo">Título / Certificado</label>
                                 <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
                             </div>
+                            <div class="campo nivel__estudios">
+                                <label for="nivel__estudios">Nivel</label>
+                                <select name="nivel__estudios" id="nivel__estudios">
+                                    <option value="sin_estudios">Sin estudios</option>
+                                    <option value="educacion_primaria">Educación Primaria</option>
+                                    <option value="educacion_secundaria">Educación Secundaria</option>
+                                    <option value="bachillerato">Bachillerato</option>
+                                    <option value="educacion_universitaria">Educación Universitaria</option>
+                                    <option value="posgrado">Posgrado</option>
+                                  </select>
+                                  
+                            </div>
                             <div class="campo skills">
                                 <label for="skills">Habilidades o Skills</label>
                                 <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop...">
+                            </div>
+                            <div class="campo idiomas">
+                                <label for="skills">Idiomas</label>
+                                <input type="text" name="idiomas" id="idiomas" placeholder="Que idiomas dominas">
+                            </div>
+                            <div class="campo nivel">
+                                <label for="skills">Nivel</label>
+                                <select name="nivel" id="nivel">
+                                    <option disabled selected> -- selecciona el nievel --</option>
+                                    <option value="basico">basico</option>
+                                    <option value="Intermedio">Intermedio</option>
+                                    <option value="Avanzado">Avanzado</option>
+                                </select>
                             </div>
                         </div>
                         <div id="grid3" class="grid3 ocultar">
@@ -179,7 +218,7 @@
                         </div>
                         <div class="grid5 ocultar" id="grid5">
                             <div class="campo area">
-                                <label for="area">Área de Interés</label>
+                                <label for="area">Área de especialidad</label>
                                 <select name="area" id="area">
                                     <option value="" disabled selected>--Selecciona un Área--</option>
                                 </select>
@@ -201,5 +240,6 @@
         </div>
     </div>
     <script src="/src/js/formularioCandidato.js"></script>
+    <script src="/src/js/validacionCandidato.js"></script>
 </body>
 </html>

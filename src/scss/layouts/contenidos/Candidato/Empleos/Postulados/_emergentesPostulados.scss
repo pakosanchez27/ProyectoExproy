@@ -1,0 +1,176 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.vistaProceso{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.548);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__contenedor{
+        background-color: v.$blanco;
+        width: 70%;
+        height: 80%;
+        border-radius: 1rem;
+        display: grid;
+        grid-template-rows: repeat(2, 30% 70%);
+        @include m.desktop{
+            grid-template-columns: repeat(2, 30% 70%);
+            grid-template-rows: unset;
+        }
+    }
+
+    &__flujo{
+        background-color: v.$fondoSecundario;
+        border-radius: 1rem;
+        color: v.$blanco;
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        height: 20rem;
+        @include m.desktop{
+            height: 100%;
+        }
+
+       
+
+        &__datosEmpresa{
+
+            & img{
+                width: 5rem;
+                @include m.desktop{
+                    width: 10rem;
+                }
+            }
+            display: flex; 
+            flex-direction: row;
+            gap: 1rem;
+            @include m.desktop{
+                
+           display: flex;
+           flex-direction: column;
+            }
+
+            h3.titulo{
+                font-size: 2rem;
+                margin: 0;
+                padding: 0;
+            }
+            p.empresa{
+                font-weight: v.$bold;
+            }
+            p.proceso{
+                font-weight: v.$bold;
+                color: v.$primario;
+                @include m.desktop{
+                    display: none;
+                }
+
+            }
+            margin-bottom: 0;
+            @include m.desktop{
+            margin-bottom: 3rem;
+            }
+        }
+    }
+    &__datos{
+        
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__circulos{
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        @include m.desktop{
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+    }
+    &__circulo{
+        display: flex;
+        align-items: center;
+        // gap: 1rem;
+        width: 100%;
+        
+        @include m.desktop{
+            gap: 2rem;
+        }
+    }
+   
+}
+
+.circulo{
+    padding: .5rem;
+    // background-color: v.$gris;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: v.$bold;
+    border: solid 1px v.$blanco;
+
+    @include m.desktop{
+        height: 5rem;
+        width: 5rem;
+        padding: 1rem;
+    }
+    &__texto p{
+        font-size: 1.8rem;
+        display: none;
+        @include m.desktop{
+            display: flex;
+        }
+    }
+}
+
+.proceso__postulado{
+    padding: 3rem 5rem;
+    position: relative;
+    &__contenedor{
+        // border: saddlebrown 1px solid;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        h2.titulo{
+            font-size: 4rem;
+        }
+        p.mensaje{
+            
+            font-size: 1.8rem;
+            width: 70%;
+        }
+        & img{
+            width: 50rem;
+        }
+        
+    }
+
+    &__salir{
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        & img{
+            width: 3rem;
+        }
+    }
+}

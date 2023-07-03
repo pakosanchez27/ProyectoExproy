@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../build/css/app.css" />
+    <title>Perfil Candiadto</title>
+  </head>
+
+  <style>
+    .principal__header__portada {
+      /* border: #187e44 1px solid; */
+      border-top-left-radius: 0rem;
+      border-top-right-radius: 0rem;
+      background-image: url("../src/img/1646811898925.jpeg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    @media (min-width: 480px) {
+      .principal__header__portada {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+      }
+    }
+  </style>
+
+  <body>
+    <header class="candidato__header">
+      <div class="candidato__header__contenido">
+        <div class="header__izquierda">
+          <div class="candiadato__logo">
+            <a class="logoDesktop" href="CandidatoPrincipal.html"
+              >AgoraTalent</a
+            >
+            <a class="logoMobile" href="CandidatoPrincipal.html">AT</a>
+          </div>
+          <div class="candidato__buscar">
+            <label for="buscar" class="buscar">
+              <img src="../src/img/lupa.png" alt="logo lupa" />
+            </label>
+            <input
+              type="search"
+              name="buscar"
+              id="busca"
+              placeholder="Buscar"
+            />
+          </div>
+        </div>
+        <div class="header__derecha header__desktop">
+          <nav class="candidato__navegacion">
+            <div class="navegacion__opc">
+              <a href="candidatoEmpleos.html">
+                <img src="../src/img/portafolio.png" alt="Logo portafolio" />
+                <p>Empleo</p>
+              </a>
+            </div>
+            <div class="navegacion__opc">
+              <a href="candidatoEvaluacion.html">
+                <img src="../src/img/evaluacion.png" alt="Logo portafolio" />
+                <p>Evaluacion</p>
+              </a>
+            </div>
+            <div class="navegacion__opc">
+              <a href="candidatoChat.html">
+                <img src="../src/img/comentario.png" alt="Logo portafolio" />
+                <p>Chats</p>
+              </a>
+            </div>
+            <div class="navegacion__Perfil">
+              <a href="#" id="perfilDesktop"
+                ><img
+                  class="candiatoPerfil"
+                  src="../src/img/perfil.jpg"
+                  alt="Foto de perfil"
+              /></a>
+            </div>
+          </nav>
+        </div>
+        <div class="header__mobile" id="header__mobile">
+          <nav class="candidato__navegacion__mobile">
+            <div class="navegacion__opc">
+              <a href="candidatoEmpleos.html">
+                <img src="../src/img/portafolio.png" alt="Logo portafolio" />
+              </a>
+            </div>
+            <div class="navegacion__opc">
+              <a href="candidatoEvaluacion.html">
+                <img src="../src/img/evaluacion.png" alt="Logo portafolio" />
+              </a>
+            </div>
+            <div class="navegacion__opc">
+              <a href="candidatoChat.html">
+                <img src="../src/img/comentario.png" alt="Logo portafolio" />
+              </a>
+            </div>
+            <div class="navegacion__Perfil">
+              <a href="#" id="perfilMobile"
+                ><img
+                  class="candiatoPerfil"
+                  src="../src/img/perfil.jpg"
+                  alt="Foto de perfil"
+              /></a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div
+        class="perfilDesplegable sombra ocultar"
+        id="perfilDesplegable__mobile"
+      >
+        <div class="perfilDesplegable__perfil">
+          <img
+            class="candiatoPerfil"
+            src="../src/img/perfil.jpg"
+            alt="Foto de perfil"
+          />
+          <h3>Francisco Javier Sanchez Tirado</h3>
+        </div>
+
+        <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+        <hr />
+        <nav class="perfilDesplebable__cuenta">
+          <a href="#" class="enlace">Ayuda</a>
+          <a href="#" class="enlace">blog</a>
+          <a href="#" class="enlace">Idioma</a>
+        </nav>
+        <hr />
+
+        <a href="#" class="boton__rojo">Cerrar Sesión</a>
+      </div>
+      <div
+        class="perfilDesplegable sombra ocultar"
+        id="perfilDesplegable__desktop"
+      >
+        <div class="perfilDesplegable__perfil">
+          <img
+            class="candiatoPerfil"
+            src="../src/img/perfil.jpg"
+            alt="Foto de perfil"
+          />
+          <h3>Francisco Javier Sanchez Tirado</h3>
+        </div>
+
+        <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+        <hr />
+        <nav class="perfilDesplebable__cuenta">
+          <a href="#" class="enlace">Ayuda</a>
+          <a href="#" class="enlace">blog</a>
+          <a href="#" class="enlace">Idioma</a>
+        </nav>
+        <hr />
+
+        <a href="#" class="boton__rojo">Cerrar Sesión</a>
+      </div>
+    </header>
+<div class="detalleMobile">
+    <a href="candidatoEmpleos.html" class="detalleMobile__regresar">
+      <img src="../build/img/flecha.webp">
+    </a>
+    <div class="detalleMobile__datos">
+      <div class="detalle__contenido__datos datos">
+        <div class="datos__contenedor">
+          <div class="datos__bloque1">
+            <div class="datos__bloque1__datos">
+              <p class="fechaPublicacion">hoy</p>
+              <h3 class="titulo">Desarrollador Java JR Full Stack</h3>
+              <p class="salario">$15,000 menusales</p>
+              <p class="empresa">Microsoft</p>
+              <p class="lugar">Miguel Hidalgo, <span>Ciudad de México</span></p>
+              <a href="#" class="boton__verde">Postularme</a>
+            </div>
+            <div class="datos__bloque1__img">
+              <img src="../build/img/microsoft.webp" alt="">
+            </div>
+          </div>
+          <div class="datos__bloque2">
+            <h3 class="titulo">Datos Generales</h3>
+            <p><span>Area:</span> Tecnologias de la información.</p>
+            <p><span>Puesto:</span> Desarrollador Web.</p>
+            <p><span>Educación:</span> Universidad.</p>
+          </div>
+          <div class="datos__bloque3">
+            <h3 class="titulo">Detalles del empelo</h3>
+            <p><span>Tipo de contratación:</span> Permanente,</p>
+            <p><span>Horario:</span> Tiempo Completo</p>
+            <p><span>Modo de trabajo:</span> Hibrido</p>
+            <p><span>Vencimiento</span> 30/06/2023</p>
+            <p><span>Vacacantes Disponibles:</span> 3 </p>
+          </div>
+          <div class="datos__bloque4">
+              <h3 class="titulo">Descripcion</h3>
+              <p class="descripcion">AIT, empresa mexicana con 10 años de experiencia en reclutamiento y administración de profesionales de tecnologías de la información, busca el mejor talento con el siguiente perfil:
+
+
+
+                Desarrollador Java JR Full Stack (Angular)
+                
+                
+                
+                Experiencia solicitada:
+                
+                Nivel Educativo requerido: Ingeniería en Sistemas o afín
+                
+                ·      Java: 1 año (Obligatorio)
+                
+                ·      Javascript: 1 año (Obligatorio)
+                
+                ·      Angular: 1 año (Obligatorio)
+                
+                ·      Desarrollo web backend: 1 año (Obligatorio)
+                
+                ·      Desarrollo web frontend: 1 año (Obligatorio)
+                
+                ·      Servicios REST: 1 año (Obligatorio)
+                
+                ·      Bootstrap: 1 año (Obligatorio)
+                
+                
+                
+                Actividades para realizar:
+                
+                ·      Mantenimientos de backendy frontend de 2 aplicaciones web de acuerdo con los requerimientos del líder técnico
+                
+                ·      Actualizaciones del manual de usuario.
+                
+                ·      Pruebas funcionales de mantenimientos y producto.
+                
+                ·      Soporte nivel 1 una de las aplicaciones web a las que da mantenimientos.
+                
+                ·      Levantamiento de bugs en herramienta de soporte en caso de ser necesario.
+                </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <main class="detalle">
+      <div class="detalle__contenedor sombra">
+        <div class="detalle__filtros">
+          <form action="" class="filtrado__campos__detalle">
+            <div class="buscar empleo">
+              <label for="empleo">
+                  <img src="../build/img/lupa.webp">
+              </label>
+              <input type="text" name="empleo" id="empleo" placeholder="Empleo, área o empresa">
+          </div>
+          <div class="buscar lugar">
+              <label for="lugar">
+                  <img src="../build/img/ubicacion.png">
+              </label>
+              <input type="text" name="lugar" id="lugar" placeholder="Colonia, ciudad o estado">
+          </div>
+          <a href="#" class="boton__negro">filtros</a>
+          <input type="submit" value="Buscar Empleo" class="boton__verde">
+          </form>
+        </div>
+        <div class="detalle__contenido">
+          <div class="detalle__contenido__empleos vacante">
+            <div class="vacante__contenedor">
+              <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp">
+                </div>
+            </a> <!--Fin de card-->
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+            <a href="detalleEmpleo.html" class="resultados__card">
+                <div class="resultados__card__detalles">
+                    <img src="../build/img/microsoft.webp" alt="Logo empresa">
+                    <div class="Detalles__texto">
+                        <h3>Scrum Master</h3>
+                        <p class="empresa">Microsoft</p>
+                        <p class="salario">$30,000 - $40,000 MXN</p>
+                        <p class="tipo">Presencial</p>
+                        <p class="vacantes">3 vacantes</p>
+                        <p class="lugar">Gustavo a Madero, <span>Ciudad de México </span></p>
+                    </div>
+                </div>
+              
+                <div class="resultados__card__flecha">
+                    <img src="../build/img/izquierda.webp" alt="">
+                </div>
+            </a> <!--Fin de card-->
+
+            </div>
+          </div>
+          <div class="detalle__contenido__datos datos">
+            <div class="datos__contenedor">
+              <div class="datos__bloque1">
+                <div class="datos__bloque1__datos">
+                  <p class="fechaPublicacion">hoy</p>
+                  <h3 class="titulo">Desarrollador Java JR Full Stack</h3>
+                  <p class="salario">$15,000 menusales</p>
+                  <p class="empresa">Microsoft</p>
+                  <p class="lugar">Miguel Hidalgo, <span>Ciudad de México</span></p>
+                  <a href="#" class="boton__verde">Postularme</a>
+                </div>
+                <div class="datos__bloque1__img">
+                  <img src="../build/img/microsoft.webp" alt="">
+                </div>
+              </div>
+              <div class="datos__bloque2">
+                <h3 class="titulo">Datos Generales</h3>
+                <p><span>Area:</span> Tecnologias de la información.</p>
+                <p><span>Puesto:</span> Desarrollador Web.</p>
+                <p><span>Educación:</span> Universidad.</p>
+              </div>
+              <div class="datos__bloque3">
+                <h3 class="titulo">Detalles del empelo</h3>
+                <p><span>Tipo de contratación:</span> Permanente,</p>
+                <p><span>Horario:</span> Tiempo Completo</p>
+                <p><span>Modo de trabajo:</span> Hibrido</p>
+                <p><span>Vencimiento</span> 30/06/2023</p>
+                <p><span>Vacacantes Disponibles:</span> 3 </p>
+              </div>
+              <div class="datos__bloque4">
+                  <h3 class="titulo">Descripcion</h3>
+                  <p class="descripcion">AIT, empresa mexicana con 10 años de experiencia en reclutamiento y administración de profesionales de tecnologías de la información, busca el mejor talento con el siguiente perfil:
+
+
+
+                    Desarrollador Java JR Full Stack (Angular)
+                    
+                    
+                    
+                    Experiencia solicitada:
+                    
+                    Nivel Educativo requerido: Ingeniería en Sistemas o afín
+                    
+                    ·      Java: 1 año (Obligatorio)
+                    
+                    ·      Javascript: 1 año (Obligatorio)
+                    
+                    ·      Angular: 1 año (Obligatorio)
+                    
+                    ·      Desarrollo web backend: 1 año (Obligatorio)
+                    
+                    ·      Desarrollo web frontend: 1 año (Obligatorio)
+                    
+                    ·      Servicios REST: 1 año (Obligatorio)
+                    
+                    ·      Bootstrap: 1 año (Obligatorio)
+                    
+                    
+                    
+                    Actividades para realizar:
+                    
+                    ·      Mantenimientos de backendy frontend de 2 aplicaciones web de acuerdo con los requerimientos del líder técnico
+                    
+                    ·      Actualizaciones del manual de usuario.
+                    
+                    ·      Pruebas funcionales de mantenimientos y producto.
+                    
+                    ·      Soporte nivel 1 una de las aplicaciones web a las que da mantenimientos.
+                    
+                    ·      Levantamiento de bugs en herramienta de soporte en caso de ser necesario.
+                    </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer footer__candidato">
+      <div class="footer__principal">
+        <div class="footer__logo">
+          <a href="/">AgoraTalent</a>
+          <p>Simplificando la búsqueda y seleccion de talento</p>
+        </div>
+        <hr />
+        <div class="footer__seccion">
+          <nav>
+            <p>Contenido</p>
+            <a href="CandidatoPrincipal.html" class="enlace">Inicio</a>
+            <a href="candidatoEmpleos.html" class="enlace">Empleos</a>
+            <a href="candidatoEvaluacion.html" class="enlace">Evaluaciones</a>
+            <a href="candidatoChat.html" class="enlace">Chats</a>
+            <a href="#" class="enlace">Cerrar Sesión</a>
+          </nav>
+        </div>
+        <hr />
+        <div class="footer__seccion">
+          <nav>
+            <p>Ayuda</p>
+            <a href="#" class="enlace">Acerca de</a>
+            <a href="#" class="enlace">Privacidad</a>
+            <a href="#" class="enlace">Condiciones</a>
+            <a href="#" class="enlace">FAQs</a>
+          </nav>
+        </div>
+        <hr />
+        <div class="footer__seccion">
+          <nav>
+            <p>Redes sociales</p>
+            <div class="footer__logos">
+              <a href="#" class="logos">
+                <img
+                  src="/build/img/facebook-color.webp"
+                  alt="Logo de Facebook"
+                />
+              </a>
+              <a href="#" class="logos">
+                <img src="/build/img/twetter.webp" alt="Logo Tweeter" />
+              </a>
+              <a href="#" class="logos">
+                <img src="/build/img/youtube-color.png" alt="Logo Youtube" />
+              </a>
+            </div>
+            <a href="#" class="enlace">Blog</a>
+            <a href="#" class="enlace">Contacto</a>
+          </nav>
+        </div>
+        <hr />
+        <div class="footer__descarga">
+          <div class="footerApp btn__App">
+            <div class="btn__logo">
+              <img
+                src="/build/img/google-play.webp"
+                alt="Logo de google play"
+              />
+            </div>
+            <div class="btn__texto">
+              <p><span>Descarga en</span></p>
+              <p>Google Play</p>
+            </div>
+          </div>
+          <div class="btn__App footerApp">
+            <div class="btn__logo">
+              <img src="/build/img/logo-apple.webp" alt="Logo de google play" />
+            </div>
+            <div class="btn__texto">
+              <p><span>Descarga en</span></p>
+              <p>App Store</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
+    </footer>
+
+    <script src="/src/js/headerCandidato.js"></script>
+    <script src="/src/js/formularioCandidato.js"></script>
+  </body>
+</html>
