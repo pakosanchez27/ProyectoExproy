@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+       <link rel="stylesheet" href="../build/css/app.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="loginEmpresa">
+        <div class="loginEmpresa__contenedor">
+            <div class="loginEmpresa__izquierda">
+                <div class="loginEmpresa__logo">
+                    <a href="/">AgoraTalent</a>
+                    <p>¿Eres candidato? <a href="../Candidato/loginCandidato.html">Inicia sesión aquí.</a></p>
+                </div>
+                <div class="loginEmpresa__textoBienvenida">
+                    <h2 class="titulo">Bienvenido de vuelta, ¡Te hemos echado de menos!</h2>
+                    <p class="texto">¿Listo para explorar? Ingresa y comienza la aventura</p>
+                </div>
+                <div class="Banner__empresa">
+                    <img src="../src/img/admiracion.png" alt="Signo de advertencia">
+                    <p>¿Eres Candiadto? <a href="../Candidato/loginCandidato.html">Inicia Sesion aqui</a></p>
+                </div>
+                <div class="loginCandidato__formulario">
+                    <form action="" id="formulario">
+                        <div class="campo email">
+                            <label for="email">Email</label>
+                            <input type="email" placeholder="Tu Email" id="email" name="email">
+                        </div>
+                        <div class="campo pass">
+                            <label for="pass">Password</label>
+                            <input type="password" id="pass" name="pass" placeholder="**********">
+                        </div>
+                        <div class="login__recordar">
+                            <div class="campo recordar">
+                                <label for="recordar">Recordar</label>
+                                <input type="checkbox" name="recordar" id="recordar">
+                            </div>
+                            <a href="#">Olvidé la contraseña</a>
+                        </div>
+                        <div class="loginCandidato__botones">
+                            <input type="submit" value="Iniciar Sesión" class="boton__verde">
+                            <a href="#" class="boton__blanco google">
+                                <img src="../src/img/google.png" alt="logo de google" >
+                                <p>Login con Google</p>
+                            </a>
+                        </div>
+                    </form>
+                    <div class="registrar">
+                        <p>¿Aun no tienes cuenta?</p>
+                        <a href="logoutEmpresa.html">Registrate</a>
+                    </div>
+                </div>
+            </div>
+            <div class="loginEmpresa__derecha">
+                <div class="loginEmpresa__derecha__img">
+                    <div class="loginEmpresa__derecha__logo">AgoraTalent</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

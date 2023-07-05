@@ -1,0 +1,77 @@
+@use 'base/variables' as v;
+@use 'base/mixins'as m ;
+
+.loginEmpresa {
+  &__contenedor {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(2, 35% 65%);
+  }
+
+  &__izquierda{
+    // margin-top: 10rem;
+    padding: 2rem 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    
+  }
+  &__logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & a{
+        font-family: v.$fuente__secundario;
+        font-weight: v.$bold;
+        font-size: 2rem;
+        color: v.$negro;
+    }
+    & p{
+        font-family: v.$fuente__principal;
+        font-size: 1.4rem;
+        color: v.$primario;
+        & a{
+            font-family: v.$fuente__principal;
+            font-weight: v.$normal;
+            font-size: 1.4rem;
+            color: v.$primario;
+            text-decoration: underline;
+        }
+    }
+  }
+}
+
+.loginEmpresa{
+
+    &__derecha{
+        padding: 5rem 2rem;
+        &__img{
+            height: 100%;
+            background-image: url('../img/bg-login-empresa.jpg');
+            background-size: cover;
+            border-top-left-radius: 5rem;
+            position: relative;
+        }
+        &__imgEmpresa{
+          height: 100%;
+          background-image: url('../img/bg-logout-empresa.webp');
+          background-size: cover;
+          background-position: center center;
+          filter: brightness(-20);
+          border-top-left-radius: 5rem;
+          position: relative;
+        }
+        &__logo{
+            position: absolute;
+            bottom: 5rem;
+            right: 5rem;
+            color: v.$blanco;
+            font-size: 3rem;
+            font-weight: v.$bold;
+            font-family: v.$fuente__secundario;
+        }
+
+        
+    }
+}
