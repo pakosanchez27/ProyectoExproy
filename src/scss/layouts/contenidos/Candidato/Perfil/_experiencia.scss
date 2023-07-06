@@ -1,0 +1,33 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.principal__experiencia__contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+}
+
+.principal__experiencia__card {
+    width: 80%;
+}
+
+p.experiencia__titulo {
+    font-weight: v.$bold;
+    font-size: 1.6rem;
+}
+
+p.experiencia__puesto,
+p.experiencia__puesto {
+    font-size: 1.4rem;
+}
+
+p.experiencia__descripcion {
+    font-size: 1.2rem;
+}
+
+p.experience__duracion {
+    font-size: 1.2rem;
+    color: #707070;
+    font-style: italic;
+}

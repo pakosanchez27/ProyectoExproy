@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.principal__educacion{
+
+    &__contenedor{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    &__card{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        & img{
+            width: 5rem;
+        }
+    }
+}
+
+p.educacion__institucion {
+    font-weight: v.$bold;
+    font-size: 1.6rem;
+}
+
+p.educacion__carrera {
+    font-size: 1.4rem;
+}
+
+p.educacion__periodo {
+    font-size: 1.2rem;
+    color: #707070;
+    font-style: italic;
+}
+
+
+
+
+
+

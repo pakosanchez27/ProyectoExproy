@@ -1,0 +1,61 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.text-center {
+    text-align: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mostrarMenu {
+    display: flex;
+    
+}
+
+.ocultarMenu {
+    display: none;
+    
+}
+
+.ocultar {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+    @include m.desktop{
+        display: grid;
+    }
+    
+}
+
+.sombra {
+    box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.16);
+}
+
+.opacity50{
+    opacity: 0.5;
+}
+
+.errorMensaje{
+    color: rgb(199, 7, 7);
+    font-size: 1rem;
+}
+
+.block{
+    display: block;
+}
+.inlineBlock{
+display: inline-block;
+}
+
+.activo{
+    background-color: v.$primario;
+}
+.noPaso{
+    background-color: rgb(189, 15, 15);
+}
