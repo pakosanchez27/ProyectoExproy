@@ -152,6 +152,7 @@ img {
 .campo {
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 1rem;
     margin-top: 2rem;
 
@@ -178,17 +179,17 @@ input[type="checkbox"] {
 
 }
 
-input:hover {
+select:hover, textarea:hover,input:hover {
     outline: #0a7bec 1px solid;
 }
 
-input:focus {
+select:active , textarea:active ,input:active {
     outline: #0a7bec 1px solid;
 }
 
 input::placeholder {
     color: #707070;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
 }
 @include m.desktop{
     .campo {
@@ -202,6 +203,9 @@ input::placeholder {
     }
 }
 
+label{
+    font-size: 1.4rem;
+}
 
 // Alertas
  /* tarjetas */
