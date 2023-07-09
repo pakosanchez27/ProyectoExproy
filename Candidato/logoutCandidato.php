@@ -1,23 +1,29 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 // Mandar a llamar el archivo config.php dentro de la carpeta include
-require_once 'include/config.php';
-require_once 'include/insertCandidato.php';
+require 'include/config.php';
+// require 'include/insertCandidato.php';
 
 // Procesar el formulario de registro
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = $_POST['correo'];
     $pass = $_POST['pass'];
 
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
     // Insertar el nuevo candidato en la base de datos
-    insertarCandidato($correo, $pass);
+    $sql = "insert into usuario (correo, pass) values ('$correo', '$hash')";
+    $result = $pdo->query($sql);
+    echo $sql;
+
+    if($result){
+        header(" Location: /login.php");
+    }
 
     // Redireccionar a la vista de inicio de sesión
-    header('Location: loginCandidato.php');
-    exit(); // Finalizar la ejecución del script después de la redirección
+    // header('Location: loginCandidato.php');
+    // exit(); // Finalizar la ejecución del script después de la redirección
 }
 ?>
 
