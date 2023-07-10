@@ -1,0 +1,176 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+// Estilos para dispositivos de escritorio
+@media (min-width: 1200px) {
+    .ventanaEmergente {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .ventanaEmergente__formulario {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+      margin-bottom: 40px;
+      overflow: auto;
+    }
+  
+    .boton__publicar {
+      align-self: flex-end;
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  }
+  
+  // Estilos para tabletas
+  @media (max-width: 1199px) and (min-width: 768px) {
+    .ventanaEmergente {
+      display: none;
+      text-align: center;
+
+      height: 100vh;   
+      overflow: auto;
+    }
+  
+    .ventanaEmergente__formulario {
+      margin-bottom: 20px;
+  
+ 
+    }
+  
+    .boton__publicar {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
+  // Estilos para teléfonos móviles
+  @media (max-width: 767px) {
+    .ventanaEmergente {
+      display: none;
+      text-align: center;
+      
+      height: 100vh;   
+      overflow: auto;
+    }
+  
+    .ventanaEmergente__formulario {
+      margin-bottom: 20px;
+      
+    }
+  
+    .boton__publicar {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
+  .ventanaEmergente {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+  
+  .ventanaEmergente__titulo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .ventanaEmergente__formulario {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    height: 200px; /* Ajusta la altura del textarea */
+  }
+  
+  .boton__publicar {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .ventanaEmergente__cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .ventanaEmergente__cerrar svg {
+    fill: #000;
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Estilos para el editor de código */
+  .editorCodigo {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .editorCodigo__codigo {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    grid-column: 1 / 4;
+  }
+  
+  .editorCodigo__toolbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  
+  .editorCodigo__toolbar button {
+    padding: 5px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 4px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  .editorCodigo__toolbar button:hover {
+    background-color: #e9ecef;
+  }
+  

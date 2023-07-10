@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+       <link rel="stylesheet" href="../build/css/app.css">
+    <title>Registrate</title>
+</head>
+<body>
+    <div class="registroEmpresa">
+        <div class="registroEmpresa__contenedor">
+            <div class="registroEmpresa__izquierda">
+                <a href="/" class="logo">AgoraTalent</a>
+                <img src="../build/img/bg-registro-empresa.webp" alt="Img">
+                <p>Simplificando la busqueda y seleccion de talento</p>
+            </div>
+            <div class="registroEmpresa__derecha">
+                <div class="registroEmpresa__bienvenida">
+                    <h2>¡Bienvenido(a) al registro de AgoraTalent!</h2>
+                    <p>Completa el formulario de registro y sé parte de nuestra comunidad de reclutadores en AgoraTalent. Convierte la búsqueda de talento en una experiencia más efectiva y exitosa.</p>
+                </div>
+                <form action="/" class="registroEmpresa__formulario">
+                    <fieldset class="registroEmpresa__empresaform empresaForm sombra">
+                        <legend>Datos de la empresa</legend>
+                        <div class="empresaForm__campos">
+                            <div class="campo empresa">
+                                <label for="empresa">Nombre de la Empresa</label>
+                                <input type="text" name="empresa" id="empresa" placeholder="Nombre de la empresa">
+                            </div>
+                            <div class="campo descripcion">
+                                <label for="descripcion">Descripcion</label>
+                                <textarea name="descripcion" id="descripcion" placeholder="Descripcio de la empresa "></textarea>
+                            </div>
+                            <div class="campo url">
+                                <label for="url">URL de la empresa</label>
+                                <input type="text" name="url" id="url" placeholder="www.empresa.com">
+                            </div>
+                            <div class="campo direccion">
+                                <label for="direccion">Direccion</label>
+                                <input type="text" name="direccion" id="direccion" placeholder="Calle y numero">
+                            </div>
+                            <div class="campo estado">
+                                <label for="estado">Estado</label>
+                                <select name="estado" id="estado">
+                                    <option value="" disabled selected>--Selecciona un estado--</option>
+                                </select>
+                            </div>
+                            <div class="campo postal">
+                                <label for="postal">Codigo Postal</label>
+                                <input type="number" name="postal" id="postal" maxlength="6">
+                            </div>
+                            <div class="campo ciudad">
+                                <label for="ciudad">Ciudad</label>
+                                <select name="ciudad" id="ciudad">
+                                    <option value="" disabled selected>--Selecciona un estado--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="registroEmpresa__reclutadorform reclutadorForm">
+                        <legend>Datos del reclutador</legend>
+
+                        <div class="reclutadorForm__campos">
+                            <div class="campo nombre">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Tu Nombre">
+                            </div>
+                            <div class="campo apellido">
+                                <label for="apellido">Apellido</label>
+                                <input type="text" name="apellido" id="apellido" placeholder="Tus Apellidos">
+                            </div>
+                            <div class="campo genero">
+                                <label for="genero">Genero</label>
+                                <select name="genero" id="genero">
+                                    <option disabled selected> -- selecciona el genero --</option>
+                                    <option value="hombre">Hombre</option>
+                                    <option value="mujer">Mujer</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="campo telefono">
+                                <label for="telefono">Número de Teléfono</label>
+                                <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono">
+                            </div>
+                            
+                            <div class="campo fechaNacimiento">
+                                <label for="nacimiento">Fecha de nacimiento</label>
+                                <input type="date" name="nacimiento" id="nacimiento">
+                            </div>
+                            <div class="campo cargo">
+                                <label for="cargo">Cargo</label>
+                                <input type="text" name="cargo" id="cargo" placeholder="Cargo que tienen en tu empresa">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="campo btnEmpresa">
+                        <input type="submit" value="Guardar" class="boton__verde">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../src/js/formularioCandidato.js"></script>
+</body>
+</html>
