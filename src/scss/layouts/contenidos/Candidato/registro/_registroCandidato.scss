@@ -240,8 +240,10 @@
 
         grid-template-areas: 'nombre apellido'
             'telefono fechaNacimiento'
+            'genero postal'
             'estado ciudad'
             'derecha__botones derecha__botones';
+            
         gap: 2rem;
 
 
@@ -253,6 +255,8 @@
             'fechaInicio fechaFin'
             'titulo titulo'
             'skills skills'
+            'nivel__estudios nivel__estudios'
+            'idiomas nivel'
             'derecha__botones derecha__botones';
         gap: 2rem;
     }
@@ -277,8 +281,15 @@
 }
 
 
-
-
+.nivel__estudios{
+    grid-area: nivel__estudios;
+}
+.nivel{
+    grid-area: nivel;
+}
+.genero{
+    grid-area: genero;
+}
 .nombre {
     grid-area: nombre;
 }
