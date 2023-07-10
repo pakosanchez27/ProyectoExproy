@@ -1,17 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "agoratalent";
-
-// Crear conexión
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-// Verificar conexión
-if (!$conn) {
-    die("Error de conexión a la base de datos: " . mysqli_connect_error());
-}
-
+require '../include/config.php';
 // Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario

@@ -1,24 +1,38 @@
 <?php
 
-
 // Mandar a llamar el archivo config.php dentro de la carpeta include
-require 'include/config.php';
-// require 'include/insertCandidato.php';
+require '../include/config.php';
+//  require 'include/insertCandidato.php';
 
 // Procesar el formulario de registro
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = $_POST['correo'];
     $pass = $_POST['pass'];
 
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    // Verificar si el correo ya existe en la base de datos
+    $sql = "SELECT * FROM usuario WHERE correo = '$correo'";
+    $stmt = $pdo->query($sql);
+    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Insertar el nuevo candidato en la base de datos
-    $sql = "insert into usuario (correo, pass) values ('$correo', '$hash')";
-    $result = $pdo->query($sql);
-    echo $sql;
+    if ($existingUser) {
+        // El correo ya existe, mostrar una alerta
+        echo "<script>alert('El correo ya está registrado. Por favor, elija otro correo.');</script>";
+    } else {
+        // El correo no existe, realizar la inserción en la base de datos
+        $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    if($result){
-        header(" Location: /login.php");
+        // Insertar el nuevo candidato en la base de datos
+        $sql = "INSERT INTO usuario (correo, pass) VALUES ('$correo', '$hash')";
+        $result = $pdo->query($sql);
+
+        if ($result) {
+            // Obtener el ID del nuevo registro insertado
+            $nuevoId = $pdo->lastInsertId();
+
+            // Redirigir a la página candidatoForm.php con el ID del nuevo registro
+            header("Location: candidatoForm.php?id=$nuevoId");
+            exit(); // Finalizar la ejecución del script después de la redirección
+        }
     }
 
     // Redireccionar a la vista de inicio de sesión
@@ -26,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // exit(); // Finalizar la ejecución del script después de la redirección
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -121,20 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     
-    <script>
-        // Obtener el mensaje de error si existe
-        const error = "<?php echo isset($_GET['error']) ? $_GET['error'] : ''; ?>";
-        
-        // Mostrar mensajes de error según el tipo de error
-        if (error === 'formato_correo') {
-            alert('El formato de correo electrónico es inválido');
-        } else if (error === 'contrasena_invalida') {
-            alert('La contraseña debe tener al menos 8 caracteres y contener al menos una letra y un número');
-        } else if (error === 'contrasenas_no_coinciden') {
-            alert('La contraseña y la confirmación no coinciden');
-        } else if (error === 'error_registro') {
-            alert('Error al registrar el usuario');
-        }
+    <script src="../src/js/ValidarFormulario.js">
     </script>
 </body>
 </html>
