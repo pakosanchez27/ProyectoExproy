@@ -80,9 +80,6 @@
         border-top: solid 1px v.$primario;
         padding: 2rem 5rem;
         
-    
-        
-
     }
 
     &__menu{
@@ -94,6 +91,16 @@
     }
     &__enlace{
         color: v.$blanco;
-        
+        padding-bottom: .5rem;
+        border-bottom: 1px solid transparent; /* Borde transparente en reposo */
+
+        &:hover{
+            border-bottom: v.$primario solid 1px;
+
+        }
     }
+}
+
+.border-botom{
+    border-bottom: v.$primario solid 1px;
 }
