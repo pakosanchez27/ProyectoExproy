@@ -126,12 +126,12 @@ $postal = $datosDom["codigo_postal"];
 
 // Datos Educacion 
 
-$queryEducacion = "SELECT * FROM educacion WHERE id_candidato = '$idUsuario'";
+$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = '$idUsuario'";
 $resultEdu = $pdo->query($queryEducacion);
 
 // Datos Experiencia
 
-$queryExp = "SELECT * FROM experiencia WHERE id_candidato = '$idUsuario'";
+$queryExp = "SELECT * FROM experiencia WHERE id_usuario = '$idUsuario'";
 $resultExp = $pdo->query($queryExp);
 
 
