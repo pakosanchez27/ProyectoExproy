@@ -108,6 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -352,7 +354,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <script src="/src/js/formularioCandidato.js"></script>
-    <script src="/src/js/validacionCandidato.js"></script>
+    <!-- <script src="/src/js/validacionCandidato.js"></script> -->
 </body>
 
 </html>
