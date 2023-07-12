@@ -88,6 +88,7 @@
 
 .buscar img {
     width: 2rem;
+    
 }
 
 .candidato__buscar input {
@@ -147,6 +148,7 @@
 
 .navegacion__Perfil img {
     width: 3rem;
+    height: 3rem;
     max-width: none;
     border-radius: 50%;
 }
@@ -195,7 +197,8 @@
         justify-content: center;
       }
       .navegacion__Perfil img {
-        width: 4rem;
+        width: 4.5rem;
+        height: 4.5rem;
     }
       .navegacion__opc img {
         width: 2.2rem;

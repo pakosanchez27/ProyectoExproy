@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estado = $_POST['estado'];
     $ciudad = $_POST['ciudad'];
     $institucion = $_POST['institucion'];
-    $fechaInicio = $_POST['fechaInicio'];
+    $fechaInicio = $_POST['fechaInicio'] ?? null;;
     $fechaFin = $_POST['fechaFin'];
     $titulo = $_POST['titulo'];
     $nivelEstudios = $_POST['nivel__estudios'];
@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $puesto = $_POST['puesto'];
     $area = $_POST['area'];
 
+
+ 
     $carpetaImagenes = 'CandidatoIMG/';
 
     if (!is_dir($carpetaImagenes)) {
@@ -37,73 +39,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Generar nombres únicos para las imágenes
-    $nombreImagen1 = md5(uniqid(rand(), true)) . ".jpg";
-    $nombreImagen2 = md5(uniqid(rand(), true)) . ".jpg";
+    $Perfil = md5(uniqid(rand(), true)) . ".jpg";
+    $Portada = md5(uniqid(rand(), true)) . ".jpg";
 
     // Subir las imágenes
-    move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $carpetaImagenes . $nombreImagen1);
-    move_uploaded_file($_FILES['fotoPortada']['tmp_name'], $carpetaImagenes . $nombreImagen2);
+    move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $carpetaImagenes . $Perfil);
+    move_uploaded_file($_FILES['fotoPortada']['tmp_name'], $carpetaImagenes . $Portada);
 
     // Consulta preparada para la inserción de datos en la tabla Candidato
-    $sqlCandidato = "INSERT INTO Candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, id_usuario) VALUES (:nombre, :apellido, :genero, :telefono, :fechaNacimiento, :fotoPerfil, :fotoPortada, :idUsuario)";
-    $stmtCandidato = $pdo->prepare($sqlCandidato);
-    $stmtCandidato->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':apellido', $apellido, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':genero', $genero, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':telefono', $telefono, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':fechaNacimiento', $fechaNacimiento, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':fotoPerfil', $nombreImagen1, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':fotoPortada', $nombreImagen2, PDO::PARAM_STR);
-    $stmtCandidato->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtCandidato->execute();
+    $sqlCandidato = "INSERT INTO Candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, area, puesto, id_usuario) VALUES ('$nombre', '$apellido', '$genero', '$telefono', '$fechaNacimiento', '$Perfil', '$Portada', '$area', '$puesto', '$idUsuario')";
+    // echo $sqlCandidato;
+    $resultCan = $pdo->query($sqlCandidato);
 
-    // Consulta preparada para la inserción de datos en la tabla Domicilio
-    $sqlDireccion = "INSERT INTO Domicilio (ciudad, estado, codigo_postal, id_usuario) VALUES (:ciudad, :estado, :codigoPostal, :idUsuario)";
-    $stmtDireccion = $pdo->prepare($sqlDireccion);
-    $stmtDireccion->bindParam(':ciudad', $ciudad, PDO::PARAM_STR);
-    $stmtDireccion->bindParam(':estado', $estado, PDO::PARAM_STR);
-    $stmtDireccion->bindParam(':codigoPostal', $codigoPostal, PDO::PARAM_STR);
-    $stmtDireccion->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtDireccion->execute();
 
-    // Consulta preparada para la inserción de datos en la tabla Educacion
-    $sqlEducacion = "INSERT INTO Educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES (:institucion, :fechaInicio, :fechaFin, :titulo, :nivelEstudios, :idUsuario)";
-    $stmtEducacion = $pdo->prepare($sqlEducacion);
-    $stmtEducacion->bindParam(':institucion', $institucion, PDO::PARAM_STR);
-    $stmtEducacion->bindParam(':fechaInicio', $fechaInicio, PDO::PARAM_STR);
-    $stmtEducacion->bindParam(':fechaFin', $fechaFin, PDO::PARAM_STR);
-    $stmtEducacion->bindParam(':titulo', $titulo, PDO::PARAM_STR);
-    $stmtEducacion->bindParam(':nivelEstudios', $nivelEstudios, PDO::PARAM_STR);
-    $stmtEducacion->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtEducacion->execute();
-
-    // Consulta preparada para la inserción de datos en la tabla Idioma
-    $sqlIdiomas = "INSERT INTO Idioma (idioma_nombre, idioma_nivel, id_usuario) VALUES (:idiomas, :nivel, :idUsuario)";
-    $stmtIdiomas = $pdo->prepare($sqlIdiomas);
-    $stmtIdiomas->bindParam(':idiomas', $idiomas, PDO::PARAM_STR);
-    $stmtIdiomas->bindParam(':nivel', $nivel, PDO::PARAM_STR);
-    $stmtIdiomas->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtIdiomas->execute();
-
-    // Consulta preparada para la inserción de datos en la tabla Habilidad
-    $sqlHabilidad = "INSERT INTO Habilidad (hab_nombre, id_usuario) VALUES (:skills, :idUsuario)";
-    $stmtHabilidad = $pdo->prepare($sqlHabilidad);
-    $stmtHabilidad->bindParam(':skills', $skills, PDO::PARAM_STR);
-    $stmtHabilidad->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtHabilidad->execute();
-
-    // Consulta preparada para la inserción de datos en la tabla Experiencia
-    $sqlExperiencia = "INSERT INTO Experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES (:empresa, :descripcion, :cargo, :duracion, :idUsuario)";
-    $stmtExperiencia = $pdo->prepare($sqlExperiencia);
-    $stmtExperiencia->bindParam(':empresa', $empresa, PDO::PARAM_STR);
-    $stmtExperiencia->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
-    $stmtExperiencia->bindParam(':cargo', $cargo, PDO::PARAM_STR);
-    $stmtExperiencia->bindParam(':duracion', $duracion, PDO::PARAM_STR);
-    $stmtExperiencia->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    $stmtExperiencia->execute();
 
     // Redirigir a la página candidatoForm.php con el ID del nuevo registro
-    header("Location: CandidatoPrincipal.php?id=$idUsuario");
+    //  header("Location: ./CandidatoPrincipal.php?id=$idUsuario");
 }
 
 ?>
@@ -358,3 +309,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
+

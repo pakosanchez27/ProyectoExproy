@@ -69,3 +69,7 @@ display: inline-block;
     transition: opacity 1s;
   }
   
+  .text-left{
+    text-align: left;
+    grid-column: 1/2;
+  }
