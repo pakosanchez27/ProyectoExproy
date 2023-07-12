@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
-        rel="stylesheet">
-       <link rel="stylesheet" href="../build/css/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../build/css/app.css">
     <title>Login</title>
 </head>
 <body>
@@ -43,17 +41,27 @@
                             <input type="password" id="pass" name="pass" placeholder="**********">
                         </div>
                         
+                        <div class="campo terminos">
+                            <input type="checkbox" id="terminos" name="terminos">
+                            <label for="terminos">Acepto los <a href="link_al_documento_terminos" target="_blank">Términos y condiciones</a></label>
+                        </div>
+                        
+                        <div class="campo privacidad">
+                            <input type="checkbox" id="aviso_privacidad" name="aviso_privacidad">
+                            <label for="aviso_privacidad">Acepto el <a href="link_al_documento_privacidad" target="_blank">Aviso de privacidad</a></label>
+                        </div>
+                        
                         <div class="loginCandidato__botones">
                             <input type="submit" value="Registrar" class="boton__verde">
                             <a href="#" class="boton__blanco google">
-                                <img src="../src/img/google.png" alt="logo de google" >
+                                <img src="../src/img/google.png" alt="logo de google">
                                 <p>Login con Google</p>
                             </a>
                         </div>
                     </form>
                     <div class="registrar">
                         <p>¿Ya tienes cuenta?</p>
-                        <a href="loginEmpresa.html">Inicia Sesion</a>
+                        <a href="loginEmpresa.html">Inicia Sesión</a>
                     </div>
                 </div>
             </div>
