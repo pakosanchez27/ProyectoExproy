@@ -371,3 +371,92 @@ function limpiarHTML(elemento) {
     elemento.removeChild(elemento.firstChild);
   }
 }
+
+function agregarEtiqueta(event) {
+  if (event.keyCode === 13) { // Verificar si se presionó la tecla Enter
+      event.preventDefault(); // Evitar el comportamiento por defecto (enviar el formulario)
+      
+      var input = document.getElementById("skills");
+      var etiquetasContainer = document.getElementById("etiquetasContainer");
+      
+      var etiqueta = document.createElement("span");
+      etiqueta.className = "etiqueta";
+      
+      var etiquetaTexto = document.createElement("span");
+      etiquetaTexto.innerText = input.value;
+      
+      var eliminarBtn = document.createElement("span");
+      eliminarBtn.innerText = "x";
+      eliminarBtn.addEventListener("click", function() {
+          etiquetasContainer.removeChild(etiqueta);
+          etiquetasContainer.removeChild(etiquetaInput);
+      });
+      
+      etiqueta.appendChild(etiquetaTexto);
+      etiqueta.appendChild(eliminarBtn);
+      
+      etiquetasContainer.appendChild(etiqueta);
+      
+      // Agregar un campo de entrada oculto para enviar los valores de las etiquetas
+      var etiquetaInput = document.createElement("input");
+      etiquetaInput.type = "hidden";
+      etiquetaInput.name = "etiquetas[]";
+      etiquetaInput.value = input.value;
+      etiquetasContainer.appendChild(etiquetaInput);
+      
+      input.value = ""; // Limpiar el valor del input
+  }
+}
+
+function agregarIdioma() {
+  var nuevosIdiomasDiv = document.getElementById("nuevos-idiomas");
+
+  var nuevoIdiomaDiv = document.createElement("div");
+  nuevoIdiomaDiv.className = "campo idiomas";
+
+  var nuevoIdiomaLabel = document.createElement("label");
+  nuevoIdiomaLabel.textContent = "Idiomas";
+  nuevoIdiomaDiv.appendChild(nuevoIdiomaLabel);
+
+  var nuevoIdiomaInput = document.createElement("input");
+  nuevoIdiomaInput.type = "text";
+  nuevoIdiomaInput.name = "idiomas[]";
+  nuevoIdiomaInput.placeholder = "Que idiomas dominas";
+  nuevoIdiomaDiv.appendChild(nuevoIdiomaInput);
+
+  var nuevoNivelDiv = document.createElement("div");
+  nuevoNivelDiv.className = "campo nivel";
+
+  var nuevoNivelLabel = document.createElement("label");
+  nuevoNivelLabel.textContent = "Nivel";
+  nuevoNivelDiv.appendChild(nuevoNivelLabel);
+
+  var nuevoNivelSelect = document.createElement("select");
+  nuevoNivelSelect.name = "nivel[]";
+
+  var nuevoNivelDefaultOption = document.createElement("option");
+  nuevoNivelDefaultOption.disabled = true;
+  nuevoNivelDefaultOption.selected = true;
+  nuevoNivelDefaultOption.textContent = "-- selecciona el nivel --";
+  nuevoNivelSelect.appendChild(nuevoNivelDefaultOption);
+
+  var nuevoNivelBasicoOption = document.createElement("option");
+  nuevoNivelBasicoOption.value = "basico";
+  nuevoNivelBasicoOption.textContent = "Básico";
+  nuevoNivelSelect.appendChild(nuevoNivelBasicoOption);
+
+  var nuevoNivelIntermedioOption = document.createElement("option");
+  nuevoNivelIntermedioOption.value = "intermedio";
+  nuevoNivelIntermedioOption.textContent = "Intermedio";
+  nuevoNivelSelect.appendChild(nuevoNivelIntermedioOption);
+
+  var nuevoNivelAvanzadoOption = document.createElement("option");
+  nuevoNivelAvanzadoOption.value = "avanzado";
+  nuevoNivelAvanzadoOption.textContent = "Avanzado";
+  nuevoNivelSelect.appendChild(nuevoNivelAvanzadoOption);
+
+  nuevoNivelDiv.appendChild(nuevoNivelSelect);
+
+  nuevosIdiomasDiv.appendChild(nuevoIdiomaDiv);
+  nuevosIdiomasDiv.appendChild(nuevoNivelDiv);
+}

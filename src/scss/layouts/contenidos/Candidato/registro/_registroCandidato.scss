@@ -250,13 +250,16 @@
     }
 
     #grid2 {
-
+        grid-template-columns: repeat(2, 1fr);
         grid-template-areas: 'institucion institucion'
             'fechaInicio fechaFin'
             'titulo titulo'
             'nivel__estudios nivel__estudios'
             'skills skills'
+            'etiquetasContainer etiquetasContainer'
             'idiomas nivel'
+            'agregar agregar'
+            'nuevos-idiomas nuevos-idiomas'
             'derecha__botones derecha__botones';
         gap: 2rem;
     }
@@ -280,7 +283,15 @@
     }
 }
 
-
+#nuevos-idiomas{
+    grid-area: nuevos-idiomas;
+}
+#etiquetasContainer{
+    grid-area: etiquetasContainer;
+}
+.agregar{
+    grid-area: agregar;
+}
 .nivel__estudios{
     grid-area: nivel__estudios;
 }
@@ -469,4 +480,25 @@
 
 .ultimo{
     margin-top: 2rem;
+}
+
+
+.campo {
+    margin-bottom: 10px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background-color: v.$primario;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.etiqueta span {
+    margin-right: 5px;
+    cursor: pointer;
+    color: v.$blanco;
+    font-weight: v.$bold;
 }

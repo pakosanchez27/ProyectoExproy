@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fechaFin = $_POST['fechaFin'];
     $titulo = $_POST['titulo'];
     $nivelEstudios = $_POST['nivel__estudios'];
-    $skills = $_POST['skills'];
-    $idiomas = $_POST['idiomas'];
-    $nivel = $_POST['nivel'];
+    $skills = isset($_POST["etiquetas"]) ? $_POST["etiquetas"] : [];
+    $idiomas = isset($_POST["idiomas"]) ? $_POST["idiomas"] : [];
+    $niveles = isset($_POST["nivel"]) ? $_POST["nivel"] : [];
     $empresa = $_POST['empresa'];
     $descripcion = $_POST['descripcion'];
     $cargo = $_POST['cargo'];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $area = $_POST['area'];
 
 
- 
+
     $carpetaImagenes = 'CandidatoIMG/';
 
     if (!is_dir($carpetaImagenes)) {
@@ -51,15 +51,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // echo $sqlCandidato;
     $resultCan = $pdo->query($sqlCandidato);
 
+    $sqlDomicilio = "INSERT INTO Domicilio ( ciudad, estado, codigo_postal, id_usuario) VALUES ('$ciudad', '$estado', '$codigoPostal', '$idUsuario')";
+    // echo $sqlDomicilio;
+    $resultDom = $pdo->query($sqlDomicilio);
+
+    $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ( '$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
+    // echo $sqlEducacion; 
+    $resultEdu = $pdo->query($sqlEducacion);
+
+    foreach ($skills as $etiqueta) {
+        $sqlHabilidad = "INSERT INTO habilidad ( hab_nombre, id_usuario) VALUES ('$etiqueta', '$idUsuario')";
+        //     // echo $sqlHabilidad;  
+        $resultHab = $pdo->query($sqlHabilidad);
+    }
 
 
-    // Redirigir a la página candidatoForm.php con el ID del nuevo registro
-    //  header("Location: ./CandidatoPrincipal.php?id=$idUsuario");
+    for ($i = 0; $i < count($idiomas); $i++) {
+        $idioma = $pdo->quote($idiomas[$i]);
+        $nivel = $pdo->quote($niveles[$i]);
+
+        $sqlIdioma = "INSERT INTO idioma (idioma_nombre, idioma_nivel, id_usuario) VALUES ($idioma, $nivel, $idUsuario)";
+
+        $resultIdioma = $pdo->query($sqlIdioma);
+    }
+
+
+    $sqlExperiencia = "INSERT INTO experiencia (EXP_NOMBRE_EMPRESA, EXP_DESCRIPCION, EXP_CARGO, EXP_DURACION, ID_USUARIO) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
+    // echo $sqlExperiencia;
+    $resultExp = $pdo->query($sqlExperiencia);
+
+
+   //  Redirigir a la página candidatoForm.php con el ID del nuevo registro
+   header("Location: CandidatoPrincipal.php?id=$idUsuario");
+   
+
+
+ 
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -206,32 +236,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="campo nivel__estudios">
                                 <label for="nivel__estudios">Nivel</label>
                                 <select name="nivel__estudios" id="nivel__estudios">
-                                    <option value="sin_estudios">Sin estudios</option>
-                                    <option value="educacion_primaria">Educación Primaria</option>
-                                    <option value="educacion_secundaria">Educación Secundaria</option>
+                                    <option value="Sin estudios">Sin estudios</option>
+                                    <option value="Educacion primaria">Educación Primaria</option>
+                                    <option value="Educacion secundaria">Educación Secundaria</option>
                                     <option value="bachillerato">Bachillerato</option>
-                                    <option value="educacion_universitaria">Educación Universitaria</option>
+                                    <option value="Educacion Universitaria">Educación Universitaria</option>
                                     <option value="posgrado">Posgrado</option>
                                 </select>
 
                             </div>
                             <div class="campo skills">
                                 <label for="skills">Habilidades o Skills</label>
-                                <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop...">
+                                <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop..." onkeydown="agregarEtiqueta(event)">
                             </div>
+
+                            <div id="etiquetasContainer"></div>
                             <div class="campo idiomas">
-                                <label for="skills">Idiomas</label>
-                                <input type="text" name="idiomas" id="idiomas" placeholder="Que idiomas dominas">
+                                <label for="idiomas">Idiomas</label>
+                                <input type="text" name="idiomas[]" id="idiomas" placeholder="Que idiomas dominas">
                             </div>
                             <div class="campo nivel">
-                                <label for="skills">Nivel</label>
-                                <select name="nivel" id="nivel">
-                                    <option disabled selected> -- selecciona el nievel --</option>
-                                    <option value="basico">basico</option>
-                                    <option value="Intermedio">Intermedio</option>
-                                    <option value="Avanzado">Avanzado</option>
+                                <label for="nivel">Nivel</label>
+                                <select name="nivel[]" id="nivel">
+                                    <option disabled selected> -- selecciona el nivel --</option>
+                                    <option value="basico">Básico</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="avanzado">Avanzado</option>
                                 </select>
                             </div>
+                            <div id="nuevos-idiomas"></div>
+                            <button type="button" class="agregar boton__negro" onclick="agregarIdioma()">Agregar idioma</button>
                         </div>
                         <div id="grid3" class="grid3 ocultar">
                             <div class="campo empresa">
@@ -252,10 +286,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <option disabled selected>--Selecciona--</option>
                                     <option value="actual">Actual</option>
                                     <option value="menos1">Menos de 1 año</option>
-                                    <option value="1a3">1 a 3 años</option>
-                                    <option value="3a5">3 a 5 años</option>
-                                    <option value="5a10">5 a 10 años</option>
-                                    <option value="mas10">Más de 10 años</option>
+                                    <option value="1 a 3">1 a 3 años</option>
+                                    <option value="3 a 5">3 a 5 años</option>
+                                    <option value="5 a 10">5 a 10 años</option>
+                                    <option value="mas 10">Más de 10 años</option>
                                 </select>
                             </div>
                         </div>
@@ -309,4 +343,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 </html>
-
