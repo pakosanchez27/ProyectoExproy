@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 require '../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
@@ -8,60 +12,43 @@ $mensaje = $_GET['msj'] ?? null;
 
 //Educacion
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-$institucion = $_POST['institucion'];
-$fechaInicio = $_POST['fechaInicio'];
-$fechaFin = $_POST['fechaFin'];
-$titulo = $_POST['titulo'];
+//     $institucion = $_POST['institucion'];
+//     $fechaInicio = $_POST['fechaInicio'];
+//     $fechaFin = $_POST['fechaFin'];
+//     $titulo = $_POST['titulo'];
 
-$sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
-//  echo $sqlEducacion;
-  $educacion = $pdo->query($sqlEducacion);
+//     $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
+//     //  echo $sqlEducacion;
+//     $educacion = $pdo->query($sqlEducacion);
 
-  if ($educacion) {
-    header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2"  );
-  }
-
-}
+//     if ($educacion) {
+//         header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
+//     }
+// }
 
 // Experiencia
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $empresa = $_POST['empresa'];
-    $descripcion = $_POST['descripcion'];
-    $cargo = $_POST['cargo'];
-    $duracion = $_POST['duracion'];
-    
-    $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-    // echo $sqlExperiencia;
-    $experiencia = $pdo->query($sqlExperiencia);
-    
-      if ($experiencia) {
-        header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2"  );
-      }
-    
-    }
+//     $empresa = $_POST['empresa'];
+//     $descripcion = $_POST['descripcion'];
+//     $cargo = $_POST['cargo'];
+//     $duracion = $_POST['duracion'];
+
+//     $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
+//     // echo $sqlExperiencia;
+//     $experiencia = $pdo->query($sqlExperiencia);
+
+//     if ($experiencia) {
+//         header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
+//     }
+// }
 // Habilidades   
 
 // Updates
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // Acerca de
-    if (isset($_POST['acerca'])) {
-        $acercaUpdate = $_POST['acerca'];
-        $upadateAcerca = "UPDATE candidato SET can_acerca = '$acercaUpdate' WHERE id_usuario = '$idUsuario'";
-      
-        $result = $pdo->query($upadateAcerca);
-        
-        if ($result) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-    }
-    
-    // Datos personales 
     if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['telefono']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
         $nombreUpdate = $_POST['nombre'];
         echo $nombreUpdate;
@@ -72,67 +59,115 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $postalUpdate = $_POST['postal'];
         $estadoUpdate = $_POST['estado'];
         $ciudadUpdate = $_POST['ciudad'];
+      
+      
+       
+        $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
+        $result1 = $pdo->query($updatePersonal); 
+        echo $updatePersonal;
+        $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
+
+         
+         $result2 = $pdo->query($updateDomicilio);
+
+         if ($result1 && $result2) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+            exit();
+        }
+    // Acerca de
+    if (isset($_POST['acerca'])) {
+        $acerca = $_POST['acerca'];
+        $updateAcerca = "UPDATE candidato SET can_acerca = '$acerca' WHERE id_usuario = $idUsuario";
+        // var_dump($updateAcerca);
+        $result = $pdo->query($updateAcerca);
+
+         if ($result) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+             exit();
+         }
+    }
+
+    
+}
+
+}
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+//     // Datos personales 
+//     if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['telefono']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
+//         $nombreUpdate = $_POST['nombre'];
+//         echo $nombreUpdate;
+//         $apellidoUpdate = $_POST['apellido'];
+//         $generoUpdate = $_POST['genero'];
+//         $telefonoUpdate = $_POST['telefono'];
+//         $fechaNacimientoUpdate = $_POST['fechaNacimiento'];
+//         $postalUpdate = $_POST['postal'];
+//         $estadoUpdate = $_POST['estado'];
+//         $ciudadUpdate = $_POST['ciudad'];
        
        
         
-        $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = '$idUsuario'";
-         echo $updatePersonal;
-        $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
+//         $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
+//          echo $updatePersonal;
+//         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
 
-         $result1 = $pdo->query($updatePersonal);
-         $result2 = $pdo->query($updateDomicilio);
+//          $result1 = $pdo->query($updatePersonal);
+//          $result2 = $pdo->query($updateDomicilio);
 
-     if ($result1 && $result2) {
-             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-             exit();
-         }
-     }
-}
-
+//          if ($result1 && $result2) {
+//             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+//             exit();
+//         }
+//         }
+    
+//     }
 
 
 
 
 // Datos de la tabla candidato
 
-$sql = "SELECT * FROM candidato WHERE id_usuario = '$idUsuario'";
-
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
 $result = $pdo->query($sql);
 $datos = $result->fetch(PDO::FETCH_ASSOC);
-
-$nombre = $datos["can_nombre"];
-$apellido = $datos["can_apellido"];
-$FotoPerfil = $datos["can_fotoPerfil"];
-$FotoPortada = $datos["can_fotoPortada"];
-$puesto = $datos["can_puesto"];
-$acerca = $datos["can_acerca"];
-$genero = $datos["can_genero"];
-$telefono = $datos["can_telefono"];
-$fechaNacimiento = $datos["can_fechaNacimiento"];
- var_dump($puesto) ;
-
-
+// echo '<pre>';
+//  var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+$FotoPortada = $datos['CAN_FOTOPORTADA'];
+$puesto = $datos['PUESTO'];
+$acerca = $datos['CAN_ACERCA'];
+$genero = $datos['CAN_GENERO'];
+$telefono = $datos['CAN_TELEFONO'];
+$fechaNacimiento = $datos['CAN_FECHANACIMIENTO'];
+//  var_dump($puesto) ;
+// var_dump($nombre) ;
+//  var_dump($acerca);
 // Datos de la tabla Domicilio
 
-$queryDomicilio = "SELECT * FROM domicilio WHERE id_usuario = '$idUsuario'";
+$queryDomicilio = "SELECT * FROM domicilio WHERE id_usuario = $idUsuario";
 $resultDom = $pdo->query($queryDomicilio);
 $datosDom = $resultDom->fetch(PDO::FETCH_ASSOC);
 
-$ciudad = $datosDom["ciudad"];
-$estado = $datosDom["estado"];
-$postal = $datosDom["codigo_postal"];
+$ciudad = $datosDom["CIUDAD"];
+$estado = $datosDom["ESTADO"];
+$postal = $datosDom["CODIGO_POSTAL"];
+
 // var_dump($datosDom); 
 // echo $FotoPerfil;
 
 
 // Datos Educacion 
 
-$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = '$idUsuario'";
+$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = $idUsuario";
 $resultEdu = $pdo->query($queryEducacion);
 
 // Datos Experiencia
 
-$queryExp = "SELECT * FROM experiencia WHERE id_usuario = '$idUsuario'";
+$queryExp = "SELECT * FROM experiencia WHERE id_usuario = $idUsuario";
 $resultExp = $pdo->query($queryExp);
 
 
@@ -153,9 +188,7 @@ $resultExp = $pdo->query($queryExp);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../build/css/app.css">
     <title>Perfil Candiadto</title>
@@ -187,7 +220,7 @@ $resultExp = $pdo->query($queryExp);
                 <div class="candiadato__logo">
                     <a class="logoDesktop" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AgoraTalent</a>
                     <a class="logoMobile" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AT</a>
-    
+
                 </div>
                 <div class="candidato__buscar">
                     <label for="buscar" class="buscar">
@@ -203,25 +236,25 @@ $resultExp = $pdo->query($queryExp);
                             <img src="../src/img/portafolio.png" alt="Logo portafolio">
                             <p>Empleo</p>
                         </a>
-    
+
                     </div>
                     <div class="navegacion__opc">
                         <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                             <p>Evaluacion</p>
                         </a>
-    
+
                     </div>
                     <div class="navegacion__opc">
                         <a href="candidatoChat.html">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
                             <p>Chats</p>
                         </a>
-    
+
                     </div>
                     <div class="navegacion__Perfil">
                         <a href="#" id="perfilDesktop"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
                     </div>
-                   
+
                 </nav>
             </div>
             <div class="header__mobile " id="header__mobile">
@@ -230,19 +263,19 @@ $resultExp = $pdo->query($queryExp);
                         <a href="candidatoEmpleos.html">
                             <img src="../build/img/portafolio.webp" alt="Logo portafolio">
                         </a>
-    
+
                     </div>
                     <div class="navegacion__opc">
                         <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                         </a>
-    
+
                     </div>
                     <div class="navegacion__opc">
                         <a href="candidatoChat.html">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
-    
+
                         </a>
-    
+
                     </div>
                     <div class="navegacion__Perfil">
                         <a href="#" id="perfilMobile"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
@@ -255,7 +288,7 @@ $resultExp = $pdo->query($queryExp);
                 <img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil">
                 <h3><?php echo $nombre; ?>/h3>
             </div>
-            
+
             <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
             <hr>
             <nav class="perfilDesplebable__cuenta">
@@ -264,28 +297,28 @@ $resultExp = $pdo->query($queryExp);
                 <a href="#" class="enlace">Idioma</a>
             </nav>
             <hr>
-    
+
             <a href="#" class="boton__rojo">Cerrar Sesión</a>
-    
-    </div>
-    <div class="perfilDesplegable sombra ocultar " id="perfilDesplegable__desktop">
-        <div class="perfilDesplegable__perfil">
-            <img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?> "alt="Foto de perfil">
-            <h3><?php echo $nombre ." ". $apellido; ?></h3>
+
         </div>
-        
-        <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
-        <hr>
-        <nav class="perfilDesplebable__cuenta">
-            <a href="#" class="enlace">Ayuda</a>
-            <a href="#" class="enlace">blog</a>
-            <a href="#" class="enlace">Idioma</a>
-        </nav>
-        <hr>
-    
-        <a href="#" class="boton__rojo">Cerrar Sesión</a>
-    
-    </div>
+        <div class="perfilDesplegable sombra ocultar " id="perfilDesplegable__desktop">
+            <div class="perfilDesplegable__perfil">
+                <img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?> " alt="Foto de perfil">
+                <h3><?php echo $nombre . " " . $apellido; ?></h3>
+            </div>
+
+            <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+            <hr>
+            <nav class="perfilDesplebable__cuenta">
+                <a href="#" class="enlace">Ayuda</a>
+                <a href="#" class="enlace">blog</a>
+                <a href="#" class="enlace">Idioma</a>
+            </nav>
+            <hr>
+
+            <a href="#" class="boton__rojo">Cerrar Sesión</a>
+
+        </div>
     </header>
 
     <div class="contenedor__candidato ">
@@ -305,7 +338,7 @@ $resultExp = $pdo->query($queryExp);
 
                     </div>
                     <div class="principal__header__datos">
-                        <h2><?php echo $nombre ." ". $apellido; ?></h2>
+                        <h2><?php echo $nombre . " " . $apellido; ?></h2>
                         <p><?php echo $puesto; ?></p>
                         <p class="direccion" id="editarDatos"><?php echo $ciudad; ?>, <?php echo $estado; ?>. <a href="#">Informacion
                                 de contacto</a>
@@ -332,19 +365,18 @@ $resultExp = $pdo->query($queryExp);
             <div class="principal__acerca sombra contenedor" id="acerca">
                 <div class="principal__titulo">
                     <h3>Acerca de</h3>
-                    <div class="principal__btns"> <a href="#" id="editarAcerca"><img src="../src/img/lapiz (1).png"
-                                alt="icono lapiz"></a></div>
+                    <div class="principal__btns"> <a href="#" id="editarAcerca"><img src="../src/img/lapiz (1).png" alt="icono lapiz"></a></div>
 
                 </div>
                 <div class="acerca__texto" id="acercaContenedor">
-                   <?php 
-                    if($acerca == null){
+                    <?php
+                    if ($acerca == null) {
                         echo "<p> Aun no tienes una descripcion </p>";
-                    }else{
+                    } else {
                         echo "<p>" . $acerca . "</p>";
                     }
 
-                   ?>
+                    ?>
                 </div>
 
             </div>
@@ -358,28 +390,28 @@ $resultExp = $pdo->query($queryExp);
 
                 </div>
                 <div class="principal__educacion__contenedor">
-                <div class="acerca__texto" id="acercaContenedor">
-  
-                </div>
-                <?php while($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)): ?>
-                    <div class="principal__educacion__card">
-                        
-                        <div class="principal__educacion__img">
-                            <img src="../build/img/banco.webp" alt="">
-                        </div>
-                        <a href="#" id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data = "<?php echo $datosEdu['id_educacion'] ?>">
-                            <p class="educacion__institucion"><?php echo $datosEdu['edu_nombre_institucion'] ?></p>
-                            <p class="educacion__carrera"><?php echo $datosEdu['edu_titulo'] ?></p>
-                            <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['edu_fecha_inicio'])) ?> - <?php echo date('F Y', strtotime($datosEdu['edu_fecha_fin'])) ?></p>
+                    <div class="acerca__texto" id="acercaContenedor">
 
-                        </a>
-
-                        
                     </div>
-                    <?php endwhile; 
-                    if( empty($datosEdu)){
+                    <?php while ($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <div class="principal__educacion__card">
+
+                            <div class="principal__educacion__img">
+                                <img src="../build/img/banco.webp" alt="">
+                            </div>
+                            <a href="#" id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data="<?php echo $datosEdu['id_educacion'] ?>">
+                                <p class="educacion__institucion"><?php echo $datosEdu['edu_nombre_institucion'] ?></p>
+                                <p class="educacion__carrera"><?php echo $datosEdu['edu_titulo'] ?></p>
+                                <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['edu_fecha_inicio'])) ?> - <?php echo date('F Y', strtotime($datosEdu['edu_fecha_fin'])) ?></p>
+
+                            </a>
+
+
+                        </div>
+                    <?php endwhile;
+                    if (empty($datosEdu)) {
                         echo "<p class='text-left'> Aun no tienes informacion de tu educación</p>";
-                    }?>
+                    } ?>
                 </div>
 
             </div>
@@ -395,17 +427,17 @@ $resultExp = $pdo->query($queryExp);
 
                 </div>
                 <div class="principal__experiencia__contenedor">
-                <?php while($datosExp = $resultExp->fetch(PDO::FETCH_ASSOC)): ?>
-                    <div  id="ExperienciaModificar" class="principal__experiencia__card">
-                    
-                        <p class="experiencia__titulo"><?php echo $datosExp['exp_nombre_empresa'] ?></p>
-                        <p class="experiencia__puesto"><?php echo $datosExp['exp_cargo'] ?></p>
-                        <p class="experiencia__descripcion"><?php echo $datosExp['exp_descripcion'] ?></p>
-                        <p class="experience__duracion"><?php echo $datosExp['exp_duracion'] ?> años</p>
-                       
-                    </div>
-                    <?php endwhile; 
-                     if( empty($datosExp)){
+                    <?php while ($datosExp = $resultExp->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <div id="ExperienciaModificar" class="principal__experiencia__card">
+
+                            <p class="experiencia__titulo"><?php echo $datosExp['exp_nombre_empresa'] ?></p>
+                            <p class="experiencia__puesto"><?php echo $datosExp['exp_cargo'] ?></p>
+                            <p class="experiencia__descripcion"><?php echo $datosExp['exp_descripcion'] ?></p>
+                            <p class="experience__duracion"><?php echo $datosExp['exp_duracion'] ?> años</p>
+
+                        </div>
+                    <?php endwhile;
+                    if (empty($datosExp)) {
                         echo "<p class='text-left'> Aun no tienes informacion de tu Experiencia</p>";
                     } ?>
                 </div>
@@ -418,20 +450,20 @@ $resultExp = $pdo->query($queryExp);
                     </div>
                 </div>
                 <div class="principal__insignias__contenedor">
-                        <div class="insignia gris">
-                            <p>PHP</p>
-                        </div>
-                        <div class="insignia gris">
-                            <p>JavaScript</p>
-                        </div>
-                        <div class="insignia gris">
-                            <p>Java</p>
-                        </div>
-                        <div class="insignia gris">
-                            <p>Photoshop</p>
-                        </div>
-
+                    <div class="insignia gris">
+                        <p>PHP</p>
                     </div>
+                    <div class="insignia gris">
+                        <p>JavaScript</p>
+                    </div>
+                    <div class="insignia gris">
+                        <p>Java</p>
+                    </div>
+                    <div class="insignia gris">
+                        <p>Photoshop</p>
+                    </div>
+
+                </div>
 
             </div>
             <div class="principal__habilidad contenedor sombra">
@@ -491,7 +523,7 @@ $resultExp = $pdo->query($queryExp);
                         <li>Ingles <span>Intermedio</span></li>
                     </ul>
                 </div>
-                
+
             </div>
             <div class="principal__proyectos contenedor sombra">
                 <div class="principal__titulo">
@@ -501,7 +533,7 @@ $resultExp = $pdo->query($queryExp);
                     </div>
                 </div>
                 <div class="principal__proyectos__contenedor">
-                    
+
                     <a href="#" class="principal__proyectos__card">
                         <img src="../src/img/proyecto1.png" alt="imagen proyecto">
                         <p>Proyecto 1</p>
@@ -525,7 +557,7 @@ $resultExp = $pdo->query($queryExp);
                     <h3>Cursos o Certificaciones</h3>
                     <div class="principal__btns">
                         <a href="#" id="certificadosAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
-                        
+
                     </div>
 
                 </div>
@@ -622,7 +654,7 @@ $resultExp = $pdo->query($queryExp);
     </div>
     <div class="emergente ocultar" id="personal">
         <div class="emergente__formulario">
-            <form  class="emergente__formulario__contenido" method="Post">
+            <form class="emergente__formulario__contenido" method="Post">
                 <div class="emergente__formulario__header sombra">
                     <h3>Informacion Personal</h3>
                 </div>
@@ -638,7 +670,7 @@ $resultExp = $pdo->query($queryExp);
                     <div class="campo genero">
                         <label for="genero">Genero</label>
                         <select name="genero" id="genero">
-                            <option  selected value="<?php echo $genero ?>" > <?php echo $genero ?></option>
+                            <option selected value="<?php echo $genero ?>"> <?php echo $genero ?></option>
                             <option value="hombre">Hombre</option>
                             <option value="mujer">Mujer</option>
                             <option value="otro">Otro</option>
@@ -660,13 +692,13 @@ $resultExp = $pdo->query($queryExp);
                     <div class="campo estado">
                         <label for="estado">Estado</label>
                         <select name="estado" id="estado">
-                            <option   selected value="<?php echo $estado ?>"><?php echo $estado ?></option>
+                            <option selected value="<?php echo $estado ?>"><?php echo $estado ?></option>
                         </select>
                     </div>
                     <div class="campo ciudad">
                         <label for="ciudad">Ciudad o Municipio</label>
                         <select name="ciudad" id="ciudad">
-                        <option   selected value="<?php echo $ciudad ?>"><?php echo $ciudad ?></option>
+                            <option selected value="<?php echo $ciudad ?>"><?php echo $ciudad ?></option>
                         </select>
                     </div>
                 </div>
@@ -689,11 +721,9 @@ $resultExp = $pdo->query($queryExp);
                 <div class="emergente__formulario__campos">
                     <div class="campo fotoPerfil">
                         <label for="fotoPerfil">Selecciona una Foto de Perfil</label>
-                        <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*"
-                            name="fotoPerfil">
+                        <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*" name="fotoPerfil">
                         <label for="fotoPortada">Selecciona una Foto de Portada</label>
-                        <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*"
-                            name="fotoPortada">
+                        <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*" name="fotoPortada">
                     </div>
                     <div class="previewPerfil">
                         <div class="previewPerfil__contenedor">
@@ -770,7 +800,7 @@ $resultExp = $pdo->query($queryExp);
     </div>
     <div class="emergente ocultar" id="formularioAcerca">
         <div class="emergente__formulario">
-            <form  class="emergente__formulario__contenido" method="Post">
+            <form class="emergente__formulario__contenido" method="Post">
                 <div class="emergente__formulario__header sombra">
                     <h3>Acerca de.</h3>
                 </div>
@@ -810,9 +840,9 @@ $resultExp = $pdo->query($queryExp);
                         <label for="titulo">Título / Certificado</label>
                         <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
                     </div>
-                    
 
-                    
+
+
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
@@ -827,7 +857,7 @@ $resultExp = $pdo->query($queryExp);
                 <div class="emergente__formulario__header sombra">
                     <h3>Educacion.</h3>
                 </div>
-                
+
                 <div class="emergente__formulario__campos">
                     <div class="campo institucion">
                         <label for="institucion">Institución Educativa</label>
@@ -845,7 +875,7 @@ $resultExp = $pdo->query($queryExp);
                         <label for="titulo">Título / Certificado</label>
                         <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
                     </div>
-                    
+
                     <a href="#" class="boton__rojo">Eliminar</a>
                 </div>
                 <div class="emergente__formulario__btns">
@@ -858,7 +888,7 @@ $resultExp = $pdo->query($queryExp);
 
     <div class="emergente ocultar" id="agregarExperiencia">
         <div class="emergente__formulario">
-            <form  class="emergente__formulario__contenido" method="POST">
+            <form class="emergente__formulario__contenido" method="POST">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega una nueva experiencia laboral</h3>
                 </div>
@@ -953,13 +983,11 @@ $resultExp = $pdo->query($queryExp);
                     </div>
                     <div class="campo tecnologias">
                         <label for="tecnologias">Tecnologias Utilizadas</label>
-                        <input type="text" name="tecnologias" id="tecnologias"
-                            placeholder="html, css, JavaScript ...">
+                        <input type="text" name="tecnologias" id="tecnologias" placeholder="html, css, JavaScript ...">
                     </div>
                     <div class="campo urlProyecto">
                         <label for="nombre">Url de tu proyecto</label>
-                        <input type="text" name="nombreProyecto" id="nombre"
-                            placeholder="html, css, JavaScript ...">
+                        <input type="text" name="nombreProyecto" id="nombre" placeholder="html, css, JavaScript ...">
                     </div>
                     <div class="campo urlProyecto">
                         <label for="fotoProyecto">Agrega una foto de tu proyecto</label>
@@ -976,7 +1004,7 @@ $resultExp = $pdo->query($queryExp);
         </div>
     </div>
 
- 
+
     <div class="emergente ocultar" id="agregarCertificacion">
         <div class="emergente__formulario">
             <form action="" class="emergente__formulario__contenido">
@@ -1047,32 +1075,31 @@ $resultExp = $pdo->query($queryExp);
         </div>
     </div>
 
-    <?php  
+    <?php
 
-    if($mensaje == 1){ 
+    if ($mensaje == 1) {
         echo "<div class='tarjetas'>";
-       echo "<div class='tarjeta sombra'>";
+        echo "<div class='tarjeta sombra'>";
         echo    '<img src="../src/img/check2.png">';
         echo    '<p>Guardado</p>';
-       echo '</div>';
-  echo  '</div>  ';
-
-    }else if ($mensaje == 2){
+        echo '</div>';
+        echo  '</div>  ';
+    } else if ($mensaje == 2) {
         echo "<div class='tarjetas'>";
         echo "<div class='tarjeta sombra'>";
-         echo    '<img src="../src/img/check2.png">';
-         echo    '<p>Creado</p>';
+        echo    '<img src="../src/img/check2.png">';
+        echo    '<p>Creado</p>';
         echo '</div>';
-       echo  '</div>  ';
-    } else if ($mensaje == 3){
+        echo  '</div>  ';
+    } else if ($mensaje == 3) {
         echo "<div class='tarjetas'>";
         echo "<div class='tarjeta sombra'>";
-         echo    '<img src="../src/img/eliminar.png">';
-         echo    '<p>Eliminado</p>';
+        echo    '<img src="../src/img/eliminar.png">';
+        echo    '<p>Eliminado</p>';
         echo '</div>';
-   echo  '</div>  ';
+        echo  '</div>  ';
     }
-  
+
     ?>
 
 
@@ -1091,8 +1118,8 @@ $resultExp = $pdo->query($queryExp);
                     <a href="CandidatoPrincipal.html" class="enlace">Inicio</a>
                     <a href="candidatoEmpleos.html" class="enlace">Empleos</a>
                     <a href="candidatoEvaluacion.html" class="enlace">Evaluaciones</a>
-                    <a href="candidatoChat.html" class="enlace">Chats</a>  
-                    <a href="#" class="enlace">Cerrar Sesión</a>  
+                    <a href="candidatoChat.html" class="enlace">Chats</a>
+                    <a href="#" class="enlace">Cerrar Sesión</a>
                 </nav>
             </div>
             <hr>
@@ -1155,8 +1182,8 @@ $resultExp = $pdo->query($queryExp);
     <script src="/src/js/perfilCandidato.js"></script>
     <script src="/src/js/formulariosEmergentes.js"></script>
     <script src="/src/js/mensajeFlotante.js"></script>
-   
-    
+
+
 </body>
 
 </html>
