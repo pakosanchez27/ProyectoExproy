@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,7 +11,93 @@ require '../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
 $mensaje = $_GET['msj'] ?? null;
 
-// Agregar 
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+$FotoPortada = $datos['CAN_FOTOPORTADA'];
+$puesto = $datos['PUESTO'];
+$acerca = $datos['CAN_ACERCA'];
+$genero = $datos['CAN_GENERO'];
+$telefono = $datos['CAN_TELEFONO'];
+$fechaNacimiento = $datos['CAN_FECHANACIMIENTO'];
+$urlPortafolio = $datos['CAN_PORTAFOLIO'];
+//  var_dump($puesto) ;
+// var_dump($nombre) ;
+//  var_dump($acerca);
+// Datos de la tabla Domicilio
+
+$queryDomicilio = "SELECT * FROM domicilio WHERE id_usuario = $idUsuario";
+$resultDom = $pdo->query($queryDomicilio);
+$datosDom = $resultDom->fetch(PDO::FETCH_ASSOC);
+
+$ciudad = $datosDom["CIUDAD"];
+$estado = $datosDom["ESTADO"];
+$postal = $datosDom["CODIGO_POSTAL"];
+
+
+$queryRedes = "SELECT * FROM redessociales WHERE id_usuario = $idUsuario";
+$resultRedes = $pdo->query($queryRedes);
+
+
+// $nombreRed = $datosRedes['RED_NOMBRE'];
+// $urlRed = $datosRedes['RED_URI'];
+
+// var_dump($datosDom);
+// echo $FotoPerfil;
+
+
+// Datos Educacion
+
+$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = $idUsuario";
+$resultEdu = $pdo->query($queryEducacion);
+
+// Datos Experiencia
+
+$queryExp = "SELECT * FROM experiencia WHERE id_usuario = $idUsuario";
+$resultExp = $pdo->query($queryExp);
+
+
+// Agregar
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $redNombre = isset($_POST["red"]) ? $_POST["red"] : [];
+    $redLink = isset($_POST["redLink"]) ? $_POST["redLink"] : [];
+
+
+
+    for ($i = 0; $i < count($redNombre); $i++) {
+        $red = $pdo->quote($redNombre[$i]);
+        $link = $pdo->quote($redLink[$i]);
+
+        $sqlRed = "INSERT INTO redessociales (RED_NOMBRE, RED_URI, ID_USUARIO) VALUES ($red, $link, $idUsuario)";
+        // var_dump($sqlRed);
+        $resultRed = $pdo->query($sqlRed);
+    }
+
+
+    if ($result) {
+        header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+        exit();
+    }
+}
+
+// $resultRed = $pdo->query($sqlRed);
+
 
 //Educacion
 
@@ -44,56 +133,154 @@ $mensaje = $_GET['msj'] ?? null;
 //         header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
 //     }
 // }
-// Habilidades   
+// Habilidades
 
 // Updates
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['telefono']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
+
+    if (isset($_FILES['fotoPortada'])) {
+        $portada = $_FILES['fotoPortada'];
+
+        $carpetaImagenes = 'CandidatoIMG/';
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        $nombrePortada = '';
+        if ($portada['name']) {
+            // Eliminar la imagen previa si existe
+            if (file_exists($carpetaImagenes . $datos['CAN_FOTOPORTADA'])) {
+                unlink($carpetaImagenes . $datos['CAN_FOTOPORTADA']);
+            }
+
+            // Generar un nuevo nombre de archivo único
+            $nombrePortada = md5(uniqid(rand(), true)) . ".jpg";
+
+            // Subir la imagen
+            move_uploaded_file($portada['tmp_name'], $carpetaImagenes . $nombrePortada);
+        } else {
+            $nombrePortada = $datos['CAN_FOTOPORTADA'];
+        }
+
+        $updatePortada = "UPDATE candidato SET CAN_FOTOPORTADA = :nombrePortada WHERE id_usuario = :idUsuario";
+        $stmt = $pdo->prepare($updatePortada);
+        $stmt->bindParam(':nombrePortada', $nombrePortada);
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $result = $stmt->execute();
+
+        $perfil = $_FILES['fotoPerfil'];
+
+        $carpetaImagenes = 'CandidatoIMG/';
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        $nombrePerfil = '';
+        if ($perfil['name']) {
+            // Eliminar la imagen previa si existe
+            if (file_exists($carpetaImagenes . $datos['CAN_FOTOPERFIL'])) {
+                unlink($carpetaImagenes . $datos['CAN_FOTOPERFIL']);
+            }
+
+            // Generar un nuevo nombre de archivo único
+            $nombrePerfil = md5(uniqid(rand(), true)) . ".jpg";
+
+            // Subir la imagen
+            move_uploaded_file($perfil['tmp_name'], $carpetaImagenes . $nombrePerfil);
+        } else {
+            $nombrePerfil = $datos['CAN_FOTOPERFIL'];
+        }
+
+        $updatePerfil = "UPDATE candidato SET CAN_FOTOPERFIL = '$nombrePerfil' WHERE id_usuario = $idUsuario";
+        $result = $pdo->query($updatePerfil);
+
+        if ($result) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+            exit();
+        }
+    }
+
+    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
         $nombreUpdate = $_POST['nombre'];
         echo $nombreUpdate;
         $apellidoUpdate = $_POST['apellido'];
         $generoUpdate = $_POST['genero'];
-        $telefonoUpdate = $_POST['telefono'];
+        // $telefonoUpdate = $_POST['telefono'];
         $fechaNacimientoUpdate = $_POST['fechaNacimiento'];
         $postalUpdate = $_POST['postal'];
         $estadoUpdate = $_POST['estado'];
         $ciudadUpdate = $_POST['ciudad'];
-      
-      
-       
-        $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
-        $result1 = $pdo->query($updatePersonal); 
-        echo $updatePersonal;
+
+
+
+        $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
+        $result1 = $pdo->query($updatePersonal);
+        // echo $updatePersonal;
         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
 
-         
-         $result2 = $pdo->query($updateDomicilio);
 
-         if ($result1 && $result2) {
+        $result2 = $pdo->query($updateDomicilio);
+
+        if ($result1 && $result2) {
             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
             exit();
         }
-    // Acerca de
-    if (isset($_POST['acerca'])) {
-        $acerca = $_POST['acerca'];
-        $updateAcerca = "UPDATE candidato SET can_acerca = '$acerca' WHERE id_usuario = $idUsuario";
-        // var_dump($updateAcerca);
-        $result = $pdo->query($updateAcerca);
-
-         if ($result) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-             exit();
-         }
     }
 
-    
-}
+    // Informacion de contacto
+
+    if (isset($_POST['telefono'])) {
+        $telefono = $_POST['telefono'];
+
+        // UPDATE
+        $updateContacto = "UPDATE candidato SET can_telefono = '$telefono' WHERE id_usuario = $idUsuario";
+        // var_dump($updateContacto);
+        $resultTel = $pdo->query($updateContacto);
+
+        if ($resultTel) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+            exit();
+        }
+
+        // Resto del código para procesar los datos adicionales de los campos de red y redLink
+    }
+
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+        $updateEmail = "UPDATE usuario SET CORREO = '$email' WHERE id_usuario = $idUsuario";
+        // var_dump($updateEmail);
+        $resultTel = $pdo->query($updateEmail);
+        if ($resultTel) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+            exit();
+        }
+        
+    }
+
+    if(isset($_POST['acercaTexto'])){
+        
+    }
 
 }
+
+// Eliminar
+$idRed = $_GET['idRed'] ?? null;
+
+if ($idRed) {
+
+    $deletSQL = "DELETE FROM redessociales WHERE id_usuario = $idUsuario AND id_red = $idRed ";
+    $result = $pdo->query($deletSQL);
+
+    if($result){
+        header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=3");
+            exit();
+    }
+}
+
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-//     // Datos personales 
+//     // Datos personales
 //     if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['telefono']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
 //         $nombreUpdate = $_POST['nombre'];
 //         echo $nombreUpdate;
@@ -104,9 +291,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //         $postalUpdate = $_POST['postal'];
 //         $estadoUpdate = $_POST['estado'];
 //         $ciudadUpdate = $_POST['ciudad'];
-       
-       
-        
+
+
+
 //         $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
 //          echo $updatePersonal;
 //         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
@@ -119,56 +306,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //             exit();
 //         }
 //         }
-    
+
 //     }
 
 
 
 
 // Datos de la tabla candidato
-
-$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
-// var_dump($sql);
-$result = $pdo->query($sql);
-$datos = $result->fetch(PDO::FETCH_ASSOC);
-// echo '<pre>';
-//  var_dump($datos);
-// echo '</pre>';
-$nombre = $datos['CAN_NOMBRE'];
-$apellido = $datos['CAN_APELLIDO'];
-$FotoPerfil = $datos['CAN_FOTOPERFIL'];
-$FotoPortada = $datos['CAN_FOTOPORTADA'];
-$puesto = $datos['PUESTO'];
-$acerca = $datos['CAN_ACERCA'];
-$genero = $datos['CAN_GENERO'];
-$telefono = $datos['CAN_TELEFONO'];
-$fechaNacimiento = $datos['CAN_FECHANACIMIENTO'];
-//  var_dump($puesto) ;
-// var_dump($nombre) ;
-//  var_dump($acerca);
-// Datos de la tabla Domicilio
-
-$queryDomicilio = "SELECT * FROM domicilio WHERE id_usuario = $idUsuario";
-$resultDom = $pdo->query($queryDomicilio);
-$datosDom = $resultDom->fetch(PDO::FETCH_ASSOC);
-
-$ciudad = $datosDom["CIUDAD"];
-$estado = $datosDom["ESTADO"];
-$postal = $datosDom["CODIGO_POSTAL"];
-
-// var_dump($datosDom); 
-// echo $FotoPerfil;
-
-
-// Datos Educacion 
-
-$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = $idUsuario";
-$resultEdu = $pdo->query($queryEducacion);
-
-// Datos Experiencia
-
-$queryExp = "SELECT * FROM experiencia WHERE id_usuario = $idUsuario";
-$resultExp = $pdo->query($queryExp);
 
 
 
@@ -203,6 +347,9 @@ $resultExp = $pdo->query($queryExp);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
+
+
+
     }
 
     @media (min-width: 480px) {
@@ -210,6 +357,17 @@ $resultExp = $pdo->query($queryExp);
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
+    }
+
+    .principal__header__perfil {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+        background-image: url('../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: sticky;
+        border-radius: 50%;
     }
 </style>
 
@@ -344,15 +502,12 @@ $resultExp = $pdo->query($queryExp);
                                 de contacto</a>
                         </p>
                         <div class="principal__header__datos--redes">
-                            <a href="#" class="social"><img src="../src/img/facebook-color.png" alt="logoFacebook"></a>
-                            <a href="#" class="social"><img src="../src/img/twetter.png" alt="logo twetter"></a>
-                            <a href="#" class="social"><img src="../src/img/instagram.png" alt="logo instagram"></a>
-                            <a href="#" class="social"><img src="../src/img/github.png" alt="logo github"></a>
-                            <a href="#" class="social"><img src="../src/img/linkedin.png" alt="logo linkedin"></a>
-                            <a href="#" class="social"><img src="../src/img/youtube-color.png" alt="loo youtube"></a>
-                            <a href="#" class="social"><img src="../src/img/tik-tok.png" alt="logo tik-tok"></a>
-                            <a href="#" class="social"><img src="../src/img/pinterest.png" alt="logo pinterest"></a>
-                            <a href="#" class="social"></a>
+                            <?php while ($datosRedes = $resultRedes->fetch(PDO::FETCH_ASSOC)) : ?>
+
+                                <a href="<?php echo $datosRedes['RED_URI'] ?>" target="_blank" class="social"><img src="../build/img/<?php echo $datosRedes['RED_NOMBRE'] ?>.webp" alt="LogoRed"></a>
+
+
+                            <?php endwhile;  ?>
                         </div>
                     </div>
 
@@ -676,11 +831,6 @@ $resultExp = $pdo->query($queryExp);
                             <option value="otro">Otro</option>
                         </select>
                     </div>
-                    <div class="campo telefono">
-                        <label for="telefono">Número de Teléfono</label>
-                        <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono" value="<?php echo $telefono ?>">
-                    </div>
-
                     <div class="campo fechaNacimiento">
                         <label for="nacimiento">Fecha de nacimiento</label>
                         <input type="date" name="fechaNacimiento" id="nacimiento" value="<?php echo $fechaNacimiento ?>">
@@ -714,27 +864,36 @@ $resultExp = $pdo->query($queryExp);
 
     <div class="emergente ocultar" id="fotos">
         <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
+            <form class="emergente__formulario__contenido" method="post" enctype="multipart/form-data">
                 <div class="emergente__formulario__header sombra">
                     <h3>Foto de perfil y Portada</h3>
                 </div>
                 <div class="emergente__formulario__campos">
-                    <div class="campo fotoPerfil">
+                    <div class="campo">
                         <label for="fotoPerfil">Selecciona una Foto de Perfil</label>
-                        <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*" name="fotoPerfil">
+                        <div class="input-wrapper">
+                            <input class="inputFotoPerfil" type="file" id="fotoPerfil" onchange="mostrarNombreArchivo('fotoPerfil')" accept="image/*" name="fotoPerfil">
+                            <label class="custom-file-upload" for="fotoPerfil">Seleccionar Archivo</label>
+                        </div>
+                    </div>
+
+                    <div class="campo">
                         <label for="fotoPortada">Selecciona una Foto de Portada</label>
-                        <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*" name="fotoPortada">
+                        <div class="input-wrapper">
+                            <input class="inputFotoPortada" type="file" id="fotoPortada" onchange="mostrarNombreArchivo('fotoPortada')" accept="image/*" name="fotoPortada">
+                            <label class="custom-file-upload" for="fotoPortada">Seleccionar Archivo</label>
+                        </div>
                     </div>
                     <div class="previewPerfil">
                         <div class="previewPerfil__contenedor">
-                            <div class="previewPerfil__portada"></div>
+                            <div class="previewPerfil__portada principal__header__portada"></div>
                             <div class="previewPerfil__informacion">
-                                <div class="previewPerfil__foto"></div>
+                                <div class="previewPerfil__foto principal__header__perfil"></div>
                                 <div class="previewPerfil__nombre">
-                                    <h3>Francisco Sanchez</h3>
+                                    <h3><?php echo $nombre . " " . $apellido; ?></h3>
                                 </div>
                                 <div class="previewPerfil__ciudad">
-                                    <p><span>Nezahualcoyotl,</span> E.México</p>
+                                    <p><span><?php echo $ciudad ?>, </span><?php echo $estado; ?></p>
                                 </div>
                             </div>
                         </div>
@@ -749,46 +908,71 @@ $resultExp = $pdo->query($queryExp);
     </div>
     <div class="emergente ocultar" id="formularioContacto">
         <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
+            <form class="emergente__formulario__contenido" method="POST">
                 <div class="emergente__formulario__header sombra">
                     <h3>Datos de Contacto</h3>
                 </div>
                 <div class="emergente__formulario__campos">
                     <div class="campo telefono">
                         <label for="telefono">Número de Teléfono</label>
-                        <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono">
+                        <input type="tel" name="telefono" id="telefono" placeholder="Tu número de teléfono" value="<?php echo $telefono ?>">
                     </div>
                     <div class="campo email">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Tu número de teléfono">
+                        <input type="email" name="email" id="email" placeholder="Tu número de teléfono" value="<?php echo $email ?>">
                     </div>
                     <div class="campo portafolio">
                         <label for="portafolio">Link de tu portafolio</label>
-                        <input type="text" name="telefono" id="telefono" placeholder="link a tu portafolio">
+                        <input type="text" name="urlPortafolio" id="urlPortafolio" placeholder="link a tu portafolio" value="<?php echo $urlPortafolio ?>">
                     </div>
-                    <fieldset>
-                        <legend>Redes Sociales</legend>
-                        <div class="campo redSocial">
-                            <label for="red">Elige una red social</label>
-                            <select name="red" id="red">
-                                <option value="" selected disabled>--Seleccionar--</option>
-                                <option value="1">Facebook</option>
-                                <option value="2">Twetter</option>
-                                <option value="3">Instagram</option>
-                                <option value="4">Linkedin</option>
-                                <option value="5">GitHub</option>
-                                <option value="6">Youtube</option>
-                                <option value="7">TikTok</option>
-                                <option value="8">Pinterest</option>
-                                <option value="9">Portafolio</option>
-                            </select>
+
+                    <div class="campo redes">
+
+
+                        <div class="campo">
+                            <?php
+
+                            $queryRedes2 = "SELECT * FROM REDESSOCIALES WHERE id_usuario = $idUsuario ";
+                            $resultRed = $pdo->query($queryRedes2);
+
+                            ?>
+                            <?php while ($datosRed = $resultRed->fetch(PDO::FETCH_ASSOC)) : ?>
+                                <label for="red1">Red social</label>
+                                <input type="text" name="red[]" id="red1" value="<?php echo $datosRed['RED_NOMBRE']; ?>">
+                                <label for="redLink1">URL</label>
+                                <input type="text" name="redLink[]" id="redLink1" value="<?php echo $datosRed['RED_URI']; ?>">
+                                <a href="CandidatoPrincipal.php?id=<?php echo $datosUs['ID_USUARIO']; ?>&idRed=<?php echo $datosRed['ID_RED']; ?>" class="boton__rojo" id="EliminarRed">Eliminar Red</a>
+                            <?php endwhile; ?>
+                       
 
                         </div>
-                        <div class="campo redlink">
-                            <label for="redLink">URL</label>
-                            <input type="text" name="redLink" id="redLink" placeholder="URL">
+
+                    </div>
+
+                    <fieldset>
+                        <legend style="font-weight: bold;">Agregar Redes Sociales</legend>
+                        <div class="redSocial">
+                            <div class="campo">
+                                <label for="red1">Elige una red social</label>
+                                <select name="red[]" id="red1">
+                                    <option value="" selected disabled>--Seleccionar--</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="twitter">Twitter</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="linkedIn">LinkedIn</option>
+                                    <option value="gitHub">GitHub</option>
+                                    <option value="youTube">YouTube</option>
+                                    <option value="tikTok">TikTok</option>
+                                    <option value="pinterest">Pinterest</option>
+
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="redLink1">URL</label>
+                                <input type="text" name="redLink[]" id="redLink1" placeholder="URL">
+                            </div>
                         </div>
-                        <a href="#" class="boton negro">Agregar otra red social</a>
+                        <a href="#" class="boton negro" id="agregarRedSocial">Agregar otra red social</a>
                     </fieldset>
                 </div>
                 <div class="emergente__formulario__btns">
@@ -800,14 +984,14 @@ $resultExp = $pdo->query($queryExp);
     </div>
     <div class="emergente ocultar" id="formularioAcerca">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="Post">
+            <form class="emergente__formulario__contenido" method="POST">
                 <div class="emergente__formulario__header sombra">
                     <h3>Acerca de.</h3>
                 </div>
                 <div class="emergente__formulario__campos">
                     <div class="campo nombre">
                         <label for="acerca">Acerca de</label>
-                        <textarea name="acerca" id="acerca" cols="30" rows="10"><?php echo $acerca ?></textarea>
+                        <textarea name="acercaTexto" id="acerca" cols="30" rows="10"><?php echo $acerca ?></textarea>
                     </div>
                 </div>
                 <div class="emergente__formulario__btns">

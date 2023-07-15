@@ -73,3 +73,47 @@ display: inline-block;
     text-align: left;
     grid-column: 1/2;
   }
+
+  fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.campo {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select,
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.negro {
+    background-color: #000;
+}
+
+/* Otros estilos para mejorar la apariencia del formulario según tus necesidades */

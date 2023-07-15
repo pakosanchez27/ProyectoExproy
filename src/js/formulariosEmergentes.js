@@ -236,3 +236,30 @@ function salirFormulario(e) {
             
     }
 }
+
+
+document.getElementById('agregarRedSocial').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    // Clonar el campo de redes sociales
+    var redSocial = document.querySelector('.redSocial');
+    var clone = redSocial.cloneNode(true);
+
+    // Incrementar los IDs de los elementos clonados para que sean únicos
+    var campoSelect = clone.querySelector('select');
+    var campoInput = clone.querySelector('input[type="text"]');
+    var numRedesSociales = document.querySelectorAll('.redSocial').length + 1;
+    campoSelect.id = 'red' + numRedesSociales;
+    campoInput.id = 'redLink' + numRedesSociales;
+    campoSelect.name = 'red[]' + numRedesSociales;
+    campoInput.name = 'redLink[]' + numRedesSociales;
+
+    // Limpiar el valor del nuevo campo de URL
+    campoInput.value = '';
+
+    // Agregar el campo clonado al formulario
+    redSocial.parentNode.appendChild(clone);
+
+    // Mover el botón "Agregar otra red social" al final de los campos
+    redSocial.parentNode.appendChild(this);
+});

@@ -1,6 +1,10 @@
 <?php
 require '../include/config.php';
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $idUsuario = $_GET['id'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -77,16 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $sqlExperiencia = "INSERT INTO experiencia (EXP_NOMBRE_EMPRESA, EXP_DESCRIPCION, EXP_CARGO, EXP_DURACION, ID_USUARIO) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-    // echo $sqlExperiencia;
+    // echo $sqlExperiencia; 
     $resultExp = $pdo->query($sqlExperiencia);
 
 
-   //  Redirigir a la página candidatoForm.php con el ID del nuevo registro
-   header("Location: CandidatoPrincipal.php?id=$idUsuario");
-   
-
-
- 
+    //  Redirigir a la página candidatoForm.php con el ID del nuevo registro
+    header("Location: CandidatoPrincipal.php?id=$idUsuario");
 }
 
 ?>
@@ -294,11 +294,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </div>
                         <div id="grid4" class="grid4 ocultar">
-                            <div class="campo fotoPerfil">
+                            <div class="campo">
                                 <label for="fotoPerfil">Selecciona una Foto de Perfil</label>
-                                <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*" name="fotoPerfil">
+                                <div class="input-wrapper">
+                                    <input class="inputFotoPerfil" type="file" id="fotoPerfil" onchange="mostrarNombreArchivo('fotoPerfil')" accept="image/*" name="fotoPerfil">
+                                    <label class="custom-file-upload" for="fotoPerfil">Seleccionar Archivo</label>
+                                </div>
+                            </div>
+
+                            <div class="campo">
                                 <label for="fotoPortada">Selecciona una Foto de Portada</label>
-                                <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*" name="fotoPortada">
+                                <div class="input-wrapper">
+                                    <input class="inputFotoPortada" type="file" id="fotoPortada" onchange="mostrarNombreArchivo('fotoPortada')" accept="image/*" name="fotoPortada">
+                                    <label class="custom-file-upload" for="fotoPortada">Seleccionar Archivo</label>
+                                </div>
                             </div>
                             <div class="previewPerfil">
                                 <div class="previewPerfil__contenedor">
@@ -306,10 +315,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <div class="previewPerfil__informacion">
                                         <div class="previewPerfil__foto"></div>
                                         <div class="previewPerfil__nombre">
-                                            <h3>Francisco Sanchez</h3>
+                                            <h3>Tu nombre</h3>
                                         </div>
                                         <div class="previewPerfil__ciudad">
-                                            <p><span>Nezahualcoyotl,</span> E.México</p>
+                                            <p><span>Ciudad,</span> Estado</p>
                                         </div>
                                     </div>
                                 </div>

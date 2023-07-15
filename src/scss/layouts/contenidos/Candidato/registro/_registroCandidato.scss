@@ -502,3 +502,39 @@
     color: v.$blanco;
     font-weight: v.$bold;
 }
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input[type="file"] {
+    display: none;
+}
+
+.campo .input-wrapper {
+    position: relative;
+}
+
+.campo .input-wrapper input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload:hover {
+    background-color: #45a049;
+}

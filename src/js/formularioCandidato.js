@@ -460,3 +460,10 @@ function agregarIdioma() {
   nuevosIdiomasDiv.appendChild(nuevoIdiomaDiv);
   nuevosIdiomasDiv.appendChild(nuevoNivelDiv);
 }
+
+function mostrarNombreArchivo(inputId) {
+        const input = document.querySelector(inputId);
+        const fileName = input.files[0].name;
+        const customUpload = document.querySelector(`label[for=${inputId}] .custom-file-upload`);
+        customUpload.textContent = fileName;
+    }
