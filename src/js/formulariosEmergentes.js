@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     salirDatos.addEventListener('click', salirFormulario);
     salirAcerca.addEventListener('click', salirFormulario);
     salirAgregarEducacion.addEventListener('click', salirFormulario);
-    salirEducacionModificar.addEventListener('click', salirFormulario);
+   salirEducacionModificar.addEventListener('click', salirFormulario);
     salirExperienciaAgregar.addEventListener('click', salirFormulario);
     salirExperienciaModificar.addEventListener('click', salirFormulario);
     // salirProyectoModificar.addEventListener('click', salirFormulario);
@@ -191,9 +191,10 @@ function salirFormulario(e) {
             }
             break;
         case 'salirAgregarEducacion':
-            if (agregarEducacion.classList.contains('mostrarMenu')) {
-                agregarEducacion.classList.remove('mostrarMenu');
-                agregarEducacion.classList.add('ocultar');
+        
+             if (agregarEducacion.classList.contains('mostrarMenu')) {
+                 agregarEducacion.classList.remove('mostrarMenu');
+                 agregarEducacion.classList.add('ocultar');
             }
             break;
         case 'salirEducacionModificar':

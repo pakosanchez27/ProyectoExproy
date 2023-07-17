@@ -63,8 +63,6 @@ $resultRedes = $pdo->query($queryRedes);
 
 // Datos Educacion
 
-$queryEducacion = "SELECT * FROM educacion WHERE id_usuario = $idUsuario";
-$resultEdu = $pdo->query($queryEducacion);
 
 // Datos Experiencia
 
@@ -75,47 +73,63 @@ $resultExp = $pdo->query($queryExp);
 // Agregar
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $redNombre = isset($_POST["red"]) ? $_POST["red"] : [];
-    $redLink = isset($_POST["redLink"]) ? $_POST["redLink"] : [];
+    if (isset($_POST['red']) && isset($_POST['redLink'])) {
+
+        $redNombre = isset($_POST["red"]) ? $_POST["red"] : [];
+        $redLink = isset($_POST["redLink"]) ? $_POST["redLink"] : [];
 
 
 
-    for ($i = 0; $i < count($redNombre); $i++) {
-        $red = $pdo->quote($redNombre[$i]);
-        $link = $pdo->quote($redLink[$i]);
+        for ($i = 0; $i < count($redNombre); $i++) {
+            $red = $pdo->quote($redNombre[$i]);
+            $link = $pdo->quote($redLink[$i]);
 
-        $sqlRed = "INSERT INTO redessociales (RED_NOMBRE, RED_URI, ID_USUARIO) VALUES ($red, $link, $idUsuario)";
-        // var_dump($sqlRed);
-        $resultRed = $pdo->query($sqlRed);
+            $sqlRed = "INSERT INTO redessociales (RED_NOMBRE, RED_URI, ID_USUARIO) VALUES ($red, $link, $idUsuario)";
+            // var_dump($sqlRed);
+            $resultRed = $pdo->query($sqlRed);
+        }
+
+
+        if ($result) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+            exit();
+        }
     }
 
 
-    if ($result) {
-        header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-        exit();
+    if (isset($_POST['institucion']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) && isset($_POST['titulo']) && isset($_POST['nivel__estudios'])) {
+        $institucion = $_POST['institucion'];
+        $fechaInicio = $_POST['fechaInicio'];
+        $fechaFin = $_POST['fechaFin'];
+        $titulo = $_POST['titulo'];
+        $nivel = $_POST['nivel__estudios'];
+
+        $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo','$nivel', '$idUsuario')";
+        // var_dump($sqlEducacion);
+
+        $resultEdu = $pdo->query($sqlEducacion);
+    }
+
+    if (isset($_POST['empresa']) && isset($_POST['descripcion']) && isset($_POST['cargo']) && isset($_POST['duracion'])) {
+        $empresa = $_POST['empresa'];
+        $descripcion = $_POST['descripcion'];
+        $cargo = $_POST['cargo'];
+        $duracion = $_POST['duracion'];
+
+        $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
+     // echo $sqlExperiencia;
+    $experiencia = $pdo->query($sqlExperiencia);
+     if ($experiencia) {
+        header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
+     }
     }
 }
 
-// $resultRed = $pdo->query($sqlRed);
+// 
 
 
 //Educacion
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-//     $institucion = $_POST['institucion'];
-//     $fechaInicio = $_POST['fechaInicio'];
-//     $fechaFin = $_POST['fechaFin'];
-//     $titulo = $_POST['titulo'];
-
-//     $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
-//     //  echo $sqlEducacion;
-//     $educacion = $pdo->query($sqlEducacion);
-
-//     if ($educacion) {
-//         header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
-//     }
-// }
 
 // Experiencia
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -201,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
+    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad']) && isset($_POST['acerca'])) {
         $nombreUpdate = $_POST['nombre'];
         echo $nombreUpdate;
         $apellidoUpdate = $_POST['apellido'];
@@ -211,6 +225,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $postalUpdate = $_POST['postal'];
         $estadoUpdate = $_POST['estado'];
         $ciudadUpdate = $_POST['ciudad'];
+        $acercaUpdate = $_POST['acerca'];
+
+
 
 
 
@@ -218,11 +235,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result1 = $pdo->query($updatePersonal);
         // echo $updatePersonal;
         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
-
-
         $result2 = $pdo->query($updateDomicilio);
 
-        if ($result1 && $result2) {
+        $updateAcerca = "UPDATE candidato SET can_acerca = '$acercaUpdate' WHERE id_usuario = $idUsuario";
+        $result3 = $pdo->query($updateAcerca);
+
+        if ($result1 || $result2 || $result3) {
             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
             exit();
         }
@@ -255,13 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
             exit();
         }
-        
     }
-
-    if(isset($_POST['acercaTexto'])){
-        
-    }
-
 }
 
 // Eliminar
@@ -272,9 +284,9 @@ if ($idRed) {
     $deletSQL = "DELETE FROM redessociales WHERE id_usuario = $idUsuario AND id_red = $idRed ";
     $result = $pdo->query($deletSQL);
 
-    if($result){
+    if ($result) {
         header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=3");
-            exit();
+        exit();
     }
 }
 
@@ -545,28 +557,35 @@ if ($idRed) {
 
                 </div>
                 <div class="principal__educacion__contenedor">
-                    <div class="acerca__texto" id="acercaContenedor">
 
-                    </div>
-                    <?php while ($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <div class="principal__educacion__card">
 
-                            <div class="principal__educacion__img">
-                                <img src="../build/img/banco.webp" alt="">
+
+                    <?php
+                    $queryEducacion = "SELECT * FROM educacion WHERE id_usuario = $idUsuario";
+                    $resultEdu = $pdo->query($queryEducacion);
+
+
+
+                    if ($resultEdu->rowCount() === 0) {
+                        echo '<p class="text-left">No hay información de tu educación disponible.</p>';
+                    } else {
+                        while ($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
+                            <div class="principal__educacion__card">
+
+                                <div class="principal__educacion__img">
+                                    <img src="../build/img/banco.webp" alt="">
+                                </div>
+                                <a href="#" id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data="<?php echo $datosEdu['ID_EDUCACION'] ?>">
+                                    <p class="educacion__institucion"><?php echo $datosEdu['EDU_NOMBRE_INSTITUCION'] ?></p>
+                                    <p class="educacion__carrera"><?php echo $datosEdu['EDU_TITULO'] ?></p>
+                                    <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_INICIO'])) ?> - <?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_FIN'])) ?></p>
+
+                                </a>
                             </div>
-                            <a href="#" id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data="<?php echo $datosEdu['id_educacion'] ?>">
-                                <p class="educacion__institucion"><?php echo $datosEdu['edu_nombre_institucion'] ?></p>
-                                <p class="educacion__carrera"><?php echo $datosEdu['edu_titulo'] ?></p>
-                                <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['edu_fecha_inicio'])) ?> - <?php echo date('F Y', strtotime($datosEdu['edu_fecha_fin'])) ?></p>
-
-                            </a>
-
-
-                        </div>
                     <?php endwhile;
-                    if (empty($datosEdu)) {
-                        echo "<p class='text-left'> Aun no tienes informacion de tu educación</p>";
                     } ?>
+
                 </div>
 
             </div>
@@ -582,19 +601,23 @@ if ($idRed) {
 
                 </div>
                 <div class="principal__experiencia__contenedor">
-                    <?php while ($datosExp = $resultExp->fetch(PDO::FETCH_ASSOC)) : ?>
+                    <?php
+                    while ($datosExp = $resultExp->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
                         <div id="ExperienciaModificar" class="principal__experiencia__card">
-
-                            <p class="experiencia__titulo"><?php echo $datosExp['exp_nombre_empresa'] ?></p>
-                            <p class="experiencia__puesto"><?php echo $datosExp['exp_cargo'] ?></p>
-                            <p class="experiencia__descripcion"><?php echo $datosExp['exp_descripcion'] ?></p>
-                            <p class="experience__duracion"><?php echo $datosExp['exp_duracion'] ?> años</p>
-
+                            <p class="experiencia__titulo"><?php echo $datosExp['EXP_NOMBRE_EMPRESA'] ?></p>
+                            <p class="experiencia__puesto"><?php echo $datosExp['EXP_CARGO'] ?></p>
+                            <p class="experiencia__descripcion"><?php echo $datosExp['EXP_DESCRIPCION'] ?></p>
+                            <p class="experience__duracion"><?php echo $datosExp['EXP_DURACION'] ?> años</p>
                         </div>
-                    <?php endwhile;
-                    if (empty($datosExp)) {
-                        echo "<p class='text-left'> Aun no tienes informacion de tu Experiencia</p>";
-                    } ?>
+                    <?php
+                    endwhile;
+
+                    if ($resultExp->rowCount() === 0) {
+                        echo "<p class='text-left'>No tenemos información de tu experiencia laboral</p>";
+                    }
+                    ?>
+
                 </div>
             </div>
             <div class="principal__habilidad contenedor sombra">
@@ -605,18 +628,17 @@ if ($idRed) {
                     </div>
                 </div>
                 <div class="principal__insignias__contenedor">
+                    <?php  
+                        $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
+                        $resultHab = $pdo->query($sqlHabilidades);
+                       
+                        while( $datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
                     <div class="insignia gris">
-                        <p>PHP</p>
+                        <p><?php $datoHab['HAB_NOMBRE']  ?></p>
                     </div>
-                    <div class="insignia gris">
-                        <p>JavaScript</p>
-                    </div>
-                    <div class="insignia gris">
-                        <p>Java</p>
-                    </div>
-                    <div class="insignia gris">
-                        <p>Photoshop</p>
-                    </div>
+
+                    <?php endwhile;  ?>
 
                 </div>
 
@@ -943,7 +965,7 @@ if ($idRed) {
                                 <input type="text" name="redLink[]" id="redLink1" value="<?php echo $datosRed['RED_URI']; ?>">
                                 <a href="CandidatoPrincipal.php?id=<?php echo $datosUs['ID_USUARIO']; ?>&idRed=<?php echo $datosRed['ID_RED']; ?>" class="boton__rojo" id="EliminarRed">Eliminar Red</a>
                             <?php endwhile; ?>
-                       
+
 
                         </div>
 
@@ -984,14 +1006,14 @@ if ($idRed) {
     </div>
     <div class="emergente ocultar" id="formularioAcerca">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="POST">
+            <form class="emergente__formulario__contenido" method="post">
                 <div class="emergente__formulario__header sombra">
                     <h3>Acerca de.</h3>
                 </div>
                 <div class="emergente__formulario__campos">
                     <div class="campo nombre">
                         <label for="acerca">Acerca de</label>
-                        <textarea name="acercaTexto" id="acerca" cols="30" rows="10"><?php echo $acerca ?></textarea>
+                        <textarea name="acerca" id="acerca" cols="30" rows="10"><?php echo $acerca ?></textarea>
                     </div>
                 </div>
                 <div class="emergente__formulario__btns">
@@ -1024,7 +1046,18 @@ if ($idRed) {
                         <label for="titulo">Título / Certificado</label>
                         <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
                     </div>
+                    <div class="campo nivel__estudios">
+                        <label for="nivel__estudios">Nivel</label>
+                        <select name="nivel__estudios" id="nivel__estudios">
+                            <option value="Sin estudios">Sin estudios</option>
+                            <option value="Educacion primaria">Educación Primaria</option>
+                            <option value="Educacion secundaria">Educación Secundaria</option>
+                            <option value="bachillerato">Bachillerato</option>
+                            <option value="Educacion Universitaria">Educación Universitaria</option>
+                            <option value="posgrado">Posgrado</option>
+                        </select>
 
+                    </div>
 
 
                 </div>
@@ -1058,6 +1091,18 @@ if ($idRed) {
                     <div class="campo titulo">
                         <label for="titulo">Título / Certificado</label>
                         <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
+                    </div>
+                    <div class="campo nivel__estudios">
+                        <label for="nivel__estudios">Nivel</label>
+                        <select name="nivel__estudios" id="nivel__estudios">
+                            <option value="Sin estudios">Sin estudios</option>
+                            <option value="Educacion primaria">Educación Primaria</option>
+                            <option value="Educacion secundaria">Educación Secundaria</option>
+                            <option value="bachillerato">Bachillerato</option>
+                            <option value="Educacion Universitaria">Educación Universitaria</option>
+                            <option value="posgrado">Posgrado</option>
+                        </select>
+
                     </div>
 
                     <a href="#" class="boton__rojo">Eliminar</a>
@@ -1100,8 +1145,7 @@ if ($idRed) {
                             <option value="5a10">5 a 10 años</option>
                             <option value="mas10">Más de 10 años</option>
                         </select>
-                    </div>
-                    <a href="#" class="boton__negro">Agregar Experiencia</a>
+                            </div>
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
