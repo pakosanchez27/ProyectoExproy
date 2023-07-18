@@ -56,7 +56,7 @@
 }
 
 .principal__insignias__contenedor {
-    width: 60%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(6, auto);
     gap: 1rem;
@@ -64,10 +64,14 @@
 
 .insignia {
     color: v.$blanco;
-    width: auto;
+    width: max-content;
     padding: .5rem .5rem;
     border-radius: .5rem;
     margin-top: 2rem;
+    height: max-content;
+    display:  flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 .insignia p {
@@ -77,4 +81,17 @@
     padding: 0;
     margin: 0;
 
+}
+
+.emergente__formulario__habilidad{
+    padding: 2rem;
+    display: grid;
+    @include m.grid(6, 2rem);
+    height: 10rem;
+    
+
+}
+
+.habilidad{
+     display: flex;
 }

@@ -13,6 +13,7 @@ $mensaje = $_GET['msj'] ?? null;
 
 $sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
 $result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
 $datosUs = $result->fetch(PDO::FETCH_ASSOC);
 // var_dump($datosUs);
 $email = $datosUs['CORREO'];
@@ -117,11 +118,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $duracion = $_POST['duracion'];
 
         $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-     // echo $sqlExperiencia;
-    $experiencia = $pdo->query($sqlExperiencia);
-     if ($experiencia) {
-        header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
-     }
+        // echo $sqlExperiencia;
+        $experiencia = $pdo->query($sqlExperiencia);
+        if ($experiencia) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
+        }
+    }
+
+    if (isset($_POST['skills'])) {
+        $skills = isset($_POST["etiquetas"]) ? $_POST["etiquetas"] : [];
+        foreach ($skills as $etiqueta) {
+            $sqlHabilidad = "INSERT INTO habilidad ( hab_nombre, id_usuario) VALUES ('$etiqueta', '$idUsuario')";
+            //     // echo $sqlHabilidad;  
+            $resultHab = $pdo->query($sqlHabilidad);
+        }
+        if ($resultHab) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
+        }
     }
 }
 
@@ -215,7 +228,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad']) && isset($_POST['acerca'])) {
+    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
         $nombreUpdate = $_POST['nombre'];
         echo $nombreUpdate;
         $apellidoUpdate = $_POST['apellido'];
@@ -225,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $postalUpdate = $_POST['postal'];
         $estadoUpdate = $_POST['estado'];
         $ciudadUpdate = $_POST['ciudad'];
-        $acercaUpdate = $_POST['acerca'];
+
 
 
 
@@ -237,10 +250,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
         $result2 = $pdo->query($updateDomicilio);
 
-        $updateAcerca = "UPDATE candidato SET can_acerca = '$acercaUpdate' WHERE id_usuario = $idUsuario";
-        $result3 = $pdo->query($updateAcerca);
 
-        if ($result1 || $result2 || $result3) {
+
+        if ($result1 || $result2) {
             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
             exit();
         }
@@ -274,6 +286,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     }
+
+    if (isset($_POST['acerca'])) {
+        $acercaTexto = $_POST['acerca'];
+
+        $updateAcerca = "UPDATE candidato SET can_acerca = '$acercaTexto' WHERE id_usuario = $idUsuario";
+        $resultAcerca = $pdo->query($updateAcerca);
+
+        if ($resultAcerca) {
+            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
+        }
+        // var_dump($updateAcerca);
+    }
 }
 
 // Eliminar
@@ -290,6 +314,15 @@ if ($idRed) {
     }
 }
 
+// Obtén el ID de habilidad desde la variable GET
+$idHabilidad = $_GET['id'];
+
+// Realiza la eliminación del registro en la base de datos utilizando el ID de habilidad
+$sqlEliminar = "DELETE FROM habilidad WHERE ID_HABILIDAD = $idHabilidad";
+$pdo->exec($sqlEliminar);
+
+// Envía una respuesta de estado 200 para indicar que la eliminación se ha realizado con éxito
+http_response_code(200);
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //     // Datos personales
@@ -329,11 +362,7 @@ if ($idRed) {
 
 
 
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -533,20 +562,18 @@ if ($idRed) {
                 <div class="principal__titulo">
                     <h3>Acerca de</h3>
                     <div class="principal__btns"> <a href="#" id="editarAcerca"><img src="../src/img/lapiz (1).png" alt="icono lapiz"></a></div>
-
                 </div>
                 <div class="acerca__texto" id="acercaContenedor">
                     <?php
                     if ($acerca == null) {
-                        echo "<p> Aun no tienes una descripcion </p>";
+                        echo "<p> Aun no tienes una descripción </p>";
                     } else {
                         echo "<p>" . $acerca . "</p>";
                     }
-
                     ?>
                 </div>
-
             </div>
+
             <div class="principal__educacion sombra contenedor">
                 <div class="principal__titulo">
                     <h3>Educacion</h3>
@@ -628,19 +655,31 @@ if ($idRed) {
                     </div>
                 </div>
                 <div class="principal__insignias__contenedor">
-                    <?php  
-                        $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
-                        $resultHab = $pdo->query($sqlHabilidades);
-                       
-                        while( $datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
+                    <?php
+                    $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
+                    $resultHab = $pdo->query($sqlHabilidades);
+
+                    if ($resultHab->rowCount() > 0) {
+                        // Si hay habilidades, mostrar cada una
+                        while ($datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
                     ?>
-                    <div class="insignia gris">
-                        <p><?php $datoHab['HAB_NOMBRE']  ?></p>
-                    </div>
-
-                    <?php endwhile;  ?>
-
+                            <div class="insignia gris">
+                                <p><?= $datoHab['HAB_NOMBRE'] ?></p>
+                            </div>
+                        <?php
+                        endwhile;
+                    } else {
+                        // Si no hay habilidades, mostrar leyenda
+                        ?>
+                        <p>No hay habilidades aún</p>
+                    <?php
+                    }
+                    ?>
                 </div>
+
+
+
+
 
             </div>
             <div class="principal__habilidad contenedor sombra">
@@ -1145,7 +1184,7 @@ if ($idRed) {
                             <option value="5a10">5 a 10 años</option>
                             <option value="mas10">Más de 10 años</option>
                         </select>
-                            </div>
+                    </div>
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
@@ -1288,12 +1327,30 @@ if ($idRed) {
     </div>
     <div class="emergente ocultar" id="agregarHabilidades">
         <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
+            <form class="emergente__formulario__contenido" method="post">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega tus habilidades</h3>
                 </div>
-                <div class="emergente__formulario__campos">
+                <div class="emergente__formulario__habilidad">
+                    <?php
+                    $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
+                    $resultHab = $pdo->query($sqlHabilidades);
 
+                    while ($datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
+                        <div class="insignia gris">
+                            <p><?= $datoHab['HAB_NOMBRE'] ?></p>
+                            <a class="eliminar-habilidad" data-id="<?= $datoHab['ID_HABILIDAD'] ?>">X</a>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+
+                <div class="emergente__formulario__campos">
+                    <div class="campo skills">
+                        <label for="skills">Habilidades o Skills</label>
+                        <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop..." onkeydown="agregarEtiqueta(event)">
+                    </div>
+                    <div id="etiquetasContainer"></div>
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
@@ -1302,6 +1359,7 @@ if ($idRed) {
             </form>
         </div>
     </div>
+
 
     <?php
 
@@ -1405,9 +1463,10 @@ if ($idRed) {
         </div>
         <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
     </footer>
+    <script src="/src/js/app.js"></script>
+    <script src="/src/js/perfilCandidato.js"></script>
     <script src="/src/js/headerCandidato.js"></script>
     <script src="/src/js/formularioCandidato.js"></script>
-    <script src="/src/js/perfilCandidato.js"></script>
     <script src="/src/js/formulariosEmergentes.js"></script>
     <script src="/src/js/mensajeFlotante.js"></script>
 
