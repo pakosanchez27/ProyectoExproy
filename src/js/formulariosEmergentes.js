@@ -264,3 +264,30 @@ document.getElementById('agregarRedSocial').addEventListener('click', function(e
     // Mover el botón "Agregar otra red social" al final de los campos
     redSocial.parentNode.appendChild(this);
 });
+
+
+    // Obtén todos los enlaces de eliminación por su clase
+    var eliminarEnlaces = document.querySelectorAll('.eliminar-habilidad');
+
+    // Recorre cada enlace y agrega el evento de clic
+    for (var i = 0; i < eliminarEnlaces.length; i++) {
+        eliminarEnlaces[i].addEventListener('click', function() {
+            // Obtén el elemento padre del enlace (div.insignia)
+            var divInsignia = this.parentNode;
+
+            // Obtén el ID de habilidad del atributo de datos
+            var idHabilidad = this.getAttribute('data-id');
+
+            // Realiza una solicitud AJAX a tu archivo PHP que maneja la eliminación
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'CandidatoPrincipal.php?id=' + idHabilidad, true);
+            xhr.onload = function() {
+                // Verifica si la solicitud se ha completado correctamente
+                if (xhr.status === 200) {
+                    // Elimina el elemento de la vista una vez que se ha eliminado de la base de datos
+                    divInsignia.remove();
+                }
+            };
+            xhr.send();
+        });
+    }

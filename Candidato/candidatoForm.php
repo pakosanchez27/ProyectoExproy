@@ -348,6 +348,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <script src="/src/js/formularioCandidato.js"></script>
+    <script src="/src/js/selectEstados.js"></script>
+    <script src="/src/js/selectAreas.js"></script>
     <!-- <script src="/src/js/validacionCandidato.js"></script> -->
 </body>
 

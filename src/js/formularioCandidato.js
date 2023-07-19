@@ -1,5 +1,5 @@
 // Variables
-const subirPerfil = document.querySelector('#fotoPerfil');
+const subirPerfil = document.querySelector('#fotoPerfil') ;
 const subirPortada = document.querySelector('#fotoPortada');
 const grid1 = document.querySelector('.grid1');
 const grid2 = document.querySelector('.grid2');
@@ -12,9 +12,7 @@ const flujo3 = document.querySelector('#flujo3');
 const flujo4 = document.querySelector('#flujo4');
 const flujo5 = document.querySelector('#flujo5');
 
-const OptionEstado = document.querySelector('#estado');
-const OptionArea = document.querySelector('#area');
-const OptionPuesto = document.querySelector('#puesto');
+
 const contenedorBtn = document.querySelector('.derecha__botones');
 const siguienteSubmit = document.createElement('input');
 const siguientebtn = document.createElement('a');
@@ -40,75 +38,14 @@ console.log(paginador);
 eventListeners();
 
 function eventListeners() {
-  document.addEventListener('DOMContentLoaded', () => {
+  
     subirPerfil.addEventListener('change', mostrarPerfil);
     subirPortada.addEventListener('change', mostrarPortada);
     siguientebtn.addEventListener('click', siguienteFormulario);
     atras.addEventListener('click', atrasFormulario);
-  });
+ 
 }
 
-// Llenar el Select Estados
-fetch('../../Json/estados.json')
-  .then(Response => Response.json())
-  .then(Data => {
-    Object.keys(Data).forEach(estado => {
-      const optionElement = document.createElement('option');
-      optionElement.textContent = estado;
-      optionElement.value = estado;
-      OptionEstado.appendChild(optionElement);
-    });
-
-    OptionEstado.addEventListener('change', function (e) {
-      ciudad.value = '';
-
-      const EstadoSeleccionado = e.target.value;
-
-      llenarMunicipios(Data, EstadoSeleccionado);
-    });
-  })
-  .catch(error => {
-    console.error("Error al cargar los datos", error);
-  });
-
-function llenarMunicipios(Data, EstadoSeleccionado) {
-  Object.values(Data[EstadoSeleccionado]).forEach(municipio => {
-    const optionElement2 = document.createElement('option');
-    optionElement2.textContent = municipio;
-    optionElement2.value = municipio;
-    ciudad.appendChild(optionElement2);
-  });
-}
-
-// Llenar Select áreas
-fetch('../Json/puestos.json')
-  .then(Response => Response.json())
-  .then(data => {
-    Object.keys(data).forEach(area => {
-      const optionElement2 = document.createElement('option');
-      optionElement2.textContent = area;
-      optionElement2.value = area;
-      OptionArea.appendChild(optionElement2);
-    });
-
-    area.addEventListener('change',(e)=>{
-      const areaSelecionado = e.target.value;
-      llenarPuesto(data, areaSelecionado);
-    });
-
-    console.log(data["Desarrollo de software y programación"]);
-  });
-
-function llenarPuesto(data, areaSelecionado){
-  OptionPuesto.innerHTML = '';
-
-  Object.values(data[areaSelecionado]).forEach(puesto => {
-    const optionElement2 = document.createElement('option');
-    optionElement2.textContent = puesto;
-    optionElement2.value = puesto;
-    OptionPuesto.appendChild(optionElement2);
-  });
-}
 
 mostrarFormulario(paginador);
 
@@ -462,8 +399,8 @@ function agregarIdioma() {
 }
 
 function mostrarNombreArchivo(inputId) {
-        const input = document.querySelector(inputId);
-        const fileName = input.files[0].name;
-        const customUpload = document.querySelector(`label[for=${inputId}] .custom-file-upload`);
-        customUpload.textContent = fileName;
-    }
+  const input = document.querySelector(inputId);
+  const fileName = input.files[0].name;
+  const customUpload = document.querySelector(`label[for=${inputId}] .custom-file-upload`);
+  customUpload.textContent = fileName;
+}
