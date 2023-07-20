@@ -1,0 +1,75 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.postulados{
+    background-color: v.$blanco;
+    padding: 2rem 0;
+    border-radius: .5rem;
+
+    &__card{
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px v.$primario;
+        &:hover{
+            background-color: darken(v.$blanco, 5);
+        }
+
+        &__img{
+            & img{
+                width: 7rem;
+            }
+        }
+        &__detalles{
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+
+            & h3{
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+
+    
+}
+
+.postulados {
+
+    &__texto{
+        color: v.$negro;
+
+        p.proceso{
+            font-weight: v.$bold;
+            color: v.$primario;
+        }
+    }
+    &__flujo{
+        display: flex;
+        gap: 2rem;
+        margin-top: 1rem;
+    
+    }
+
+    &__circulo{
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: v.$gris;
+        & span{
+           font-size: 1.5rem;
+           color: v.$blanco;
+            
+        }
+       
+    }
+
+  
+}
+

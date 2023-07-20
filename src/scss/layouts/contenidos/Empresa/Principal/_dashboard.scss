@@ -1,0 +1,341 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.dash {
+    &__contenedor {
+        width: 80%;
+        margin: 0 auto;
+        padding: 5rem;
+        display: grid;
+        grid-template-columns: repeat(2, 70% 30%);
+        gap: 2rem;
+    }
+}
+
+
+.contenidoPrincipal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__bienvenida {
+        padding: 2rem;
+        display: flex;
+        background-color: v.$blanco;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0.5rem;
+    }
+
+    &__misVacantes {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: v.$blanco;
+        border-radius: 0.5rem;
+
+    }
+
+    &__enProceso {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: v.$blanco;
+        border-radius: 0.5rem;
+    }
+
+
+}
+
+.contenidoPrincipal__misVacantes {
+
+    .tituloContenedor {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .verTodo {
+        color: v.$primario;
+        font-weight: v.$bold;
+        text-decoration: none;
+    }
+
+    .misVacantes__contenedor {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+    }
+
+    .misVacantes__card {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+
+        .misVacantes__img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .misVacantes__datos {
+            text-align: left;
+
+            .titulo {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+            }
+
+            .empresa {
+                color: v.$primario;
+                text-decoration: none;
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+                font-weight: v.$bold;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .salario,
+            .cantidadVaca,
+            .lugar {
+                color: #666;
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .salario {
+                color: v.$primario;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.contenidoPrincipal__enProceso {
+
+    .tituloContenedor {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .verTodo {
+        color: v.$primario;
+        font-weight: v.$bold;
+        text-decoration: none;
+    }
+
+
+}
+
+.enProceso__tabla {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        border-top: solid 1px v.$primario;
+        border-bottom: solid 1px v.$primario;
+        color: v.$negro;
+        font-weight: bold;
+        padding: 1rem;
+        font-size: 1.4rem;
+    }
+
+    td {
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        font-size: 1.4rem;
+
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+
+    .enProceso__img {
+        
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+            width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: 50%;
+
+        }
+    }
+
+    .enProceso__estado {
+        font-weight: v.$bold;
+        color: v.$primario;
+        font-size: 1.4rem;
+    }
+}
+
+.tituloModulo {
+    color: v.$negro;
+    font-size: 2rem;
+    font-weight: v.$bold;
+}
+
+
+.dash__aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    background-color: transparent;
+
+    &__datosEmpresa {
+        
+        background-color: v.$blanco;
+        border-radius: .5rem;
+    }
+}
+
+.datosEmpresa {
+    width: 100%;
+    height: 20rem;
+    display: grid;
+    grid-template-rows: repeat(2, 35% 65%);
+    border-radius: .5rem;
+  
+    &__portada {
+      background-image: url('../img/bg-login-empresa.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem;
+  
+      & img {
+        background-color: v.$blanco;
+        border-radius: 50%;
+        padding: 1rem;
+        width: 1.5rem;
+      }
+    }
+  
+    &__datos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: v.$blanco;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+  
+      & img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin-top: -5.2rem;
+      }
+  
+      & a {
+        font-size: 1.4rem; /* Cambio del tamaño de letra a 1.4rem */
+        text-align: center;
+        color: v.$negro;
+        margin-top: 1rem;
+      }
+    }
+  
+    &__redesSociales {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+  
+      & img {
+        margin: 0;
+        border-radius: 0;
+        width: 3rem;
+        height: 3rem;
+        margin-top: 1rem;
+      }
+    }
+  
+    &__editar {
+      /* Estilos del botón de editar */
+      margin-top: auto; /* Añadido para que el botón se posicione en la parte inferior del card */
+      align-self: center; /* Añadido para centrar horizontalmente el botón */
+      background-color: v.$primario; /* Color de fondo del botón */
+      color: v.$blanco; /* Color del texto del botón */
+      border: none; /* Quitamos el borde del botón */
+      padding: 0.5rem 1rem; /* Ajustamos el padding del botón */
+      border-radius: 0.3rem; /* Añadimos un pequeño borde redondeado */
+      cursor: pointer; /* Cambiamos el cursor al pasar por encima del botón */
+      transition: background-color 0.3s ease; /* Agregamos una transición suave */
+  
+      &:hover {
+        background-color: darken(v.$primario, 10%); /* Efecto de oscurecimiento al pasar por encima del botón */
+      }
+    }
+  }
+  
+  
+ .datosReclutador{
+    background-color: v.$blanco;
+    padding: 2rem 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    gap:1rem;
+    
+    img.fotoPerfil{
+        
+            height: 8rem;
+            width: 8rem;
+            border-radius: 50%;
+      
+    }
+   
+    p.nombre{
+        font-weight: v.$bold;
+    
+    }
+    p.puesto{
+        font-weight: v.$delgada;
+        font-size: 1.2rem;
+        color: v.$primario;
+    }
+    p.numero{
+        font-style: italic;
+        font-size: 1.2rem;
+    }
+ }

@@ -1,0 +1,40 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+/* pagina Nosotros */
+.nosotros {
+    margin: 3rem;
+
+    & p{
+        margin-top: 2rem;
+    }
+
+    &__texto h2 {
+        margin-top: 3rem;
+    }
+}
+
+@include m.tablet{
+    .nosotros__texto h2 {
+        font-size: 5rem;
+    }
+}
+
+@include m.desktop{
+    .nosotros__contenedor {
+        padding: 5rem 10rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5rem;
+        width: 90%;
+        margin: 0 auto;
+        align-items: center;
+    }
+    
+    .nosotros__texto  {
+        width: 90%;
+        margin: 0;
+}
+
+}
