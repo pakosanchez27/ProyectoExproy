@@ -1,0 +1,53 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.principal__acerca{
+    position: relative;
+}
+
+.acerca__texto {
+    max-height: 100px;
+    /* Altura máxima del div */
+    overflow: hidden;
+    /* Oculta el contenido que sobrepase la altura máxima */
+    //  position: relative;
+    /* Establece una posición relativa para el div */
+}
+
+.acerca__texto p {
+    white-space: pre-line;
+    word-wrap: break-word;
+
+    font-size: 1.4rem;
+}
+
+.ver-mas {
+    position: absolute;
+    /* Establece una posición absoluta para la leyenda */
+    bottom: -2rem;
+    /* Alinea la leyenda en la parte inferior */
+    right: 5rem;
+    top: 18rem;
+    /* Alinea la leyenda a la derecha */
+    padding: 5px 10px;
+    /* Espaciado interno de la leyenda */
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre la leyenda */
+    color: #707070;
+    font-size: 1.4rem;
+}
+
+@media (min-width: 768px) {
+    .ver-mas {
+        right: 5rem;
+        top: 20rem;
+    }
+}
+
+.principal__acerca--editar {
+    position: absolute;
+    /* Establece una posición absoluta para la leyenda */
+    top: 2rem;
+    right: 5rem;
+}

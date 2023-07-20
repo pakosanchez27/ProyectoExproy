@@ -1,0 +1,91 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+/* Formularios */
+.emergente{
+  background-color: rgba(0, 0, 0, 0.644);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  @include m.tablet{
+    padding: 5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  &__formulario{
+    background-color: v.$blanco;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    @include m.tablet{
+        border-radius: .5rem;
+        width: 75%;
+        height: 70%;
+
+    }
+    @include m.desktop{
+        width: 60%;
+    }
+  }
+}
+
+.emergente__formulario{
+
+    &__contenido{
+        // background-color: red;
+        width: 100%;
+        height: auto;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+    }
+    &__header{
+        // background-color: red;
+        border-bottom: solid v.$primario 1px;
+        padding: 2rem;
+        & h3{
+            padding: 0;
+            margin: 0;
+        }
+    }
+    &__campos{
+        // background-color: rgb(30, 255, 0);
+        overflow-y: auto;
+       
+        padding: 2rem;
+        margin-top: 2rem;
+        & .campo{
+            gap: 1rem;
+        }
+    }
+    &__btns{
+        // background-color: rgb(255, 0, 170);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 3rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid v.$primario;
+        
+        @include m.tablet{
+            flex-direction: row;
+            align-items: center;
+            & a, input {
+                width: 100%;
+                height: fit-content;
+            }
+        }
+
+    }
+
+}
+
+
+  

@@ -1,0 +1,540 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+/* Registro candidato */
+
+.candidatoForm {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(2, 10% 90%);
+    height: 100vh;
+   
+
+    @include m.desktop {
+        grid-template-columns: repeat(2, 30% 70%);
+    }
+
+    &__izquierda {
+        width: 100%;
+        /* border: #0a7bec solid 2px; */
+        padding: 2rem;
+        background-color: v.$fondoSecundario;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        @include m.tablet{
+            align-items: baseline;
+        }
+        @include m.desktop {
+            padding: 3rem 2rem;
+            align-items: center;
+            display: block;
+            /* border: #0a7bec solid 2px; */
+            padding: 4rem;
+            height: 100vh;
+            align-items: baseline;
+        }
+    }
+}
+
+
+
+
+.izquierda__logo {
+    font-family: v.$fuente__secundario;
+    font-weight: v.$bold;
+    color: v.$blanco;
+
+
+    & a {
+        font-size: 2rem;
+      
+
+        @include m.desktop {
+            font-size: 3rem;
+        }
+    }
+
+
+    @include m.desktop {
+        margin-bottom: 10rem;
+    }
+
+    & a {
+        color: v.$blanco;
+    }
+}
+
+.izquierda__paso {
+    margin-top: 0;
+
+    & p {
+        color: v.$blanco;
+        display: none;
+
+        & p {
+            font-size: 1.6rem;
+            display: block;
+        }
+    }
+
+    & h3 {
+        font-weight: v.$bold;
+        color: v.$blanco;
+        display: block;
+    }
+
+    @include m.desktop {
+
+        & h3 {
+            display: block;
+            font-weight: v.$bold;
+            font-size: 2.5rem;
+        }
+
+    }
+
+
+
+}
+
+
+
+
+
+.izquierda__flujo {
+    display: none;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 5rem;
+
+    @include m.tablet {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        gap: 1rem;
+    }
+
+    @include m.desktop {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 5rem;
+    }
+}
+
+
+.flujo__paso {
+    display: none;
+    align-items: center;
+    gap: 3rem;
+
+    @include m.tablet {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+
+}
+
+
+.paso__circulo {
+    border: #707070 1px solid;
+    padding: 1rem;
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & p {
+        color: #707070;
+    }
+
+}
+
+
+
+.paso__texto p {
+    color: #707070;
+
+    @include m.tablet {
+        display: none;
+
+    }
+
+    @include m.desktop {
+        display: flex;
+    }
+}
+
+
+
+
+.candidatoForm__derecha {
+    /* border: #ec0a0a solid 1px; */
+    width: 100%;
+    height: auto;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    @include m.desktop {
+        height: 100vh;
+        padding-left: 5rem;
+    }
+}
+
+
+.derecha__contenido {
+    /* border: #ec0a0a solid 1px; */
+    width: 95%;
+    height: auto;
+    line-height: 1;
+    margin-top: -5rem;
+    @include m.desktop {
+        width: 70%;
+        margin: 0;
+
+    }
+}
+
+.derecha {
+    &__titulo h3 {
+        margin-top: 15rem;
+        font-size: 2.5rem;
+
+        @include m.tablet {
+            margin-top: .5rem;
+            font-size: 3rem;
+        }
+
+        @include m.desktop {
+            margin: 1rem 0;
+            font-size: 3.5rem;
+        }
+    }
+
+    &__texto p {
+        margin-bottom: 2rem;
+
+        @include m.desktop {
+            margin-bottom: 1rem;
+        }
+    }
+
+   
+}
+.derecha__formulario form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+@include m.desktop {
+    
+    #grid1 {
+
+        grid-template-areas: 'nombre apellido'
+            'telefono fechaNacimiento'
+            'genero postal'
+            'estado ciudad'
+            'derecha__botones derecha__botones';
+            
+        gap: 2rem;
+
+
+    }
+
+    #grid2 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 'institucion institucion'
+            'fechaInicio fechaFin'
+            'titulo titulo'
+            'nivel__estudios nivel__estudios'
+            'skills skills'
+            'etiquetasContainer etiquetasContainer'
+            'idiomas nivel'
+            'agregar agregar'
+            'nuevos-idiomas nuevos-idiomas'
+            'derecha__botones derecha__botones';
+        gap: 2rem;
+    }
+
+    #grid3 {
+
+        grid-template-areas: 'noExperiencia noExperiencia'
+            'empresa empresa'
+            'descripcion descripcion'
+            'cargo cargo'
+            'duracion duracion'
+            'derecha__botones derecha__botones';
+
+    }
+
+    #grid5 {
+
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+}
+
+#nuevos-idiomas{
+    grid-area: nuevos-idiomas;
+}
+#etiquetasContainer{
+    grid-area: etiquetasContainer;
+}
+.agregar{
+    grid-area: agregar;
+}
+.nivel__estudios{
+    grid-area: nivel__estudios;
+}
+.nivel{
+    grid-area: nivel;
+}
+.genero{
+    grid-area: genero;
+}
+.nombre {
+    grid-area: nombre;
+}
+
+.apellido {
+    grid-area: apellido;
+}
+
+.telefono {
+    grid-area: telefono;
+}
+
+.fechaNaciomiento {
+    grid-area: fechaNacimiento;
+}
+
+.estado {
+    grid-area: estado;
+}
+
+.ciudad {
+    grid-area: ciudad;
+}
+
+.derecha__botones {
+    grid-area: derecha__botones;
+
+    width: 100%;
+    /* margin: 3rem 0; */
+    margin: 3rem auto;
+    @include m.tablet{
+        margin: 0 ;
+    }
+}
+
+.derecha__botones a {
+    margin-top: 2rem;
+}
+
+.institucion {
+    grid-area: institucion;
+}
+
+.fechaInicio {
+    grid-area: fechaInicio;
+}
+
+.fechaFin {
+    grid-area: fechaFin;
+}
+
+.titulo {
+    grid-area: titulo;
+}
+
+.skills {
+    grid-area: skills;
+}
+
+.noExperiencia {
+    grid-area: noExperiencia;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.empresa {
+    grid-area: empresa;
+}
+
+.descripcion {
+    grid-area: descripcion;
+}
+
+.cargo {
+    grid-area: cargo;
+}
+
+.duracion {
+    grid-area: duracion;
+}
+
+@include m.tablet {
+    .derecha__botones {
+        grid-area: derecha__botones;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        gap: 3rem;
+        width: 40rem;
+        margin-top: 2rem;
+    }
+}
+
+
+
+.flujo__paso {
+    color: v.$blanco;
+
+}
+
+.activo {
+    border: 1px v.$blanco solid;
+
+}
+
+.activoTexto p {
+    color: v.$blanco;
+    border: none;
+
+}
+
+.previewPerfil {
+   
+
+    &__contenedor {
+        width: 100%;
+        height: 30rem;
+        border-radius: 1rem;
+        display: grid;
+        grid-template-rows: repeat(2, 40% 60%);
+        box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.1);
+        margin-top: 5rem;
+
+        
+
+        @include m.desktop {
+            width: 70rem;
+
+        }
+    }
+
+    &__portada {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background-color: #D5EDFF;
+        margin-top: -2rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    &__foto {
+        border: v.$blanco 4px solid;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        background-color: gray;
+        margin-top: -5rem;
+        margin-left: 5rem;
+        background-size: cover;
+        background-position: center center;
+    }
+
+}
+
+
+
+.previewPerfil {
+    &__nombre {
+        padding-left: 3rem;
+    }
+
+    &__ciudad{
+        padding-left: 3rem;
+        font-weight: v.$bold;
+
+        &__span{
+            color: #0a7bec;
+            font-weight: v.$normal;
+        }
+    }
+}
+
+
+.ultimo{
+    margin-top: 2rem;
+}
+
+
+.campo {
+    margin-bottom: 10px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background-color: v.$primario;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.etiqueta span {
+    margin-right: 5px;
+    cursor: pointer;
+    color: v.$blanco;
+    font-weight: v.$bold;
+}
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input[type="file"] {
+    display: none;
+}
+
+.campo .input-wrapper {
+    position: relative;
+}
+
+.campo .input-wrapper input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload:hover {
+    background-color: #45a049;
+}
