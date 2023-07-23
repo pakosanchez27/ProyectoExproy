@@ -54,314 +54,17 @@ $postal = $datosDom["CODIGO_POSTAL"];
 $queryRedes = "SELECT * FROM redessociales WHERE id_usuario = $idUsuario";
 $resultRedes = $pdo->query($queryRedes);
 
-
-// $nombreRed = $datosRedes['RED_NOMBRE'];
-// $urlRed = $datosRedes['RED_URI'];
-
-// var_dump($datosDom);
-// echo $FotoPerfil;
-
-
-// Datos Educacion
-
+$queryProyecto = "SELECT * FROM proyectos WHERE id_usuario = $idUsuario";
+$resultProy = $pdo->query($queryProyecto);
 
 // Datos Experiencia
 
 $queryExp = "SELECT * FROM experiencia WHERE id_usuario = $idUsuario";
 $resultExp = $pdo->query($queryExp);
 
-
-// Agregar
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if (isset($_POST['red']) && isset($_POST['redLink'])) {
-
-        $redNombre = isset($_POST["red"]) ? $_POST["red"] : [];
-        $redLink = isset($_POST["redLink"]) ? $_POST["redLink"] : [];
-
-
-
-        for ($i = 0; $i < count($redNombre); $i++) {
-            $red = $pdo->quote($redNombre[$i]);
-            $link = $pdo->quote($redLink[$i]);
-
-            $sqlRed = "INSERT INTO redessociales (RED_NOMBRE, RED_URI, ID_USUARIO) VALUES ($red, $link, $idUsuario)";
-            // var_dump($sqlRed);
-            $resultRed = $pdo->query($sqlRed);
-        }
-
-
-        if ($result) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-    }
-
-
-    if (isset($_POST['institucion']) && isset($_POST['fechaInicio']) && isset($_POST['fechaFin']) && isset($_POST['titulo']) && isset($_POST['nivel__estudios'])) {
-        $institucion = $_POST['institucion'];
-        $fechaInicio = $_POST['fechaInicio'];
-        $fechaFin = $_POST['fechaFin'];
-        $titulo = $_POST['titulo'];
-        $nivel = $_POST['nivel__estudios'];
-
-        $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo','$nivel', '$idUsuario')";
-        // var_dump($sqlEducacion);
-
-        $resultEdu = $pdo->query($sqlEducacion);
-    }
-
-    if (isset($_POST['empresa']) && isset($_POST['descripcion']) && isset($_POST['cargo']) && isset($_POST['duracion'])) {
-        $empresa = $_POST['empresa'];
-        $descripcion = $_POST['descripcion'];
-        $cargo = $_POST['cargo'];
-        $duracion = $_POST['duracion'];
-
-        $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-        // echo $sqlExperiencia;
-        $experiencia = $pdo->query($sqlExperiencia);
-        if ($experiencia) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
-        }
-    }
-
-    if (isset($_POST['skills'])) {
-        $skills = isset($_POST["etiquetas"]) ? $_POST["etiquetas"] : [];
-        foreach ($skills as $etiqueta) {
-            $sqlHabilidad = "INSERT INTO habilidad ( hab_nombre, id_usuario) VALUES ('$etiqueta', '$idUsuario')";
-            //     // echo $sqlHabilidad;  
-            $resultHab = $pdo->query($sqlHabilidad);
-        }
-        if ($resultHab) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
-        }
-    }
-}
-
-// 
-
-
-//Educacion
-
-
-// Experiencia
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-//     $empresa = $_POST['empresa'];
-//     $descripcion = $_POST['descripcion'];
-//     $cargo = $_POST['cargo'];
-//     $duracion = $_POST['duracion'];
-
-//     $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_usuario) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-//     // echo $sqlExperiencia;
-//     $experiencia = $pdo->query($sqlExperiencia);
-
-//     if ($experiencia) {
-//         header("Location: CandidatoPrincipal.php?id=$idUsuario&mensaje=2");
-//     }
-// }
-// Habilidades
-
-// Updates
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    if (isset($_FILES['fotoPortada'])) {
-        $portada = $_FILES['fotoPortada'];
-
-        $carpetaImagenes = 'CandidatoIMG/';
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
-        }
-
-        $nombrePortada = '';
-        if ($portada['name']) {
-            // Eliminar la imagen previa si existe
-            if (file_exists($carpetaImagenes . $datos['CAN_FOTOPORTADA'])) {
-                unlink($carpetaImagenes . $datos['CAN_FOTOPORTADA']);
-            }
-
-            // Generar un nuevo nombre de archivo único
-            $nombrePortada = md5(uniqid(rand(), true)) . ".jpg";
-
-            // Subir la imagen
-            move_uploaded_file($portada['tmp_name'], $carpetaImagenes . $nombrePortada);
-        } else {
-            $nombrePortada = $datos['CAN_FOTOPORTADA'];
-        }
-
-        $updatePortada = "UPDATE candidato SET CAN_FOTOPORTADA = :nombrePortada WHERE id_usuario = :idUsuario";
-        $stmt = $pdo->prepare($updatePortada);
-        $stmt->bindParam(':nombrePortada', $nombrePortada);
-        $stmt->bindParam(':idUsuario', $idUsuario);
-        $result = $stmt->execute();
-
-        $perfil = $_FILES['fotoPerfil'];
-
-        $carpetaImagenes = 'CandidatoIMG/';
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes);
-        }
-
-        $nombrePerfil = '';
-        if ($perfil['name']) {
-            // Eliminar la imagen previa si existe
-            if (file_exists($carpetaImagenes . $datos['CAN_FOTOPERFIL'])) {
-                unlink($carpetaImagenes . $datos['CAN_FOTOPERFIL']);
-            }
-
-            // Generar un nuevo nombre de archivo único
-            $nombrePerfil = md5(uniqid(rand(), true)) . ".jpg";
-
-            // Subir la imagen
-            move_uploaded_file($perfil['tmp_name'], $carpetaImagenes . $nombrePerfil);
-        } else {
-            $nombrePerfil = $datos['CAN_FOTOPERFIL'];
-        }
-
-        $updatePerfil = "UPDATE candidato SET CAN_FOTOPERFIL = '$nombrePerfil' WHERE id_usuario = $idUsuario";
-        $result = $pdo->query($updatePerfil);
-
-        if ($result) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-    }
-
-    if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
-        $nombreUpdate = $_POST['nombre'];
-        echo $nombreUpdate;
-        $apellidoUpdate = $_POST['apellido'];
-        $generoUpdate = $_POST['genero'];
-        // $telefonoUpdate = $_POST['telefono'];
-        $fechaNacimientoUpdate = $_POST['fechaNacimiento'];
-        $postalUpdate = $_POST['postal'];
-        $estadoUpdate = $_POST['estado'];
-        $ciudadUpdate = $_POST['ciudad'];
-
-
-
-
-
-
-        $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
-        $result1 = $pdo->query($updatePersonal);
-        // echo $updatePersonal;
-        $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
-        $result2 = $pdo->query($updateDomicilio);
-
-
-
-        if ($result1 || $result2) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-    }
-
-    // Informacion de contacto
-
-    if (isset($_POST['telefono'])) {
-        $telefono = $_POST['telefono'];
-
-        // UPDATE
-        $updateContacto = "UPDATE candidato SET can_telefono = '$telefono' WHERE id_usuario = $idUsuario";
-        // var_dump($updateContacto);
-        $resultTel = $pdo->query($updateContacto);
-
-        if ($resultTel) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-
-        // Resto del código para procesar los datos adicionales de los campos de red y redLink
-    }
-
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
-        $updateEmail = "UPDATE usuario SET CORREO = '$email' WHERE id_usuario = $idUsuario";
-        // var_dump($updateEmail);
-        $resultTel = $pdo->query($updateEmail);
-        if ($resultTel) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-            exit();
-        }
-    }
-
-    if (isset($_POST['acerca'])) {
-        $acercaTexto = $_POST['acerca'];
-
-        $updateAcerca = "UPDATE candidato SET can_acerca = '$acercaTexto' WHERE id_usuario = $idUsuario";
-        $resultAcerca = $pdo->query($updateAcerca);
-
-        if ($resultAcerca) {
-            header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-        }
-        // var_dump($updateAcerca);
-    }
-}
-
-// Eliminar
-$idRed = $_GET['idRed'] ?? null;
-
-if ($idRed) {
-
-    $deletSQL = "DELETE FROM redessociales WHERE id_usuario = $idUsuario AND id_red = $idRed ";
-    $result = $pdo->query($deletSQL);
-
-    if ($result) {
-        header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=3");
-        exit();
-    }
-}
-
-// Obtén el ID de habilidad desde la variable GET
-$idHabilidad = $_GET['id'];
-
-// Realiza la eliminación del registro en la base de datos utilizando el ID de habilidad
-$sqlEliminar = "DELETE FROM habilidad WHERE ID_HABILIDAD = $idHabilidad";
-$pdo->exec($sqlEliminar);
-
-// Envía una respuesta de estado 200 para indicar que la eliminación se ha realizado con éxito
-http_response_code(200);
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-//     // Datos personales
-//     if (isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['genero']) && isset($_POST['telefono']) && isset($_POST['fechaNacimiento']) && isset($_POST['postal']) && isset($_POST['estado']) && isset($_POST['ciudad'])) {
-//         $nombreUpdate = $_POST['nombre'];
-//         echo $nombreUpdate;
-//         $apellidoUpdate = $_POST['apellido'];
-//         $generoUpdate = $_POST['genero'];
-//         $telefonoUpdate = $_POST['telefono'];
-//         $fechaNacimientoUpdate = $_POST['fechaNacimiento'];
-//         $postalUpdate = $_POST['postal'];
-//         $estadoUpdate = $_POST['estado'];
-//         $ciudadUpdate = $_POST['ciudad'];
-
-
-
-//         $updatePersonal = "UPDATE candidato SET can_nombre = '$nombreUpdate', can_apellido = '$apellidoUpdate', can_genero = '$generoUpdate', can_telefono = '$telefonoUpdate', can_fechaNacimiento = '$fechaNacimientoUpdate' WHERE id_usuario = $idUsuario";
-//          echo $updatePersonal;
-//         $updateDomicilio = "UPDATE domicilio SET codigo_postal = '$postalUpdate', estado = '$estadoUpdate', ciudad = '$ciudadUpdate' WHERE id_usuario = '$idUsuario'";
-
-//          $result1 = $pdo->query($updatePersonal);
-//          $result2 = $pdo->query($updateDomicilio);
-
-//          if ($result1 && $result2) {
-//             header("Location: CandidatoPrincipal.php?id=$idUsuario&msj=1");
-//             exit();
-//         }
-//         }
-
-//     }
-
-
-
-
-// Datos de la tabla candidato
-
-
-
-
+$queryCer = "SELECT * FROM certificaciones WHERE id_usuario = $idUsuario";
+$resultCer = $pdo->query($queryCer);
+// var_dump($queryCer);
 ?>
 
 <!DOCTYPE html>
@@ -413,6 +116,7 @@ http_response_code(200);
 </style>
 
 <body>
+
     <header class="candidato__header ">
         <div class="candidato__header__contenido">
             <div class="header__izquierda">
@@ -543,12 +247,16 @@ http_response_code(200);
                                 de contacto</a>
                         </p>
                         <div class="principal__header__datos--redes">
+
+
                             <?php while ($datosRedes = $resultRedes->fetch(PDO::FETCH_ASSOC)) : ?>
 
                                 <a href="<?php echo $datosRedes['RED_URI'] ?>" target="_blank" class="social"><img src="../build/img/<?php echo $datosRedes['RED_NOMBRE'] ?>.webp" alt="LogoRed"></a>
 
 
-                            <?php endwhile;  ?>
+                            <?php endwhile; ?>
+
+                            <a href="#" id="redesAgregar"><img src="../build/img/agregar.webp" alt="BTN agregar"></a>
                         </div>
                     </div>
 
@@ -660,14 +368,17 @@ http_response_code(200);
                     $resultHab = $pdo->query($sqlHabilidades);
 
                     if ($resultHab->rowCount() > 0) {
-                        // Si hay habilidades, mostrar cada una
+
+                        $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
+                        $resultHab = $pdo->query($sqlHabilidades);
+
                         while ($datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
                     ?>
                             <div class="insignia gris">
                                 <p><?= $datoHab['HAB_NOMBRE'] ?></p>
+                                <a class="eliminar-habilidad" user-id="<?= $idUsuario ?>" data-id="<?= $datoHab['ID_HABILIDAD'] ?>">X</a>
                             </div>
-                        <?php
-                        endwhile;
+                        <?php endwhile;
                     } else {
                         // Si no hay habilidades, mostrar leyenda
                         ?>
@@ -730,14 +441,32 @@ http_response_code(200);
                 <div class="principal__titulo">
                     <h3>Idiomas</h3>
                     <div class="principal__btns">
-                        <a href="#" id="idiomasEditar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
+                        <a href="#" id="idiomasAgregar"><img src="../src/img/anadir.png" alt="icono lapiz "></a>
                     </div>
                 </div>
 
                 <div class="idiomas__contenedor">
-                    <ul>
-                        <li>Ingles <span>Intermedio</span></li>
-                    </ul>
+                    <table class="idiomas__tabla">
+                        <tr class="idiomas__fila">
+                            <th class="idiomas__celda"></th>
+                            <th class="idiomas__celda"></th>
+                            <th class="idiomas__celda"></th>
+                        </tr>
+                        <?php
+                        $sqlIdioma = "SELECT * FROM idioma WHERE id_usuario = $idUsuario";
+                        $resultIdioma = $pdo->query($sqlIdioma);
+                        while ($datosIdioma = $resultIdioma->fetch(PDO::FETCH_ASSOC)) :
+                        ?>
+                            <tr class="idiomas__fila">
+                                <td class="idiomas__celda idiomas__celda--idioma"><?php echo $datosIdioma['IDIOMA_NOMBRE'] ?></td>
+                                <td class="idiomas__celda idiomas__celda--nivel"><?php echo $datosIdioma['IDIOMA_NIVEL'] ?></td>
+                                <td class="idiomas__celda idiomas__celda--eliminar">
+                                    <a href="/Candidato/Model/eliminar.php?id=<?php echo $datosUs['ID_USUARIO']; ?>&idIdioma=<?php echo $datosIdioma['ID_IDIOMA'] ?>"><img src="../build/img/eliminar.png" alt="Eliminar"></a>
+                                </td>
+                            </tr>
+
+                        <?php endwhile; ?>
+                    </table>
                 </div>
 
             </div>
@@ -749,24 +478,23 @@ http_response_code(200);
                     </div>
                 </div>
                 <div class="principal__proyectos__contenedor">
-
-                    <a href="#" class="principal__proyectos__card">
-                        <img src="../src/img/proyecto1.png" alt="imagen proyecto">
-                        <p>Proyecto 1</p>
-                    </a>
-                    <a href="#" class="principal__proyectos__card">
-                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
-                        <p>Proyecto 2</p>
-                    </a>
-                    <a href="#" class="principal__proyectos__card">
-                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
-                        <p>Proyecto 3</p>
-                    </a>
-                    <a href="#" class="principal__proyectos__card">
-                        <img src="../src/img/proyecto2.png" alt="imagen proyecto">
-                        <p>Proyecto 4</p>
-                    </a>
+                    <?php
+                    if ($resultProy->rowCount() > 0) {
+                        while ($datosProy = $resultProy->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
+                            <a href="#" class="principal__proyectos__card proyectoModificar">
+                                <img src="../Candidato/CandidatoIMG/<?php echo $datosProy['PROY_FOTO'] ?>" alt="imagen proyecto" data-id-proyecto="<?php echo $datosProy['ID_PROYECTO'] ?>" id="proyectoImagen">
+                                <p><?php echo $datosProy['PROY_NOMBRE'] ?></p>
+                            </a>
+                        <?php
+                        endwhile;
+                    } else {
+                        // Mostrar mensaje si no hay proyectos aún
+                        ?>
+                        <p>No hay proyectos aún</p>
+                    <?php } ?>
                 </div>
+
             </div>
             <div class="principal__certificados contenedor sombra">
                 <div class="principal__titulo">
@@ -778,37 +506,21 @@ http_response_code(200);
 
                 </div>
                 <div class="principal__certificados__contenedor">
-                    <div class="principal__certificados__card">
-                        <p class="principal__certificados__titulo"><span>Nombre: </span>CSS La guia Completa</p>
-                        <p class="principal__certificados__texto"><span>Lugar: </span> Udemy</p>
-                        <p class="principal__certificados__texto"><span>Descripcion: </span> Curso donde aprendí
-                            tecnologías como HTML, CSS, JavaScript, SASS etc. </p>
-                        <p class="principal__certificados__fecha"><span>Fecha: </span> 16 agosto 2022</p>
-                        <p class="principal__certificados__fecha"><span>Horas: </span>37 hrs</p>
-                        <a href="#" class="principal___certificado__detalles">Ver más</a>
-                        <hr>
-                    </div>
-                    <div class="principal__certificados__card">
-                        <p class="principal__certificados__titulo"><span>Nombre: </span>CSS La guia Completa</p>
-                        <p class="principal__certificados__texto"><span>Lugar: </span> Udemy</p>
-                        <p class="principal__certificados__texto"><span>Descripcion: </span> Curso donde aprendí
-                            tecnologías como HTML, CSS, JavaScript, SASS etc. </p>
-                        <p class="principal__certificados__fecha"><span>Fecha: </span> 16 agosto 2022</p>
-                        <p class="principal__certificados__fecha"><span>Horas: </span>37 hrs</p>
-                        <a href="#" class="principal___certificado__detalles">Ver más</a>
-                        <hr>
-                    </div>
-                    <div class="principal__certificados__card">
-                        <p class="principal__certificados__titulo"><span>Nombre: </span>CSS La guia Completa</p>
-                        <p class="principal__certificados__texto"><span>Lugar: </span> Udemy</p>
-                        <p class="principal__certificados__texto"><span>Descripcion: </span> Curso donde aprendí
-                            tecnologías como HTML, CSS, JavaScript, SASS etc. </p>
-                        <p class="principal__certificados__fecha"><span>Fecha: </span> 16 agosto 2022</p>
-                        <p class="principal__certificados__fecha"><span>Horas: </span>37 hrs</p>
-                        <a href="#" class="principal___certificado__detalles">Ver más</a>
-                        <hr>
-                    </div>
+                    <?php if ($resultCer->rowCount() === 0) : ?>
+                        <p>Aun no hay certificaciones o cursos</p>
+                    <?php else : ?>
+                        <?php while ($datosCer = $resultCer->fetch(PDO::FETCH_ASSOC)) : ?>
+                            <div class="principal__certificados__card">
+                                <p class="principal__certificados__titulo"><span>Nombre: </span><?php echo $datosCer['CER_NOMBRE'] ?></p>
+                                <p class="principal__certificados__texto"><span>Lugar: </span><?php echo $datosCer['CER_LUGAR'] ?></p>
+                                <p class="principal__certificados__texto"><span>Descripcion: </span><?php echo $datosCer['CER_DESCRIPCION'] ?></p>
+                                <p class="principal__certificados__fecha"><span>Fecha: </span><?php echo $datosCer['CER_FECHA'] ?></p>
+                                <p class="principal__certificados__fecha"><span>Horas: </span><?php echo $datosCer['CER_HORAS'] ?></p>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 </div>
+
             </div>
         </div>
         <div class="contenedor__aside">
@@ -870,7 +582,7 @@ http_response_code(200);
     </div>
     <div class="emergente ocultar" id="personal">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="Post">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Informacion Personal</h3>
                 </div>
@@ -925,7 +637,7 @@ http_response_code(200);
 
     <div class="emergente ocultar" id="fotos">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="post" enctype="multipart/form-data">
+            <form class="emergente__formulario__contenido" method="post" enctype="multipart/form-data" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Foto de perfil y Portada</h3>
                 </div>
@@ -969,7 +681,7 @@ http_response_code(200);
     </div>
     <div class="emergente ocultar" id="formularioContacto">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="POST">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Datos de Contacto</h3>
                 </div>
@@ -986,7 +698,22 @@ http_response_code(200);
                         <label for="portafolio">Link de tu portafolio</label>
                         <input type="text" name="urlPortafolio" id="urlPortafolio" placeholder="link a tu portafolio" value="<?php echo $urlPortafolio ?>">
                     </div>
+                </div>
+                <div class="emergente__formulario__btns">
+                    <input type="submit" class="boton__verde" value="Guardar">
+                    <a href="#" class="boton__blanco" id="salirDatos">Cancelar</a>
+                </div>
+            </form>
 
+        </div>
+    </div>
+    <div class="emergente ocultar" id="formularioRedes">
+        <div class="emergente__formulario">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
+                <div class="emergente__formulario__header sombra">
+                    <h3>Redes Sociales</h3>
+                </div>
+                <div class="emergente__formulario__campos">
                     <div class="campo redes">
 
 
@@ -999,53 +726,52 @@ http_response_code(200);
                             ?>
                             <?php while ($datosRed = $resultRed->fetch(PDO::FETCH_ASSOC)) : ?>
                                 <label for="red1">Red social</label>
-                                <input type="text" name="red[]" id="red1" value="<?php echo $datosRed['RED_NOMBRE']; ?>">
+                                <input type="text" name=" id=" red1" value="<?php echo $datosRed['RED_NOMBRE']; ?>">
                                 <label for="redLink1">URL</label>
-                                <input type="text" name="redLink[]" id="redLink1" value="<?php echo $datosRed['RED_URI']; ?>">
-                                <a href="CandidatoPrincipal.php?id=<?php echo $datosUs['ID_USUARIO']; ?>&idRed=<?php echo $datosRed['ID_RED']; ?>" class="boton__rojo" id="EliminarRed">Eliminar Red</a>
-                            <?php endwhile; ?>
+                                <input type="text" name="" id="redLink1" value="<?php echo $datosRed['RED_URI']; ?>">
+                                <a href="../Candidato/Model/eliminar.php?id= <?php echo $datosUs['ID_USUARIO']; ?>&idRed=<?php echo $datosRed['ID_RED']; ?>" class="boton__rojo" id="EliminarRed">Eliminar Red</a>
+                            <?php endwhile;  ?>
 
 
                         </div>
-
+                        <fieldset>
+                            <legend style="font-weight: bold;">Agregar Redes Sociales</legend>
+                            <div class="redSocial">
+                                <div class="campo">
+                                    <label for="red1">Elige una red social</label>
+                                    <select name="red[]" id="red1">
+                                        <option value="" selected disabled>--Seleccionar--</option>
+                                        <option value="facebook">Facebook</option>
+                                        <option value="twitter">Twitter</option>
+                                        <option value="instagram">Instagram</option>
+                                        <option value="linkedIn">LinkedIn</option>
+                                        <option value="gitHub">GitHub</option>
+                                        <option value="youtube">YouTube</option>
+                                        <option value="tikTok">TikTok</option>
+                                        <option value="pinterest">Pinterest</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label for="redLink1">URL</label>
+                                    <input type="text" name="redLink[]" id="redLink1" placeholder="URL">
+                                </div>
+                            </div>
+                            <a href="#" class="boton negro" id="agregarRedSocial">Agregar otra red social</a>
+                        </fieldset>
                     </div>
-
-                    <fieldset>
-                        <legend style="font-weight: bold;">Agregar Redes Sociales</legend>
-                        <div class="redSocial">
-                            <div class="campo">
-                                <label for="red1">Elige una red social</label>
-                                <select name="red[]" id="red1">
-                                    <option value="" selected disabled>--Seleccionar--</option>
-                                    <option value="facebook">Facebook</option>
-                                    <option value="twitter">Twitter</option>
-                                    <option value="instagram">Instagram</option>
-                                    <option value="linkedIn">LinkedIn</option>
-                                    <option value="gitHub">GitHub</option>
-                                    <option value="youTube">YouTube</option>
-                                    <option value="tikTok">TikTok</option>
-                                    <option value="pinterest">Pinterest</option>
-
-                                </select>
-                            </div>
-                            <div class="campo">
-                                <label for="redLink1">URL</label>
-                                <input type="text" name="redLink[]" id="redLink1" placeholder="URL">
-                            </div>
-                        </div>
-                        <a href="#" class="boton negro" id="agregarRedSocial">Agregar otra red social</a>
-                    </fieldset>
-                </div>
-                <div class="emergente__formulario__btns">
-                    <input type="submit" class="boton__verde" value="Guardar">
-                    <a href="#" class="boton__blanco" id="salirDatos">Cancelar</a>
-                </div>
+                    <div class="emergente__formulario__btns">
+                        <input type="submit" class="boton__verde" value="Guardar">
+                        <a href="#" class="boton__blanco" id="salirRedes">Cancelar</a>
+                    </div>
             </form>
+
         </div>
     </div>
+    </div>
+
     <div class="emergente ocultar" id="formularioAcerca">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="post">
+            <form class="emergente__formulario__contenido" method="post" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Acerca de.</h3>
                 </div>
@@ -1064,7 +790,7 @@ http_response_code(200);
     </div>
     <div class="emergente ocultar" id="agregarEducacion">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="Post">
+            <form class="emergente__formulario__contenido" method="Post" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Educacion.</h3>
                 </div>
@@ -1156,7 +882,7 @@ http_response_code(200);
 
     <div class="emergente ocultar" id="agregarExperiencia">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="POST">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega una nueva experiencia laboral</h3>
                 </div>
@@ -1235,7 +961,7 @@ http_response_code(200);
     </div>
     <div class="emergente ocultar" id="agregarProyecto">
         <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>" enctype="multipart/form-data">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega un proyecto nuevo.</h3>
                 </div>
@@ -1254,14 +980,15 @@ http_response_code(200);
                     </div>
                     <div class="campo urlProyecto">
                         <label for="nombre">Url de tu proyecto</label>
-                        <input type="text" name="nombreProyecto" id="nombre" placeholder="html, css, JavaScript ...">
+                        <input type="text" name="urlProyecto" id="nombre" placeholder="www.tu_proyecto.com">
                     </div>
-                    <div class="campo urlProyecto">
-                        <label for="fotoProyecto">Agrega una foto de tu proyecto</label>
-                        <input type="file" name="fotoProyecto" id="fotoProyecto">
+                    <div class="campo foto">
+                        <div class="input-wrapper">
+                            <input class="inputFotoPortada" type="file" id="fotoProyecto" accept="image/*" name="fotoProyecto" onchange="mostrarNombreArchivo('fotoProyecto')">
+                            <label class="custom-file-upload" for="fotoProyecto">Foto de tu proyecto</label>
+
+                        </div>
                     </div>
-                    <br>
-                    <a href="#" class="boton__negro">Nuevo proyecto</a>
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
@@ -1270,22 +997,61 @@ http_response_code(200);
             </form>
         </div>
     </div>
+    <div class="emergente ocultar" id="editarProyecto">
+        <div class="emergente__formulario">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>" enctype="multipart/form-data">
+                <div class="emergente__formulario__header sombra">
+                    <h3>Agrega un proyecto nuevo.</h3>
+                </div>
+                <div class="emergente__formulario__campos">
+
+                    <div class="campo nombre">
+                        <label for="nombreProyecto">Nombre del proyecto</label>
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre">
+                    </div>
+                    <div class="campo descripcion">
+                        <label for="descripcionProyecto">Descripción del Proyecto</label>
+                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                    </div>
+                    <div class="campo tecnologias">
+                        <label for="tecnologias">Tecnologias Utilizadas</label>
+                        <input type="text" name="tecnologias" id="tecnologias" placeholder="html, css, JavaScript ...">
+                    </div>
+                    <div class="campo urlProyecto">
+                        <label for="nombre">Url de tu proyecto</label>
+                        <input type="text" name="urlProyecto" id="nombre" placeholder="www.tu_proyecto.com">
+                    </div>
+                    <div class="campo foto">
+                        <div class="input-wrapper">
+                            <input class="inputFotoPortada" type="file" id="fotoProyecto" accept="image/*" name="fotoProyecto" onchange="mostrarNombreArchivo('fotoProyecto')">
+                            <label class="custom-file-upload" for="fotoProyecto">Foto de tu proyecto</label>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="emergente__formulario__btns">
+                    <input type="submit" class="boton__verde" value="Guardar">
+                    <a href="#" class="boton__blanco salirProyectoModificar" id="salirProyectoModificar">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
 
     <div class="emergente ocultar" id="agregarCertificacion">
         <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
+            <form action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>" class="emergente__formulario__contenido" method="POST">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega algún curso o certificado</h3>
                 </div>
                 <div class="emergente__formulario__campos">
                     <div class="campo nombre">
                         <label for="nombreCertificado">Nombre de la certificacion y/o curso.</label>
-                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Nombre">
+                        <input type="text" name="nombreCertificado" id="nombreCertificado" placeholder="Nombre">
                     </div>
                     <div class="campo descripcion">
                         <label for="descripcionCertificado">Descripción de la certificado y/o curso</label>
-                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
+                        <textarea name="descripcionCertificado" id="descripcionCertificado" cols="30" rows="5"></textarea>
                     </div>
                     <div class="campo lugar">
                         <label for="lugar">Tecnologias Utilizadas</label>
@@ -1293,14 +1059,13 @@ http_response_code(200);
                     </div>
                     <div class="campo fechaTermino">
                         <label for="fechaTermino">Fecha termino</label>
-                        <input type="date" name="fechaTermino" id="fechaTermino" ">
+                        <input type="date" name="fechaTermino" id="fechaTermino">
                     </div>
                     <div class=" campo horas">
                         <label for="horas">Cuantas horas duro la certificacion y/o curso</label>
                         <input type="number" name="horas" id="horas">
                     </div>
-                    <br>
-                    <a href="#" class="boton rojo">eliminar certificacion</a>
+
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
@@ -1309,7 +1074,7 @@ http_response_code(200);
             </form>
         </div>
     </div>
-    <div class="emergente ocultar" id="editarCertificacion">
+    <!-- <div class="emergente ocultar" id="editarCertificacion">
         <div class="emergente__formulario">
             <form action="" class="emergente__formulario__contenido">
                 <div class="emergente__formulario__header sombra">
@@ -1324,25 +1089,12 @@ http_response_code(200);
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
     <div class="emergente ocultar" id="agregarHabilidades">
         <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="post">
+            <form class="emergente__formulario__contenido" method="post" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega tus habilidades</h3>
-                </div>
-                <div class="emergente__formulario__habilidad">
-                    <?php
-                    $sqlHabilidades = "SELECT * FROM habilidad WHERE id_usuario = $idUsuario";
-                    $resultHab = $pdo->query($sqlHabilidades);
-
-                    while ($datoHab = $resultHab->fetch(PDO::FETCH_ASSOC)) :
-                    ?>
-                        <div class="insignia gris">
-                            <p><?= $datoHab['HAB_NOMBRE'] ?></p>
-                            <a class="eliminar-habilidad" data-id="<?= $datoHab['ID_HABILIDAD'] ?>">X</a>
-                        </div>
-                    <?php endwhile; ?>
                 </div>
 
                 <div class="emergente__formulario__campos">
@@ -1355,6 +1107,37 @@ http_response_code(200);
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
                     <a href="#" class="boton__blanco" id="salirAgregarHabilidades">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="emergente ocultar" id="agregarIdiomas">
+        <div class="emergente__formulario">
+            <form class="emergente__formulario__contenido" method="post" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
+                <div class="emergente__formulario__header sombra">
+                    <h3>Agrega un Idioma</h3>
+                </div>
+
+                <div class="emergente__formulario__campos">
+                    <div class="campo idiomas">
+                        <label for="idiomas">Idiomas</label>
+                        <input type="text" name="idiomas[]" id="idiomas" placeholder="Que idiomas dominas">
+                    </div>
+                    <div class="campo nivel">
+                        <label for="nivel">Nivel</label>
+                        <select name="nivel[]" id="nivel">
+                            <option disabled selected> -- selecciona el nivel --</option>
+                            <option value="basico">Básico</option>
+                            <option value="intermedio">Intermedio</option>
+                            <option value="avanzado">Avanzado</option>
+                        </select>
+                    </div>
+                    <div id="nuevos-idiomas"></div>
+                    <button type="button" class="agregar boton__negro" onclick="agregarIdioma()">Agregar idioma</button>
+                </div>
+                <div class="emergente__formulario__btns">
+                    <input type="submit" class="boton__verde" value="Guardar">
+                    <a href="#" class="boton__blanco" id="salirIdioma">Cancelar</a>
                 </div>
             </form>
         </div>
@@ -1465,6 +1248,7 @@ http_response_code(200);
     </footer>
     <script src="/src/js/app.js"></script>
     <script src="/src/js/perfilCandidato.js"></script>
+    <script src="/src/js/validacionesFormularios.js"></script>
     <script src="/src/js/headerCandidato.js"></script>
     <script src="/src/js/formularioCandidato.js"></script>
     <script src="/src/js/formulariosEmergentes.js"></script>

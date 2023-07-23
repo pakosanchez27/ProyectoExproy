@@ -399,8 +399,9 @@ function agregarIdioma() {
 }
 
 function mostrarNombreArchivo(inputId) {
-  const input = document.querySelector(inputId);
+  const input = document.getElementById(inputId); // Use getElementById to select elements by their IDs
   const fileName = input.files[0].name;
   const customUpload = document.querySelector(`label[for=${inputId}] .custom-file-upload`);
   customUpload.textContent = fileName;
 }
+

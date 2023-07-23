@@ -57,8 +57,7 @@
 
 .principal__insignias__contenedor {
     width: 80%;
-    display: grid;
-    grid-template-columns: repeat(6, auto);
+    display: flex;
     gap: 1rem;
 }
 
@@ -85,8 +84,8 @@
 
 .emergente__formulario__habilidad{
     padding: 2rem;
-    display: grid;
-    @include m.grid(6, 2rem);
+    display: flex;
+    gap: 2rem;
     height: 10rem;
     
 

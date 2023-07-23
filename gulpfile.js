@@ -57,9 +57,9 @@ function versionWebp() {
 
 function watchArchivos() {
     watch( paths.scss, css );
-    watch( paths.js, javascript );
+    // watch( paths.js, javascript );
     watch( paths.imagenes, imagenes );
     watch( paths.imagenes, versionWebp );
 }
   
-exports.default = parallel(css, javascript,  imagenes, versionWebp, watchArchivos ); 
+exports.default = parallel(css,  imagenes, versionWebp, watchArchivos ); 
