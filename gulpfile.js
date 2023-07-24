@@ -11,6 +11,8 @@ const imagemin = require('gulp-imagemin');
 const notify = require('gulp-notify');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
+var firebase = require('firebase');
+var firebaseui = require('firebaseui');
 
 const paths = {
     scss: 'src/scss/**/*.scss',

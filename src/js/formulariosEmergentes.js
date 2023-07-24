@@ -6,7 +6,7 @@ const editarPersonal = document.querySelector('#editarPersonal');
 const editarDatos = document.querySelector('#editarDatos');
 const editarAcerca = document.querySelector('#editarAcerca');
 const EducacionAgregar = document.querySelector('#EducacionAgregar');
-const EducacionModificar = document.querySelector('#EducacionModificar');
+const EducacionModificar = document.querySelectorAll('.EducacionModificar');
 const ExperienciaAgregar = document.querySelector('#ExperienciaAgregar');
 const ExperienciaModificar = document.querySelector('#ExperienciaModificar');
 const proyectoAgregar = document.querySelector('#proyectoAgregar');
@@ -56,21 +56,24 @@ const agregarIdiomas = document.querySelector('#agregarIdiomas');
 // Eventos
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Agregar
     editarFoto.addEventListener('click', mostrarFormulario);
     editarPersonal.addEventListener('click', mostrarFormulario);
     editarDatos.addEventListener('click', mostrarFormulario);
     editarAcerca.addEventListener('click', mostrarFormulario);
-    EducacionAgregar.addEventListener('click', mostrarFormulario);
-    EducacionModificar.addEventListener('click', mostrarFormulario);
     ExperienciaAgregar.addEventListener('click', mostrarFormulario);
-    // ExperienciaModificar.addEventListener('click', mostrarFormulario);
     proyectoAgregar.addEventListener('click', mostrarFormulario);
-    proyectoModificar.forEach(proyecto => {
-        proyecto.addEventListener('click', mostrarFormularioProyecto);
-    });
-    
+    EducacionAgregar.addEventListener('click', mostrarFormulario);
 
 
+
+
+    EducacionModificar.forEach(educacion => {
+        educacion.addEventListener('click', mostrarFormularioEdu);
+    })
+
+   
+    // ExperienciaModificar.addEventListener('click', mostrarFormulario);
     // editarCertificacion.addEventListener('click', mostrarFormulario);
     agregarCertificacion.addEventListener('click', mostrarFormulario);
     // certificadosModificar.addEventListener('click', mostrarFormulario);
@@ -99,6 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
     salirIdioma.addEventListener('click', salirFormulario);
 
 });
+
+function mostrarFormularioEdu(e){
+    // e.preventDefault(); 
+    if (modificarEducacion.classList.contains('ocultar')) {
+        modificarEducacion.classList.remove('ocultar');
+        modificarEducacion.classList.add('mostrarMenu');
+    }
+
+    
+}
 
 function mostrarFormularioProyecto(e) {
     e.preventDefault();
@@ -153,12 +166,6 @@ function mostrarFormulario(e) {
             if (agregarEducacion.classList.contains('ocultar')) {
                 agregarEducacion.classList.remove('ocultar');
                 agregarEducacion.classList.add('mostrarMenu');
-            }
-            break;
-        case 'EducacionModificar':
-            if (modificarEducacion.classList.contains('ocultar')) {
-                modificarEducacion.classList.remove('ocultar');
-                modificarEducacion.classList.add('mostrarMenu');
             }
             break;
         case 'ExperienciaAgregar':

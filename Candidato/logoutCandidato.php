@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>alert('El correo ya está registrado. Por favor, elija otro correo.');</script>";
     } else {
         // El correo no existe, realizar la inserción en la base de datos
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $hash = password_hash($pass, PASSWORD_DEFAULT);
 
         // Insertar el nuevo candidato en la base de datos
         $sql = "INSERT INTO usuario (correo, pass) VALUES ('$correo', '$hash')";

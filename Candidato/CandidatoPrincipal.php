@@ -36,7 +36,7 @@ $acerca = $datos['CAN_ACERCA'];
 $genero = $datos['CAN_GENERO'];
 $telefono = $datos['CAN_TELEFONO'];
 $fechaNacimiento = $datos['CAN_FECHANACIMIENTO'];
-$urlPortafolio = $datos['CAN_PORTAFOLIO'];
+$urlPortafolio = $datos['CAN_PORTAFOLIO'] ?? '';
 //  var_dump($puesto) ;
 // var_dump($nombre) ;
 //  var_dump($acerca);
@@ -305,13 +305,14 @@ $resultCer = $pdo->query($queryCer);
                         echo '<p class="text-left">No hay información de tu educación disponible.</p>';
                     } else {
                         while ($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)) :
+                            $idEducacion = $datosEdu['ID_EDUCACION'];
                     ?>
                             <div class="principal__educacion__card">
 
                                 <div class="principal__educacion__img">
                                     <img src="../build/img/banco.webp" alt="">
                                 </div>
-                                <a href="#" id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data="<?php echo $datosEdu['ID_EDUCACION'] ?>">
+                                <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>&idEducacio=<?php $datosEdu['ID_EDUCACION'] ?>"  id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data-id-edu="<?php echo $idEducacion ?>">
                                     <p class="educacion__institucion"><?php echo $datosEdu['EDU_NOMBRE_INSTITUCION'] ?></p>
                                     <p class="educacion__carrera"><?php echo $datosEdu['EDU_TITULO'] ?></p>
                                     <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_INICIO'])) ?> - <?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_FIN'])) ?></p>
@@ -835,43 +836,50 @@ $resultCer = $pdo->query($queryCer);
     </div>
     <div class="emergente ocultar" id="modificarEducacion">
         <div class="emergente__formulario">
-            <form action="Post" class="emergente__formulario__contenido">
+            <form action="POST" class="emergente__formulario__contenido">
                 <div class="emergente__formulario__header sombra">
                     <h3>Educacion.</h3>
                 </div>
 
                 <div class="emergente__formulario__campos">
-                    <div class="campo institucion">
-                        <label for="institucion">Institución Educativa</label>
-                        <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela">
-                    </div>
-                    <div class="campo fechaInicio">
-                        <label for="fechaInicio">Fecha de Inicio</label>
-                        <input type="date" name="fechaInicio" id="fechaInicio">
-                    </div>
-                    <div class="campo fechaFin">
-                        <label for="fechaFin">Fecha de Fin</label>
-                        <input type="date" name="fechaFin" id="fechaFin">
-                    </div>
-                    <div class="campo titulo">
-                        <label for="titulo">Título / Certificado</label>
-                        <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido">
-                    </div>
-                    <div class="campo nivel__estudios">
-                        <label for="nivel__estudios">Nivel</label>
-                        <select name="nivel__estudios" id="nivel__estudios">
-                            <option value="Sin estudios">Sin estudios</option>
-                            <option value="Educacion primaria">Educación Primaria</option>
-                            <option value="Educacion secundaria">Educación Secundaria</option>
-                            <option value="bachillerato">Bachillerato</option>
-                            <option value="Educacion Universitaria">Educación Universitaria</option>
-                            <option value="posgrado">Posgrado</option>
-                        </select>
+                    <?php
+                    $sqlEdu = "SELECT * FROM EDUCACION WHERE ID_USUARIO = $idUsuario AND ID_EDUCACION = $idEducacion";
+                    $result = $pdo->query($sqlEdu);
+                    while ($datosEdu = $result->fetch(PDO::FETCH_ASSOC)) :
+                    ?>
+                        <div class="campo institucion">
+                            <label for="institucion">Institución Educativa</label>
+                            <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela" value="<?php echo htmlspecialchars($datosEdu['EDU_NOMBRE_INSTITUCION']); ?>">
+                        </div>
+                        <div class="campo fechaInicio">
+                            <label for="fechaInicio">Fecha de Inicio</label>
+                            <input type="date" name="fechaInicio" id="fechaInicio" value="<?php echo $datosEdu['EDU_FECHA_INICIO']; ?>">
+                        </div>
+                        <div class="campo fechaFin">
+                            <label for="fechaFin">Fecha de Fin</label>
+                            <input type="date" name="fechaFin" id="fechaFin" value="<?php echo $datosEdu['EDU_FECHA_FIN']; ?>">
+                        </div>
+                        <div class="campo titulo">
+                            <label for="titulo">Título / Certificado</label>
+                            <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido" value="<?php echo htmlspecialchars($datosEdu['EDU_TITULO']); ?>">
+                        </div>
+                        <div class="campo nivel__estudios">
+                            <label for="nivel__estudios">Nivel</label>
+                            <select name="nivel__estudios" id="nivel__estudios">
+                                <option value="Sin estudios" <?php if ($datosEdu['EDU_NIVEL'] === 'Sin estudios') echo 'selected'; ?>>Sin estudios</option>
+                                <option value="Educacion primaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion primaria') echo 'selected'; ?>>Educación Primaria</option>
+                                <option value="Educacion secundaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion secundaria') echo 'selected'; ?>>Educación Secundaria</option>
+                                <option value="bachillerato" <?php if ($datosEdu['EDU_NIVEL'] === 'bachillerato') echo 'selected'; ?>>Bachillerato</option>
+                                <option value="Educacion Universitaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion Universitaria') echo 'selected'; ?>>Educación Universitaria</option>
+                                <option value="posgrado" <?php if ($datosEdu['EDU_NIVEL'] === 'posgrado') echo 'selected'; ?>>Posgrado</option>
+                            </select>
+                        </div>
 
-                    </div>
-
-                    <a href="#" class="boton__rojo">Eliminar</a>
+                        <a href="#" class="boton__rojo">Eliminar</a>
+                    <?php endwhile; ?>
                 </div>
+
+
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
                     <a href="#" class="boton__blanco" id="salirEducacionModificar">Cancelar</a>
@@ -1007,7 +1015,7 @@ $resultCer = $pdo->query($queryCer);
 
                     <div class="campo nombre">
                         <label for="nombreProyecto">Nombre del proyecto</label>
-                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre">
+                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre" value="<?php echo $datosEdu['EDU_NOMBRE_INSTITUCION'] ?>">
                     </div>
                     <div class="campo descripcion">
                         <label for="descripcionProyecto">Descripción del Proyecto</label>
@@ -1028,6 +1036,8 @@ $resultCer = $pdo->query($queryCer);
 
                         </div>
                     </div>
+
+
                 </div>
                 <div class="emergente__formulario__btns">
                     <input type="submit" class="boton__verde" value="Guardar">
