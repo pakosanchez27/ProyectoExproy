@@ -287,6 +287,20 @@ function mostrarPerfil(event) {
 
   reader.readAsDataURL(input.files[0]);
 }
+function mostrarPerfilR(event) {
+  var input = event.target;
+  var reader = new FileReader();
+
+  reader.onload = function () {
+    var dataURL = reader.result;
+    var imagenPreview = document.querySelector(".previewPerfil__foto__R");
+
+    imagenPreview.style.backgroundImage = "url('" + dataURL + "')";
+  };
+
+  // Leer el archivo seleccionado y obtener la URL como base64
+  reader.readAsDataURL(input.files[0]);
+}
 
 function mostrarPortada(event) {
   var input = event.target;

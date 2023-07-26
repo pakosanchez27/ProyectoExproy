@@ -3,42 +3,52 @@
 
 require '../include/config.php';
 
-// Verificar si se ha enviado el formulario
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Obtener los valores enviados por el formulario
     $email = trim($_POST['email']);
     $pass = trim($_POST['pass']);
-    //    Consulta 
-
-    $sql = "SELECT * FROM usuario WHERE CORREO = '$email'";
-    $result = $pdo->query($sql);
-    $dato = $result->fetch(PDO::FETCH_ASSOC);
-    $errores = [];
-    $idUsuario = $dato['ID_USUARIO'];
-    // var_dump($dato);
     
-    
-    // var_dump($datosCan);
-    
-    
-    if($dato){
-        if(password_verify($pass, $dato['PASS'])){
+    // Validar que los campos no estén vacíos
+    if (empty($email) || empty($pass)) {
+        $errores[] = 'Por favor, ingresa tu correo electrónico y contraseña.';
+    } else {
+        // Validar el formato del correo electrónico
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errores[] = 'El formato del correo electrónico es inválido.';
+        } else {
+            // Consultar si el usuario existe en la base de datos
+            $sql = "SELECT * FROM usuario WHERE CORREO = '$email'";
+            $result = $pdo->query($sql);
+            $dato = $result->fetch(PDO::FETCH_ASSOC);
             
-            
-            session_start();
-                        // Llenar el arreglo de la sesion
-                    
+            if ($dato) {
+                $tipo = $dato['TIPO'];
+                
+                // var_dump($tipo);
+                // Verificar el tipo de usuario
+                if ($tipo == 'candidato') {
+                    if (password_verify($pass, $dato['PASS'])) {
+                        session_start();
+                        // Llenar el arreglo de la sesión
                         $_SESSION['login'] = true;
-    
                         header('Location: /Candidato/CandidatoPrincipal.php?id=' . $dato['ID_USUARIO']);
-        }else{
-            $errores[] = 'Datos incorrectos';
+                        exit;
+                    } else {
+                        $errores[] = 'Usuario o Contraseña Incorrecta';
+                    }
+                } elseif ($tipo == 'empresa') {
+                    $errores[] = 'El usuario está registrado como Empresa.';
+                }
+            } else {
+                $errores[] = 'El usuario no existe.';
+            }
         }
-    } else{
-        $errores[] = 'Usuario no existe';
     }
-    
 }
 ?>
+
+
 
 
 
@@ -74,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="Banner__empresa">
                 <img src="../src/img/admiracion.png" alt="Signo de advertencia">
-                <p>¿Buscas Talento? <a href="#">Inicia Sesión aquí</a></p>
+                <p>¿Buscas Talento? <a href="/Empresa/logoutEmpresa.php">Inicia Sesión aquí</a></p>
             </div>
             <div class="loginCandidato__formulario">
                 <form method="POST" id="formulario">
@@ -101,11 +111,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </a>
                     </div>
                 </form>
-                <div class="error">
-                                <?php foreach ($errores as $error) : ?>
-                                    <p><?php echo $error ?></p>
-                                <?php endforeach ?>
+                <?php if (isset($errores) && !empty($errores)): ?>
+                            <div class="mensajeError">
+                                <ul>
+                                    <?php foreach ($errores as $error): ?>
+                                        <li class="bannerError"><?php echo $error; ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
+                        <?php endif; ?>
                 <div class="registrar">
                     <p>¿Aún no tienes cuenta?</p>
                     <a href="logoutCandidato.php">Regístrate</a>

@@ -30,31 +30,31 @@
         <div class="header__navegacion">
             <div class="navegacion__bloque1">
                 <nav>
-                    <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
-                    <a href="#" class="navegacion__enlace">Empresas</a>
+                    <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
+                    <a href="/" class="navegacion__enlace">Empresas</a>
                     <a href="#" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">
-                <a href="#" class="navegacion__enlace">Inicia Sesión</a>
-                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Inicia Sesión</a>
+                <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
             </div>
 
         </div>
         <div class="navegacion__mobil">
-            <img src="src/img/menu.png" alt="menu" id="menu">
+            <img src="/build/img/menu.webp" alt="menu" id="menu">
         </div>
         <div class="header__navegacionMobile ocultarMenu" id="menuMobile">
 
             <nav class="navegacionMobile__menu">
                 <a href="#" class="navegacion__enlace--cerrar"><img src="src/img/error.png" alt="Boton de error"
                         id="cerrar"></a>
-                <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
+                <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
                 <a href="#" class="navegacion__enlace">Empresa</a>
                 <a href="#" class="navegacion__enlace">Candidatos</a>
-                <a href="#" class="navegacion__enlace">Iniciar Sesion</a>
-                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Iniciar Sesion</a>
+                <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
             </nav>
 

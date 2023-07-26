@@ -135,20 +135,20 @@ $resultCer = $pdo->query($queryCer);
             <div class="header__derecha header__desktop">
                 <nav class="candidato__navegacion">
                     <div class="navegacion__opc">
-                        <a href="candidatoEmpleos.html">
+                        <a href="candidatoEmpleos.php">
                             <img src="../src/img/portafolio.png" alt="Logo portafolio">
                             <p>Empleo</p>
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        <a href="candidatoEvaluacion.php"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                             <p>Evaluacion</p>
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoChat.html">
+                        <a href="candidatoChat.php">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
                             <p>Chats</p>
                         </a>
@@ -163,18 +163,18 @@ $resultCer = $pdo->query($queryCer);
             <div class="header__mobile " id="header__mobile">
                 <nav class="candidato__navegacion__mobile">
                     <div class="navegacion__opc">
-                        <a href="candidatoEmpleos.html">
+                        <a href="candidatoEmpleos.php">
                             <img src="../build/img/portafolio.webp" alt="Logo portafolio">
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoEvaluacion.html"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        <a href="candidatoEvaluacion.php"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoChat.html">
+                        <a href="candidatoChat.php">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
 
                         </a>
@@ -192,7 +192,7 @@ $resultCer = $pdo->query($queryCer);
                 <h3><?php echo $nombre; ?>/h3>
             </div>
 
-            <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+            <a href="CandidatoPrincipal.php" class="boton__verde">Ver perfil</a>
             <hr>
             <nav class="perfilDesplebable__cuenta">
                 <a href="#" class="enlace">Ayuda</a>
@@ -210,7 +210,7 @@ $resultCer = $pdo->query($queryCer);
                 <h3><?php echo $nombre . " " . $apellido; ?></h3>
             </div>
 
-            <a href="CandidatoPrincipal.html" class="boton__verde">Ver perfil</a>
+            <a href="CandidatoPrincipal.php" class="boton__verde">Ver perfil</a>
             <hr>
             <nav class="perfilDesplebable__cuenta">
                 <a href="#" class="enlace">Ayuda</a>
@@ -532,38 +532,19 @@ $resultCer = $pdo->query($queryCer);
                         <img src="../src/img/blog.jpg" alt="foto entrada">
                         <div class="card__info">
                             <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
+                            <P class="card__info__autor">Escrito el : <span>20/01/2020 </span>por: </span>Admin</span></p>
+                            <P class="card__info__descripcion">Consejos para mejorar el tu CV </p>
                         </div>
                     </a>
                     <a href="#" class="entrada__blog__card">
                         <img src="../src/img/blog.jpg" alt="foto entrada">
                         <div class="card__info">
                             <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
+                            <P class="card__info__autor">Escrito el : <span>20/01/2020 </span>por: </span>Admin</span></p>
+                            <P class="card__info__descripcion">Consejos para mejorar el tu CV</p>
                         </div>
                     </a>
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-                    <a href="#" class="entrada__blog__card">
-                        <img src="../src/img/blog.jpg" alt="foto entrada">
-                        <div class="card__info">
-                            <p class="card__info__titulo">Mejora tu cv en AgoraTalent</p>
-                            <P class="card__info__autor">Autor - fecha </p>
-                        </div>
-                    </a>
-
+                    
                 </div>
             </div>
             <div class="promo__test contenedor sombra">
@@ -1194,10 +1175,10 @@ $resultCer = $pdo->query($queryCer);
             <div class="footer__seccion">
                 <nav>
                     <p>Contenido</p>
-                    <a href="CandidatoPrincipal.html" class="enlace">Inicio</a>
-                    <a href="candidatoEmpleos.html" class="enlace">Empleos</a>
-                    <a href="candidatoEvaluacion.html" class="enlace">Evaluaciones</a>
-                    <a href="candidatoChat.html" class="enlace">Chats</a>
+                    <a href="CandidatoPrincipal.php" class="enlace">Inicio</a>
+                    <a href="candidatoEmpleos.php" class="enlace">Empleos</a>
+                    <a href="candidatoEvaluacion.php" class="enlace">Evaluaciones</a>
+                    <a href="candidatoChat.php" class="enlace">Chats</a>
                     <a href="#" class="enlace">Cerrar Sesión</a>
                 </nav>
             </div>

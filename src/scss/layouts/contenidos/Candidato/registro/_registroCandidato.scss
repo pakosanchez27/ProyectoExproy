@@ -455,7 +455,20 @@
         margin-left: 5rem;
         background-size: cover;
         background-position: center center;
+
+        &__R{
+            border: v.$blanco 4px solid;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            background-color: gray;
+            margin-top: -5rem;
+            margin-left: 5rem;
+            background-size: cover;
+            background-position: center center;
+        }
     }
+    
 
 }
 

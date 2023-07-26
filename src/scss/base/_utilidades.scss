@@ -45,7 +45,26 @@
     color: rgb(199, 7, 7);
     font-size: 1rem;
 }
+.bannerError{
+    color: v.$blanco;
+    background-color:rgb(199, 7, 7); ;
+    font-size: 1.2rem;
+    width: 100%;
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    border-radius: .5rem;
 
+  
+
+}
+li{
+    list-style: none;
+
+  }
+  ul{
+    padding: 0;
+  }
 .block{
     display: block;
 }

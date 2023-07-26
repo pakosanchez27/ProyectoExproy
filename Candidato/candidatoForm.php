@@ -6,7 +6,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $idUsuario = $_GET['id'] ?? null;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];

@@ -27,14 +27,14 @@
         <div class="header__navegacion">
             <div class="navegacion__bloque1">
                 <nav>
-                    <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
-                    <a href="#" class="navegacion__enlace">Empresas</a>
+                    <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
+                    <a href="/" class="navegacion__enlace">Empresas</a>
                     <a href="#" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">
-                <a href="#" class="navegacion__enlace">Inicia Sesión</a>
-                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Inicia Sesión</a>
+                <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
             </div>
 
@@ -47,11 +47,11 @@
             <nav class="navegacionMobile__menu">
                 <a href="#" class="navegacion__enlace--cerrar"><img src="src/img/error.png" alt="Boton de error"
                         id="cerrar"></a>
-                <a href="nosotros.html" class="navegacion__enlace">Nosotros</a>
+                <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
                 <a href="#" class="navegacion__enlace">Empresa</a>
                 <a href="#" class="navegacion__enlace">Candidatos</a>
-                <a href="#" class="navegacion__enlace">Iniciar Sesion</a>
-                <a href="#" class="navegacion__enlace">registrate</a>
+                <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Iniciar Sesion</a>
+                <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
             </nav>
 
@@ -65,7 +65,7 @@
                 <p>Encuentra a los mejores talentos en TI</p>
                 <h1>Transforma tu proceso de contratación </h1>
                 <div class="botones">
-                    <a href="" class="boton__verde">Encuentra Candidatos</a>
+                    <a href="/Empresa/logoutEmpresa.php" class="boton__verde">Encuentra Candidatos</a>
                     <a href="" class="boton__blanco">Encuentra Empleo</a>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         </div>
     </section>
     <div class="botonesMobile">
-        <a href="#" class="boton__verde">Encuentra Candidatos</a>
+        <a href="/Empresa/logoutEmpresa.php" class="boton__verde">Encuentra Candidatos</a>
         <a href="#" class="boton__negro">Encuentra Empleo</a>
     </div>
 
@@ -415,9 +415,9 @@
             <div class="footer__seccion">
                 <nav>
                     <p>Contenido</p>
-                    <a href="#" class="enlace">Empresas</a>
+                    <a href="/Empresa/logoutEmpresa.php" class="enlace">Empresas</a>
                     <a href="#" class="enlace">Candidatos</a>
-                    <a href="nosotros.html" class="enlace">Nosotros</a>
+                    <a href="nosotros.php" class="enlace">Nosotros</a>
                     <a href="#" class="enlace">App Móvil</a>
                 </nav>
             </div>

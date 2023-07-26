@@ -1,0 +1,84 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.prospectos {
+    &__card {
+        width: 30rem;
+        height: auto;
+        display: grid;
+        grid-template-rows: repeat(2, 30% 70%);
+        border-radius: .5rem;
+        background-color: v.$blanco;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s; /* Agregamos una transición suave */
+
+        &__portada {
+            border-top-left-radius: .5rem;
+            border-top-right-radius: .5rem;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-image: url(../img/1646811898925.jpeg);
+        }
+
+        &__infoProspecto {
+            height: 30rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            gap: 0.5rem; /* Ajustamos el espacio entre elementos */
+
+            img {
+                margin-top: -5rem;
+                width: 8rem;
+                height: 8rem;
+                border-radius: 50%;
+            }
+        }
+
+        /* Efecto de hover para el card */
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+/* Estilos para los párrafos dentro del .prospectos__card__infoProspecto */
+.prospectos__card__infoProspecto p {
+    margin: 0; /* Quitamos el margen por defecto para los párrafos */
+}
+
+p.infoProspecto__nombre {
+    font-size: 1.8rem;
+    font-weight: v.$bold;
+}
+
+p.infoProspecto__puesto {
+    font-size: 1.6rem;
+}
+
+p.infoProspecto__vacante {
+    font-size: 1.6rem;
+    color: v.$primario;
+}
+
+/* Estilos para el botón "Ver perfil" */
+a.boton__verde__postulacion {
+    background-color: v.$primario;
+    color: v.$blanco;
+    text-decoration: none;
+    padding: 1rem 1rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+
+    &:hover {
+        background-color: darken(v.$primario, 10%);
+    }
+}
