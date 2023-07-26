@@ -28,11 +28,18 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 2rem;
+        line-height: 1;
 
         & h3 {
             font-size: 2rem;
-            margin: 0;
+
             color: v.$negro;
+            padding: 0;
+            margin: 0;
+        }
+        & p{
+            padding: 0;
+            margin: 0;
         }
     }
 

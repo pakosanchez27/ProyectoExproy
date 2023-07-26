@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require '../include/config.php';
 
 $idUsuario = $_GET['id'] ?? null;
@@ -44,57 +46,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // // Validaciones para cada campo
-    // if (empty($empresa)) {
-    //     $errors['empresa'] = "El campo Nombre de la Empresa es obligatorio.";
-    // }
+     if (empty($empresa)) {
+         $errors['empresa'] = "El campo Nombre de la Empresa es obligatorio.";
+     }
 
-    // if (empty($descripcion)) {
-    //     $errors['descripcion'] = "El campo Descripción es obligatorio.";
-    // }
+     if (empty($descripcion)) {
+         $errors['descripcion'] = "El campo Descripción es obligatorio.";
+     }
 
-    // if (empty($url)) {
-    //     $errors['url'] = "El campo URL de la empresa es obligatorio.";
-    // }
+     if (empty($url)) {
+         $errors['url'] = "El campo URL de la empresa es obligatorio.";
+     }
 
-    // if (empty($direccion)) {
-    //     $errors['direccion'] = "El campo Dirección es obligatorio.";
-    // }
+     if (empty($direccion)) {
+         $errors['direccion'] = "El campo Dirección es obligatorio.";
+     }
 
-    // if (empty($estado)) {
-    //     $errors['estado'] = "Debes seleccionar un estado.";
-    // }
+     if (empty($estado)) {
+         $errors['estado'] = "Debes seleccionar un estado.";
+     }
 
-    // if (empty($postal)) {
-    //     $errors['postal'] = "El campo Código Postal es obligatorio.";
-    // }
+     if (empty($postal)) {
+         $errors['postal'] = "El campo Código Postal es obligatorio.";
+     }
 
-    // if (empty($ciudad)) {
-    //     $errors['ciudad'] = "Debes seleccionar una ciudad.";
-    // }
+     if (empty($ciudad)) {
+         $errors['ciudad'] = "Debes seleccionar una ciudad.";
+     }
 
-    // if (empty($nombre)) {
-    //     $errors['nombre'] = "El campo Nombre es obligatorio.";
-    // }
+     if (empty($nombre)) {
+         $errors['nombre'] = "El campo Nombre es obligatorio.";
+     }
 
-    // if (empty($apellido)) {
-    //     $errors['apellido'] = "El campo Apellido es obligatorio.";
-    // }
+     if (empty($apellido)) {
+         $errors['apellido'] = "El campo Apellido es obligatorio.";
+     }
 
-    // if (empty($genero)) {
-    //     $errors['genero'] = "Debes seleccionar un género.";
-    // }
+     if (empty($genero)) {
+         $errors['genero'] = "Debes seleccionar un género.";
+     }
 
-    // if (empty($telefono)) {
-    //     $errors['telefono'] = "El campo Número de Teléfono es obligatorio.";
-    // }
+     if (empty($telefono)) {
+         $errors['telefono'] = "El campo Número de Teléfono es obligatorio.";
+     }
 
-    // if (empty($nacimiento)) {
-    //     $errors['nacimiento'] = "El campo Fecha de nacimiento es obligatorio.";
-    // }
+     if (empty($nacimiento)) {
+         $errors['nacimiento'] = "El campo Fecha de nacimiento es obligatorio.";
+     }
 
-    // if (empty($cargo)) {
-    //     $errors['cargo'] = "El campo Cargo es obligatorio.";
-    // }
+     if (empty($cargo)) {
+         $errors['cargo'] = "El campo Cargo es obligatorio.";
+    }
 
    
 
@@ -133,8 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="registroEmpresa__contenedor">
             <div class="registroEmpresa__izquierda">
                 <a href="/" class="logo">AgoraTalent</a>
-                <img src="../build/img/bg-registro-empresa.webp" alt="Img">
-                <p>Simplificando la búsqueda y selección de talento</p>
             </div>
             <div class="registroEmpresa__derecha">
                 <div class="registroEmpresa__bienvenida">

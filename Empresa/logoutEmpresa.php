@@ -82,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+ 
     <div class="loginEmpresa">
         <div class="loginEmpresa__contenedor">
             <div class="loginEmpresa__izquierda">

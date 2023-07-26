@@ -1,0 +1,38 @@
+@use 'base/variables' as v;
+@use 'base/mixins'as m ;
+
+
+.vacanteDetalle{
+    display: flex;
+    justify-content: center;
+
+    @include m.tablet {
+        padding: 2rem 5rem;
+    }
+
+    &__contenedor {
+        background-color: v.$blanco;
+        width: 100%;
+        border-radius: 0.5rem;
+        padding: 2rem;
+
+        @include m.tablet {
+            width: 80%;
+            padding: 2rem 5rem;
+        }
+    }
+}
+
+.detalleEmpresa__vacante {
+    display: flex;
+    justify-content: space-between;
+  
+    align-items: center;
+   
+  }
+
+  .regresarVacante img{
+    rotate: 360deg;
+    width: 3rem;
+  }
+  
