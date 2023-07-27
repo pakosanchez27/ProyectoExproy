@@ -55,6 +55,8 @@
 
 
 .misVacantes__card {
+    width: 20rem;
+    height: 25rem;
     background-color: v.$blanco;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -64,6 +66,7 @@
     padding: 1.5rem;
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
+    
 
     .misVacantes__img {
         width: 80px;

@@ -6,14 +6,13 @@ const editarPersonal = document.querySelector('#editarPersonal');
 const editarDatos = document.querySelector('#editarDatos');
 const editarAcerca = document.querySelector('#editarAcerca');
 const EducacionAgregar = document.querySelector('#EducacionAgregar');
-const EducacionModificar = document.querySelectorAll('.EducacionModificar');
+
 const ExperienciaAgregar = document.querySelector('#ExperienciaAgregar');
-const ExperienciaModificar = document.querySelector('#ExperienciaModificar');
+
 const proyectoAgregar = document.querySelector('#proyectoAgregar');
-const proyectoModificar = document.querySelectorAll('.proyectoModificar');
+
 
 const certificadosAgregar = document.querySelector('#certificadosAgregar');
-// const certificadosModificar = document.querySelector('#certificadosModificar');
 const insigniasEditar = document.querySelector('#insigniasEditar');
 const redesAgregar = document.querySelector('#redesAgregar');
 const idiomasAgregar = document.querySelector('#idiomasAgregar');
@@ -29,7 +28,7 @@ const salirExperienciaAgregar = document.querySelector('#salirExperienciaAgregar
 // const salirExperienciaModificar = document.querySelector('#salirExperienciaModificar');
 const salirProyectoAgregar = document.querySelector('#salirProyectoAgregar');
 const salircertificadosAgregar = document.querySelector('#salircertificadosAgregar');
-const salirProyectoModificar = document.querySelectorAll('.salirProyectoModificar');
+
 const salirAgregarHabilidades = document.querySelector('#salirAgregarHabilidades');
 const salirRedes = document.querySelector('#salirRedes');
 const salirIdioma = document.querySelector('#salirIdioma');
@@ -41,7 +40,6 @@ const formularioPersonal = document.querySelector('#personal');
 const formularioContacto = document.querySelector('#formularioContacto');
 const formularioAcerca = document.querySelector('#formularioAcerca');
 const agregarEducacion = document.querySelector('#agregarEducacion');
-const modificarEducacion = document.querySelector('#modificarEducacion');
 const agregarExperiencia = document.querySelector('#agregarExperiencia');
 // const editarExperiencia = document.querySelector('#editarExperiencia');
 const agregarProyecto = document.querySelector('#agregarProyecto');
@@ -68,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    EducacionModificar.forEach(educacion => {
-        educacion.addEventListener('click', mostrarFormularioEdu);
-    })
+   
 
    
     // ExperienciaModificar.addEventListener('click', mostrarFormulario);
@@ -87,14 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     salirDatos.addEventListener('click', salirFormulario);
     salirAcerca.addEventListener('click', salirFormulario);
     salirAgregarEducacion.addEventListener('click', salirFormulario);
-    salirEducacionModificar.addEventListener('click', salirFormulario);
     salirExperienciaAgregar.addEventListener('click', salirFormulario);
-    salirExperienciaModificar.addEventListener('click', salirFormulario);
     // salirProyectoModificar.addEventListener('click', salirFormulario);
     salirProyectoAgregar.addEventListener('click', salirFormulario);
-    salirProyectoModificar.forEach(salirProyectoBtn => {
-        salirProyectoBtn.addEventListener('click', salirProyecto);
-    });
+   
     salircertificadosAgregar.addEventListener('click', salirFormulario);
     // salircertificadosModificar.addEventListener('click', salirFormulario);
     salirAgregarHabilidades.addEventListener('click', salirFormulario);
@@ -103,34 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function mostrarFormularioEdu(e){
-    // e.preventDefault(); 
-    if (modificarEducacion.classList.contains('ocultar')) {
-        modificarEducacion.classList.remove('ocultar');
-        modificarEducacion.classList.add('mostrarMenu');
-    }
-
-    
-}
-
-function mostrarFormularioProyecto(e) {
-    e.preventDefault();
 
 
-    // Continuar con el resto del código para mostrar el formulario emergente
-    if (editarProyecto.classList.contains('ocultar')) {
-        editarProyecto.classList.remove('ocultar');
-        editarProyecto.classList.add('mostrarMenu');
-    }
-}
 
-function salirProyecto(e){
-    e.preventDefault(); 
-    if (editarProyecto.classList.contains('mostrarMenu')) {
-        editarProyecto.classList.remove('mostrarMenu');
-        editarProyecto.classList.add('ocultar');
-    }
-}
+
 // Funciones
 function mostrarFormulario(e) {
     // e.preventDefault();
@@ -174,12 +142,7 @@ function mostrarFormulario(e) {
                 agregarExperiencia.classList.add('mostrarMenu');
             }
             break;
-        case 'ExperienciaModificar':
-            if (editarExperiencia.classList.contains('ocultar')) {
-                editarExperiencia.classList.remove('ocultar');
-                editarExperiencia.classList.add('mostrarMenu');
-            }
-            break;
+      
         case 'proyectoAgregar':
             if (agregarProyecto.classList.contains('ocultar')) {
                 agregarProyecto.classList.remove('ocultar');
@@ -253,24 +216,14 @@ function salirFormulario(e) {
                 agregarEducacion.classList.add('ocultar');
             }
             break;
-        case 'salirEducacionModificar':
-            if (modificarEducacion.classList.contains('mostrarMenu')) {
-                modificarEducacion.classList.remove('mostrarMenu');
-                modificarEducacion.classList.add('ocultar');
-            }
-            break;
+      
         case 'salirExperienciaAgregar':
             if (agregarExperiencia.classList.contains('mostrarMenu')) {
                 agregarExperiencia.classList.remove('mostrarMenu');
                 agregarExperiencia.classList.add('ocultar');
             }
             break;
-        case 'salirExperienciaModificar':
-            if (editarExperiencia.classList.contains('mostrarMenu')) {
-                editarExperiencia.classList.remove('mostrarMenu');
-                editarExperiencia.classList.add('ocultar');
-            }
-            break;
+   
         case 'salirProyectoAgregar':
             if (agregarProyecto.classList.contains('mostrarMenu')) {
                 agregarProyecto.classList.remove('mostrarMenu');

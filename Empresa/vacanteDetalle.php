@@ -121,10 +121,10 @@ $fechaCreacionVacante = $datosVacante['FECHA_CREACION_VACANTE'];
     <div class="vacanteDetalle__contenedor">
       <div class="detalleVacante">
         <div class="detalleEmpresa__vacante">
-          <a href="#" onclick="window.history.back();" class="detalleMobile__regresar">
+          <a href="/Empresa/misvacantes.php?id=<?php echo $idUsuario ?>" class="detalleMobile__regresar">
             <img src="../build/img/flecha.webp">
           </a>
-          <a href="#" class="detalleMobile__regresar regresarVacante">
+          <a href="/Empresa/editarVacante.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idVacante=<?php echo $idVacante ?>" class="detalleMobile__regresar regresarVacante">
             <img src="../build/img/lapiz (2).png">
           </a>
         </div>

@@ -73,7 +73,7 @@ display: inline-block;
 }
 
 .activo{
-    background-color: v.$primario;
+    background-color: v.$primario !important;
 }
 .noPaso{
     background-color: rgb(189, 15, 15);
@@ -135,4 +135,8 @@ input[type="text"] {
     background-color: #000;
 }
 
+.rechazado{
+    background-color: rgb(173, 15, 15) !important;
+    
+}
 /* Otros estilos para mejorar la apariencia del formulario según tus necesidades */

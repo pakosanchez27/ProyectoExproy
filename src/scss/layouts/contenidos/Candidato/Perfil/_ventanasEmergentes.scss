@@ -27,7 +27,7 @@
     @include m.tablet{
         border-radius: .5rem;
         width: 75%;
-        max-height: 60rem;
+        max-height: 65rem;
 
     }
     @include m.desktop{
@@ -89,3 +89,15 @@
 
 }
 
+
+
+.modificarEducacion{
+    display: flex;
+    justify-content: center;
+    padding: 2rem 5rem;
+
+}
+
+.modificarEducacion__form{
+    height: auto;
+}

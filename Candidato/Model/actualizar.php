@@ -120,17 +120,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
-        
-    
+
+
         // Consulta para obtener el correo actual del usuario
         $updateEmail = "UPDATE usuario SET CORREO = '$email' WHERE id_usuario = $idUsuario";
         // var_dump($updateEmail);
         $resultTel = $pdo->query($updateEmail);
-   
-       
     }
 
-    if(isset($_POST['urlPortafolio'])){
+    if (isset($_POST['urlPortafolio'])) {
         $portafolio = $_POST['urlPortafolio'];
         $updatePortafolio = "UPDATE candidato SET CAN_PORTAFOLIO = '$portafolio' WHERE id_usuario = $idUsuario";
         // var_dump($updateEmail);
@@ -139,18 +137,82 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['acerca'])) {
         $acercaTexto = $_POST['acerca'];
-    
+
         // Prepare the SQL statement with a placeholder for the parameter
         $updateAcerca = "UPDATE candidato SET can_acerca = :acercaTexto WHERE id_usuario = :idUsuario";
         $stmt = $pdo->prepare($updateAcerca);
-    
+
         // Bind the parameters
         $stmt->bindParam(':acercaTexto', $acercaTexto, PDO::PARAM_STR);
         $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
-    
+
         // Execute the statement
         $resultAcerca = $stmt->execute();
     }
-    
+
+    if (isset($_POST['institucion']) && isset($_POST['fechaInicio']) && isset($_POST['titulo']) && isset($_POST['titulo']) && isset($_POST['nivel__estudios'])) {
+        $institucion = $_POST['institucion'];
+        $fechaInicio = $_POST['fechaInicio'];
+        $fechaFin = $_POST['fechaFin'];
+        $titulo = $_POST['titulo'];
+        $nivelEstudios = $_POST['nivel__estudios'];
+
+        $updateEducacion = "UPDATE educacion SET EDU_NOMBRE_INSTITUCION = '$institucion', EDU_FECHA_INICIO = '$fechaInicio', EDU_FECHA_FIN = '$fechaFin', EDU_TITULO = '$titulo', EDU_NIVEL = '$nivelEstudios' WHERE id_usuario = '$idUsuario'";
+        // echo $updateEducacion;
+        $resultEdu = $pdo->query($updateEducacion);
+    }
+
+    if (isset($_POST['empresa']) && isset($_POST['descripcion']) && isset($_POST['cargo']) && isset($_POST['duracion'])) {
+
+        $empresa = $_POST['empresa'];
+        $descripcion = $_POST['descripcion'];
+        $cargo = $_POST['cargo'];
+        $duracion = $_POST['duracion'];
+
+        $updateExperiencia = "UPDATE experiencia SET EXP_NOMBRE_EMPRESA = '$empresa', EXP_DESCRIPCION = '$descripcion', EXP_CARGO = '$cargo', EXP_DURACION = '$duracion' WHERE id_usuario = '$idUsuario'";
+        // echo $updateEducacion;
+        $resultExp = $pdo->query($updateExperiencia);
+    }
+    if (isset($_POST['nombreProyecto']) && isset($_POST['descripcionProyecto'])  && isset($_POST['tecnologias'])  && isset($_POST['urlProyecto']) && isset($_FILES['fotoProyecto'])) {
+
+        $nombreProyecto = $_POST['nombreProyecto'];
+        $descripcion = $_POST['descripcionProyecto'];
+        $tecnologias = $_POST['tecnologias'];
+        $urlProyecto = $_POST['urlProyecto'];
+        $fotoProyecto = $_FILES['fotoProyecto'];
+
+        $sqlProyecto = "SELECT * FROM proyectos WHERE id_usuario = '$idUsuario'";
+        $resultProyecto = $pdo->query($sqlProyecto);
+        $datos = $resultProyecto->fetch(PDO::FETCH_ASSOC);
+
+        $perfil = $_FILES['fotoProyecto'];
+
+        $carpetaImagenes = '../CandidatoIMG/';
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        $nombrePerfil = '';
+        if ($perfil['name']) {
+            // Eliminar la imagen previa si existe
+            if (file_exists($carpetaImagenes . $datos['PROY_FOTO'])) {
+                unlink($carpetaImagenes . $datos['PROY_FOTO']);
+            }
+
+            // Generar un nuevo nombre de archivo único
+            $nombrePerfil = md5(uniqid(rand(), true)) . ".jpg";
+
+            // Subir la imagen
+            move_uploaded_file($perfil['tmp_name'], $carpetaImagenes . $nombrePerfil);
+        } else {
+            $nombrePerfil = $datos['PROY_FOTO'];
+        }
+
+        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE id_usuario = '$idUsuario'";
+        // echo $updateProyecto;
+        $resultProy = $pdo->query($updateProyecto);
+    }
+
+
     header("Location: /Candidato/CandidatoPrincipal.php?id=$idUsuario&msj=1");
 }

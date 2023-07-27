@@ -25,6 +25,7 @@
             display: flex;
             flex-direction: column;
             line-height: 1.5;
+           
 
             & h3{
                 padding: 0;
@@ -40,10 +41,11 @@
 
     &__texto{
         color: v.$negro;
-
-        p.proceso{
+        text-align: left;
+        p.procesoCan{
             font-weight: v.$bold;
             color: v.$primario;
+            text-align: left ; 
         }
     }
     &__flujo{

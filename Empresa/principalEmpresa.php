@@ -22,7 +22,15 @@ $fotoPortada = $datosUs['EMP_FOTOPORTADA'];
 $fotoPerfil = $datosUs['EMP_FOTORECLUTADOR'];
 $genero = $datosUs['EMP_GENERO'];
 $IdEmpresa = $datosUs['ID_EMPRESA'];
-$saludo = ($genero = 'hombre') ? 'Bienvenido!' : 'Bienvenida!';
+$saludo;
+
+if($genero == 'hombre'){
+    $saludo = 'Bienvenido!';
+}else{
+    $saludo = 'Bienvenida!';
+}
+
+
 
 // echo $saludo;
 
@@ -97,6 +105,7 @@ $resultVacante = $pdo->query($sqlVacantes);
     </header>
 
     <body>
+    
 
         <main class="dash animate__animated animate__fadeIn">
             <div class="dash__contenedor">
@@ -108,7 +117,7 @@ $resultVacante = $pdo->query($sqlVacantes);
                     <div class="contenidoPrincipal__misVacantes misVacantes">
                         <div class="tituloContenedor">
                             <h2 class="tituloModulo">Mis vacantes</h2>
-                            <a href="#" class="verTodo">Ver todo</a>
+                            <a href="/Empresa/misvacantes.php?id=<?php echo $idUsuario ?>" class="verTodo">Ver todo</a>
                         </div>
                         <div class="misVacantes__contenedor">
 

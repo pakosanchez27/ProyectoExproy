@@ -135,27 +135,27 @@ $resultCer = $pdo->query($queryCer);
             <div class="header__derecha header__desktop">
                 <nav class="candidato__navegacion">
                     <div class="navegacion__opc">
-                        <a href="candidatoEmpleos.php">
+                        <a href="candidatoEmpleos.php?id=<?php echo $idUsuario ?>">
                             <img src="../src/img/portafolio.png" alt="Logo portafolio">
                             <p>Empleo</p>
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoEvaluacion.php"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        <a href="candidatoEvaluacion.php?id=<?php echo $idUsuario ?>"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                             <p>Evaluacion</p>
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoChat.php">
+                        <a href="candidatoChat.php?id=<?php echo $idUsuario ?>">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
                             <p>Chats</p>
                         </a>
 
                     </div>
                     <div class="navegacion__Perfil">
-                        <a href="#" id="perfilDesktop"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
+                        <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>" id="perfilDesktop"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
                     </div>
 
                 </nav>
@@ -163,25 +163,25 @@ $resultCer = $pdo->query($queryCer);
             <div class="header__mobile " id="header__mobile">
                 <nav class="candidato__navegacion__mobile">
                     <div class="navegacion__opc">
-                        <a href="candidatoEmpleos.php">
+                        <a href="candidatoEmpleos.php?id=<?php echo $idUsuario ?>">
                             <img src="../build/img/portafolio.webp" alt="Logo portafolio">
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoEvaluacion.php"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
+                        <a href="candidatoEvaluacion.php?id=<?php echo $idUsuario ?>"> <img src="../src/img/evaluacion.png" alt="Logo portafolio">
                         </a>
 
                     </div>
                     <div class="navegacion__opc">
-                        <a href="candidatoChat.php">
+                        <a href="candidatoChat.php?id=<?php echo $idUsuario ?>">
                             <img src="../src/img/comentario.png" alt="Logo portafolio">
 
                         </a>
 
                     </div>
                     <div class="navegacion__Perfil">
-                        <a href="#" id="perfilMobile"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
+                        <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>" id="perfilMobile"><img class="candiatoPerfil" src="../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
                     </div>
                 </nav>
             </div>
@@ -306,13 +306,14 @@ $resultCer = $pdo->query($queryCer);
                     } else {
                         while ($datosEdu = $resultEdu->fetch(PDO::FETCH_ASSOC)) :
                             $idEducacion = $datosEdu['ID_EDUCACION'];
+                            // echo $idEducacion;
                     ?>
                             <div class="principal__educacion__card">
 
                                 <div class="principal__educacion__img">
                                     <img src="../build/img/banco.webp" alt="">
                                 </div>
-                                <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>&idEducacio=<?php $datosEdu['ID_EDUCACION'] ?>"  id="EducacionModificar" class="principal__educacion__informacion EducacionModificar" data-id-edu="<?php echo $idEducacion ?>">
+                                <a href="/Candidato/vistasModificar/ModificarEducacion.php?id=<?php echo $idUsuario ?>&idEducacion=<?php echo $idEducacion ?>" class="principal__educacion__informacion EducacionModificar">
                                     <p class="educacion__institucion"><?php echo $datosEdu['EDU_NOMBRE_INSTITUCION'] ?></p>
                                     <p class="educacion__carrera"><?php echo $datosEdu['EDU_TITULO'] ?></p>
                                     <p class="educacion__periodo"><?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_INICIO'])) ?> - <?php echo date('F Y', strtotime($datosEdu['EDU_FECHA_FIN'])) ?></p>
@@ -339,13 +340,15 @@ $resultCer = $pdo->query($queryCer);
                 <div class="principal__experiencia__contenedor">
                     <?php
                     while ($datosExp = $resultExp->fetch(PDO::FETCH_ASSOC)) :
+                        $idExperiencia = $datosExp['ID_EXPERIENCIA']
+
                     ?>
-                        <div id="ExperienciaModificar" class="principal__experiencia__card">
+                        <a href="/Candidato/vistasModificar/ModificarExperiencia.php?id=<?php echo $idUsuario ?>&idExperiencia=<?php echo $idExperiencia ?>" class="principal__experiencia__card">
                             <p class="experiencia__titulo"><?php echo $datosExp['EXP_NOMBRE_EMPRESA'] ?></p>
                             <p class="experiencia__puesto"><?php echo $datosExp['EXP_CARGO'] ?></p>
                             <p class="experiencia__descripcion"><?php echo $datosExp['EXP_DESCRIPCION'] ?></p>
                             <p class="experience__duracion"><?php echo $datosExp['EXP_DURACION'] ?> años</p>
-                        </div>
+                        </a>
                     <?php
                     endwhile;
 
@@ -482,8 +485,9 @@ $resultCer = $pdo->query($queryCer);
                     <?php
                     if ($resultProy->rowCount() > 0) {
                         while ($datosProy = $resultProy->fetch(PDO::FETCH_ASSOC)) :
+                            $idProyecto = $datosProy['ID_PROYECTO'];
                     ?>
-                            <a href="#" class="principal__proyectos__card proyectoModificar">
+                            <a href="/Candidato/vistasModificar/ModificarProyecto.php?id=<?php echo $idUsuario ?>&idProyecto=<?php echo $idProyecto ?>" class="principal__proyectos__card proyectoModificar">
                                 <img src="../Candidato/CandidatoIMG/<?php echo $datosProy['PROY_FOTO'] ?>" alt="imagen proyecto" data-id-proyecto="<?php echo $datosProy['ID_PROYECTO'] ?>" id="proyectoImagen">
                                 <p><?php echo $datosProy['PROY_NOMBRE'] ?></p>
                             </a>
@@ -510,13 +514,18 @@ $resultCer = $pdo->query($queryCer);
                     <?php if ($resultCer->rowCount() === 0) : ?>
                         <p>Aun no hay certificaciones o cursos</p>
                     <?php else : ?>
-                        <?php while ($datosCer = $resultCer->fetch(PDO::FETCH_ASSOC)) : ?>
+                        <?php while ($datosCer = $resultCer->fetch(PDO::FETCH_ASSOC)) : 
+                            
+                            $idCertificacion = $datosCer['ID_CERTIFICACION'];
+                            ?>
                             <div class="principal__certificados__card">
-                                <p class="principal__certificados__titulo"><span>Nombre: </span><?php echo $datosCer['CER_NOMBRE'] ?></p>
-                                <p class="principal__certificados__texto"><span>Lugar: </span><?php echo $datosCer['CER_LUGAR'] ?></p>
-                                <p class="principal__certificados__texto"><span>Descripcion: </span><?php echo $datosCer['CER_DESCRIPCION'] ?></p>
-                                <p class="principal__certificados__fecha"><span>Fecha: </span><?php echo $datosCer['CER_FECHA'] ?></p>
-                                <p class="principal__certificados__fecha"><span>Horas: </span><?php echo $datosCer['CER_HORAS'] ?></p>
+                                <a href="/Candidato/vistasModificar/ModificarCertificacion.php?id=<?php echo $idUsuario ?>&idCertificacion=<?php echo $idCertificacion ?>">
+                                    <p class="principal__certificados__titulo"><span>Nombre: </span><?php echo $datosCer['CER_NOMBRE'] ?></p>
+                                    <p class="principal__certificados__texto"><span>Lugar: </span><?php echo $datosCer['CER_LUGAR'] ?></p>
+                                    <p class="principal__certificados__texto"><span>Descripcion: </span><?php echo $datosCer['CER_DESCRIPCION'] ?></p>
+                                    <p class="principal__certificados__fecha"><span>Fecha: </span><?php echo $datosCer['CER_FECHA'] ?></p>
+                                    <p class="principal__certificados__fecha"><span>Horas: </span><?php echo $datosCer['CER_HORAS'] ?></p>
+                                </a>
                             </div>
                         <?php endwhile; ?>
                     <?php endif; ?>
@@ -544,7 +553,7 @@ $resultCer = $pdo->query($queryCer);
                             <P class="card__info__descripcion">Consejos para mejorar el tu CV</p>
                         </div>
                     </a>
-                    
+
                 </div>
             </div>
             <div class="promo__test contenedor sombra">
@@ -815,59 +824,6 @@ $resultCer = $pdo->query($queryCer);
             </form>
         </div>
     </div>
-    <div class="emergente ocultar" id="modificarEducacion">
-        <div class="emergente__formulario">
-            <form action="POST" class="emergente__formulario__contenido">
-                <div class="emergente__formulario__header sombra">
-                    <h3>Educacion.</h3>
-                </div>
-
-                <div class="emergente__formulario__campos">
-                    <?php
-                    $sqlEdu = "SELECT * FROM EDUCACION WHERE ID_USUARIO = $idUsuario AND ID_EDUCACION = $idEducacion";
-                    $result = $pdo->query($sqlEdu);
-                    while ($datosEdu = $result->fetch(PDO::FETCH_ASSOC)) :
-                    ?>
-                        <div class="campo institucion">
-                            <label for="institucion">Institución Educativa</label>
-                            <input type="text" name="institucion" id="institucion" placeholder="Nombre de tu escuela" value="<?php echo htmlspecialchars($datosEdu['EDU_NOMBRE_INSTITUCION']); ?>">
-                        </div>
-                        <div class="campo fechaInicio">
-                            <label for="fechaInicio">Fecha de Inicio</label>
-                            <input type="date" name="fechaInicio" id="fechaInicio" value="<?php echo $datosEdu['EDU_FECHA_INICIO']; ?>">
-                        </div>
-                        <div class="campo fechaFin">
-                            <label for="fechaFin">Fecha de Fin</label>
-                            <input type="date" name="fechaFin" id="fechaFin" value="<?php echo $datosEdu['EDU_FECHA_FIN']; ?>">
-                        </div>
-                        <div class="campo titulo">
-                            <label for="titulo">Título / Certificado</label>
-                            <input type="text" name="titulo" id="titulo" placeholder="Certificado o título obtenido" value="<?php echo htmlspecialchars($datosEdu['EDU_TITULO']); ?>">
-                        </div>
-                        <div class="campo nivel__estudios">
-                            <label for="nivel__estudios">Nivel</label>
-                            <select name="nivel__estudios" id="nivel__estudios">
-                                <option value="Sin estudios" <?php if ($datosEdu['EDU_NIVEL'] === 'Sin estudios') echo 'selected'; ?>>Sin estudios</option>
-                                <option value="Educacion primaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion primaria') echo 'selected'; ?>>Educación Primaria</option>
-                                <option value="Educacion secundaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion secundaria') echo 'selected'; ?>>Educación Secundaria</option>
-                                <option value="bachillerato" <?php if ($datosEdu['EDU_NIVEL'] === 'bachillerato') echo 'selected'; ?>>Bachillerato</option>
-                                <option value="Educacion Universitaria" <?php if ($datosEdu['EDU_NIVEL'] === 'Educacion Universitaria') echo 'selected'; ?>>Educación Universitaria</option>
-                                <option value="posgrado" <?php if ($datosEdu['EDU_NIVEL'] === 'posgrado') echo 'selected'; ?>>Posgrado</option>
-                            </select>
-                        </div>
-
-                        <a href="#" class="boton__rojo">Eliminar</a>
-                    <?php endwhile; ?>
-                </div>
-
-
-                <div class="emergente__formulario__btns">
-                    <input type="submit" class="boton__verde" value="Guardar">
-                    <a href="#" class="boton__blanco" id="salirEducacionModificar">Cancelar</a>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <div class="emergente ocultar" id="agregarExperiencia">
         <div class="emergente__formulario">
@@ -908,46 +864,7 @@ $resultCer = $pdo->query($queryCer);
             </form>
         </div>
     </div>
-    <div class="emergente ocultar" id="editarExperiencia">
-        <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
-                <div class="emergente__formulario__header sombra">
-                    <h3>Foto de perfil y Portada</h3>
-                </div>
-                <div class="emergente__formulario__campos">
-                    <div class="campo empresa">
-                        <label for="empresa">Empresa</label>
-                        <input type="text" name="empresa" id="empresa" placeholder="Empresa actual o anterior">
-                    </div>
-                    <div class="campo descripcion">
-                        <label for="descripcion">Descripción de actividades</label>
-                        <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
-                    </div>
-                    <div class="campo cargo">
-                        <label for="cargo">Cargo Desempeñado</label>
-                        <input type="text" name="cargo" id="cargo" placeholder="Cargo desempeñado">
-                    </div>
-                    <div class="campo duracion">
-                        <label for="duracion">Duración</label>
-                        <select name="duracion" id="duracion">
-                            <option disabled selected>--Selecciona--</option>
-                            <option value="actual">Actual</option>
-                            <option value="menos1">Menos de 1 año</option>
-                            <option value="1a3">1 a 3 años</option>
-                            <option value="3a5">3 a 5 años</option>
-                            <option value="5a10">5 a 10 años</option>
-                            <option value="mas10">Más de 10 años</option>
-                        </select>
-                    </div>
-                    <a href="#" class="boton__rojo">Eliminar Experiencia</a>
-                </div>
-                <div class="emergente__formulario__btns">
-                    <input type="submit" class="boton__verde" value="Guardar">
-                    <a href="#" class="boton__blanco" id="salirExperienciaModificar">Cancelar</a>
-                </div>
-            </form>
-        </div>
-    </div>
+
     <div class="emergente ocultar" id="agregarProyecto">
         <div class="emergente__formulario">
             <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>" enctype="multipart/form-data">
@@ -986,47 +903,7 @@ $resultCer = $pdo->query($queryCer);
             </form>
         </div>
     </div>
-    <div class="emergente ocultar" id="editarProyecto">
-        <div class="emergente__formulario">
-            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>" enctype="multipart/form-data">
-                <div class="emergente__formulario__header sombra">
-                    <h3>Agrega un proyecto nuevo.</h3>
-                </div>
-                <div class="emergente__formulario__campos">
 
-                    <div class="campo nombre">
-                        <label for="nombreProyecto">Nombre del proyecto</label>
-                        <input type="text" name="nombreProyecto" id="nombreProyecto" placeholder="Tu Nombre" value="<?php echo $datosEdu['EDU_NOMBRE_INSTITUCION'] ?>">
-                    </div>
-                    <div class="campo descripcion">
-                        <label for="descripcionProyecto">Descripción del Proyecto</label>
-                        <textarea name="descripcionProyecto" id="descripcionProyecto" cols="30" rows="5"></textarea>
-                    </div>
-                    <div class="campo tecnologias">
-                        <label for="tecnologias">Tecnologias Utilizadas</label>
-                        <input type="text" name="tecnologias" id="tecnologias" placeholder="html, css, JavaScript ...">
-                    </div>
-                    <div class="campo urlProyecto">
-                        <label for="nombre">Url de tu proyecto</label>
-                        <input type="text" name="urlProyecto" id="nombre" placeholder="www.tu_proyecto.com">
-                    </div>
-                    <div class="campo foto">
-                        <div class="input-wrapper">
-                            <input class="inputFotoPortada" type="file" id="fotoProyecto" accept="image/*" name="fotoProyecto" onchange="mostrarNombreArchivo('fotoProyecto')">
-                            <label class="custom-file-upload" for="fotoProyecto">Foto de tu proyecto</label>
-
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="emergente__formulario__btns">
-                    <input type="submit" class="boton__verde" value="Guardar">
-                    <a href="#" class="boton__blanco salirProyectoModificar" id="salirProyectoModificar">Cancelar</a>
-                </div>
-            </form>
-        </div>
-    </div>
 
 
     <div class="emergente ocultar" id="agregarCertificacion">
@@ -1065,22 +942,7 @@ $resultCer = $pdo->query($queryCer);
             </form>
         </div>
     </div>
-    <!-- <div class="emergente ocultar" id="editarCertificacion">
-        <div class="emergente__formulario">
-            <form action="" class="emergente__formulario__contenido">
-                <div class="emergente__formulario__header sombra">
-                    <h3>Foto de perfil y Portada</h3>
-                </div>
-                <div class="emergente__formulario__campos">
-
-                </div>
-                <div class="emergente__formulario__btns">
-                    <input type="submit" class="boton__verde" value="Guardar">
-                    <a href="#" class="boton__blanco" id="salircertificadosModificar">Cancelar</a>
-                </div>
-            </form>
-        </div>
-    </div> -->
+    
     <div class="emergente ocultar" id="agregarHabilidades">
         <div class="emergente__formulario">
             <form class="emergente__formulario__contenido" method="post" action="/Candidato/Model/insertar.php?id=<?php echo $idUsuario ?>">
