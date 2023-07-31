@@ -1,0 +1,27 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.etapaVista{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    
+    gap: 5rem;
+    padding: 0;
+    
+
+    &__contenedor{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 5rem;
+
+        & h3 {
+            font: 2rem;
+        }
+    }
+
+}

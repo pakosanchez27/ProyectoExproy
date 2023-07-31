@@ -90,134 +90,182 @@ $resultPostulacion = $pdo->query($sqlPostulacion);
 
 
 <?php
- 
- include '../include/templete/headerEmpresa.php';
+
+include '../include/templete/headerEmpresa.php';
 
 ?>
 
 
-    <main class="procesoCandidato">
-        <div class="procesoCandidato__contenedor">
-            <div class="procesoCandidato__principal">
-                <h2>Flujo de Contratacion</h2>
-                <div class="procesoCandidato__tabla">
-                    <div class="proceso__tabla__card procesoCard sombra">
-                        <div class="procesoCard__Etapa " data-etapa="POSTULADO">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/gerente.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 1. Postulación</h3>
-                                    <p>El candidato Esta interesado en tu Vacante.</p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 1-->
-                        <div class="procesoCard__Etapa ocultar" data-etapa="REVISION">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/revision.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 2. Revisión de CV</h3>
-                                    <p>Entra al perfil del candidato y verifica si es apto para tu vacante.</p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                            <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 2-->
-                        <div class="procesoCard__Etapa ocultar" data-etapa="PRUEBAS">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/prueba.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 3. Pruebas Psicometricas</h3>
-                                    <p>Envía las pruebas Psicometricas al candidato.</p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                            <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Enviar</a>
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 3-->
-                        <div class="procesoCard__Etapa ocultar" data-etapa="ENTREVISTA">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/entrevista.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 4. Entrevista</h3>
-                                    <p>Agenda una entrevista con tu candidato.</p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                            <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Agendar</a>
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 4-->
-                        <div class="procesoCard__Etapa ocultar" data-etapa="DOCUMENTOS">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/documentos.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 5. Documentación</h3>
-                                    <p>Te ayudamos a recolectar los documentos generales.</p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                            <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Ver</a>
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 5-->
-                        <div class="procesoCard__Etapa ocultar" data-etapa="CONTRATACION">
-                            <div class="procesoCard__paso">
-                                <img src="../build/img/exito.webp">
-                                <div class="procesoCard__texto">
-                                    <h3>Etapa 6. Contratación</h3>
-                                    <p>Indícanos si haz contratado a este candidato. </p>
-                                </div>
-                            </div>
-                            <div class="procesoCard__btns">
-                            <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <!-- <a href="#" class="boton__azul">Ver</a> -->
-                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
-                            </div>
-                        </div> <!--Etapa 5-->
-                    </div>
-                </div>
-            </div>
-            <div class="procesoCandidato__aside sombra">
-                <div class="procesoCandidato__PerfilCard">
-                    <img src="../Candidato/CandidatoIMG/<?php echo $fotoCandidato ?>">
-                    <h3><?php echo $nombreCandidato . " " . $apellidoCandidato ?></h3>
-                    <p class="procesoCandidato__puesto"><?php echo $puestoCandidato ?></p>
-                    <!-- <p class="procesoCandidato__vacante">Desarrollador Jr JavaScript</p> -->
+<main class="procesoCandidato">
+    <div class="procesoCandidato__contenedor">
+        <div class="procesoCandidato__principal">
+            <h2>Flujo de Contratacion</h2>
+            <div class="procesoCandidato__tabla">
+                <?php
+                // Obtener el valor del paso actual, asegurándote de que esté en minúsculas para comparar de manera insensible a mayúsculas
+                $estadoGET = ($estadoGET);
+                ?>
 
-                    <div class="procesoCandidato__redes">
-                        <?php foreach ($resultRedes as $datosRedes) : ?>
-                            <a href="<?php echo $datosRedes['RED_URI'] ?>"><img src="../build/img/<?php echo $datosRedes['RED_NOMBRE'] ?>.webp"></a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <div class="procesoCandidato__datos">
-                    <div class="procesoCandidato__dato">
-                        <img src="../build/img/tel.png">
-                        <p>Telefono: <span><?php echo $telefonoCandidato ?></span></p>
-                    </div>
-                    <div class="procesoCandidato__dato">
-                        <img src="../build/img/email.webp">
-                        <p>Email: <span><?php echo $correoCandidato ?></span></p>
-                    </div>
-                    <div class="procesoCandidato__dato">
-                        <img src="../build/img/años.webp">
-                        <p>Edad: <span><?php echo $edadCandidato ?> años</span></p>
-                    </div>
+                <div class="proceso__tabla__card procesoCard sombra">
+                    <!-- Etapa 1 - Postulación -->
+                    <div class="procesoCard__Etapa" data-etapa="POSTULADO">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/gerente.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 1. Postulación</h3>
+                                <p>El candidato está interesado en tu Vacante.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'POSTULADO') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 1 -->
+
+                    <!-- Etapa 2 - Revisión de CV -->
+                    <div class="procesoCard__Etapa ocultar" data-etapa="REVISION">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/revision.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 2. Revisión de CV</h3>
+                                <p>Entra al perfil del candidato y verifica si es apto para tu vacante.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'REVICION') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 2 -->
+
+                    <!-- Etapa 3 - Pruebas Psicométricas -->
+                    <div class="procesoCard__Etapa ocultar" data-etapa="PRUEBAS">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/prueba.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 3. Pruebas Psicométricas</h3>
+                                <p>Envía las pruebas psicométricas al candidato.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'PRUEBA') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <a href="#" class="boton__azul">Enviar</a>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 3 -->
+
+                    <!-- Etapa 4 - Entrevista -->
+                    <div class="procesoCard__Etapa ocultar" data-etapa="ENTREVISTA">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/entrevista.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 4. Entrevista</h3>
+                                <p>Agenda una entrevista con tu candidato.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'ENTREVISTA') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <a href="#" class="boton__azul">Agendar</a>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 4 -->
+
+                    <!-- Etapa 5 - Documentación -->
+                    <div class="procesoCard__Etapa ocultar" data-etapa="DOCUMENTOS">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/documentos.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 5. Documentación</h3>
+                                <p>Te ayudamos a recolectar los documentos generales.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'DOCUMENTOS') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <a href="#" class="boton__azul">Ver</a>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 5 -->
+
+                    <!-- Etapa 6 - Contratación -->
+                    <div class="procesoCard__Etapa ocultar" data-etapa="CONTRATACION">
+                        <div class="procesoCard__paso">
+                            <img src="../build/img/exito.webp">
+                            <div class="procesoCard__texto">
+                                <h3>Etapa 6. Contratación</h3>
+                                <p>Indícanos si has contratado a este candidato.</p>
+                            </div>
+                        </div>
+                        <div class="procesoCard__btns">
+                            <?php if ($estadoGET !== 'CONTRATADO') : ?>
+                                <a href="#" class="boton__rojo opacity50" disabled>Rechazar</a>
+                                <!-- <a href="#" class="boton__azul">Ver</a> -->
+                                <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
+                            <?php else : ?>
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
+                                <!-- <a href="#" class="boton__azul">Ver</a> -->
+                                <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Contratado</a>
+                            <?php endif; ?>
+                        </div>
+                    </div> <!-- Etapa 6 -->
                 </div>
 
             </div>
         </div>
-    </main>
+        <div class="procesoCandidato__aside sombra">
+            <div class="procesoCandidato__PerfilCard">
+                <img src="../Candidato/CandidatoIMG/<?php echo $fotoCandidato ?>">
+                <h3><?php echo $nombreCandidato . " " . $apellidoCandidato ?></h3>
+                <p class="procesoCandidato__puesto"><?php echo $puestoCandidato ?></p>
+                <!-- <p class="procesoCandidato__vacante">Desarrollador Jr JavaScript</p> -->
+
+                <div class="procesoCandidato__redes">
+                    <?php foreach ($resultRedes as $datosRedes) : ?>
+                        <a href="<?php echo $datosRedes['RED_URI'] ?>"><img src="../build/img/<?php echo $datosRedes['RED_NOMBRE'] ?>.webp"></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="procesoCandidato__datos">
+                <div class="procesoCandidato__dato">
+                    <img src="../build/img/tel.png">
+                    <p>Telefono: <span><?php echo $telefonoCandidato ?></span></p>
+                </div>
+                <div class="procesoCandidato__dato">
+                    <img src="../build/img/email.webp">
+                    <p>Email: <span><?php echo $correoCandidato ?></span></p>
+                </div>
+                <div class="procesoCandidato__dato">
+                    <img src="../build/img/años.webp">
+                    <p>Edad: <span><?php echo $edadCandidato ?> años</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 
 <script>
     // Obtener el valor del estado desde PHP (PHP lo asigna a la variable $estadoGET)
@@ -243,17 +291,17 @@ $resultPostulacion = $pdo->query($sqlPostulacion);
 <script src="../src/js/app.js"></script>
 
 
-    <script>
-        var currentDateElement = document.getElementById('currentDate');
-        var currentDate = new Date();
+<script>
+    var currentDateElement = document.getElementById('currentDate');
+    var currentDate = new Date();
 
-        var options = {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric'
-        };
-        currentDateElement.textContent = currentDate.toLocaleDateString('es-ES', options);
-    </script>
+    var options = {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    };
+    currentDateElement.textContent = currentDate.toLocaleDateString('es-ES', options);
+</script>
 </body>
 
 </html>

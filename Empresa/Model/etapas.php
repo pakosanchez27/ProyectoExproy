@@ -15,12 +15,12 @@ require '../../include/config.php';
 if($etapa == 'POSTULADO'){
     $etapa = 'REVICION';
 }elseif($etapa == 'REVICION'){
-    $etapa = 'ENTREVISTA';
-}elseif($etapa == 'ENTREVISTA'){
     $etapa = 'PRUEBA';
 }elseif($etapa == 'PRUEBA'){
-    $etapa = 'CONTRATACION';
-}elseif($etapa == 'CONTRATACION'){
+    $etapa = 'ENTREVISTA';
+}elseif($etapa == 'ENTREVISTA'){
+    $etapa = 'DOCUMENTOS';
+}elseif($etapa == 'DOCUMENTOS'){
     $etapa = 'CONTRATADO';
 }elseif($etapa == 'RECHAZADO'){
     $etapa = 'RECHAZADO';
