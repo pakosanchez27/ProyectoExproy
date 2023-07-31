@@ -8,7 +8,7 @@ require '../include/funciones.php';
 $auth = estaAutenticado();
 $usuario = $_SESSION['usuario'];
 if (!$auth) {
-    header('Location: /Candidato/loginCandidato.php');
+    header('Location: /Empresa/loginEmpresa.php');
 }
 
 
@@ -266,6 +266,8 @@ include '../include/templete/headerEmpresa.php';
             <div class="form-group">
                 <label for="educacion">Educación:</label>
                 <select id="educacion" name="educacion">
+                <option value="" selected disabled>--Selecciona--</option>
+
                     <option value="bachillerato">Bachillerato</option>
                     <option value="tecnico">Técnico superior universitario</option>
                     <option value="universidad">Universidad</option>
@@ -278,6 +280,7 @@ include '../include/templete/headerEmpresa.php';
             <div class="form-group">
                 <label for="tipoContrato">Tipo de contrato:</label>
                 <select id="tipoContrato" name="tipoContrato">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="permantente">Permantente</option>
                     <option value="indeterminado">Indeterminado</option>
                     <option value="porProyecto">Por proyecto</option>
@@ -288,6 +291,7 @@ include '../include/templete/headerEmpresa.php';
             <div class="form-group">
                 <label for="horario">Horario:</label>
                 <select id="horario" name="horario">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="tiempoCompleto">Tiempo completo</option>
                     <option value="medioTiempo">Medio tiempo</option>
                     <option value="finesSemana">Fines de semana</option>
@@ -297,6 +301,7 @@ include '../include/templete/headerEmpresa.php';
             <div class="form-group">
                 <label for="modoTrabajo">Modo de trabajo:</label>
                 <select id="modoTrabajo" name="modoTrabajo">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="presencia">Presencia</option>
                     <option value="homeOffice">Home office</option>
                     <option value="hibrido">Híbrido</option>

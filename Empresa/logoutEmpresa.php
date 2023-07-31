@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="loginEmpresa__izquierda">
                 <div class="loginEmpresa__logo">
                     <a href="/">AgoraTalent</a>
-                    <p>¿Eres candidato? <a href="../Candidato/logoutCandidato.html">Registrate aquí.</a></p>
+                    <p>¿Eres candidato? <a href="/Candidato/logoutCandidato.php">Registrate aquí.</a></p>
                 </div>
                 <div class="loginEmpresa__textoBienvenida">
                     <h2 class="titulo">¡Estamos encantados de que te unas a nosotros!</h2>
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="Banner__empresa">
                     <img src="../src/img/admiracion.png" alt="Signo de advertencia">
-                    <p>¿Eres Candiadto? <a href="../Candidato/logoutCandidato.html">Registrate aquí</a></p>
+                    <p>¿Eres Candiadto? <a href="../Candidato/logoutCandidato.php">Registrate aquí</a></p>
                 </div>
                 <!-- Rest of the HTML code remains unchanged -->
 
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>
                     <div class="registrar">
                         <p>¿Ya tienes cuenta?</p>
-                        <a href="loginEmpresa.html">Inicia Sesión</a>
+                        <a href="loginEmpresa.php">Inicia Sesión</a>
                     </div>
                 </div>
 

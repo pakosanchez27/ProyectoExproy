@@ -20,6 +20,7 @@
     <style>
         .datosEmpresa__portada {
             background-image: url('../Empresa/EmpresaIMG/<?php echo $fotoPortada ?>');
+            background-position: center center;
         }
     </style>
     <header class="headerEmpresa sombra animate__animated animate__fadeInDown">

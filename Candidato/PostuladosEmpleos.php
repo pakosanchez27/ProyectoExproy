@@ -71,7 +71,7 @@ $result2 = $pdo->query($sql2);
         <div class="empleos__contenedor">
             <div class="empleos__izquierda">
                 <div class="empleos__izquierda__secciones secciones">
-                    <a href="candidatoEmpleos.html" class="secciones__campo">
+                <a href="candidatoEmpleos.php?id=<?php echo $idUsuario ?>" class="secciones__campo">
                         <img src="../build/img/portafolio.webp">
                         <p>Buscar Empleo</p>
                     </a>
@@ -96,10 +96,19 @@ $result2 = $pdo->query($sql2);
                         $estado  = $datos2['ESTADO_POSTULACION'];
                         $FotoPerfil = $datos2['EMP_FOTOPERFIL'];
                         
+                        
                         // var_dump($estado);
                         ?>
-                    
-                        <a href="#" class="postulados__card" data-id="1">
+                    <?php 
+                    $urlEtapa;
+                    if ($estado === 'POSTULADO') {
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaPostulacion.php?id=$idUsuario";
+                    }elseif($estado === 'REVICION'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaRevision.php?id=$idUsuario";
+
+                    }
+                    ?>
+                        <a href="<?php echo $urlEtapa ?>" class="postulados__card" data-id="1">
                             <div class="postulados__card__detalles">
                                 <div class="postulados__texto">
                                     <h3 class="titulo"><?php echo $vacante ?> </h3>
@@ -110,11 +119,11 @@ $result2 = $pdo->query($sql2);
                                     <div class="postulados__circulo <?php echo $estado === 'POSTULADO' ? 'activo' : ''; ?>">
                                         <span>1</span>
                                     </div>
-                                    <div class="postulados__circulo <?php echo $estado === 'REVISION' ? 'activo' : ''; ?>">
+                                    <div class="postulados__circulo <?php echo $estado === 'REVICION' ? 'activo' : ''; ?>">
                                         <span>2</span>
                                     </div>
 
-                                    <div class="postulados__circulo <?php echo $estado === 'PRUEBAS' ? 'activo' : ''; ?>">
+                                    <div class="postulados__circulo <?php echo $estado === 'PRUEBA' ? 'activo' : ''; ?>">
                                         <span>3</span>
                                     </div>
 
@@ -126,7 +135,7 @@ $result2 = $pdo->query($sql2);
                                         <span>5</span>
                                     </div>
 
-                                    <div class="postulados__circulo <?php echo $estado === 'CONTRATACION' ? 'activo' : ''; ?>">
+                                    <div class="postulados__circulo <?php echo $estado === 'CONTRATADO' ? 'activo' : ''; ?>">
                                         <span>6</span>
                                     </div>
 

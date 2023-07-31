@@ -33,8 +33,5 @@
     "postcss": "^8.3.6",
     "sass": "^1.37.5",
     "terser": "^5.3.8"
-  },
-  "dependencies": {
-    "firebaseui": "^6.0.2"
   }
 }
