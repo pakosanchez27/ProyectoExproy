@@ -25,7 +25,7 @@
 @mixin boton($color, $texto) {
   background-color: $color;
   font-size: 1.4rem;
-  padding: 0.8rem 1.5rem; /* Reducimos el valor del padding para hacer el botón más delgado */
+  padding: 1rem 1.5rem; /* Reducimos el valor del padding para hacer el botón más delgado */
   font-weight: 400;
   display: block;
   width: 100%;

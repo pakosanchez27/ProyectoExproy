@@ -6,6 +6,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require '../include/funciones.php';
+$auth = estaAutenticado();
+$usuario = $_SESSION['usuario'];
+if(!$auth){
+    header('Location: /Candidato/loginCandidato.php');
+}
+
 
 require '../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
@@ -198,7 +205,7 @@ $resultEmpleos = $pdo->query($sqlEmpleos);
                         <img src="../build/img/portafolio.webp">
                         <p>Buscar Empleo</p>
                     </a>
-                    <a href="PostuladosEmpleos.php" class="secciones__campo">
+                    <a href="PostuladosEmpleos.php?id=<?php echo $idUsuario?>&idCandidato=<?php echo $idCandidato ?>" class="secciones__campo">
                         <img src="../build/img/guardar-instagram.webp">
                         <p>Postulados</p>
                     </a>

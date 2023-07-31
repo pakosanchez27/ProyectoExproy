@@ -1,20 +1,26 @@
 // Variables
 const menu = document.querySelector('#menu') ;
+const menuEmpresa = document.querySelector('#Empresa') ;
 const cerrar = document.querySelector('#cerrar');
 const menuMobile = document.querySelector('#menuMobile');
 
 // eventos
 menu.addEventListener('click', mostrarMenu);
+// menuEmpresa.addEventListener('click', mostrarMenuEmpresa);
 cerrar.addEventListener('click', cerrarMenu);
 perfilMobile.addEventListener('click', mostarDesplegable);
 
 // funciones
 function mostrarMenu() {
     
+    console.log('click');
 
     if (menuMobile.classList.contains('ocultarMenu')) {
         menuMobile.classList.remove('ocultarMenu');
         menuMobile.classList.add('MostrarMenu');
+    }else{
+        menuMobile.classList.remove('MostrarMenu');
+        menuMobile.classList.add('ocultarMenu');
     }
 }
 
@@ -24,6 +30,9 @@ function cerrarMenu() {
         menuMobile.classList.add('ocultarMenu');
     }
 }
+
+
+
 
 
 function agregarEtiqueta(event) {

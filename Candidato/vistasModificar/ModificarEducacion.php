@@ -5,6 +5,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require '../../include/funciones.php';
+$auth = estaAutenticado();
+$usuario = $_SESSION['usuario'];
+if(!$auth){
+    header('Location: /Candidato/loginCandidato.php');
+}
+
 
 require '../../include/config.php';
 $idUsuario = $_GET['id'] ?? null;

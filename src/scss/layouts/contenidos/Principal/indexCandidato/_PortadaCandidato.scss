@@ -1,0 +1,72 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.PaginaCandidato{
+    background-color: v.$fondoSecundario;
+   
+}
+
+.candidatoPortada{
+    border-top: solid 1px v.$blanco;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+   
+    &__contenedor{
+        width: 85%;
+        // border-top: solid 1px v.$blanco;
+        display: flex;
+        flex-direction: column-reverse;
+        
+        justify-content: center;
+        align-items: center;
+        // padding: 5rem 10rem;
+        @include m.tablet{
+            flex-direction: row;
+        }
+    }
+
+    &__texto{
+       display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        color: v.$blanco;
+        & h1{
+            font-size: 4rem;
+            padding: 0;
+            margin: 0;
+            @include m.tablet{
+                font-size: 4rem;
+            }
+            @include m.desktop{
+                font-size: 7rem;
+            }
+        }
+        p{
+            font-size: 1.2rem;
+            @include m.tablet{
+                font-size: 1.5rem;
+            }
+            @include m.desktop{
+                font-size: 2rem;
+            }
+        }
+    }
+    &__img {
+        & img {
+            width: 100%;   
+            // margin-left: 10rem;
+            @include m.tablet{
+                width: 150rem;           
+             }
+            @include m.desktop{
+                width: 200rem;           
+             }
+        }
+    }
+    
+
+
+
+    
+}

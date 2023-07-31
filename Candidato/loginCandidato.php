@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($tipo == 'candidato') {
                     if (password_verify($pass, $dato['PASS'])) {
                         session_start();
-                        // Llenar el arreglo de la sesión
+                        // Llenar el arreglo de la sesion
+                        $_SESSION['usuario'] = $dato['ID_USUARIO'];
                         $_SESSION['login'] = true;
                         header('Location: /Candidato/CandidatoPrincipal.php?id=' . $dato['ID_USUARIO']);
                         exit;

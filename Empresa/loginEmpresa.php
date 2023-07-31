@@ -27,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (password_verify($pass, $dato['PASS'])) {
                         session_start();
                         // Llenar el arreglo de la sesión
+                        session_start();
+                        // Llenar el arreglo de la sesion
+                        $_SESSION['usuario'] = $dato['ID_USUARIO'];
                         $_SESSION['login'] = true;
                         header('Location: /Empresa/principalEmpresa.php?id=' . $dato['ID_USUARIO']);
                         exit;

@@ -3,7 +3,8 @@
 
 .proceso{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 5rem;
     padding: 0;
     @include m.tablet{
         padding: 2rem 5rem;

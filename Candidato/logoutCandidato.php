@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nuevoId = $pdo->lastInsertId();
 
                 // Redirigir a la página candidatoForm.php con el ID del nuevo registro
-                header("Location: candidatoForm.php?id=$nuevoId");
+                header("Location: /Candidato/candidatoForm.php?id=$nuevoId");
                 exit(); // Finalizar la ejecución del script después de la redirección
             } else {
                 $errors['general'] = 'Hubo un error al registrar el usuario. Intente nuevamente más tarde.';

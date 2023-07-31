@@ -66,7 +66,7 @@
                 <h1>Transforma tu proceso de contratación </h1>
                 <div class="botones">
                     <a href="/Empresa/logoutEmpresa.php" class="boton__verde">Encuentra Candidatos</a>
-                    <a href="" class="boton__blanco">Encuentra Empleo</a>
+                    <a href="/Candidato/logoutCandidato.php" class="boton__blanco">Encuentra Empleo</a>
                 </div>
             </div>
             <div class="cajavacia"></div>
@@ -74,7 +74,7 @@
     </section>
     <div class="botonesMobile">
         <a href="/Empresa/logoutEmpresa.php" class="boton__verde">Encuentra Candidatos</a>
-        <a href="#" class="boton__negro">Encuentra Empleo</a>
+        <a href="/Candidato/logoutCandidato.php" class="boton__negro">Encuentra Empleo</a>
     </div>
 
     <main class="principal ">
