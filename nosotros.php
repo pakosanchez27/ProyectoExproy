@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra a los mejores talentos en TI. Transforma tu proceso de contratación con AgoraTalent. Descubre perfiles especializados en desarrollo de software, diseño UX, marketing digital, gestión de proyectos y más.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap"
-        rel="stylesheet">
-        <link rel="stylesheet" href="build/css/app.css">
-    <title>Nosotros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="build/css/app.css">
+    <title>AgoraTalent - Encuentra a los mejores talentos en TI</title>
 </head>
-
 <body>
     <div class="banner">
         <p class="banner__texto text-center">
@@ -32,7 +29,7 @@
                 <nav>
                     <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
                     <a href="/" class="navegacion__enlace">Empresas</a>
-                    <a href="#" class="navegacion__enlace">Candidatos</a>
+                    <a href="/Candidato.php" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">

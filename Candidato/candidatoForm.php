@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estado = $_POST['estado'];
     $ciudad = $_POST['ciudad'];
     $institucion = $_POST['institucion'];
-    $fechaInicio = $_POST['fechaInicio'] ?? null;;
-    $fechaFin = $_POST['fechaFin'];
+    $fechaInicio = $_POST['fechaInicio'] ?? null;
+    $fechaFin = $_POST['fechaFin']?? null;
     $titulo = $_POST['titulo'];
     $nivelEstudios = $_POST['nivel__estudios'];
     $skills = isset($_POST["etiquetas"]) ? $_POST["etiquetas"] : [];
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $empresa = $_POST['empresa'];
     $descripcion = $_POST['descripcion'];
     $cargo = $_POST['cargo'];
-    $duracion = $_POST['duracion'];
+    $duracion = $_POST['duracion']?? null;
     $puesto = $_POST['puesto'];
     $area = $_POST['area'];
 

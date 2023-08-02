@@ -1,3 +1,44 @@
+<?php
+
+use LDAP\Result;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+
+require '../../include/config.php';
+$idUsuario = $_GET['id'] ?? null;
+$idVacante = $_GET['idVacante'] ?? null;
+
+
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+$FotoPortada = $datos['CAN_FOTOPORTADA'];
+$ID_CANDIDATO = $datos['ID_CANDIDATO'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +50,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../../../../build/css/app.css">
+    <link rel="stylesheet" href="../../build/css/app.css">
     <title>Perfil Candiadto</title>
 </head>
 
@@ -18,7 +59,7 @@
         /* border: #187e44 1px solid; */
         border-top-left-radius: 0rem;
         border-top-right-radius: 0rem;
-        background-image: url('../../../../Candidato/CandidatoIMG/<?php echo $FotoPortada; ?>');
+        background-image: url('../../Candidato/CandidatoIMG/<?php echo $FotoPortada; ?>');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -37,7 +78,7 @@
     .principal__header__perfil {
         border-top-left-radius: 0rem;
         border-top-right-radius: 0rem;
-        background-image: url('../../../../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>');
+        background-image: url('../../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -52,13 +93,13 @@
         <div class="candidato__header__contenido">
             <div class="header__izquierda">
                 <div class="candiadato__logo">
-                    <a class="logoDesktop" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AgoraTalent</a>
-                    <a class="logoMobile" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AT</a>
+                    <a class="logoDesktop" href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AgoraTalent</a>
+                    <a class="logoMobile" href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AT</a>
 
                 </div>
                 <div class="candidato__buscar">
                     <label for="buscar" class="buscar">
-                        <img src="../../../../src/img/lupa.png" alt="logo lupa">
+                        <img src="/../../src/img/lupa.png" alt="logo lupa">
                     </label>
                     <input type="search" name="buscar" id="busca" placeholder="Buscar">
                 </div>
@@ -86,7 +127,7 @@
 
                     </div>
                     <div class="navegacion__Perfil">
-                        <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>" id="perfilDesktop"><img class="candiatoPerfil" src="../../../../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
+                        <a href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>" id="perfilDesktop"><img class="candiatoPerfil" src="/../Candidato/CandidatoIMG/<?php echo $FotoPerfil; ?>" alt="Foto de perfil"></a>
                     </div>
 
                 </nav>

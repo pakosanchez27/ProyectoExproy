@@ -52,8 +52,8 @@
         <div class="candidato__header__contenido">
             <div class="header__izquierda">
                 <div class="candiadato__logo">
-                    <a class="logoDesktop" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AgoraTalent</a>
-                    <a class="logoMobile" href="CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AT</a>
+                    <a class="logoDesktop" href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AgoraTalent</a>
+                    <a class="logoMobile" href="/Candidato/CandidatoPrincipal.php?id=<?php echo $idUsuario ?>">AT</a>
 
                 </div>
                 <div class="candidato__buscar">

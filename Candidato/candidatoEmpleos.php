@@ -201,7 +201,7 @@ $resultEmpleos = $pdo->query($sqlEmpleos);
         <div class="empleos__contenedor">
             <div class="empleos__izquierda">
                 <div class="empleos__izquierda__secciones secciones">
-                    <a href="candidatoEmpleos.php" class="secciones__campo">
+                    <a href="candidatoEmpleos.php?id=<?php echo $idUsuario ?>" class="secciones__campo">
                         <img src="../build/img/portafolio.webp">
                         <p>Buscar Empleo</p>
                     </a>

@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="navegacion__bloque1">
                 <nav>
                     <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
-                    <a href="#" class="navegacion__enlace">Empresas</a>
-                    <a href="#" class="navegacion__enlace">Candidatos</a>
+                    <a href="/index.php" class="navegacion__enlace">Empresas</a>
+                    <a href="/Candidato.php" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="loginCandidato__derecha">
             <div class="loginCandidato__empresa">
-                <p>¿Eres Empresa? <a href="/Empresa/logoutEmpresa.php">Inicia sesión aquí</a></p>
+                <p>¿Eres Empresa? <a href="/Empresa/logoutEmpresa.php">Registrate aquí</a></p>
             </div>
             <div class="loginCandidato__TextoBienvenida">
                 <h2>Bienvenido a la Familia!</h2>

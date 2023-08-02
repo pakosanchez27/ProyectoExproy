@@ -29,7 +29,7 @@
                 <nav>
                     <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
                     <a href="/" class="navegacion__enlace">Empresas</a>
-                    <a href="#" class="navegacion__enlace">Candidatos</a>
+                    <a href="/Candidato.php" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">
@@ -415,8 +415,8 @@
             <div class="footer__seccion">
                 <nav>
                     <p>Contenido</p>
-                    <a href="/Empresa/logoutEmpresa.php" class="enlace">Empresas</a>
-                    <a href="#" class="enlace">Candidatos</a>
+                    <a href="/" class="enlace">Empresas</a>
+                    <a href="/Candidato.php" class="enlace">Candidatos</a>
                     <a href="nosotros.php" class="enlace">Nosotros</a>
                     <a href="#" class="enlace">App Móvil</a>
                 </nav>

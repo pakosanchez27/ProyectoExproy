@@ -29,12 +29,12 @@
                 <nav>
                     <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
                     <a href="/" class="navegacion__enlace">Empresas</a>
-                    <a href="#" class="navegacion__enlace">Candidatos</a>
+                    <a href="/Candidato.php" class="navegacion__enlace">Candidatos</a>
                 </nav>
             </div>
             <div class="navegacion__bloque2">
-                <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Inicia Sesión</a>
-                <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
+                <a href="/Candidato/loginCandidato.php" class="navegacion__enlace">Inicia Sesión</a>
+                <a href="/Candidato/logoutCandidato.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
             </div>
 

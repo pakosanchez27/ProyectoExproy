@@ -195,6 +195,7 @@ $pestañaActual = 'Mis Vacantes';
             <div class="form-group">
                 <label for="educacion">Educación:</label>
                 <select id="educacion" name="educacion">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="bachillerato">Bachillerato</option>
                     <option value="tecnico">Técnico superior universitario</option>
                     <option value="universidad">Universidad</option>
@@ -207,6 +208,7 @@ $pestañaActual = 'Mis Vacantes';
             <div class="form-group">
                 <label for="tipoContrato">Tipo de contrato:</label>
                 <select id="tipoContrato" name="tipoContrato">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="permantente">Permantente</option>
                     <option value="indeterminado">Indeterminado</option>
                     <option value="porProyecto">Por proyecto</option>
@@ -217,6 +219,7 @@ $pestañaActual = 'Mis Vacantes';
             <div class="form-group">
                 <label for="horario">Horario:</label>
                 <select id="horario" name="horario">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="tiempoCompleto">Tiempo completo</option>
                     <option value="medioTiempo">Medio tiempo</option>
                     <option value="finesSemana">Fines de semana</option>
@@ -226,6 +229,7 @@ $pestañaActual = 'Mis Vacantes';
             <div class="form-group">
                 <label for="modoTrabajo">Modo de trabajo:</label>
                 <select id="modoTrabajo" name="modoTrabajo">
+                <option value="" selected disabled>--Selecciona--</option>
                     <option value="presencia">Presencia</option>
                     <option value="homeOffice">Home office</option>
                     <option value="hibrido">Híbrido</option>
@@ -258,116 +262,7 @@ $pestañaActual = 'Mis Vacantes';
         </form>
 
     </div>
-    <div class="ventanaEmergente">
-        <h2 class="ventanaEmergente__titulo">Publicar Vacante</h2>
-        <form class="ventanaEmergente__formulario" method="POST" action="/Empresa/Model/insertarEmpresa.php?id=<?php echo $idUsuario ?>&idEmpresa= <?php echo $IdEmpresa ?>">
-            <div class="form-group">
-                <label for="nombreVacante">Nombre de la vacante:</label>
-                <input type="text" id="nombreVacante" name="nombreVacante">
-            </div>
-
-            <div class="form-group">
-                <label for="salario">Salario:</label>
-                <input type="text" id="salario" name="salario">
-            </div>
-
-            <div class="form-group">
-                <label for="estado">Estado:</label>
-                <select id="estado" name="estado">
-                    <option value="" selected disabled>--Selecciona un Estado--</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="ciudad">Ciudad:</label>
-                <select id="ciudad" name="ciudad">
-                    <option value="" selected disabled>--Selecciona un Ciudad--</option>
-                </select>
-            </div>
-
-
-
-            <div class="form-group">
-                <label for="area">Área:</label>
-                <select id="area" name="area">
-                    <option value="" selected disabled>--Selecciona un Área--</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="puesto">Puesto:</label>
-                <select id="puesto" name="puesto">
-                    <option value="" selected disabled>--Selecciona un Puesto--</option>
-
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="educacion">Educación:</label>
-                <select id="educacion" name="educacion">
-                    <option value="bachillerato">Bachillerato</option>
-                    <option value="tecnico">Técnico superior universitario</option>
-                    <option value="universidad">Universidad</option>
-                    <option value="maestria">Maestría</option>
-                    <option value="doctorado">Doctorado</option>
-                    <option value="ninguna">Ninguna</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="tipoContrato">Tipo de contrato:</label>
-                <select id="tipoContrato" name="tipoContrato">
-                    <option value="permantente">Permantente</option>
-                    <option value="indeterminado">Indeterminado</option>
-                    <option value="porProyecto">Por proyecto</option>
-                    <option value="porHonorarios">Por honorarios</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="horario">Horario:</label>
-                <select id="horario" name="horario">
-                    <option value="tiempoCompleto">Tiempo completo</option>
-                    <option value="medioTiempo">Medio tiempo</option>
-                    <option value="finesSemana">Fines de semana</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="modoTrabajo">Modo de trabajo:</label>
-                <select id="modoTrabajo" name="modoTrabajo">
-                    <option value="presencia">Presencia</option>
-                    <option value="homeOffice">Home office</option>
-                    <option value="hibrido">Híbrido</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="vencimiento">Vencimiento:</label>
-                <input type="date" id="vencimiento" name="vencimiento">
-            </div>
-
-            <div class="form-group">
-                <label for="vacantesDisponibles">Vacantes disponibles:</label>
-                <input type="number" id="vacantesDisponibles" name="vacantesDisponibles">
-            </div>
-
-            <div class="form-group">
-                <label for="descripcion">Descripción:</label>
-                <div class="editorCodigo">
-                    <textarea id="descripcion" name="descripcion" class="editorCodigo__codigo"></textarea>
-
-                </div>
-            </div>
-            <button class="boton__publicar">Publicar</button>
-            <a  href="#" class="ventanaEmergente__cerrar" id="ventanaEmergente__cerrar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-                                </a>
-        </form>
-
-    </div>
+   
         </div>
 
     <script src="../src/js/EmpresaPrincipal.js"></script>
