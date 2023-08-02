@@ -80,7 +80,7 @@
                     </div>
                     <div class="navegacion__opc">
                         <a href="candidatoChat.php?id=<?php echo $idUsuario ?>">
-                            <img src="../../../../src/img/comentario.png" alt="Logo portafolio">
+                            <img src="../../src/img/comentario.png" alt="Logo portafolio">
                             <p>Chats</p>
                         </a>
 
@@ -155,9 +155,9 @@
         </div>
     </header>
 
-<main class="etapaVista">
-    <div class="etapaVista__contenedor ">
-    <div class="vistaProceso__contenedor mostrarMenu ">
+    <main class="etapaVista">
+        <div class="etapaVista__contenedor ">
+        <div class="vistaProceso__contenedor ">
             <div class="vistaProceso__flujo sombra">
                 <div class="vistaProceso__flujo__datosEmpresa">
                     <img src="../../build/img/microsoft.png">
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                     <div class="vistaProceso__circulo" id="proceso3">
-                        <div class="circulo ">
+                        <div class="circulo">
                             <p>3</p>
                         </div>
                         <div class="circulo__texto">
@@ -221,29 +221,28 @@
                 </div>
 
             </div>
-            <div class="proceso__postulado">
+            <div class="proceso__postulado ">
                 <div class="proceso__postulado__contenedor">
                     <div class="proceso__postulado__salir">
                         <a href="#" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                     </div>
 
-                    <h2 class="titulo">¡FELICIDADES POR PASAR LA PRIMERA ETAPA! 🎉📋</h2>
+                    <h2 class="titulo">¡TU MOMENTO DE BRILLAR HA LLEGADO! 💫💼</h2>
                     <p class="mensaje">
-
-                        ¡La empresa ha validado tu currículum y ahora estás a la espera de las pruebas psicométricas! ⌛️
-                        ¡Mantén la calma y prepárate para mostrar tus habilidades en el siguiente desafío! ¡Estás un
-                        paso más cerca de tu meta profesional! 💪🚀
+                        ¡Presta atención! 🚀 La empresa está revisando tu perfil y currículum 📋 ¡Si eres apto,
+                        avanzaremos al siguiente paso! 💼💪
                     </p>
-                    <img class="imagen" src="../../build/img/segunda.png" alt="">
+                    <img class="imagen" src="../../build/img/primera.webp" alt="">
 
                 </div>
 
             </div>
         </div>
-    </div>
-</main>
+        </div>
+    </main>
 
 
 
 </body>
+
 </html>

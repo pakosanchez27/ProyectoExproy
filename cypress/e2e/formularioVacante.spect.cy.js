@@ -1,6 +1,6 @@
 describe("Prueba del formulario de empresa", () => {
     it("Rellenar el formulario y enviarlo", () => {
-      cy.visit('http://localhost:3000/Empresa/PrincipalEmpresa.php?id=1'); // Reemplaza la URL con la ruta correcta de tu formulario
+      cy.visit('http://localhost:3000/Empresa/principalEmpresa.php?id=2'); // Reemplaza la URL con la ruta correcta de tu formulario
       cy.get(".boton__verde").click();
       // Rellenar los campos del formulario
       cy.get("#nombreVacante").type("Diseñador Gráfico");
