@@ -19,6 +19,7 @@ $idUsuario = $_GET['id'] ?? null;
 $idCandidato = $_GET['idCandidato'] ?? null;
 $estadoGET = $_GET['estado'] ?? null;
 $idPostulacion = $_GET['idPostulacion'] ?? null;
+$estatus = $_GET['estatus'] ?? null;
 
 $sqlUs = "SELECT * FROM empresa WHERE id_usuario = $idUsuario";
 $result = $pdo->query($sqlUs);
@@ -84,6 +85,12 @@ WHERE e.ID_EMPRESA = $idEmpresa
 AND p.ESTADO <> 'RECHAZADO';
 ";
 $resultPostulacion = $pdo->query($sqlPostulacion);
+
+$sqlPrueba = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+// var_dump($sqlPrueba);
+$resultPrueba = $pdo->query($sqlPrueba);
+$datosPrueba = $resultPrueba->fetch(PDO::FETCH_ASSOC);
+$estatus = $datosPrueba['ESTATUSPRUEBA'] ?? null;
 
 ?>
 
@@ -162,9 +169,81 @@ include '../include/templete/headerEmpresa.php';
                                 <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
                             <?php else : ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Enviar</a>
+                                <?php if ($estatus === null) : ?>
+                                    <a href="#" id="btnPrueba" class="boton__azul">Enviar</a>
+                                <?php else : ?>
+                                    <a href="#" id="btnPruebaVer" class="boton__azul">Ver</a>
+                                <?php endif; ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
                             <?php endif; ?>
+                        </div>
+                        <div class="formularioEmegente ocultar" id="pruebaPsicometrica">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Pruebas Psicometricas</h2>
+                                <p>Envia al candidato los link a las pruebas piscometricas que usa tu empresa</p>
+                                <p>nota: si tu empresa no usa pruebas psicometricas en linea o prefieres omitirlas solo aprueba en este proceso a tu candidato.</p>
+                                <form action="/Empresa/Model/procesoPruebas.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idCandidato=<?php echo $idCandidato ?>&idPostulacion=<?php echo $idPostulacion ?>&estado=<?php echo $estadoGET ?>" class="formularioEmegente__campos" method="POST">
+                                    <div class="campo nombrePrueba">
+                                        <label for="nombrePrueba">Nombre de la prueba</label>
+                                        <input type="text" name="nombrePrueba[]" id="nombrePrueba" placeholder="Nombre de la prueba psicometrica">
+                                    </div>
+                                    <div class="campo LinkPrueba">
+                                        <label for="LinkPrueba">Link a la prueba piscometrica</label>
+                                        <input type="text" name="LinkPrueba[]" id="LinkPrueba" placeholder="Link a la prueba psicometrica">
+                                    </div>
+
+                                    <div class="masPruebas"></div>
+                                    <a href="#" id="agregarPrueba" class="boton__negro">Agregar Prueba</a>
+                                    <div class="campo btns">
+                                        <input type="submit" class="boton__verde" value="Enviar Pruebas">
+                                        <a href="#" id="cerrarPruebas" class="boton__blanco ">Cancelar</a>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="formularioEmegente ocultar " id="resultadosPsicometrica">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Confirmacion de Psicometricas</h2>
+                                <p>Aqui podras ver cuando tu candidato complete las pruebas Psicometricas</p>
+
+                                <div class="resultadosPruebas">
+                                    <table class="resultadosPruebas__tabla">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre Prueba</th>
+                                                <th>Status Prueba</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php 
+                                            $sql = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+                                            $result = $pdo->query($sql);
+                                            while ($datos = $result->fetch(PDO::FETCH_ASSOC)) :
+                                                $nombre = $datos['NOMBREPRUEBA'];
+                                                $status = $datos['ESTATUSPRUEBA'];
+                                                
+                                                
+                                                if ($status == 'ENVIADO') {
+                                                    $status = "NO RESUELTO";
+                                                }
+                                            ?>
+                                                <tr>
+
+                                                    <td><?php echo $nombre ?></td>
+                                                    <td class="estadoPrueba"><?php echo $status ?></td>
+
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        </tbody>
+                                    </table>
+
+                                    <a href="#" id="cerrarPruebasVer" class="boton__rojo">Cerrar</a>
+                                </div>
+
+
+                            </div>
+
                         </div>
                     </div> <!-- Etapa 3 -->
 
@@ -183,9 +262,74 @@ include '../include/templete/headerEmpresa.php';
                                 <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
                             <?php else : ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Agendar</a>
+                                <a href="#" id="btnAgendar" class="boton__azul">Agendar</a>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
                             <?php endif; ?>
+                        </div>
+
+                        <div class="formularioEmegente ocultar" id="datosEntrevista">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Entrevista Precencial</h2>
+                                <p>Agenda una cita con tu candidato, llena los siguientes campo, recuerda que en el apartado de observaciones puedes agregar algun requisieto que necesite para su entrevista.</p>
+                                <form action="" class="entrevista__campos">
+                                    <div class="campo nombreEntrevistador">
+                                        <label for="nombreEntrevistador">¿Quien entrevistara al candidato?</label>
+                                        <input type="text" name="nombreEntrevistador" id="nombreEntrevistador">
+                                    </div>
+                                    <div class="campo telEntrevistador">
+                                        <label for="telEntrevistador">Telefono del Entrevistador</label>
+                                        <input type="tel" name="telEntrevistador" id="telEntrevistador">
+                                    </div>
+                                    <div class="campo fechaCita">
+                                        <label for="fechaCita">Fecha de la Cita <span>* La cita debe de tener por lo menos un dia de anticipación</span></label>
+                                        <input type="date" name="fechaCita" id="fechaCita">
+                                    </div>
+                                    <div class="campo horaCita">
+                                        <label for="fechaCita">Hora de la Cita <span>* La hora de la cita debe ser en un horario laborla (8 am a 8 pm)</span></label>
+                                        <input type="time" name="fechaCita" id="fechaCita">
+                                    </div>
+                                    <div class="campo observaciones">
+                                        <label for="observaciones">Observaciones</label>
+                                        <textarea name="observaciones" id="observaciones" ></textarea>
+                                    </div>
+                                    <fieldset>
+                                        <legend>Lugar de la cita</legend>
+                                        <div class="campo calle">
+                                            <label for="calle">Calle</label>
+                                            <input type="text" name="calle" id="calle">
+                                        </div>
+                                        <div class="campo postal">
+                                            <label for="postal">Codigo Postal</label>
+                                            <input type="text" name="postal" id="postal">
+                                        </div>
+                                        <div class="campo estado">
+                                            <label for="estado">Estado</label>
+                                            <select name="estado" id="estado">
+                                            <option value="" selected disabled>--selecciona un estado--</option>
+                                            </select>
+                                        </div>
+                                        <div class="campo ciudad">
+                                            <label for="ciudad">Ciudad o Municipio</label>
+                                            <select name="ciudad" id="ciudad">
+                                                <option value="" selected disabled>--selecciona una ciudad--</option>
+                                            </select>
+                                        </div>
+                                        <div class="campo colonia">
+                                            <label for="colonia">Colonia o Delegacion</label>
+                                            <input type="text" name="colonia" id="colonia">
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="campo bts">
+                                        <input type="submit" value="Agendar" class="boton__verde">
+                                        <a href="#" id="cerrarEntrevista" class="boton__blanco">Cancelar</a>
+                                    </div>
+                                </form>
+
+
+
+                            </div>
+
                         </div>
                     </div> <!-- Etapa 4 -->
 
@@ -289,6 +433,8 @@ include '../include/templete/headerEmpresa.php';
     mostrarEtapaPorEstado(estadoGET);
 </script>
 <script src="../src/js/app.js"></script>
+<script src="../src/js/procesoEmpresa.js"></script>
+<script src="../src/js/selectEstados.js"></script>
 
 
 <script>

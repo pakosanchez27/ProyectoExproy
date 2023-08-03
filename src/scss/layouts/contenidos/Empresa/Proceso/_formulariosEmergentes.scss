@@ -1,0 +1,54 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.formularioEmegente {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    background-color: rgb(000, 000, 000, .6);
+    padding: 5rem;
+
+    &__contenedor {
+        background-color: v.$blanco;
+        height: 80rem;
+        padding: 2rem 3rem;
+        border-radius: 1rem;
+        overflow-y: auto;
+
+    }
+
+
+}
+
+.resultadosPruebas {
+    margin-top: 2rem;
+
+    &__tabla {
+        width: 100%;
+        border-collapse: collapse;
+        max-height: 400px;
+        text-align: left;
+        margin-bottom: 2rem;
+        
+        & thead{
+            border-bottom: solid 1px v.$primario;
+            border-top: solid 1px v.$primario;
+           
+        }
+        & td{
+            padding: 2rem;
+        }
+    }
+}
+.estadoPrueba{
+    font-weight: v.$bold;
+    color: v.$primario;
+}

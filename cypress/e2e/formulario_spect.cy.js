@@ -1,9 +1,33 @@
 describe('Formulario de registro de empresa', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.100.5:5501/Empresa/formEmpresa.html');
+    cy.visit('http://localhost:3000/Empresa/logoutEmpresa.php');
   });
 
   it('Llena y envía el formulario', () => {
+    // Llena los campos de inicio de sesión
+    cy.get("#email").type("pruebaempresa@agoratalent.com");
+    cy.get("#pass").type("Prueba1");
+    cy.get("#confirm_pass").type("Prueba1");
+
+    
+
+    // Selecciona los checkboxes de términos y privacidad
+    cy.get('#formulario')
+      .find('.terminos')
+      .within(() => {
+        cy.get('input[name="terminos"]').check();
+      });
+
+    cy.get('#formulario')
+      .find('.privacidad')
+      .within(() => {
+        cy.get('input[name="aviso_privacidad"]').check();
+      });
+
+      cy.get('.boton__verde').click({ multiple: true });
+
+    // Envía el formulario
+    // cy.get('.registroEmpresa__formulario').submit();
     // Llena los campos de la sección "Datos de la empresa"
     cy.get('.registroEmpresa__formulario')
       .find('.empresa')
@@ -84,7 +108,6 @@ describe('Formulario de registro de empresa', () => {
         cy.get('input[name="cargo"]').type('Cargo en la empresa');
       });
 
-    // Envía el formulario
-    cy.get('.registroEmpresa__formulario').submit();
+    
   });
 });
