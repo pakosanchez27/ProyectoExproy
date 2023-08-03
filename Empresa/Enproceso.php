@@ -112,7 +112,7 @@ $pestañaActual = 'En Proceso';
         </div>
 
         <div class="proceso__contenedor">
-            <h3>En proceso</h3>
+            <h3>Candidatos Rechazados</h3>
             <div class="proceso__tabla">
                 <table class="enProceso__tabla">
                     <thead>

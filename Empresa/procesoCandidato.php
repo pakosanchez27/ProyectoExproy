@@ -240,6 +240,7 @@ include '../include/templete/headerEmpresa.php';
                 <img src="../Candidato/CandidatoIMG/<?php echo $fotoCandidato ?>">
                 <h3><?php echo $nombreCandidato . " " . $apellidoCandidato ?></h3>
                 <p class="procesoCandidato__puesto"><?php echo $puestoCandidato ?></p>
+                <a href="#" class="boton__verde">Ver Perfil</a>
                 <!-- <p class="procesoCandidato__vacante">Desarrollador Jr JavaScript</p> -->
 
                 <div class="procesoCandidato__redes">
