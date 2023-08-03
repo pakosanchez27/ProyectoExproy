@@ -54,6 +54,7 @@ ORDER BY EV.FECHA_CREACION_VACANTE DESC;
 ";
 $result2 = $pdo->query($sql2);
 
+#consulta para traer el id de postulacion segun sea el id de candidato y de empresa y de vacante
 
 
 // var_dump($datos2);
@@ -95,6 +96,7 @@ $result2 = $pdo->query($sql2);
                         $empresa = $datos2['EMP_EMPRESA'];
                         $estado  = $datos2['ESTADO_POSTULACION'];
                         $FotoPerfil = $datos2['EMP_FOTOPERFIL'];
+                        $idEmpresa = $datos2['ID_EMPRESA'];
                         
                         
                         // var_dump($estado);
@@ -102,10 +104,11 @@ $result2 = $pdo->query($sql2);
                     <?php 
                     $urlEtapa;
                     if ($estado === 'POSTULADO') {
-                        $urlEtapa = "/Candidato/vistasEtapas/EtapaPostulacion.php?id=$idUsuario";
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaPostulacion.php?id=$idUsuario&idCandidato=$idCandidato";
                     }elseif($estado === 'REVICION'){
-                        $urlEtapa = "/Candidato/vistasEtapas/EtapaRevision.php?id=$idUsuario";
-
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaRevision.php?id=$idUsuario&idCandidato=$idCandidato";
+                    }elseif($estado === 'PRUEBA'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaPruebas.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa";
                     }
                     ?>
                         <a href="<?php echo $urlEtapa ?>" class="postulados__card" data-id="1">

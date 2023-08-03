@@ -1,3 +1,42 @@
+<?php 
+
+use LDAP\Result;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+require '../../include/config.php';
+$idUsuario = $_GET['id'] ?? null;
+$idVacante = $_GET['idVacante'] ?? null;
+$idEmpresa = $_GET['idEmpresa'] ?? null;
+$idCandidato = $_GET['idCandidato'] ?? null;
+
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +48,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../build/css/app.css">
+    <link rel="stylesheet" href="../../build/css/app.css">
     <title>Perfil Candiadto</title>
 </head>
 
@@ -224,7 +263,7 @@
             <div class="proceso__postulado ">
                 <div class="proceso__postulado__contenedor">
                     <div class="proceso__postulado__salir">
-                        <a href="#" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
+                        <a href="/Candidato/PostuladosEmpleos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                     </div>
 
                     <h2 class="titulo">¡TU MOMENTO DE BRILLAR HA LLEGADO! 💫💼</h2>
@@ -242,7 +281,8 @@
     </main>
 
 
-
+    <script src="../src/js/headerCandidato.js"></script>
+    <script src="../src/js/formularioCandidato.js"></script>
 </body>
 
 </html>

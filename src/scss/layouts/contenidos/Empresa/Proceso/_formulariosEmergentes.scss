@@ -52,3 +52,28 @@
     font-weight: v.$bold;
     color: v.$primario;
 }
+
+.entrevista__campos{
+
+    & label > span{
+        font-weight: v.$normal;
+    }
+}
+.estatusEntrevista{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & img{
+        max-width: 100%; /* La imagen no se agrandará más allá de su tamaño original */
+        height: auto; /* La altura se ajustará proporcionalmente al ancho */
+        margin-right: 1rem;
+    }
+}
+.formularioDocumentos{
+    padding: 2rem 5rem;
+}
+.resultadosPruebas__tabla{
+    margin-top: 2rem;
+}

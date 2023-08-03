@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use LDAP\Result;
 
@@ -8,11 +8,11 @@ error_reporting(E_ALL);
 
 
 
-
 require '../../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
 $idVacante = $_GET['idVacante'] ?? null;
-
+$idEmpresa = $_GET['idEmpresa'] ?? null;
+$idCandidato = $_GET['idCandidato'] ?? null;
 
 $sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
 $result = $pdo->query($sqlUs);
@@ -33,8 +33,6 @@ $datos = $result->fetch(PDO::FETCH_ASSOC);
 $nombre = $datos['CAN_NOMBRE'];
 $apellido = $datos['CAN_APELLIDO'];
 $FotoPerfil = $datos['CAN_FOTOPERFIL'];
-$FotoPortada = $datos['CAN_FOTOPORTADA'];
-$ID_CANDIDATO = $datos['ID_CANDIDATO'];
 
 ?>
 
@@ -265,7 +263,7 @@ $ID_CANDIDATO = $datos['ID_CANDIDATO'];
             <div class="proceso__postulado">
                 <div class="proceso__postulado__contenedor">
                     <div class="proceso__postulado__salir">
-                        <a href="#" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
+                    <a href="/Candidato/PostuladosEmpleos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                     </div>
 
                     <h2 class="titulo">¡FELICIDADES POR PASAR LA PRIMERA ETAPA! 🎉📋</h2>

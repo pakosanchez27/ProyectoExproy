@@ -45,7 +45,7 @@ $resultRedes = $pdo->query($sqlRedes);
 
 
 
-$sqlDatosCanidadato = "SELECT 
+$sqlDatosCanidadato = "SELECT
 c.ID_CANDIDATO,
 c.CAN_NOMBRE,
 c.CAN_APELLIDO,
@@ -91,6 +91,19 @@ $sqlPrueba = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candida
 $resultPrueba = $pdo->query($sqlPrueba);
 $datosPrueba = $resultPrueba->fetch(PDO::FETCH_ASSOC);
 $estatus = $datosPrueba['ESTATUSPRUEBA'] ?? null;
+
+$sqlEntrevista = "SELECT STATUSENTREVISTA  FROM cita WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$resultEntrevista = $pdo->query($sqlEntrevista);
+$datosEntrevista = $resultEntrevista->fetch(PDO::FETCH_ASSOC);
+$statusEntrevista = $datosEntrevista['STATUSENTREVISTA'] ?? null;
+
+$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM DOCUMENTOS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$resultDocumentos = $pdo->query($sqlDocumentos);
+$datosDocumentos = $resultDocumentos->fetch(PDO::FETCH_ASSOC);
+$statusDocumentos = $datosDocumentos['ESTADODOCUMENTO'] ?? null;
+
+
+
 
 ?>
 
@@ -216,14 +229,14 @@ include '../include/templete/headerEmpresa.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php 
+                                            <?php
                                             $sql = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
                                             $result = $pdo->query($sql);
                                             while ($datos = $result->fetch(PDO::FETCH_ASSOC)) :
                                                 $nombre = $datos['NOMBREPRUEBA'];
                                                 $status = $datos['ESTATUSPRUEBA'];
-                                                
-                                                
+
+
                                                 if ($status == 'ENVIADO') {
                                                     $status = "NO RESUELTO";
                                                 }
@@ -262,7 +275,11 @@ include '../include/templete/headerEmpresa.php';
                                 <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
                             <?php else : ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" id="btnAgendar" class="boton__azul">Agendar</a>
+                                <?php if ($statusEntrevista === null) : ?>
+                                    <a href="#" id="btnAgendar" class="boton__azul">Agendar</a>
+                                <?php else : ?>
+                                    <a href="#" id="btnAgendarVer" class="boton__azul">Ver</a>
+                                <?php endif; ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
                             <?php endif; ?>
                         </div>
@@ -271,7 +288,7 @@ include '../include/templete/headerEmpresa.php';
                             <div class="formularioEmegente__contenedor">
                                 <h2>Entrevista Precencial</h2>
                                 <p>Agenda una cita con tu candidato, llena los siguientes campo, recuerda que en el apartado de observaciones puedes agregar algun requisieto que necesite para su entrevista.</p>
-                                <form action="" class="entrevista__campos">
+                                <form action="/Empresa/Model/procesoEntrevista.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idCandidato=<?php echo $idCandidato ?>&idPostulacion=<?php echo $idPostulacion ?>&estado=<?php echo $estadoGET ?>" class="entrevista__campos" method="POST">
                                     <div class="campo nombreEntrevistador">
                                         <label for="nombreEntrevistador">¿Quien entrevistara al candidato?</label>
                                         <input type="text" name="nombreEntrevistador" id="nombreEntrevistador">
@@ -285,17 +302,17 @@ include '../include/templete/headerEmpresa.php';
                                         <input type="date" name="fechaCita" id="fechaCita">
                                     </div>
                                     <div class="campo horaCita">
-                                        <label for="fechaCita">Hora de la Cita <span>* La hora de la cita debe ser en un horario laborla (8 am a 8 pm)</span></label>
-                                        <input type="time" name="fechaCita" id="fechaCita">
+                                        <label for="horaCita">Hora de la Cita <span>* La hora de la cita debe ser en un horario laborla (8 am a 8 pm)</span></label>
+                                        <input type="time" name="horaCita" id="horaCita" min="08:00" max="20:00">
                                     </div>
                                     <div class="campo observaciones">
                                         <label for="observaciones">Observaciones</label>
-                                        <textarea name="observaciones" id="observaciones" ></textarea>
+                                        <textarea name="observaciones" id="observaciones"></textarea>
                                     </div>
                                     <fieldset>
                                         <legend>Lugar de la cita</legend>
                                         <div class="campo calle">
-                                            <label for="calle">Calle</label>
+                                            <label for="calle">Calle y numero</label>
                                             <input type="text" name="calle" id="calle">
                                         </div>
                                         <div class="campo postal">
@@ -305,7 +322,7 @@ include '../include/templete/headerEmpresa.php';
                                         <div class="campo estado">
                                             <label for="estado">Estado</label>
                                             <select name="estado" id="estado">
-                                            <option value="" selected disabled>--selecciona un estado--</option>
+                                                <option value="" selected disabled>--selecciona un estado--</option>
                                             </select>
                                         </div>
                                         <div class="campo ciudad">
@@ -331,10 +348,31 @@ include '../include/templete/headerEmpresa.php';
                             </div>
 
                         </div>
+                        <div class="formularioEmegente ocultar " id="datosEntrevistaVer">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Estado de la entrevista</h2>
+                                <p>Cuando el candidato confirme la entrevista veras aqui el estatus.</p>
+                                <?php if ($statusEntrevista === 'CONFIRMADO') :  ?>
+                                    <div class="estatusEntrevista">
+                                        <h3>El candidato confirmo la entrevista</h3>
+                                        <img src="/build/img/undraw_order_confirmed_re_g0if.svg">
+                                    </div>
+                                <?php else : ?>
+                                    <div class="estatusEntrevista">
+                                        <h3>Aun no ha sido confirmada la entrevista</h3>
+                                        <img src="/build/img/esperaEntrevista.svg">
+                                    </div>
+                                <?php endif; ?>
+                                <div class=" bts">
+                                    <a href="#" id="cerrarEntrevistaVer" class="boton__rojo">Cerrar</a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div> <!-- Etapa 4 -->
 
                     <!-- Etapa 5 - Documentación -->
-                    <div class="procesoCard__Etapa ocultar" data-etapa="DOCUMENTOS">
+                    <div class="procesoCard__Etapa " data-etapa="DOCUMENTOS">
                         <div class="procesoCard__paso">
                             <img src="../build/img/documentos.webp">
                             <div class="procesoCard__texto">
@@ -348,14 +386,85 @@ include '../include/templete/headerEmpresa.php';
                                 <a href="#" class="boton__verde opacity50" disabled>Aprobar</a>
                             <?php else : ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=RECHAZADO&idPostulacion=<?php echo $idPostulacion ?>" class="boton__rojo">Rechazar</a>
-                                <a href="#" class="boton__azul">Ver</a>
+
+                                <?php if ($statusDocumentos === null) : ?>
+                                    <a href="#" id="btnDocumentos" class="boton__azul">Solicitar</a>
+                                <?php else : ?>
+                                    <a href="#" id="btnDocumentosVer" class="boton__azul">Descargar</a>
+                                <?php endif; ?>
                                 <a href="/Empresa/Model/etapas.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&etapa=<?php echo $estadoGET ?>&idPostulacion=<?php echo $idPostulacion ?>" class="boton__verde">Aprobar</a>
                             <?php endif; ?>
+                        </div>
+
+                        <div class="formularioEmegente ocultar " id="solicitarDocumentos">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Documentación</h2>
+                                <p>Agrega los documentos que requieres de tu candidato <span>* Recuerda que se solicitara al candidato los documentos en PDF</span>.</p>
+                                <form class="formularioDocumentos" action="/Empresa/Model/procesoDocuementos.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idCandidato=<?php echo $idCandidato ?>&idPostulacion=<?php echo $idPostulacion ?>&estado=<?php echo $estadoGET ?>" class="entrevista__campos" method="POST">
+
+                                    <div class="campo documento">
+                                        <label for="documento1">Documento 1:</label>
+                                        <input type="text" name="documentos[]" required placeholder="Ej. Acta de nacimiento">
+                                    </div>
+                                    <div class="campo documento">
+                                        <label for="documento2">Documento 2:</label>
+                                        <input type="text" name="documentos[]" required placeholder="Ej. Comprobante de Domicilio">
+                                    </div>
+                                    <!-- Aquí se agregarán más campos de documentos si es necesario -->
+                                    <div id="documentosAdicionales"></div>
+
+                                    <button class="boton__negro" type="button" id="agregarDocumento">Agregar otro documento</button>
+                                    <button class="boton__verde" type="submit">Enviar</button>
+                                </form>
+
+                                <a href="#" id="cerrarDocumentos" class="boton__rojo">Cerra</a>
+                            </div>
+
+                        </div>
+                        <div class="formularioEmegente ocultar " id="descargaDocuementos">
+                            <div class="formularioEmegente__contenedor">
+                                <h2>Documentación</h2>
+                                <p>Descarga los docuementos solicitado <span>* Una vez que el candidato suba sus documento se habilitara el boton para descargar.</span>.</p>
+                                <table class="resultadosPruebas__tabla">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del documento</th>
+                                            <th>Descargar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php 
+                                        #consulta para traer los documentos que pertenescan de la relacion entre candidato empresa y postulacion
+                                        $consultaDocumentos = "SELECT * FROM documentos WHERE ID_CANDIDATO = $idCandidato AND ID_EMPRESA = $idEmpresa AND ID_POSTULACION = $idPostulacion";
+                                        $resultadoConsultaDocumentos = $pdo->query($consultaDocumentos);
+                                        while($row = $resultadoConsultaDocumentos->fetch(PDO::FETCH_ASSOC)):
+                                            $nombreDocumento = $row['NOMBRE_DOCUMENTO'];
+                                            $rutaDocuemento = $row['RUTA_DOCUMENTO'];
+
+                                        
+                                       
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $nombreDocumento; ?></td>
+                                            <?php if($rutaDocuemento === null): ?>
+                                                <td><button class="boton__rojo" disabled>Descargar</button></td>
+                                            <?php else: ?>
+                                            <td><a href="<?php echo $rutaDocuemento ?>" download><button class="boton__verde">Descargar</button></a></td>
+                                            <?php endif; ?>
+                                        </tr>
+                                        <?php endwhile; ?>
+                                     
+                                    </tbody>
+                                </table>
+
+                                <a href="#" id="cerrarDescargaDocumentos" class="boton__rojo">Cerrar</a>
+                            </div>
+
                         </div>
                     </div> <!-- Etapa 5 -->
 
                     <!-- Etapa 6 - Contratación -->
-                    <div class="procesoCard__Etapa ocultar" data-etapa="CONTRATACION">
+                    <div class="procesoCard__Etapa " data-etapa="CONTRATACION">
                         <div class="procesoCard__paso">
                             <img src="../build/img/exito.webp">
                             <div class="procesoCard__texto">
