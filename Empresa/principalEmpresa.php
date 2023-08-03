@@ -318,7 +318,7 @@ include '../include/templete/headerEmpresa.php';
                 <input type="number" id="vacantesDisponibles" name="vacantesDisponibles">
             </div>
 
-            <div class="form-group">
+            <div class="form-group descripcionVacante">
                 <label for="descripcion">Descripción:</label>
                 <div class="editorCodigo">
                     <textarea id="descripcion" name="descripcion" class="editorCodigo__codigo"></textarea>
