@@ -955,13 +955,13 @@ $resultCer = $pdo->query($queryCer);
         </div>
         <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
     </footer>
-    <script src="/src/js/app.js"></script>
-    <script src="/src/js/perfilCandidato.js"></script>
-    <script src="/src/js/validacionesFormularios.js"></script>
-    <script src="/src/js/headerCandidato.js"></script>
-    <script src="/src/js/formularioCandidato.js"></script>
-    <script src="/src/js/formulariosEmergentes.js"></script>
-    <script src="/src/js/mensajeFlotante.js"></script>
+    <script src="../src/js/app.js"></script>
+    <script src="../src/js/perfilCandidato.js"></script>
+    <script src="../src/js/validacionesFormularios.js"></script>
+    <script src="../src/js/headerCandidato.js"></script>
+    <script src="../src/js/formularioCandidato.js"></script>
+    <script src="../src/js/formulariosEmergentes.js"></script>
+    <script src="../src/js/mensajeFlotante.js"></script>
 
 
 </body>
