@@ -34,15 +34,15 @@ $saludo = ($genero = 'hombre') ? 'Bienvenido!' : 'Bienvenida!';
 
 // echo $saludo;
 
-$sqlActivos = "SELECT * FROM VACANTE WHERE DATEDIFF(VENCIMIENTO, CURDATE()) >= 3  AND id_empresa = $IdEmpresa";
+$sqlActivos = "SELECT * FROM vacante WHERE DATEDIFF(VENCIMIENTO, CURDATE()) >= 3  AND id_empresa = $IdEmpresa";
 // echo $sqlActivos;
 $resultVacante = $pdo->query($sqlActivos);
 
-$sqlVencer = "SELECT * FROM VACANTE WHERE DATEDIFF(VENCIMIENTO, CURDATE()) > 0 AND DATEDIFF(VENCIMIENTO, CURDATE()) < 3 AND id_empresa = $IdEmpresa";
+$sqlVencer = "SELECT * FROM vacante WHERE DATEDIFF(VENCIMIENTO, CURDATE()) > 0 AND DATEDIFF(VENCIMIENTO, CURDATE()) < 3 AND id_empresa = $IdEmpresa";
 // echo $sqlActivos;
 $resultVencer = $pdo->query($sqlVencer);
 
-$sqlVencido = "SELECT * FROM VACANTE WHERE DATEDIFF(VENCIMIENTO, CURDATE()) <= 1 AND id_empresa = $IdEmpresa";
+$sqlVencido = "SELECT * FROM vacante WHERE DATEDIFF(VENCIMIENTO, CURDATE()) <= 1 AND id_empresa = $IdEmpresa";
 // echo $sqlVencido;
 $resultVencido = $pdo->query($sqlVencido);
 
