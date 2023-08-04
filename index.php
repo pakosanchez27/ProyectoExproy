@@ -476,7 +476,7 @@
         </div>
         <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
     </footer>
-
+    <script src="/src/js/app.js"></script>
     <!-- <script src="/build/js/bundle.min.js"></script> -->
 </body>
 
