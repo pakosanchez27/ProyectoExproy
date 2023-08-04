@@ -1,8 +1,8 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 require '../include/funciones.php';
 $auth = estaAutenticado();
@@ -43,7 +43,7 @@ if ($genero == 'hombre') {
 
 // echo $saludo;
 
-$sqlVacantes = "SELECT * FROM vacante WHERE id_Empresa = $IdEmpresa ORDER BY id_vacante DESC LIMIT 3";
+$sqlVacantes = "SELECT * FROM vacante WHERE ID_EMPRESA = $IdEmpresa ORDER BY ID_VACANTE DESC LIMIT 3";
 // echo $sqlVacantes;
 $resultVacante = $pdo->query($sqlVacantes);
 
