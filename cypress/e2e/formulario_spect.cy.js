@@ -1,6 +1,6 @@
 describe('Formulario de registro de empresa', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.100.5:5501/Empresa/formEmpresa.html');
+    cy.visit('http://localhost:3000/Empresa/formEmpresa.php?id=7');
   });
 
   it('Llena y envía el formulario', () => {
