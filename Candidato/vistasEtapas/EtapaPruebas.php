@@ -1,3 +1,41 @@
+<?php
+
+use LDAP\Result;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+require '../../include/config.php';
+$idUsuario = $_GET['id'] ?? null;
+$idVacante = $_GET['idVacante'] ?? null;
+$idEmpresa = $_GET['idEmpresa'] ?? null;
+$idCandidato = $_GET['idCandidato'] ?? null;
+
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +47,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../../../../build/css/app.css">
+    <link rel="stylesheet" href="/../../build/css/app.css">
     <title>Perfil Candiadto</title>
 </head>
 
@@ -155,97 +193,135 @@
         </div>
     </header>
 
-<main class="etapaVista">
-    <div class="etapaVista__contenedor ">
-    <div class="vistaProceso__contenedor ">
-            <div class="vistaProceso__flujo sombra">
-                <div class="vistaProceso__flujo__datosEmpresa">
-                    <img src="../build/img/microsoft.png">
-                    <div class="vistaProceso__flujo__datos">
-                        <h3 class="titulo">Desarrollador Web</h3>
-                        <p class="empresa">Microsof
-                        <p class="proceso">Postulación</p>
+    <main class="etapaVista">
+        <div class="etapaVista__contenedor ">
+            <div class="vistaProceso__contenedor ">
+                <div class="vistaProceso__flujo sombra">
+                    <div class="vistaProceso__flujo__datosEmpresa">
+                        <img src="../build/img/microsoft.png">
+                        <div class="vistaProceso__flujo__datos">
+                            <h3 class="titulo">Desarrollador Web</h3>
+                            <p class="empresa">Microsof
+                            <p class="proceso">Postulación</p>
+                        </div>
+
+                    </div>
+                    <div class="vistaProceso__circulos">
+                        <div class="vistaProceso__circulo " id="proceso1">
+                            <div class="circulo activo">
+                                <p>1</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Postulación</p>
+                            </div>
+
+                        </div>
+                        <div class="vistaProceso__circulo" id="proceso2">
+                            <div class="circulo activo">
+                                <p>2</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Revisión de CV</p>
+                            </div>
+                        </div>
+                        <div class="vistaProceso__circulo" id="proceso3">
+                            <div class="circulo activo">
+                                <p>3</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Pruebas Psicometricas</p>
+                            </div>
+                        </div>
+                        <div class="vistaProceso__circulo" id="proceso4">
+                            <div class="circulo">
+                                <p>4</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Entrevista Personal</p>
+                            </div>
+                        </div>
+                        <div class="vistaProceso__circulo" id="proceso5">
+                            <div class="circulo">
+                                <p>5</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Documentación</p>
+                            </div>
+                        </div>
+                        <div class="vistaProceso__circulo" id="proceso6">
+                            <div class="circulo">
+                                <p>6</p>
+                            </div>
+                            <div class="circulo__texto">
+                                <p>Contratación</p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <div class="vistaProceso__circulos">
-                    <div class="vistaProceso__circulo " id="proceso1">
-                        <div class="circulo activo">
-                            <p>1</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Postulación</p>
+                <div class="proceso__postulado">
+                    <div class="proceso__postulado__contenedor">
+                        <div class="proceso__postulado__salir">
+                            <a href="/Candidato/PostuladosEmpleos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                         </div>
 
-                    </div>
-                    <div class="vistaProceso__circulo" id="proceso2">
-                        <div class="circulo activo">
-                            <p>2</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Revisión de CV</p>
-                        </div>
-                    </div>
-                    <div class="vistaProceso__circulo" id="proceso3">
-                        <div class="circulo activo">
-                            <p>3</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Pruebas Psicometricas</p>
-                        </div>
-                    </div>
-                    <div class="vistaProceso__circulo" id="proceso4">
-                        <div class="circulo">
-                            <p>4</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Entrevista Personal</p>
-                        </div>
-                    </div>
-                    <div class="vistaProceso__circulo" id="proceso5">
-                        <div class="circulo">
-                            <p>5</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Documentación</p>
-                        </div>
-                    </div>
-                    <div class="vistaProceso__circulo" id="proceso6">
-                        <div class="circulo">
-                            <p>6</p>
-                        </div>
-                        <div class="circulo__texto">
-                            <p>Contratación</p>
-                        </div>
-                    </div>
-                </div>
+                        <h2 class="titulo">Responde las sigueintes Pruebas Psicometricas</h2>
+                        <p class="mensaje">
 
-            </div>
-            <div class="proceso__postulado">
-                <div class="proceso__postulado__contenedor">
-                    <div class="proceso__postulado__salir">
-                        <a href="#" id="salirPostulado"><img src="../build/img/eliminar.webp"></a>
+                            Contesta cada prueba y una vez finalizada presiona el boton de completada para continuar con el proceso de postulación
+                        </p>
+
+
+                        <table class="resultadosPruebas__tabla">
+                            <thead>
+                                <tr>
+                                    <th>Prueba</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <?php
+                                #consulta para traer las pruebas psicometricas de la tabla pruebas segun su id de postulacion id de candidato y id de empresa
+                                $sql = "SELECT * FROM pruebas WHERE  ID_CANDIDATO = $idCandidato AND ID_EMPRESA = $idEmpresa";
+                                // var_dump($sql);
+                                $resultado = $pdo->prepare($sql);
+                                $resultado->execute();
+                                while ($pruebas = $resultado->fetch(PDO::FETCH_ASSOC)) :
+                                    $idPrueba = $pruebas['ID_PRUEBA'];
+                                    $nombrePrueba = $pruebas['NOMBREPRUEBA'];
+                                    $urlPrueba = $pruebas['LINKPRUEBA'];
+                                    $statusPrueba = $pruebas['ESTATUSPRUEBA'];
+                                ?>
+                                    <tr>
+                                        <td><?php echo $nombrePrueba ?></td>
+                                        <td>
+                                            <a href="<?php echo $urlPrueba ?>" target="_blank"><button class="boton__azul">Ir a prueba</button></a>
+                                            <a href="/Candidato/Model/procesoPruebas.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idCandidato=<?php echo $idCandidato ?>&idPrueba=<?php echo $idPrueba ?>">
+                                                <button <?php echo $statusPrueba === 'COMPLETADA' ? 'disabled' : ''; ?> <?php echo $statusPrueba === 'COMPLETADA' ? 'class="boton__verde opacity50"' : 'class="boton__verde "'; ?>>Completado</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+
                     </div>
-
-                    <h2 class="titulo">¡FELICIDADES POR PASAR LA PRIMERA ETAPA! 🎉📋</h2>
-                    <p class="mensaje">
-
-                        ¡La empresa ha validado tu currículum y ahora estás a la espera de las pruebas psicométricas! ⌛️
-                        ¡Mantén la calma y prepárate para mostrar tus habilidades en el siguiente desafío! ¡Estás un
-                        paso más cerca de tu meta profesional! 💪🚀
-                    </p>
-                    <img class="imagen" src="../build/img/segunda.png" alt="">
 
                 </div>
-
             </div>
         </div>
-   </div>
-
-          
-</main>
 
 
+    </main>
 
+
+    <script>
+        function marcarCompletado(numeroPrueba) {
+            // Aquí puedes agregar el código para marcar la prueba como completada
+            alert("Prueba " + numeroPrueba + " completada.");
+        }
+    </script>
 </body>
+
 </html>
