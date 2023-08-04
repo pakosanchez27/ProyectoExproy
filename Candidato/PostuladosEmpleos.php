@@ -45,10 +45,10 @@ $ID_CANDIDATO = $datos['ID_CANDIDATO'];
 $sql2 = "SELECT V.ID_VACANTE, V.TITULO, 
 E.ID_EMPRESA, E.EMP_EMPRESA, E.EMP_FOTOPERFIL,
 P.ESTADO AS ESTADO_POSTULACION
-FROM VACANTE V
-JOIN EMPRESA E ON V.ID_EMPRESA = E.ID_EMPRESA
-JOIN EMPRESA_VACANTE EV ON V.ID_VACANTE = EV.ID_VACANTE
-JOIN POSTULACION P ON V.ID_VACANTE = P.ID_VACANTE
+FROM vacante V
+JOIN empresa E ON V.ID_EMPRESA = E.ID_EMPRESA
+JOIN empresa_vacante EV ON V.ID_VACANTE = EV.ID_VACANTE
+JOIN postulacion P ON V.ID_VACANTE = P.ID_VACANTE
 WHERE P.ID_CANDIDATO = $idCandidato
 ORDER BY EV.FECHA_CREACION_VACANTE DESC;
 ";
@@ -97,6 +97,7 @@ $result2 = $pdo->query($sql2);
                         $estado  = $datos2['ESTADO_POSTULACION'];
                         $FotoPerfil = $datos2['EMP_FOTOPERFIL'];
                         $idEmpresa = $datos2['ID_EMPRESA'];
+                        $idVacante = $datos2['ID_VACANTE'];
                         
                         
                         // var_dump($estado);
@@ -109,6 +110,10 @@ $result2 = $pdo->query($sql2);
                         $urlEtapa = "/Candidato/vistasEtapas/EtapaRevision.php?id=$idUsuario&idCandidato=$idCandidato";
                     }elseif($estado === 'PRUEBA'){
                         $urlEtapa = "/Candidato/vistasEtapas/EtapaPruebas.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa";
+                    }elseif($estado === 'ENTREVISTA'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaEntrevista.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa";
+                    }elseif($estado === 'DOCUMENTOS'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaDocumentos.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa&idVacante=$idVacante";
                     }
                     ?>
                         <a href="<?php echo $urlEtapa ?>" class="postulados__card" data-id="1">

@@ -296,7 +296,7 @@ $FotoPerfil = $datos['CAN_FOTOPERFIL'];
                                     <tr>
                                         <td><?php echo $nombrePrueba ?></td>
                                         <td>
-                                            <a href="<?php echo $urlPrueba ?>" target="_blank"><button class="boton__azul">Ir a prueba</button></a>
+                                            <a href="https://<?php echo $urlPrueba ?>" target="_blank"><button class="boton__azul">Ir a prueba</button></a>
                                             <a href="/Candidato/Model/procesoPruebas.php?id=<?php echo $idUsuario ?>&idEmpresa=<?php echo $idEmpresa ?>&idCandidato=<?php echo $idCandidato ?>&idPrueba=<?php echo $idPrueba ?>">
                                                 <button <?php echo $statusPrueba === 'COMPLETADA' ? 'disabled' : ''; ?> <?php echo $statusPrueba === 'COMPLETADA' ? 'class="boton__verde opacity50"' : 'class="boton__verde "'; ?>>Completado</button>
                                             </a>

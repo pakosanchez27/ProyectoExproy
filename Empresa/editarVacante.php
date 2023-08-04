@@ -34,9 +34,9 @@ $fotoPerfil = $datosUs['EMP_FOTORECLUTADOR'];
 $IdEmpresa = $datosUs['ID_EMPRESA'];
 
 $sqlvacante = "SELECT v.*
-FROM VACANTE v
-JOIN EMPRESA_VACANTE ev ON v.ID_VACANTE = ev.ID_VACANTE
-JOIN EMPRESA e ON ev.ID_EMPRESA = e.ID_EMPRESA
+FROM vacante v
+JOIN empresa_vacante ev ON v.ID_VACANTE = ev.ID_VACANTE
+JOIN empresa e ON ev.ID_EMPRESA = e.ID_EMPRESA
 WHERE v.ID_VACANTE = $idVacante";
 $resultVacante = $pdo->query($sqlvacante);
 $datosVacante = $resultVacante->fetch(PDO::FETCH_ASSOC);

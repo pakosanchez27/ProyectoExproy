@@ -52,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($_FILES['fotoPortada']['tmp_name'], $carpetaImagenes . $Portada);
 
     // Consulta preparada para la inserción de datos en la tabla Candidato
-    $sqlCandidato = "INSERT INTO Candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, area, puesto, id_usuario) VALUES ('$nombre', '$apellido', '$genero', '$telefono', '$fechaNacimiento', '$Perfil', '$Portada', '$area', '$puesto', '$idUsuario')";
+    $sqlCandidato = "INSERT INTO candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, area, puesto, id_usuario) VALUES ('$nombre', '$apellido', '$genero', '$telefono', '$fechaNacimiento', '$Perfil', '$Portada', '$area', '$puesto', '$idUsuario')";
     // echo $sqlCandidato;
     $resultCan = $pdo->query($sqlCandidato);
 
-    $sqlDomicilio = "INSERT INTO Domicilio ( ciudad, estado, codigo_postal, id_usuario) VALUES ('$ciudad', '$estado', '$codigoPostal', '$idUsuario')";
+    $sqlDomicilio = "INSERT INTO domicilio ( ciudad, estado, codigo_postal, id_usuario) VALUES ('$ciudad', '$estado', '$codigoPostal', '$idUsuario')";
     // echo $sqlDomicilio;
     $resultDom = $pdo->query($sqlDomicilio);
 

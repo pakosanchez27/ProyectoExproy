@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $NUMERO_VACANTES = $_POST['vacantesDisponibles'];
   
     
- $updateVacante = "UPDATE VACANTE SET 
+ $updateVacante = "UPDATE vacante SET 
  TITULO = '$TITULO',
  DESCRIPCION = '$DESCRIPCION',
  SALARIO = '$SALARIO',

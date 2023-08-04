@@ -1,3 +1,43 @@
+<?php
+
+use LDAP\Result;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+require '../../include/config.php';
+$idUsuario = $_GET['id'] ?? null;
+$idVacante = $_GET['idVacante'] ?? null;
+$idEmpresa = $_GET['idEmpresa'] ?? null;
+$idCandidato = $_GET['idCandidato'] ?? null;
+
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+$idCandidato = $datos['ID_CANDIDATO'];
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,107 +264,46 @@
                 <div class="proceso__postulado">
                     <div class="proceso__postulado__contenedor ">
                         <div class="proceso__postulado__salir">
-                            <a href="#" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
+                            <a href="/Candidato/PostuladosEmpleos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                         </div>
 
-                        <h2 class="titulo">¡FELICIDADES POR SUPERAR LAS PRUEBAS SICOMÉTRICAS CON ÉXITO! 🎉💼</h2>
+                        <h2 class="titulo">¡FELICIDADES POR SUPERAR LA ENTREVISTA PERSONAL! 🎉🌟</h2>
                         <p class="mensaje">
                             La empresa reconoce tu talento y ha llegado el momento de dar un paso más. ¡Es hora de subir la documentación requerida para formalizar tu proceso! 📄📋
 
                         <div class="documentacion">
                             <p>Asegúrate de que estén en FORMATO PDF y que no excedan los 2MB de tamaño. Utiliza herramientas de compresión de PDF si es necesario.</p>
-                            <form class="documentacion__subir">
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
+                            <form class="documentacion__subir" method="POST" action="/Candidato/Model/procesoDocumentos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&idEmpresa=<?php echo $idEmpresa ?>" enctype="multipart/form-data">
 
-                                    <label for="acta">Acta de Nacimiento</label>
-                                </div>
+                                <?php
+                                $sql = "SELECT * FROM documentos
+                                WHERE ID_CANDIDATO = $idCandidato
+                                AND ID_EMPRESA = $idEmpresa;";
 
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">Curp</label>
-                                </div>
+                                $result = $pdo->query($sql);
+                                while ($datosDocumentacion  = $result->fetch(PDO::FETCH_ASSOC)) :
+                                    $idDocumentacion = $datosDocumentacion['ID_DOCUMENTO'];
+                                    $nombreDocumento = $datosDocumentacion['NOMBRE_DOCUMENTO'];
+                                    $estado = $datosDocumentacion['ESTADODOCUMENTO'];
+                                    
+                                ?>
 
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">Titulo Profecional o Certificado</label>
-                                </div>
+                                    <div class="documento">
+                                        <div class="file-input-container">
+                                            <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                                </svg><span>Subir</span>
+                                            </label>
+                                            <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)" name="documentos[]">
+                                            <input name="idDocumento[]" value="<?php echo $idDocumentacion?>" type="hidden">
+                                        </div>
 
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
+                                        <label for="acta"><?php echo $nombreDocumento ?></label>
                                     </div>
-                                    <label for="acta">Comprobante</label>
-                                </div>
+                                <?php endwhile; ?>
 
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">Identificación Oficial (INE, Pasaporte, Licencia)</label>
-                                </div>
-
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">RFC actualizado</label>
-                                </div>
-
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">Referencias Personales y/o Laborales</label>
-                                </div>
-
-                                <div class="documento">
-                                    <div class="file-input-container">
-                                        <label for="my-file-input" class="custom-file-label"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 iconoSubir">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                                            </svg><span>Subir</span>
-                                        </label>
-                                        <input type="file" id="my-file-input" class="custom-file-input" onchange="handleFileChange(event)">
-                                    </div>
-                                    <label for="acta">Numero del seguro social (NSS)</label>
-                                </div>
 
                                 <div class="nota">
-                                    <p>Nota: Recuerda que estos son documentos generales, es posible que la empresa te pida algún documento extra</p>
                                     <input type="submit" value="Enviar" class="boton__verde">
                                 </div>
                             </form>

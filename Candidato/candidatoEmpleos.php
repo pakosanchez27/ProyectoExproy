@@ -33,20 +33,17 @@ $idCandidato = $datos['ID_CANDIDATO'];
 
 $sqlEmpleos = "SELECT V.ID_VACANTE, V.TITULO, V.DESCRIPCION, V.SALARIO, V.CIUDAD, V.ESTADO, V.AREA, V.PUESTO, V.EDUCACION, V.TIPO_CONTRATO, V.HORARIO, V.MODO_TRABAJO, DATE_FORMAT(EV.FECHA_CREACION_VACANTE, '%d-%m-%Y') AS FECHA_PUBLICACION, V.NUMERO_VACANTES,
 E.ID_EMPRESA, E.EMP_NOMBRE, E.EMP_APELLIDO, E.EMP_TELEFONO, E.EMP_EMPRESA, E.EMP_FOTOPERFIL, E.EMP_FOTOPORTADA, E.EMP_GENERO, E.EMP_ACERCA, E.EMP_NACIMIENTO, E.EMP_CARGO, E.EMP_URL, E.EMP_FOTORECLUTADOR
-FROM VACANTE V
-JOIN EMPRESA E ON V.ID_EMPRESA = E.ID_EMPRESA
-JOIN EMPRESA_VACANTE EV ON V.ID_VACANTE = EV.ID_VACANTE
+FROM vacante V
+JOIN empresa E ON V.ID_EMPRESA = E.ID_EMPRESA
+JOIN empresa_vacante EV ON V.ID_VACANTE = EV.ID_VACANTE
 WHERE EV.FECHA_CREACION_VACANTE <= CURDATE()
 AND (V.VENCIMIENTO IS NULL OR V.VENCIMIENTO >= CURDATE())
 AND NOT EXISTS (
     SELECT 1
-    FROM POSTULACION P
+    FROM postulacion P
     WHERE P.ID_CANDIDATO = $idCandidato AND P.ID_VACANTE = V.ID_VACANTE
 )
-ORDER BY EV.FECHA_CREACION_VACANTE DESC;
-;
-
-";
+ORDER BY EV.FECHA_CREACION_VACANTE DESC";
 $resultEmpleos = $pdo->query($sqlEmpleos);
 
 
@@ -183,7 +180,7 @@ $resultEmpleos = $pdo->query($sqlEmpleos);
                 <h3><?php echo $nombre . " " . $apellido; ?></h3>
             </div>
 
-            <a href="CandidatoPrincipal.php" class="boton__verde">Ver perfil</a>
+            <a href="CandidatoPrincipal.php?id=<?php echo $idUsuario?>" class="boton__verde">Ver perfil</a>
             <hr>
             <nav class="perfilDesplebable__cuenta">
                 <a href="#" class="enlace">Ayuda</a>

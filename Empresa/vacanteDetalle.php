@@ -30,9 +30,9 @@ $IdEmpresa = $datosUs['ID_EMPRESA'];
 
 // Obtenemos información de la vacante de la tabla "vacante" y la unimos con la tabla "empresa_vacante" y "empresa"
 $sqlVacante = "SELECT V.*, E.EMP_EMPRESA AS NOMBRE_EMPRESA,EMP_FOTOPERFIL, EV.FECHA_CREACION_VACANTE 
-               FROM VACANTE V 
-               INNER JOIN EMPRESA_VACANTE EV ON V.ID_VACANTE = EV.ID_VACANTE 
-               INNER JOIN EMPRESA E ON EV.ID_EMPRESA = E.ID_EMPRESA
+               FROM vacante V 
+               INNER JOIN empresa_vacante EV ON V.ID_VACANTE = EV.ID_VACANTE 
+               INNER JOIN empresa E ON EV.ID_EMPRESA = E.ID_EMPRESA
                WHERE V.ID_VACANTE = $idVacante AND EV.ID_EMPRESA = $IdEmpresa";
 
 $resultVacante = $pdo->query($sqlVacante);

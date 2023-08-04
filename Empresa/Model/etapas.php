@@ -27,7 +27,7 @@ if($etapa == 'POSTULADO'){
 }
 
 
-$updateEtapa = "UPDATE POSTULACION SET ESTADO = '$etapa' WHERE ID_CANDIDATO = $idCandidato AND ID_POSTULACION = $idPostulacion";
+$updateEtapa = "UPDATE postulacion SET ESTADO = '$etapa' WHERE ID_CANDIDATO = $idCandidato AND ID_POSTULACION = $idPostulacion";
  $result = $pdo->query($updateEtapa);
 var_dump($updateEtapa);
 

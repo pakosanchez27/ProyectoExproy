@@ -38,8 +38,8 @@ $idEmpresa = $datosUs['ID_EMPRESA'];
 
 
 $sqlRedes = "SELECT rs.ID_RED, rs.RED_NOMBRE, rs.RED_URI
-FROM REDESSOCIALES rs
-INNER JOIN CANDIDATO c ON rs.ID_USUARIO = c.ID_USUARIO
+FROM redessociales rs
+INNER JOIN candidato c ON rs.ID_USUARIO = c.ID_USUARIO
 WHERE c.ID_CANDIDATO = $idCandidato";
 $resultRedes = $pdo->query($sqlRedes);
 
@@ -61,8 +61,8 @@ c.CAN_CURRICULUM,
 c.CAN_ACERCA,
 c.CAN_PORTAFOLIO,
 u.CORREO
-FROM CANDIDATO c
-INNER JOIN USUARIO u ON c.ID_USUARIO = u.ID_USUARIO
+FROM candidato c
+INNER JOIN usuario u ON c.ID_USUARIO = u.ID_USUARIO
 WHERE c.ID_CANDIDATO = $idCandidato";
 $resultDatosCandidato = $pdo->query($sqlDatosCanidadato);
 $datosCandidato = $resultDatosCandidato->fetch(PDO::FETCH_ASSOC);
@@ -77,30 +77,41 @@ $correoCandidato = $datosCandidato['CORREO'];
 $edadCandidato = $datosCandidato['EDAD'];
 
 $sqlPostulacion = "SELECT p.ID_POSTULACION, c.ID_CANDIDATO, c.CAN_NOMBRE, c.CAN_APELLIDO, c.CAN_FOTOPERFIL, c.CAN_FOTOPORTADA, v.TITULO, v.DESCRIPCION, p.FECHA_POSTULACION, p.ESTADO
-FROM POSTULACION p
-INNER JOIN CANDIDATO c ON p.ID_CANDIDATO = c.ID_CANDIDATO
-INNER JOIN VACANTE v ON p.ID_VACANTE = v.ID_VACANTE
-INNER JOIN EMPRESA e ON v.ID_EMPRESA = e.ID_EMPRESA
+FROM postulacion p
+INNER JOIN candidato c ON p.ID_CANDIDATO = c.ID_CANDIDATO
+INNER JOIN vacante v ON p.ID_VACANTE = v.ID_VACANTE
+INNER JOIN empresa e ON v.ID_EMPRESA = e.ID_EMPRESA
 WHERE e.ID_EMPRESA = $idEmpresa
 AND p.ESTADO <> 'RECHAZADO';
 ";
 $resultPostulacion = $pdo->query($sqlPostulacion);
 
-$sqlPrueba = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$sqlPrueba = "SELECT * FROM pruebas WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
 // var_dump($sqlPrueba);
 $resultPrueba = $pdo->query($sqlPrueba);
 $datosPrueba = $resultPrueba->fetch(PDO::FETCH_ASSOC);
 $estatus = $datosPrueba['ESTATUSPRUEBA'] ?? null;
 
-$sqlEntrevista = "SELECT STATUSENTREVISTA  FROM cita WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$sqlEntrevista = "SELECT STATUSENTREVISTA  FROM cita WHERE ID_EMPRESA = $idEmpresa AND ID_CANDIDATO = $idCandidato";
+// var_dump($sqlEntrevista);
 $resultEntrevista = $pdo->query($sqlEntrevista);
 $datosEntrevista = $resultEntrevista->fetch(PDO::FETCH_ASSOC);
 $statusEntrevista = $datosEntrevista['STATUSENTREVISTA'] ?? null;
 
-$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM DOCUMENTOS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+
+
+$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM documentos WHERE ID_EMPRESA = $idEmpresa AND ID_CANDIDATO = $idCandidato";
 $resultDocumentos = $pdo->query($sqlDocumentos);
 $datosDocumentos = $resultDocumentos->fetch(PDO::FETCH_ASSOC);
 $statusDocumentos = $datosDocumentos['ESTADODOCUMENTO'] ?? null;
+
+$sqlPerfil = "SELECT ID_USUARIO
+FROM candidato
+WHERE CAN_NOMBRE = '$nombreCandidato' AND CAN_APELLIDO = '$apellidoCandidato'
+";
+$resultPerfil = $pdo->query($sqlPerfil);
+$datosPerfil = $resultPerfil->fetch(PDO::FETCH_ASSOC);
+$idPerfil = $datosPerfil['ID_USUARIO'] ?? null;
 
 
 
@@ -230,7 +241,7 @@ include '../include/templete/headerEmpresa.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+                                            $sql = "SELECT * FROM pruebas WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
                                             $result = $pdo->query($sql);
                                             while ($datos = $result->fetch(PDO::FETCH_ASSOC)) :
                                                 $nombre = $datos['NOMBREPRUEBA'];
@@ -352,7 +363,7 @@ include '../include/templete/headerEmpresa.php';
                             <div class="formularioEmegente__contenedor">
                                 <h2>Estado de la entrevista</h2>
                                 <p>Cuando el candidato confirme la entrevista veras aqui el estatus.</p>
-                                <?php if ($statusEntrevista === 'CONFIRMADO') :  ?>
+                                <?php if ($statusEntrevista === 'CONFIRMADA') :  ?>
                                     <div class="estatusEntrevista">
                                         <h3>El candidato confirmo la entrevista</h3>
                                         <img src="/build/img/undraw_order_confirmed_re_g0if.svg">
@@ -493,7 +504,7 @@ include '../include/templete/headerEmpresa.php';
                 <img src="../Candidato/CandidatoIMG/<?php echo $fotoCandidato ?>">
                 <h3><?php echo $nombreCandidato . " " . $apellidoCandidato ?></h3>
                 <p class="procesoCandidato__puesto"><?php echo $puestoCandidato ?></p>
-                <a href="#" class="boton__verde">Ver Perfil</a>
+                <a href="/Empresa/perfilCanidadatoEmpresa.php?id=<?php echo $idUsuario ?>&idPerfil=<?php echo $idPerfil ?>" class="boton__verde">Ver Perfil</a>
                 <!-- <p class="procesoCandidato__vacante">Desarrollador Jr JavaScript</p> -->
 
                 <div class="procesoCandidato__redes">

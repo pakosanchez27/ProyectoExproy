@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     for ($i = 0; $i < count($nombrePrueba); $i++) {
         $nombre = $pdo->quote($nombrePrueba[$i]);
         $link = $pdo->quote($linkPrueba[$i]);
-        $sql = "INSERT INTO PRUEBAS (NOMBREPRUEBA, LINKPRUEBA, ESTATUSPRUEBA, ID_EMPRESA, ID_CANDIDATO) VALUES ($nombre,$link,'$status',$idEmpresa,$idCandidato)";
+        $sql = "INSERT INTO pruebas (NOMBREPRUEBA, LINKPRUEBA, ESTATUSPRUEBA, ID_EMPRESA, ID_CANDIDATO) VALUES ($nombre,$link,'$status',$idEmpresa,$idCandidato)";
      var_dump($sql);
         $result = $pdo->query($sql);
 

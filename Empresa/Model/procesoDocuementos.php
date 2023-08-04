@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     foreach ($documentos as $key => $documento) {
         // echo "Documento " . ($key + 1) . ": " . $documento . "<br>";
         #sql para insertar en la tabla
-        $sql = "INSERT INTO DOCUMENTOS (ID_CANDIDATO, ID_EMPRESA,ID_POSTULACION,ESTADODOCUMENTO, NOMBRE_DOCUMENTO) 
+        $sql = "INSERT INTO documentos (ID_CANDIDATO, ID_EMPRESA,ID_POSTULACION,ESTADODOCUMENTO, NOMBRE_DOCUMENTO) 
             VALUES ('$idCandidato', '$idEmpresa', '$idPostulacion', '$estadoDocuemento', '$documento')";
         // echo '<pre>';
         // var_dump($sql);    

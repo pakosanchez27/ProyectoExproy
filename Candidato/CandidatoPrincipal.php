@@ -567,7 +567,7 @@ $resultCer = $pdo->query($queryCer);
                         <div class="campo">
                             <?php
 
-                            $queryRedes2 = "SELECT * FROM REDESSOCIALES WHERE id_usuario = $idUsuario ";
+                            $queryRedes2 = "SELECT * FROM redessociales WHERE id_usuario = $idUsuario ";
                             $resultRed = $pdo->query($queryRedes2);
 
                             ?>

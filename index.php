@@ -48,8 +48,8 @@
                 <a href="#" class="navegacion__enlace--cerrar"><img src="src/img/error.png" alt="Boton de error"
                         id="cerrar"></a>
                 <a href="nosotros.php" class="navegacion__enlace">Nosotros</a>
-                <a href="#" class="navegacion__enlace">Empresa</a>
-                <a href="#" class="navegacion__enlace">Candidatos</a>
+                <a href="/" class="navegacion__enlace">Empresa</a>
+                <a href="/Candidato.php" class="navegacion__enlace">Candidatos</a>
                 <a href="/Empresa/loginEmpresa.php" class="navegacion__enlace">Iniciar Sesion</a>
                 <a href="/Empresa/logoutEmpresa.php" class="navegacion__enlace">registrate</a>
                 <a href="#" class="navegacion__enlace">descarga la app</a>
@@ -476,7 +476,7 @@
         </div>
         <p class="Copy">Derechos reservados para AgoraTalent&#174; 2023</p>
     </footer>
-
+    <script src="/src/js/app.js"></script>
     <!-- <script src="/build/js/bundle.min.js"></script> -->
 </body>
 
