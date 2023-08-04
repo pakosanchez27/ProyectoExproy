@@ -42,9 +42,9 @@ $ID_CANDIDATO = $datos['ID_CANDIDATO'];
 
 
 $sqlVacante = "SELECT V.*, E.EMP_EMPRESA, E.EMP_FOTOPERFIL, DATE_FORMAT(EV.FECHA_CREACION_VACANTE, '%d-%m-%Y') AS FECHA_PUBLICACION
-FROM VACANTE V
-JOIN EMPRESA E ON V.ID_EMPRESA = E.ID_EMPRESA
-JOIN EMPRESA_VACANTE EV ON V.ID_VACANTE = EV.ID_VACANTE
+FROM vacante V
+JOIN empresa E ON V.ID_EMPRESA = E.ID_EMPRESA
+JOIN empresa_vacante EV ON V.ID_VACANTE = EV.ID_VACANTE
 WHERE V.ID_EMPRESA = $idEmpresa  -- Reemplaza ? con el valor del ID de la empresa recibido por GET
   AND V.ID_VACANTE = $idVacante  -- Reemplaza ? con el valor del ID de la vacante recibido por GET
 ";
