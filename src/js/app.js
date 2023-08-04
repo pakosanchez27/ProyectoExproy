@@ -1,7 +1,7 @@
 // Variables
 const menu = document.querySelector('#menu') ;
 const menuEmpresa = document.querySelector('#Empresa') ;
-// const cerrar = document.querySelector('#cerrar') ?? null;
+const cerrar = document.querySelector('#cerrar') ?? null;
 const menuMobile = document.querySelector('#menuMobile');
 
 // eventos
