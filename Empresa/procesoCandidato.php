@@ -38,8 +38,8 @@ $idEmpresa = $datosUs['ID_EMPRESA'];
 
 
 $sqlRedes = "SELECT rs.ID_RED, rs.RED_NOMBRE, rs.RED_URI
-FROM REDESSOCIALES rs
-INNER JOIN CANDIDATO c ON rs.ID_USUARIO = c.ID_USUARIO
+FROM redessociales rs
+INNER JOIN candidato c ON rs.ID_USUARIO = c.ID_USUARIO
 WHERE c.ID_CANDIDATO = $idCandidato";
 $resultRedes = $pdo->query($sqlRedes);
 
@@ -61,8 +61,8 @@ c.CAN_CURRICULUM,
 c.CAN_ACERCA,
 c.CAN_PORTAFOLIO,
 u.CORREO
-FROM CANDIDATO c
-INNER JOIN USUARIO u ON c.ID_USUARIO = u.ID_USUARIO
+FROM candidato c
+INNER JOIN usuario u ON c.ID_USUARIO = u.ID_USUARIO
 WHERE c.ID_CANDIDATO = $idCandidato";
 $resultDatosCandidato = $pdo->query($sqlDatosCanidadato);
 $datosCandidato = $resultDatosCandidato->fetch(PDO::FETCH_ASSOC);
@@ -77,16 +77,16 @@ $correoCandidato = $datosCandidato['CORREO'];
 $edadCandidato = $datosCandidato['EDAD'];
 
 $sqlPostulacion = "SELECT p.ID_POSTULACION, c.ID_CANDIDATO, c.CAN_NOMBRE, c.CAN_APELLIDO, c.CAN_FOTOPERFIL, c.CAN_FOTOPORTADA, v.TITULO, v.DESCRIPCION, p.FECHA_POSTULACION, p.ESTADO
-FROM POSTULACION p
-INNER JOIN CANDIDATO c ON p.ID_CANDIDATO = c.ID_CANDIDATO
-INNER JOIN VACANTE v ON p.ID_VACANTE = v.ID_VACANTE
-INNER JOIN EMPRESA e ON v.ID_EMPRESA = e.ID_EMPRESA
+FROM postulacion p
+INNER JOIN candidato c ON p.ID_CANDIDATO = c.ID_CANDIDATO
+INNER JOIN vacante v ON p.ID_VACANTE = v.ID_VACANTE
+INNER JOIN empresa e ON v.ID_EMPRESA = e.ID_EMPRESA
 WHERE e.ID_EMPRESA = $idEmpresa
 AND p.ESTADO <> 'RECHAZADO';
 ";
 $resultPostulacion = $pdo->query($sqlPostulacion);
 
-$sqlPrueba = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$sqlPrueba = "SELECT * FROM pruebas WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
 // var_dump($sqlPrueba);
 $resultPrueba = $pdo->query($sqlPrueba);
 $datosPrueba = $resultPrueba->fetch(PDO::FETCH_ASSOC);
@@ -97,7 +97,7 @@ $resultEntrevista = $pdo->query($sqlEntrevista);
 $datosEntrevista = $resultEntrevista->fetch(PDO::FETCH_ASSOC);
 $statusEntrevista = $datosEntrevista['STATUSENTREVISTA'] ?? null;
 
-$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM DOCUMENTOS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM documentos WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
 $resultDocumentos = $pdo->query($sqlDocumentos);
 $datosDocumentos = $resultDocumentos->fetch(PDO::FETCH_ASSOC);
 $statusDocumentos = $datosDocumentos['ESTADODOCUMENTO'] ?? null;
