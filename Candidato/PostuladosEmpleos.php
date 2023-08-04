@@ -97,6 +97,7 @@ $result2 = $pdo->query($sql2);
                         $estado  = $datos2['ESTADO_POSTULACION'];
                         $FotoPerfil = $datos2['EMP_FOTOPERFIL'];
                         $idEmpresa = $datos2['ID_EMPRESA'];
+                        $idVacante = $datos2['ID_VACANTE'];
                         
                         
                         // var_dump($estado);
@@ -109,6 +110,10 @@ $result2 = $pdo->query($sql2);
                         $urlEtapa = "/Candidato/vistasEtapas/EtapaRevision.php?id=$idUsuario&idCandidato=$idCandidato";
                     }elseif($estado === 'PRUEBA'){
                         $urlEtapa = "/Candidato/vistasEtapas/EtapaPruebas.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa";
+                    }elseif($estado === 'ENTREVISTA'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaEntrevista.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa";
+                    }elseif($estado === 'DOCUMENTOS'){
+                        $urlEtapa = "/Candidato/vistasEtapas/EtapaDocumentos.php?id=$idUsuario&idCandidato=$idCandidato&idEmpresa=$idEmpresa&idVacante=$idVacante";
                     }
                     ?>
                         <a href="<?php echo $urlEtapa ?>" class="postulados__card" data-id="1">

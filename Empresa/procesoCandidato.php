@@ -92,15 +92,26 @@ $resultPrueba = $pdo->query($sqlPrueba);
 $datosPrueba = $resultPrueba->fetch(PDO::FETCH_ASSOC);
 $estatus = $datosPrueba['ESTATUSPRUEBA'] ?? null;
 
-$sqlEntrevista = "SELECT STATUSENTREVISTA  FROM cita WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+$sqlEntrevista = "SELECT STATUSENTREVISTA  FROM cita WHERE ID_EMPRESA = $idEmpresa AND ID_CANDIDATO = $idCandidato";
+// var_dump($sqlEntrevista);
 $resultEntrevista = $pdo->query($sqlEntrevista);
 $datosEntrevista = $resultEntrevista->fetch(PDO::FETCH_ASSOC);
 $statusEntrevista = $datosEntrevista['STATUSENTREVISTA'] ?? null;
 
-$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM documentos WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+
+
+$sqlDocumentos = "SELECT ESTADODOCUMENTO FROM documentos WHERE ID_EMPRESA = $idEmpresa AND ID_CANDIDATO = $idCandidato";
 $resultDocumentos = $pdo->query($sqlDocumentos);
 $datosDocumentos = $resultDocumentos->fetch(PDO::FETCH_ASSOC);
 $statusDocumentos = $datosDocumentos['ESTADODOCUMENTO'] ?? null;
+
+$sqlPerfil = "SELECT ID_USUARIO
+FROM candidato
+WHERE CAN_NOMBRE = '$nombreCandidato' AND CAN_APELLIDO = '$apellidoCandidato'
+";
+$resultPerfil = $pdo->query($sqlPerfil);
+$datosPerfil = $resultPerfil->fetch(PDO::FETCH_ASSOC);
+$idPerfil = $datosPerfil['ID_USUARIO'] ?? null;
 
 
 
@@ -352,7 +363,7 @@ include '../include/templete/headerEmpresa.php';
                             <div class="formularioEmegente__contenedor">
                                 <h2>Estado de la entrevista</h2>
                                 <p>Cuando el candidato confirme la entrevista veras aqui el estatus.</p>
-                                <?php if ($statusEntrevista === 'CONFIRMADO') :  ?>
+                                <?php if ($statusEntrevista === 'CONFIRMADA') :  ?>
                                     <div class="estatusEntrevista">
                                         <h3>El candidato confirmo la entrevista</h3>
                                         <img src="/build/img/undraw_order_confirmed_re_g0if.svg">
@@ -493,7 +504,7 @@ include '../include/templete/headerEmpresa.php';
                 <img src="../Candidato/CandidatoIMG/<?php echo $fotoCandidato ?>">
                 <h3><?php echo $nombreCandidato . " " . $apellidoCandidato ?></h3>
                 <p class="procesoCandidato__puesto"><?php echo $puestoCandidato ?></p>
-                <a href="#" class="boton__verde">Ver Perfil</a>
+                <a href="/Empresa/perfilCanidadatoEmpresa.php?id=<?php echo $idUsuario ?>&idPerfil=<?php echo $idPerfil ?>" class="boton__verde">Ver Perfil</a>
                 <!-- <p class="procesoCandidato__vacante">Desarrollador Jr JavaScript</p> -->
 
                 <div class="procesoCandidato__redes">

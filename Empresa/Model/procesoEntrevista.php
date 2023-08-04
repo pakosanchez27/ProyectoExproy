@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     $status_entrevista = 'AGENDADO';
     
-    $sql = "INSERT INTO CITA (ID_CANDIDATO, ID_EMPRESA, NOMBRE_ENTREVISTADOR, TELEFONO_ENTREVISTADOR, FECHA_CITA, HORA_CITA, CALLE, CIUDAD, ESTADO, COLONIA, CODIGO_POSTAL, OBSERVACIONES, STATUSENTREVISTA) 
+    $sql = "INSERT INTO cita (ID_CANDIDATO, ID_EMPRESA, NOMBRE_ENTREVISTADOR, TELEFONO_ENTREVISTADOR, FECHA_CITA, HORA_CITA, CALLE, CIUDAD, ESTADO, COLONIA, CODIGO_POSTAL, OBSERVACIONES, STATUSENTREVISTA) 
             VALUES ('$idCandidato', '$idEmpresa', '$nombre_entrevistador', '$telefono_entrevistador', '$fecha_cita', '$hora_cita', '$calle', '$ciudad', '$estado', '$colonia', '$codigo_postal', '$observaciones', '$status_entrevista')";
     
     $result = $pdo->query($sql);

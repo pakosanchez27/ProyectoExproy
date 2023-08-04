@@ -1,3 +1,59 @@
+<?php
+
+use LDAP\Result;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+
+require '../../include/config.php';
+$idUsuario = $_GET['id'] ?? null;
+$idVacante = $_GET['idVacante'] ?? null;
+$idEmpresa = $_GET['idEmpresa'] ?? null;
+$idCandidato = $_GET['idCandidato'] ?? null;
+
+$sqlUs = " SELECT * FROM usuario WHERE id_usuario = $idUsuario";
+$result = $pdo->query($sqlUs);
+// var_dump($sqlUs);
+$datosUs = $result->fetch(PDO::FETCH_ASSOC);
+// var_dump($datosUs);
+$email = $datosUs['CORREO'];
+// echo $email;
+
+
+$sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
+// var_dump($sql);
+$result = $pdo->query($sql);
+$datos = $result->fetch(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($datos);
+// echo '</pre>';
+$nombre = $datos['CAN_NOMBRE'];
+$apellido = $datos['CAN_APELLIDO'];
+$FotoPerfil = $datos['CAN_FOTOPERFIL'];
+
+
+$sqlCita = "SELECT * FROM cita WHERE ID_CANDIDATO = $idCandidato AND ID_EMPRESA = $idEmpresa";
+$resultCita = $pdo->query($sqlCita);
+$datosCita = $resultCita->fetch(PDO::FETCH_ASSOC);
+
+$nombreEntrevistador = $datosCita['NOMBRE_ENTREVISTADOR'];
+$telefonoEntrevistador = $datosCita['TELEFONO_ENTREVISTADOR'];
+$fechaCita = $datosCita['FECHA_CITA'];
+$horaCita = $datosCita['HORA_CITA'];
+$calle = $datosCita['CALLE'];
+$ciudad = $datosCita['CIUDAD'];
+$estado = $datosCita['ESTADO'];
+$colonia = $datosCita['COLONIA'];
+$codigoPostal = $datosCita['CODIGO_POSTAL'];
+$observaciones = $datosCita['OBSERVACIONES'];
+$statusEntrevista = $datosCita['STATUSENTREVISTA'];
+
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -224,7 +280,7 @@
                 <div class="proceso__postulado">
                     <div class="proceso__postulado__contenedor">
                         <div class="proceso__postulado__salir">
-                            <a href="#" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
+                        <a href="/Candidato/PostuladosEmpleos.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>" id="salirPostulado"><img src="../../build/img/eliminar.webp"></a>
                         </div>
 
                         <h2 class="titulo">¡FELICIDADES POR SUPERAR LAS PRUEBAS SICOMÉTRICAS CON ÉXITO! 🎉💼</h2>
@@ -239,13 +295,13 @@
                                     <img src="/../../build/img/mapa.png">
                                 </div>
                                 <div class="datos__cita__info">
-                                    <p class="negrita">Nombre del reclutad@r: <span>Magali Martinez López</span></p>
-                                    <p class="negrita">Numero de contacto: <span>+52 55 11 20 80 28</span></p>
-                                    <p class="negrita">Lugar: <span> Universidad Tecnológica de Nezahualcóyotl, Cto. Rey Nezahualcóyotl Manzana 010, Benito Juárez, 57000 Nezahualcóyotl, Méx.</span></p>
+                                    <p class="negrita">Nombre del reclutad@r: <span><?php echo $nombreEntrevistador ?></span></p>
+                                    <p class="negrita">Numero de contacto: <span>+52 <?php echo $telefonoEntrevistador ?></span></p>
+                                    <p class="negrita">Lugar: <span> <?php echo $calle . "," . $colonia ."," . $codigoPostal ."," . $ciudad ."," .$estado ?> </span></p>
                                     <a href="#" class="boton__verde">Ven en Google Maps</a>
-                                    <p class="negrita">Fecha: <span>26/06/2023</span></p>
-                                    <p class="negrita">Hora: <span>14:00 hrs.</span></p>
-                                    <p class="negrita">Observaciones: <span>Traer pluma negra, libreta y disponibilidad de tiempo. </span></p>
+                                    <p class="negrita">Fecha: <span><?php echo $fechaCita ?></span></p>
+                                    <p class="negrita">Hora: <span><?php echo $horaCita ?> hrs.</span></p>
+                                    <p class="negrita">Observaciones: <span><?php echo $observaciones ?> </span></p>
                                 </div>
 
 
@@ -254,8 +310,7 @@
                                 <p class="negrita">Es importante para la empresa saber si estas disponible en la hora señalada, de no ser a si porfavor pide que te reagenden tu cita. </p>
                             </div>
                             <div class="datos__cita__btns">
-                                <a href="#" class="boton__negro">Reagendar</a>
-                                <a href="#" class="boton__verde">Confirmar Asistencia</a>
+                                <a href="/Candidato/Model/procesEntrevista.php?id=<?php echo $idUsuario ?>&idCandidato=<?php echo $idCandidato ?>&idEmpresa=<?php echo $idEmpresa ?>" class="boton__verde">Confirmar Asistencia</a>
                             </div>
                         </div>
                     </div>
