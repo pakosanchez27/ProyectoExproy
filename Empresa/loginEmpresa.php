@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     <div class="registrar">
                         <p>¿Aún no tienes cuenta?</p>
-                        <a href="logoutEmpresa.php">Regístrate</a>
+                        <a href="/Empresa/loginEmpresa.php">Regístrate</a>
                     </div>
                 </div>
             </div>

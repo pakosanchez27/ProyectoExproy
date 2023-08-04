@@ -1,18 +1,5 @@
 <?php
-$empresa = $_POST['empresa'];
-$descripcion = $_POST['descripcion'];
-$url = $_POST['url'];
-$direccion = $_POST['direccion'];
-$estado = $_POST['estado'];
-$postal = $_POST['postal'];
-$ciudad = $_POST['ciudad'];
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$genero = $_POST['genero'];
-$telefono = $_POST['telefono'];
-$nacimiento = $_POST['nacimiento'];
-$cargo = $_POST['cargo'];
 
 // Mandar a llamar el archivo config.php dentro de la carpeta include
 require '../include/config.php';
