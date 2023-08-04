@@ -198,7 +198,7 @@ $FotoPerfil = $datos['CAN_FOTOPERFIL'];
 
                 <div class="emergente__formulario__campos">
                     <?php
-                    $sqlEdu = "SELECT * FROM EDUCACION WHERE ID_USUARIO = $idUsuario AND ID_EDUCACION = $idEducacion";
+                    $sqlEdu = "SELECT * FROM educacion WHERE ID_USUARIO = $idUsuario AND ID_EDUCACION = $idEducacion";
                     $result = $pdo->query($sqlEdu);
                     while ($datosEdu = $result->fetch(PDO::FETCH_ASSOC)) :
                     ?>
