@@ -1,8 +1,8 @@
 <?php
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require '../include/funciones.php';
 $auth = estaAutenticado();
@@ -43,20 +43,19 @@ if ($genero == 'hombre') {
 
 // echo $saludo;
 
-$sqlVacantes = "SELECT * FROM vacante WHERE ID_EMPRESA = $IdEmpresa ORDER BY ID_VACANTE DESC LIMIT 3";
+$sqlVacantes = "SELECT * FROM vacante WHERE id_Empresa = $IdEmpresa ORDER BY id_vacante DESC LIMIT 3";
 // echo $sqlVacantes;
 $resultVacante = $pdo->query($sqlVacantes);
 
 
 // Consulta para obtener las postulaciones
-$sqlPostulacion = "SELECT p.id_postulacion, c.id_candidato, c.can_nombre, c.can_apellido, c.can_fotoperfil, c.can_fotoportada, v.titulo, v.descripcion, p.fecha_postulacion, p.estado
+$sqlPostulacion = "SELECT p.ID_POSTULACION, c.ID_CANDIDATO, c.CAN_NOMBRE, c.CAN_APELLIDO, c.CAN_FOTOPERFIL, c.CAN_FOTOPORTADA, v.TITULO, v.DESCRIPCION, p.FECHA_POSTULACION, p.ESTADO
 FROM postulacion p
-INNER JOIN candidato c ON p.id_candidato = c.id_candidato
-INNER JOIN vacante v ON p.id_vacante = v.id_vacante
-INNER JOIN empresa e ON v.id_empresa = e.id_empresa
-WHERE e.id_empresa = $idEmpresa
-AND p.estado <> 'RECHAZADO'";
-
+INNER JOIN candidato c ON p.ID_CANDIDATO = c.ID_CANDIDATO
+INNER JOIN vacante v ON p.ID_VACANTE = v.ID_VACANTE
+INNER JOIN empresa e ON v.ID_EMPRESA = e.ID_EMPRESA
+WHERE e.ID_EMPRESA = $idEmpresa
+AND p.ESTADO <> 'RECHAZADO'";
 $resultPostulacion = $pdo->query($sqlPostulacion);
 
 // var_dump($datosPostulacion);
