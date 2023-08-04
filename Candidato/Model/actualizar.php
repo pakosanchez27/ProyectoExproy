@@ -210,9 +210,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombrePerfil = $datos['PROY_FOTO'];
         }
 
-        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE ID_USUARIO = $idUsuario AND ID_PROYECTO = $idProyecto";
-        //  echo $updateProyecto;
-        $resultProy = $pdo->query($updateProyecto);
+        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = :nombreProyecto, PROY_DESCRIPCION = :descripcion, PROY_TECNOLOGIA = :tecnologias, PROY_URL = :urlProyecto, PROY_FOTO = :nombrePerfil WHERE ID_USUARIO = :idUsuario AND ID_PROYECTO = :idProyecto";
+
+        // Preparar la consulta
+        $stmt = $pdo->prepare($updateProyecto);
+        
+        // Asociar los parámetros
+        $stmt->bindParam(':nombreProyecto', $nombreProyecto);
+        $stmt->bindParam(':descripcion', $descripcion);
+        $stmt->bindParam(':tecnologias', $tecnologias);
+        $stmt->bindParam(':urlProyecto', $urlProyecto);
+        $stmt->bindParam(':nombrePerfil', $nombrePerfil);
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->bindParam(':idProyecto', $idProyecto);
+        
+        // Ejecutar la consulta
+        $resultProy = $stmt->execute();
     }
 
     if(isset($_POST['nombreCertificado']) && isset($_POST['descripcionCertificado']) && isset($_POST['lugar']) && isset($_POST['horas']) && isset($_POST['fechaTermino'])) {
