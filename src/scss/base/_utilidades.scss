@@ -45,7 +45,26 @@
     color: rgb(199, 7, 7);
     font-size: 1rem;
 }
+.bannerError{
+    color: v.$blanco;
+    background-color:rgb(199, 7, 7); ;
+    font-size: 1.2rem;
+    width: 100%;
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    border-radius: .5rem;
 
+  
+
+}
+li{
+    list-style: none;
+
+  }
+  ul{
+    padding: 0;
+  }
 .block{
     display: block;
 }
@@ -54,7 +73,7 @@ display: inline-block;
 }
 
 .activo{
-    background-color: v.$primario;
+    background-color: v.$primario !important;
 }
 .noPaso{
     background-color: rgb(189, 15, 15);
@@ -69,3 +88,55 @@ display: inline-block;
     transition: opacity 1s;
   }
   
+  .text-left{
+    text-align: left;
+    grid-column: 1/2;
+  }
+
+  fieldset {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+legend {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.campo {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select,
+input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.negro {
+    background-color: #000;
+}
+
+.rechazado{
+    background-color: rgb(173, 15, 15) !important;
+    
+}
+/* Otros estilos para mejorar la apariencia del formulario según tus necesidades */

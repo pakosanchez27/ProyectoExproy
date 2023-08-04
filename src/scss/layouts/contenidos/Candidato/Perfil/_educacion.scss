@@ -4,6 +4,7 @@
 .principal__educacion {
     &__contenedor {
         width: 100%;
+        height: auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;

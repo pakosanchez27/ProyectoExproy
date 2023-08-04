@@ -1,8 +1,13 @@
 <?php
 require '../include/config.php';
 
-$idUsuario = $_GET['id'] ?? null;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+
+
+$idUsuario = $_GET['id'] ?? null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
@@ -16,20 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estado = $_POST['estado'];
     $ciudad = $_POST['ciudad'];
     $institucion = $_POST['institucion'];
-    $fechaInicio = $_POST['fechaInicio'];
-    $fechaFin = $_POST['fechaFin'];
+    $fechaInicio = $_POST['fechaInicio'] ?? null;
+    $fechaFin = $_POST['fechaFin']?? null;
     $titulo = $_POST['titulo'];
     $nivelEstudios = $_POST['nivel__estudios'];
-    $skills = $_POST['skills'];
-    $idiomas = $_POST['idiomas'];
-    $nivel = $_POST['nivel'];
+    $skills = isset($_POST["etiquetas"]) ? $_POST["etiquetas"] : [];
+    $idiomas = isset($_POST["idiomas"]) ? $_POST["idiomas"] : [];
+    $niveles = isset($_POST["nivel"]) ? $_POST["nivel"] : [];
     $empresa = $_POST['empresa'];
     $descripcion = $_POST['descripcion'];
     $cargo = $_POST['cargo'];
-    $duracion = $_POST['duracion'];
+    $duracion = $_POST['duracion']?? null;
     $puesto = $_POST['puesto'];
     $area = $_POST['area'];
-   
+
+
 
     $carpetaImagenes = 'CandidatoIMG/';
 
@@ -38,45 +44,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Generar nombres únicos para las imágenes
-    $nombreImagen1 = md5(uniqid(rand(), true)) . ".jpg";
-    $nombreImagen2 = md5(uniqid(rand(), true)) . ".jpg";
+    $Perfil = md5(uniqid(rand(), true)) . ".jpg";
+    $Portada = md5(uniqid(rand(), true)) . ".jpg";
 
     // Subir las imágenes
-    move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $carpetaImagenes . $nombreImagen1);
-    move_uploaded_file($_FILES['fotoPortada']['tmp_name'], $carpetaImagenes . $nombreImagen2);
+    move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $carpetaImagenes . $Perfil);
+    move_uploaded_file($_FILES['fotoPortada']['tmp_name'], $carpetaImagenes . $Portada);
 
-     $sqlCandidato = "INSERT INTO candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, id_usuario) VALUES ('$nombre', '$apellido', '$genero', '$telefono', '$fechaNacimiento', '$nombreImagen1', '$nombreImagen2', '$idUsuario')";
+    // Consulta preparada para la inserción de datos en la tabla Candidato
+    $sqlCandidato = "INSERT INTO candidato (can_nombre, can_apellido, can_genero, can_telefono, can_fechaNacimiento, can_fotoPerfil, can_fotoPortada, area, puesto, id_usuario) VALUES ('$nombre', '$apellido', '$genero', '$telefono', '$fechaNacimiento', '$Perfil', '$Portada', '$area', '$puesto', '$idUsuario')";
     // echo $sqlCandidato;
-    $candidato= $pdo->query($sqlCandidato);
-    
-     $sqlDireccion = "INSERT INTO domicilio (ciudad, estado, codigo_postal, id_usuario) VALUES ('$ciudad', '$estado', '$codigoPostal','$idUsuario')";
-    //  echo $sqlDireccion;
-    $Direccion= $pdo->query($sqlDireccion);
-    
-     $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_candidato) VALUES ('$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
-    //  echo $sqlEducacion;
-      $educacion = $pdo->query($sqlEducacion);
-     
-     $sqlIdiomas = "INSERT INTO idioma (idioma_nombre, idioma_nivel, id_candidato) VALUES ('$idiomas', '$nivel', '$idUsuario')";
-     // echo $sqlIdiomas;
-     $Idiomas = $pdo->query($sqlIdiomas);
+    $resultCan = $pdo->query($sqlCandidato);
 
-     $sqlHabilidad = "INSERT INTO habilidad (hab_nombre, id_candidato) VALUES ('$skills', '$idUsuario')";
-     $habilidad = $pdo->query($sqlHabilidad);
-    
-     
-     $sqlExperiencia = "INSERT INTO experiencia (exp_nombre_empresa, exp_descripcion, exp_cargo, exp_duracion, id_candidato) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
-     // echo $sqlExperiencia;
-     $experiencia = $pdo->query($sqlExperiencia);
-     
+    $sqlDomicilio = "INSERT INTO domicilio ( ciudad, estado, codigo_postal, id_usuario) VALUES ('$ciudad', '$estado', '$codigoPostal', '$idUsuario')";
+    // echo $sqlDomicilio;
+    $resultDom = $pdo->query($sqlDomicilio);
+
+    $sqlEducacion = "INSERT INTO educacion (edu_nombre_institucion, edu_fecha_inicio, edu_fecha_fin, edu_titulo, edu_nivel, id_usuario) VALUES ( '$institucion', '$fechaInicio', '$fechaFin', '$titulo', '$nivelEstudios', '$idUsuario')";
+    // echo $sqlEducacion; 
+    $resultEdu = $pdo->query($sqlEducacion);
+
+    foreach ($skills as $etiqueta) {
+        $sqlHabilidad = "INSERT INTO habilidad ( hab_nombre, id_usuario) VALUES ('$etiqueta', '$idUsuario')";
+        //     // echo $sqlHabilidad;  
+        $resultHab = $pdo->query($sqlHabilidad);
+    }
 
 
+    for ($i = 0; $i < count($idiomas); $i++) {
+        $idioma = $pdo->quote($idiomas[$i]);
+        $nivel = $pdo->quote($niveles[$i]);
 
- // Redirigir a la página candidatoForm.php con el ID del nuevo registro
-header("Location: CandidatoPrincipal.php?id=$idUsuario");
+        $sqlIdioma = "INSERT INTO idioma (idioma_nombre, idioma_nivel, id_usuario) VALUES ($idioma, $nivel, $idUsuario)";
 
-           
+        $resultIdioma = $pdo->query($sqlIdioma);
+    }
 
+
+    $sqlExperiencia = "INSERT INTO experiencia (EXP_NOMBRE_EMPRESA, EXP_DESCRIPCION, EXP_CARGO, EXP_DURACION, ID_USUARIO) VALUES ('$empresa', '$descripcion', '$cargo', '$duracion', '$idUsuario')";
+    // echo $sqlExperiencia; 
+    $resultExp = $pdo->query($sqlExperiencia);
+
+
+    //  Redirigir a la página candidatoForm.php con el ID del nuevo registro
+    header("Location: CandidatoPrincipal.php?id=$idUsuario");
 }
 
 ?>
@@ -226,32 +237,36 @@ header("Location: CandidatoPrincipal.php?id=$idUsuario");
                             <div class="campo nivel__estudios">
                                 <label for="nivel__estudios">Nivel</label>
                                 <select name="nivel__estudios" id="nivel__estudios">
-                                    <option value="sin_estudios">Sin estudios</option>
-                                    <option value="educacion_primaria">Educación Primaria</option>
-                                    <option value="educacion_secundaria">Educación Secundaria</option>
+                                    <option value="Sin estudios">Sin estudios</option>
+                                    <option value="Educacion primaria">Educación Primaria</option>
+                                    <option value="Educacion secundaria">Educación Secundaria</option>
                                     <option value="bachillerato">Bachillerato</option>
-                                    <option value="educacion_universitaria">Educación Universitaria</option>
+                                    <option value="Educacion Universitaria">Educación Universitaria</option>
                                     <option value="posgrado">Posgrado</option>
                                 </select>
 
                             </div>
                             <div class="campo skills">
                                 <label for="skills">Habilidades o Skills</label>
-                                <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop...">
+                                <input type="text" name="skills" id="skills" placeholder="Ej. PHP, Java, Photoshop..." onkeydown="agregarEtiqueta(event)">
                             </div>
+
+                            <div id="etiquetasContainer"></div>
                             <div class="campo idiomas">
-                                <label for="skills">Idiomas</label>
-                                <input type="text" name="idiomas" id="idiomas" placeholder="Que idiomas dominas">
+                                <label for="idiomas">Idiomas</label>
+                                <input type="text" name="idiomas[]" id="idiomas" placeholder="Que idiomas dominas">
                             </div>
                             <div class="campo nivel">
-                                <label for="skills">Nivel</label>
-                                <select name="nivel" id="nivel">
-                                    <option disabled selected> -- selecciona el nievel --</option>
-                                    <option value="basico">basico</option>
-                                    <option value="Intermedio">Intermedio</option>
-                                    <option value="Avanzado">Avanzado</option>
+                                <label for="nivel">Nivel</label>
+                                <select name="nivel[]" id="nivel">
+                                    <option disabled selected> -- selecciona el nivel --</option>
+                                    <option value="basico">Básico</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="avanzado">Avanzado</option>
                                 </select>
                             </div>
+                            <div id="nuevos-idiomas"></div>
+                            <button type="button" class="agregar boton__negro" onclick="agregarIdioma()">Agregar idioma</button>
                         </div>
                         <div id="grid3" class="grid3 ocultar">
                             <div class="campo empresa">
@@ -272,19 +287,28 @@ header("Location: CandidatoPrincipal.php?id=$idUsuario");
                                     <option disabled selected>--Selecciona--</option>
                                     <option value="actual">Actual</option>
                                     <option value="menos1">Menos de 1 año</option>
-                                    <option value="1a3">1 a 3 años</option>
-                                    <option value="3a5">3 a 5 años</option>
-                                    <option value="5a10">5 a 10 años</option>
-                                    <option value="mas10">Más de 10 años</option>
+                                    <option value="1 a 3">1 a 3 años</option>
+                                    <option value="3 a 5">3 a 5 años</option>
+                                    <option value="5 a 10">5 a 10 años</option>
+                                    <option value="mas 10">Más de 10 años</option>
                                 </select>
                             </div>
                         </div>
                         <div id="grid4" class="grid4 ocultar">
-                            <div class="campo fotoPerfil">
+                            <div class="campo">
                                 <label for="fotoPerfil">Selecciona una Foto de Perfil</label>
-                                <input type="file" id="fotoPerfil" onchange="mostrarPerfil(event)" accept="image/*" name="fotoPerfil">
+                                <div class="input-wrapper">
+                                    <input class="inputFotoPerfil" type="file" id="fotoPerfil" onchange="mostrarNombreArchivo('fotoPerfil')" accept="image/*" name="fotoPerfil">
+                                    <label class="custom-file-upload" for="fotoPerfil">Seleccionar Archivo</label>
+                                </div>
+                            </div>
+
+                            <div class="campo">
                                 <label for="fotoPortada">Selecciona una Foto de Portada</label>
-                                <input type="file" id="fotoPortada" onchange="mostrarPortada(event)" accept="image/*" name="fotoPortada">
+                                <div class="input-wrapper">
+                                    <input class="inputFotoPortada" type="file" id="fotoPortada" onchange="mostrarNombreArchivo('fotoPortada')" accept="image/*" name="fotoPortada">
+                                    <label class="custom-file-upload" for="fotoPortada">Seleccionar Archivo</label>
+                                </div>
                             </div>
                             <div class="previewPerfil">
                                 <div class="previewPerfil__contenedor">
@@ -292,10 +316,10 @@ header("Location: CandidatoPrincipal.php?id=$idUsuario");
                                     <div class="previewPerfil__informacion">
                                         <div class="previewPerfil__foto"></div>
                                         <div class="previewPerfil__nombre">
-                                            <h3>Francisco Sanchez</h3>
+                                            <h3>Tu nombre</h3>
                                         </div>
                                         <div class="previewPerfil__ciudad">
-                                            <p><span>Nezahualcoyotl,</span> E.México</p>
+                                            <p><span>Ciudad,</span> Estado</p>
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +349,9 @@ header("Location: CandidatoPrincipal.php?id=$idUsuario");
         </div>
     </div>
     <script src="/src/js/formularioCandidato.js"></script>
-    <script src="/src/js/validacionCandidato.js"></script>
+    <script src="/src/js/selectEstados.js"></script>
+    <script src="/src/js/selectAreas.js"></script>
+    <!-- <script src="/src/js/validacionCandidato.js"></script> -->
 </body>
 
 </html>

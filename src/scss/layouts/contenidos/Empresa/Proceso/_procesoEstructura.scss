@@ -1,0 +1,21 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.proceso{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 0;
+    @include m.tablet{
+        padding: 2rem 5rem;
+    }
+
+    &__contenedor{
+        background-color: v.$blanco;
+        padding: 2rem 5rem;
+
+        & h3 {
+            font: 2rem;
+        }
+    }
+}

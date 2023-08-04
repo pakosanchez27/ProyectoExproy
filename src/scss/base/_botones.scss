@@ -16,3 +16,8 @@
 .boton__rojo{
     @include m.boton( rgb(194, 29, 29),v.$blanco);
 }
+
+.boton__azul{
+    @include m.boton( v.$azul, v.$blanco);
+}
+

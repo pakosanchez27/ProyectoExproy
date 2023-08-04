@@ -250,13 +250,16 @@
     }
 
     #grid2 {
-
+        grid-template-columns: repeat(2, 1fr);
         grid-template-areas: 'institucion institucion'
             'fechaInicio fechaFin'
             'titulo titulo'
-            'skills skills'
             'nivel__estudios nivel__estudios'
+            'skills skills'
+            'etiquetasContainer etiquetasContainer'
             'idiomas nivel'
+            'agregar agregar'
+            'nuevos-idiomas nuevos-idiomas'
             'derecha__botones derecha__botones';
         gap: 2rem;
     }
@@ -280,7 +283,15 @@
     }
 }
 
-
+#nuevos-idiomas{
+    grid-area: nuevos-idiomas;
+}
+#etiquetasContainer{
+    grid-area: etiquetasContainer;
+}
+.agregar{
+    grid-area: agregar;
+}
 .nivel__estudios{
     grid-area: nivel__estudios;
 }
@@ -444,7 +455,20 @@
         margin-left: 5rem;
         background-size: cover;
         background-position: center center;
+
+        &__R{
+            border: v.$blanco 4px solid;
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            background-color: gray;
+            margin-top: -5rem;
+            margin-left: 5rem;
+            background-size: cover;
+            background-position: center center;
+        }
     }
+    
 
 }
 
@@ -469,4 +493,61 @@
 
 .ultimo{
     margin-top: 2rem;
+}
+
+
+.campo {
+    margin-bottom: 10px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background-color: v.$primario;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.etiqueta span {
+    margin-right: 5px;
+    cursor: pointer;
+    color: v.$blanco;
+    font-weight: v.$bold;
+}
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input[type="file"] {
+    display: none;
+}
+
+.campo .input-wrapper {
+    position: relative;
+}
+
+.campo .input-wrapper input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.campo .input-wrapper .custom-file-upload:hover {
+    background-color: #45a049;
 }

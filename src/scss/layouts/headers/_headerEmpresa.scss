@@ -1,19 +1,19 @@
-
 @use 'base/variables' as v;
 @use 'Base/mixins' as m;
 
 
-.headerEmpresa{
-   
+.headerEmpresa {
+    // z-index: 1;
     background-color: v.$fondoSecundario;
+   
 
-    &__contenedor{
+    &__contenedor {
         display: flex;
         flex-direction: column;
-        
+
     }
 
-    &__encabezado{
+    &__encabezado {
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -21,86 +21,151 @@
         padding: 1rem 5rem;
 
     }
-    
+
 }
+
 .headerEmpresa {
-    &__logo a{
+    &__logo a {
         color: v.$blanco;
         font-size: 2rem;
         font-weight: v.$bold;
         font-family: v.$fuente__secundario;
     }
 
-    &__datos{
+    &__datos {
         display: flex;
         align-items: center;
-        gap:  5rem;
+        gap: 5rem;
 
-        & p{
+        & p {
             font-style: italic;
             color: v.$blanco;
             font-size: 1.4rem;
         }
-        
+
     }
-    &__notificaciones{
+
+    &__notificaciones {
         display: flex;
         gap: 2rem;
-        & img{
+
+        & img {
             width: 2rem;
         }
     }
 
-    &__perfil{
+    &__perfil {
         width: auto;
         display: flex;
         align-items: center;
         gap: 1rem;
-        & img{
+
+        & img {
             width: 4rem;
             height: 4rem;
             border-radius: 50%;
             border: solid 1px v.$blanco;
         }
-        & p{
+
+        & p {
             color: v.$blanco;
         }
-        & svg{
-          fill: v.$blanco;
-          stroke: v.$blanco;
+
+        & svg {
+            fill: v.$blanco;
+            stroke: v.$blanco;
         }
+
+
     }
-    
+
 
 }
 
-.headerEmpresa{
+.headerEmpresa {
 
-    &__navegacion{
+    &__navegacion {
         border-top: solid 1px v.$primario;
         padding: 2rem 5rem;
-        
+
     }
 
-    &__menu{
+    &__menu {
         width: 70%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin:  0 auto;
+        margin: 0 auto;
     }
-    &__enlace{
+
+    &__enlace {
         color: v.$blanco;
         padding-bottom: .5rem;
-        border-bottom: 1px solid transparent; /* Borde transparente en reposo */
+        border-bottom: 1px solid transparent;
+        /* Borde transparente en reposo */
 
-        &:hover{
+        &:hover {
             border-bottom: v.$primario solid 1px;
 
         }
     }
 }
 
-.border-botom{
+.border-botom {
     border-bottom: v.$primario solid 1px;
+}
+
+
+.desplegableEmpresa {
+    background-color: #fff;
+    width: 25rem;
+    position: absolute;
+    z-index: 2; /* Cambiar el valor de z-index */
+    top: 6rem;
+    right: 5rem;
+    border-bottom-right-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+
+    &__contenedor {
+        padding: 1rem 2rem;
+        
+    }
+
+    &__reclutador {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 2rem;
+        & h3{
+            padding: 0;
+            margin: 0 ;
+        }
+        & img {
+            width: 5rem;
+            border-radius: 50%;
+            border: solid 2px v.$primario;
+        }
+    }
+
+    & hr{
+        display: block;
+    }
+    & a{
+        display: block;
+
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        & a{
+            color: v.$gris;
+
+            &:hover{
+                color: v.$primario;
+            }
+        }
+    }
 }

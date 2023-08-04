@@ -25,7 +25,7 @@
 @mixin boton($color, $texto) {
   background-color: $color;
   font-size: 1.4rem;
-  padding: 1.3rem 2rem;
+  padding: 1rem 1.5rem; /* Reducimos el valor del padding para hacer el botón más delgado */
   font-weight: 400;
   display: block;
   width: 100%;
@@ -37,13 +37,12 @@
   font-family: v.$fuente__principal;
 
   &:hover {
-      cursor: pointer;
-      background-color: darken($color, 10);
+    cursor: pointer;
+    background-color: darken($color, 10);
   }
 
   @include tablet {
-      width: auto;
-      display: inline-block;
-      
+    width: auto;
+    display: inline-block;
   }
 }

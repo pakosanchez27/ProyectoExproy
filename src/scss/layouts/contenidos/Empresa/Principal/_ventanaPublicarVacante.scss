@@ -12,6 +12,7 @@
     .ventanaEmergente__formulario {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      align-items: center;
       column-gap: 20px;
       margin-bottom: 40px;
       overflow: auto;
@@ -173,4 +174,6 @@
   .editorCodigo__toolbar button:hover {
     background-color: #e9ecef;
   }
-  
+  .descripcionVacante{
+    grid-column: 1/3;
+  }

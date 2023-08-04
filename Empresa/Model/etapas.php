@@ -1,0 +1,37 @@
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$idUsuario = $_GET['id'];
+// $idVacante = $_GET['idVacante'];
+$idCandidato = $_GET['idCandidato'];
+$idPostulacion = $_GET['idPostulacion'];
+$etapa = $_GET['etapa'];
+
+require '../../include/config.php';
+
+if($etapa == 'POSTULADO'){
+    $etapa = 'REVICION';
+}elseif($etapa == 'REVICION'){
+    $etapa = 'PRUEBA';
+}elseif($etapa == 'PRUEBA'){
+    $etapa = 'ENTREVISTA';
+}elseif($etapa == 'ENTREVISTA'){
+    $etapa = 'DOCUMENTOS';
+}elseif($etapa == 'DOCUMENTOS'){
+    $etapa = 'CONTRATADO';
+}elseif($etapa == 'RECHAZADO'){
+    $etapa = 'RECHAZADO';
+}
+
+
+$updateEtapa = "UPDATE postulacion SET ESTADO = '$etapa' WHERE ID_CANDIDATO = $idCandidato AND ID_POSTULACION = $idPostulacion";
+ $result = $pdo->query($updateEtapa);
+var_dump($updateEtapa);
+
+header("Location: /Empresa/Enproceso.php?id=$idUsuario");
+
+
+?> 

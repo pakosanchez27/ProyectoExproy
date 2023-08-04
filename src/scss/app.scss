@@ -1,11 +1,16 @@
 @use 'base';
 @use 'layouts/headers';
 @use 'layouts/contenidos/Principal/Index';
+@use 'layouts/contenidos/Principal/indexCandidato';
 @use 'layouts/contenidos/Principal/Nosotros';
 @use 'layouts/contenidos/Candidato/registro';
 @use 'layouts/contenidos/Candidato/Perfil';
 @use 'layouts/contenidos/Candidato/Empleos/Bucar';
 @use 'layouts/contenidos/Candidato/Empleos/Postulados';
+@use 'layouts/contenidos/Candidato/etapas';
 @use 'layouts/contenidos/Empresa/Logins';
 @use 'layouts/contenidos/Empresa/Principal';
+@use 'layouts/contenidos/Empresa/Vacantes';
+@use 'layouts/contenidos/Empresa/Postulacion';
+@use 'layouts/contenidos/Empresa/Proceso';
 @use 'layouts/footers';

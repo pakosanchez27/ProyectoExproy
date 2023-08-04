@@ -12,6 +12,7 @@ const notify = require('gulp-notify');
 const cache = require('gulp-cache');
 const webp = require('gulp-webp');
 
+
 const paths = {
     scss: 'src/scss/**/*.scss',
     js: 'src/js/**/*.js',
@@ -57,9 +58,9 @@ function versionWebp() {
 
 function watchArchivos() {
     watch( paths.scss, css );
-    watch( paths.js, javascript );
+    // watch( paths.js, javascript );
     watch( paths.imagenes, imagenes );
     watch( paths.imagenes, versionWebp );
 }
   
-exports.default = parallel(css, javascript,  imagenes, versionWebp, watchArchivos ); 
+exports.default = parallel(css,  imagenes, versionWebp, watchArchivos ); 

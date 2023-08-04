@@ -1,5 +1,5 @@
 // Variables
-const subirPerfil = document.querySelector('#fotoPerfil');
+const subirPerfil = document.querySelector('#fotoPerfil') ;
 const subirPortada = document.querySelector('#fotoPortada');
 const grid1 = document.querySelector('.grid1');
 const grid2 = document.querySelector('.grid2');
@@ -12,9 +12,7 @@ const flujo3 = document.querySelector('#flujo3');
 const flujo4 = document.querySelector('#flujo4');
 const flujo5 = document.querySelector('#flujo5');
 
-const OptionEstado = document.querySelector('#estado');
-const OptionArea = document.querySelector('#area');
-const OptionPuesto = document.querySelector('#puesto');
+
 const contenedorBtn = document.querySelector('.derecha__botones');
 const siguienteSubmit = document.createElement('input');
 const siguientebtn = document.createElement('a');
@@ -40,75 +38,14 @@ console.log(paginador);
 eventListeners();
 
 function eventListeners() {
-  document.addEventListener('DOMContentLoaded', () => {
+  
     subirPerfil.addEventListener('change', mostrarPerfil);
     subirPortada.addEventListener('change', mostrarPortada);
     siguientebtn.addEventListener('click', siguienteFormulario);
     atras.addEventListener('click', atrasFormulario);
-  });
+ 
 }
 
-// Llenar el Select Estados
-fetch('../../Json/estados.json')
-  .then(Response => Response.json())
-  .then(Data => {
-    Object.keys(Data).forEach(estado => {
-      const optionElement = document.createElement('option');
-      optionElement.textContent = estado;
-      optionElement.value = estado;
-      OptionEstado.appendChild(optionElement);
-    });
-
-    OptionEstado.addEventListener('change', function (e) {
-      ciudad.value = '';
-
-      const EstadoSeleccionado = e.target.value;
-
-      llenarMunicipios(Data, EstadoSeleccionado);
-    });
-  })
-  .catch(error => {
-    console.error("Error al cargar los datos", error);
-  });
-
-function llenarMunicipios(Data, EstadoSeleccionado) {
-  Object.values(Data[EstadoSeleccionado]).forEach(municipio => {
-    const optionElement2 = document.createElement('option');
-    optionElement2.textContent = municipio;
-    optionElement2.value = municipio;
-    ciudad.appendChild(optionElement2);
-  });
-}
-
-// Llenar Select áreas
-fetch('../Json/puestos.json')
-  .then(Response => Response.json())
-  .then(data => {
-    Object.keys(data).forEach(area => {
-      const optionElement2 = document.createElement('option');
-      optionElement2.textContent = area;
-      optionElement2.value = area;
-      OptionArea.appendChild(optionElement2);
-    });
-
-    area.addEventListener('change',(e)=>{
-      const areaSelecionado = e.target.value;
-      llenarPuesto(data, areaSelecionado);
-    });
-
-    console.log(data["Desarrollo de software y programación"]);
-  });
-
-function llenarPuesto(data, areaSelecionado){
-  OptionPuesto.innerHTML = '';
-
-  Object.values(data[areaSelecionado]).forEach(puesto => {
-    const optionElement2 = document.createElement('option');
-    optionElement2.textContent = puesto;
-    optionElement2.value = puesto;
-    OptionPuesto.appendChild(optionElement2);
-  });
-}
 
 mostrarFormulario(paginador);
 
@@ -350,6 +287,20 @@ function mostrarPerfil(event) {
 
   reader.readAsDataURL(input.files[0]);
 }
+function mostrarPerfilR(event) {
+  var input = event.target;
+  var reader = new FileReader();
+
+  reader.onload = function () {
+    var dataURL = reader.result;
+    var imagenPreview = document.querySelector(".previewPerfil__foto__R");
+
+    imagenPreview.style.backgroundImage = "url('" + dataURL + "')";
+  };
+
+  // Leer el archivo seleccionado y obtener la URL como base64
+  reader.readAsDataURL(input.files[0]);
+}
 
 function mostrarPortada(event) {
   var input = event.target;
@@ -371,3 +322,100 @@ function limpiarHTML(elemento) {
     elemento.removeChild(elemento.firstChild);
   }
 }
+
+function agregarEtiqueta(event) {
+  if (event.keyCode === 13) { // Verificar si se presionó la tecla Enter
+      event.preventDefault(); // Evitar el comportamiento por defecto (enviar el formulario)
+      
+      var input = document.getElementById("skills");
+      var etiquetasContainer = document.getElementById("etiquetasContainer");
+      
+      var etiqueta = document.createElement("span");
+      etiqueta.className = "etiqueta";
+      
+      var etiquetaTexto = document.createElement("span");
+      etiquetaTexto.innerText = input.value;
+      
+      var eliminarBtn = document.createElement("span");
+      eliminarBtn.innerText = "x";
+      eliminarBtn.addEventListener("click", function() {
+          etiquetasContainer.removeChild(etiqueta);
+          etiquetasContainer.removeChild(etiquetaInput);
+      });
+      
+      etiqueta.appendChild(etiquetaTexto);
+      etiqueta.appendChild(eliminarBtn);
+      
+      etiquetasContainer.appendChild(etiqueta);
+      
+      // Agregar un campo de entrada oculto para enviar los valores de las etiquetas
+      var etiquetaInput = document.createElement("input");
+      etiquetaInput.type = "hidden";
+      etiquetaInput.name = "etiquetas[]";
+      etiquetaInput.value = input.value;
+      etiquetasContainer.appendChild(etiquetaInput);
+      
+      input.value = ""; // Limpiar el valor del input
+  }
+}
+
+function agregarIdioma() {
+  var nuevosIdiomasDiv = document.getElementById("nuevos-idiomas");
+
+  var nuevoIdiomaDiv = document.createElement("div");
+  nuevoIdiomaDiv.className = "campo idiomas";
+
+  var nuevoIdiomaLabel = document.createElement("label");
+  nuevoIdiomaLabel.textContent = "Idiomas";
+  nuevoIdiomaDiv.appendChild(nuevoIdiomaLabel);
+
+  var nuevoIdiomaInput = document.createElement("input");
+  nuevoIdiomaInput.type = "text";
+  nuevoIdiomaInput.name = "idiomas[]";
+  nuevoIdiomaInput.placeholder = "Que idiomas dominas";
+  nuevoIdiomaDiv.appendChild(nuevoIdiomaInput);
+
+  var nuevoNivelDiv = document.createElement("div");
+  nuevoNivelDiv.className = "campo nivel";
+
+  var nuevoNivelLabel = document.createElement("label");
+  nuevoNivelLabel.textContent = "Nivel";
+  nuevoNivelDiv.appendChild(nuevoNivelLabel);
+
+  var nuevoNivelSelect = document.createElement("select");
+  nuevoNivelSelect.name = "nivel[]";
+
+  var nuevoNivelDefaultOption = document.createElement("option");
+  nuevoNivelDefaultOption.disabled = true;
+  nuevoNivelDefaultOption.selected = true;
+  nuevoNivelDefaultOption.textContent = "-- selecciona el nivel --";
+  nuevoNivelSelect.appendChild(nuevoNivelDefaultOption);
+
+  var nuevoNivelBasicoOption = document.createElement("option");
+  nuevoNivelBasicoOption.value = "basico";
+  nuevoNivelBasicoOption.textContent = "Básico";
+  nuevoNivelSelect.appendChild(nuevoNivelBasicoOption);
+
+  var nuevoNivelIntermedioOption = document.createElement("option");
+  nuevoNivelIntermedioOption.value = "intermedio";
+  nuevoNivelIntermedioOption.textContent = "Intermedio";
+  nuevoNivelSelect.appendChild(nuevoNivelIntermedioOption);
+
+  var nuevoNivelAvanzadoOption = document.createElement("option");
+  nuevoNivelAvanzadoOption.value = "avanzado";
+  nuevoNivelAvanzadoOption.textContent = "Avanzado";
+  nuevoNivelSelect.appendChild(nuevoNivelAvanzadoOption);
+
+  nuevoNivelDiv.appendChild(nuevoNivelSelect);
+
+  nuevosIdiomasDiv.appendChild(nuevoIdiomaDiv);
+  nuevosIdiomasDiv.appendChild(nuevoNivelDiv);
+}
+
+function mostrarNombreArchivo(inputId) {
+  const input = document.getElementById(inputId); // Use getElementById to select elements by their IDs
+  const fileName = input.files[0].name;
+  const customUpload = document.querySelector(`label[for=${inputId}] .custom-file-upload`);
+  customUpload.textContent = fileName;
+}
+

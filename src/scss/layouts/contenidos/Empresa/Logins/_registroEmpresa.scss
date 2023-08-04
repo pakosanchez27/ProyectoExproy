@@ -9,8 +9,9 @@
     &__contenedor {
         width: 100%;
         height: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 25% 75%);
+         display: flex;
+         flex-direction: column;
+        // grid-template-columns: repeat(2, 20% 80%);
 
     }
 
@@ -20,10 +21,11 @@
         height: 100%;
         display: flex;
         gap: 5rem;
-        padding: 0 3rem;
+        padding: 2rem 3rem;
         flex-direction: column;
+        justify-content: left;
         justify-content: center;
-        align-items: center;
+        margin-bottom: 1rem;
 
         & img {
             width: 30rem;
@@ -33,7 +35,7 @@
             color: v.$blanco;
             font-family: v.$fuente__secundario;
             font-weight: v.$bold;
-            font-size: 3rem;
+            font-size: 2rem;
 
         }
 
@@ -48,10 +50,14 @@
 .registroEmpresa {
 
     &__derecha {
-        padding: 5rem 5rem;
+        padding: 0;
         display: flex;
         flex-direction: column;
         gap: 3rem;
+
+        @include m.tablet{
+          padding: 5rem 5rem;
+        }
 
     }
 
@@ -73,12 +79,17 @@
     }
 
     &__campos {
-        display: grid;
-        grid-template-areas: 'empresa direccion '
-            'descripcion postal '
-            'descripcion estado'
-            'url  ciudad';
-        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        @include m.tablet{
+            display: grid;
+            grid-template-areas: 'empresa direccion '
+                'descripcion postal '
+                'descripcion estado'
+                'url  ciudad';
+            gap: 2rem;
+        }
     }
 }
 
@@ -127,23 +138,31 @@
         padding: 1rem;
         font-size: 1.6rem;
     }
-    &__campos{
-        display: grid;
+
+    &__campos {
+        display: flex;
+        flex-direction: column;
+        
+
+        @include m.tablet {
+            display: grid;
         grid-template-areas: 'nombre apellido'
-                             'genero telefono'
-                             'fecha cargo';
-                             gap: 2rem;
-                             
+            'genero telefono'
+            'fecha cargo';
+        gap: 2rem;
+        }
     }
 }
 
-.btnEmpresa{
-    
+
+
+.btnEmpresa {
+
     display: flex;
     // justify-content: center;
     align-items: flex-end;
 
-    & input{
+    & input {
         width: 20rem;
     }
 }

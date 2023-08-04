@@ -115,22 +115,25 @@
 
 .login__recordar a{
     color: v.$primario;
+    width: 15rem;
 }
 .registrar a{
     color:  v.$primario;
 }
 
 .login__recordar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     margin-bottom: 2rem;
 }
 
 .recordar {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: flex-end;
+
     align-items: center;
     margin-top: 2rem;
 }

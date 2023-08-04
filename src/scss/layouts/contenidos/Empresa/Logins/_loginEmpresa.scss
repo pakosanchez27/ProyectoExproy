@@ -75,3 +75,49 @@
         
     }
 }
+
+.terminos,
+.privacidad {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: left;
+  gap: 0.5rem;
+  font-family: v.$fuente__principal;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: v.$negro;
+}
+
+.terminos a,
+.privacidad a {
+  font-weight: v.$bold;
+  color: v.$primario;
+  text-decoration: underline;
+}
+
+.terminos input[type="checkbox"],
+.privacidad input[type="checkbox"] {
+  appearance: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid v.$primario;
+  border-radius: 0.3rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.terminos input[type="checkbox"]:checked,
+.privacidad input[type="checkbox"]:checked {
+  background-color: v.$primario;
+}
+
+.terminos label,
+.privacidad label {
+  cursor: pointer;
+}
+
+.terminos label a,
+.privacidad label a {
+  color: v.$primario;
+}

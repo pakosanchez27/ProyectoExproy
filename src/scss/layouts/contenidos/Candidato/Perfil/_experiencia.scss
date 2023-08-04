@@ -5,11 +5,34 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
-
+    @include m.tablet{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include m.desktop{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .principal__experiencia__card {
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: v.$blanco;
+    border-radius: .5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+   
+
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }
 
 p.experiencia__titulo {

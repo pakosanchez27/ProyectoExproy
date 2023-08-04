@@ -46,6 +46,7 @@
 
     &__conendido {
         border: seagreen solid 1px;
+
     }
 }
 
@@ -80,6 +81,13 @@
         // border: solid 1px black;
         background-color: v.$blanco;
         border: solid 1px v.$primario;
+        @include m.tablet {
+            width: 60rem;
+        }
+        @include m.desktop {
+            width: 100rem;
+        }
+        
     }
 }
 
