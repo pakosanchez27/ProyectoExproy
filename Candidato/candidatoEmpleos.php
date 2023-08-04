@@ -180,7 +180,7 @@ $resultEmpleos = $pdo->query($sqlEmpleos);
                 <h3><?php echo $nombre . " " . $apellido; ?></h3>
             </div>
 
-            <a href="CandidatoPrincipal.php" class="boton__verde">Ver perfil</a>
+            <a href="CandidatoPrincipal.php?id=<?php echo $idUsuario?>" class="boton__verde">Ver perfil</a>
             <hr>
             <nav class="perfilDesplebable__cuenta">
                 <a href="#" class="enlace">Ayuda</a>
