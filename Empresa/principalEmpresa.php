@@ -49,13 +49,14 @@ $resultVacante = $pdo->query($sqlVacantes);
 
 
 // Consulta para obtener las postulaciones
-$sqlPostulacion = "SELECT p.ID_POSTULACION, c.ID_CANDIDATO, c.CAN_NOMBRE, c.CAN_APELLIDO, c.CAN_FOTOPERFIL, c.CAN_FOTOPORTADA, v.TITULO, v.DESCRIPCION, p.FECHA_POSTULACION, p.ESTADO
-FROM POSTULACION p
-INNER JOIN CANDIDATO c ON p.ID_CANDIDATO = c.ID_CANDIDATO
-INNER JOIN VACANTE v ON p.ID_VACANTE = v.ID_VACANTE
-INNER JOIN EMPRESA e ON v.ID_EMPRESA = e.ID_EMPRESA
-WHERE e.ID_EMPRESA = $idEmpresa
-AND p.ESTADO <> 'RECHAZADO'";
+$sqlPostulacion = "SELECT p.id_postulacion, c.id_candidato, c.can_nombre, c.can_apellido, c.can_fotoperfil, c.can_fotoportada, v.titulo, v.descripcion, p.fecha_postulacion, p.estado
+FROM postulacion p
+INNER JOIN candidato c ON p.id_candidato = c.id_candidato
+INNER JOIN vacante v ON p.id_vacante = v.id_vacante
+INNER JOIN empresa e ON v.id_empresa = e.id_empresa
+WHERE e.id_empresa = $idEmpresa
+AND p.estado <> 'RECHAZADO'";
+
 $resultPostulacion = $pdo->query($sqlPostulacion);
 
 // var_dump($datosPostulacion);
