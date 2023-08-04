@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cargo = $_POST['cargo'];
         $duracion = $_POST['duracion'];
 
-        $updateExperiencia = "UPDATE experiencia SET EXP_NOMBRE_EMPRESA = '$empresa', EXP_DESCRIPCION = '$descripcion', EXP_CARGO = '$cargo', EXP_DURACION = '$duracion' WHERE id_usuario = '$idUsuario'";
+        $updateExperiencia = "UPDATE experiencia SET EXP_NOMBRE_EMPRESA = '$empresa', EXP_DESCRIPCION = '$descripcion', EXP_CARGO = '$cargo', EXP_DURACION = '$duracion' WHERE id_usuario = '$idUsuario' AND ID_EXPERIENCIA = '$idExperiencia'";
         // echo $updateEducacion;
         $resultExp = $pdo->query($updateExperiencia);
     }
