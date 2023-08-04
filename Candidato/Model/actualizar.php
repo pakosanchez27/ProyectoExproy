@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 
 require '../../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
+$idEducacion = $_GET['idEducacion'] ?? null;
 
 // Updates
 
@@ -157,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $titulo = $_POST['titulo'];
         $nivelEstudios = $_POST['nivel__estudios'];
 
-        $updateEducacion = "UPDATE educacion SET EDU_NOMBRE_INSTITUCION = '$institucion', EDU_FECHA_INICIO = '$fechaInicio', EDU_FECHA_FIN = '$fechaFin', EDU_TITULO = '$titulo', EDU_NIVEL = '$nivelEstudios' WHERE id_usuario = '$idUsuario'";
+        $updateEducacion = "UPDATE educacion SET EDU_NOMBRE_INSTITUCION = '$institucion', EDU_FECHA_INICIO = '$fechaInicio', EDU_FECHA_FIN = '$fechaFin', EDU_TITULO = '$titulo', EDU_NIVEL = '$nivelEstudios' WHERE id_usuario = $idUsuario AND ID_EDUCACION = $idEducacion;           ";
         // echo $updateEducacion;
         $resultEdu = $pdo->query($updateEducacion);
     }
