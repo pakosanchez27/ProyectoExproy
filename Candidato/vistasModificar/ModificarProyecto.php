@@ -214,7 +214,7 @@ $fotoProyecto = $datos['PROY_FOTO'];
 
     <div class="modificarEducacion">
         <div class="emergente__formulario modificarEducacion__form">
-            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>" enctype="multipart/form-data">
+            <form class="emergente__formulario__contenido" method="POST" action="/Candidato/Model/actualizar.php?id=<?php echo $idUsuario ?>&idProyecto=<?php echo $idProyecto  ?>" enctype="multipart/form-data">
                 <div class="emergente__formulario__header sombra">
                     <h3>Agrega un proyecto nuevo.</h3>
                 </div>

@@ -11,6 +11,7 @@ require '../../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
 $idEducacion = $_GET['idEducacion'] ?? null;
 $idProyecto = $_GET['idProyecto'] ?? null;
+$idCertificacion = $_GET['idCertificacion'] ?? null;
 // Updates
 
 $sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
@@ -209,9 +210,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombrePerfil = $datos['PROY_FOTO'];
         }
 
-        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE id_usuario = '$idUsuario' AND ID_PROYECTO = $idProyecto";
-        // echo $updateProyecto;
+        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE ID_USUARIO = $idUsuario AND ID_PROYECTO = $idProyecto";
+        //  echo $updateProyecto;
         $resultProy = $pdo->query($updateProyecto);
+    }
+
+    if(isset($_POST['nombreCertificado']) && isset($_POST['descripcionCertificado']) && isset($_POST['lugar']) && isset($_POST['horas']) && isset($_POST['fechaTermino'])) {
+        $nombreCertificado = $_POST['nombreCertificado'];
+        $descripcionCertificado = $_POST['descripcionCertificado'];
+        $lugar = $_POST['lugar'];
+        $fecha = $_POST['fechaTermino'];
+        $horas = $_POST['horas'];
+
+        $updateCer = "UPDATE certificaciones SET CER_NOMBRE = '$nombreCertificado', CER_DESCRIPCION = '$descripcionCertificado', CER_Lugar = '$lugar', CER_FECHA = '$fecha', CER_HORAS = $horas WHERE ID_USUARIO = $idUsuario AND ID_CERTIFICACION = $idCertificacion";
+        // echo $updateCer;
+        $result = $pdo->query($updateCer);
     }
 
 
