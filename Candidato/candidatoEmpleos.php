@@ -31,20 +31,19 @@ $FotoPortada = $datos['CAN_FOTOPORTADA'];
 $idCandidato = $datos['ID_CANDIDATO'];
 
 
-$sqlempleos = "SELECT v.id_vacante, v.titulo, v.descripcion, v.salario, v.ciudad, v.estado, v.area, v.puesto, v.educacion, v.tipo_contrato, v.horario, v.modo_trabajo, DATE_FORMAT(ev.fecha_creacion_vacante, '%d-%m-%Y') AS fecha_publicacion, v.numero_vacantes,
-e.id_empresa, e.emp_nombre, e.emp_apellido, e.emp_telefono, e.emp_empresa, e.emp_fotoperfil, e.emp_fotoportada, e.emp_genero, e.emp_acerca, e.emp_nacimiento, e.emp_cargo, e.emp_url, e.emp_fotoreclutador
-FROM vacante v
-JOIN empresa e ON v.id_empresa = e.id_empresa
-JOIN empresa_vacante ev ON v.id_vacante = ev.id_vacante
-WHERE ev.fecha_creacion_vacante <= CURDATE()
-AND (v.vencimiento IS NULL OR v.vencimiento >= CURDATE())
+$sqlEmpleos = "SELECT V.ID_VACANTE, V.TITULO, V.DESCRIPCION, V.SALARIO, V.CIUDAD, V.ESTADO, V.AREA, V.PUESTO, V.EDUCACION, V.TIPO_CONTRATO, V.HORARIO, V.MODO_TRABAJO, DATE_FORMAT(EV.FECHA_CREACION_VACANTE, '%d-%m-%Y') AS FECHA_PUBLICACION, V.NUMERO_VACANTES,
+E.ID_EMPRESA, E.EMP_NOMBRE, E.EMP_APELLIDO, E.EMP_TELEFONO, E.EMP_EMPRESA, E.EMP_FOTOPERFIL, E.EMP_FOTOPORTADA, E.EMP_GENERO, E.EMP_ACERCA, E.EMP_NACIMIENTO, E.EMP_CARGO, E.EMP_URL, E.EMP_FOTORECLUTADOR
+FROM vacante V
+JOIN empresa E ON V.ID_EMPRESA = E.ID_EMPRESA
+JOIN empresa_vacante EV ON V.ID_VACANTE = EV.ID_VACANTE
+WHERE EV.FECHA_CREACION_VACANTE <= CURDATE()
+AND (V.VENCIMIENTO IS NULL OR V.VENCIMIENTO >= CURDATE())
 AND NOT EXISTS (
     SELECT 1
-    FROM postulacion p
-    WHERE p.id_candidato = $idCandidato AND p.id_vacante = v.id_vacante
+    FROM postulacion P
+    WHERE P.ID_CANDIDATO = $idCandidato AND P.ID_VACANTE = V.ID_VACANTE
 )
-ORDER BY ev.fecha_creacion_vacante DESC";
-
+ORDER BY EV.FECHA_CREACION_VACANTE DESC";
 $resultEmpleos = $pdo->query($sqlEmpleos);
 
 
