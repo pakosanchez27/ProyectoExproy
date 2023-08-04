@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 require '../../include/config.php';
 $idUsuario = $_GET['id'] ?? null;
 $idEducacion = $_GET['idEducacion'] ?? null;
-
+$idProyecto = $_GET['idProyecto'] ?? null;
 // Updates
 
 $sql = "SELECT * FROM candidato WHERE id_usuario = $idUsuario ";
@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombrePerfil = $datos['PROY_FOTO'];
         }
 
-        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE id_usuario = '$idUsuario'";
+        $updateProyecto = "UPDATE proyectos SET PROY_NOMBRE = '$nombreProyecto', PROY_DESCRIPCION = '$descripcion', PROY_TECNOLOGIA = '$tecnologias', PROY_URL = '$urlProyecto', PROY_FOTO = '$nombrePerfil' WHERE id_usuario = '$idUsuario' AND ID_PROYECTO = $idProyecto";
         // echo $updateProyecto;
         $resultProy = $pdo->query($updateProyecto);
     }
