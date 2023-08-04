@@ -230,7 +230,7 @@ include '../include/templete/headerEmpresa.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = "SELECT * FROM PRUEBAS WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
+                                            $sql = "SELECT * FROM pruebas WHERE id_empresa = $idEmpresa AND id_candidato = $idCandidato";
                                             $result = $pdo->query($sql);
                                             while ($datos = $result->fetch(PDO::FETCH_ASSOC)) :
                                                 $nombre = $datos['NOMBREPRUEBA'];
