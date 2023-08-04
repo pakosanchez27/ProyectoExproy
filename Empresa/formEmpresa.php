@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sqlDomicilio = "INSERT INTO domicilio (CALLE,CIUDAD,ESTADO, CODIGO_POSTAL,ID_USUARIO) VALUES ('$direccion','$ciudad','$estado','$postal','$idUsuario')";
         $result = $pdo->query($sqlDomicilio);
 
-        header("Location: /principalEmpresa.php?id=$idUsuario");
+        header("Location: /Empresa/principalEmpresa.php?id=$idUsuario");
     }
 }
 
