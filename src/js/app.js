@@ -7,7 +7,7 @@ const menuMobile = document.querySelector('#menuMobile');
 // eventos
 menu.addEventListener('click', mostrarMenu);
 // menuEmpresa.addEventListener('click', mostrarMenuEmpresa);
-// cerrar.addEventListener('click', cerrarMenu);
+cerrar.addEventListener('click', cerrarMenu);
 // perfilMobile.addEventListener('click', mostarDesplegable);
 
 // funciones
